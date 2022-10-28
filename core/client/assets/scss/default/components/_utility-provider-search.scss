@@ -1,0 +1,30 @@
+.predictive-search {
+  z-index: 100;
+  position: absolute;
+}
+.predictive-search-bg {
+  background: #fff;
+
+  @include box-shadow(0 3px 6px 1px #CCC);
+  padding: 10px 0 0;
+  margin: 0;
+  li > span {
+    cursor: pointer;
+    background-color: transparent;
+    position: relative;
+  }
+}
+.predictive-search-entry {
+  font-weight: bold;
+  font-size: 14;
+  color: #428bca;
+  padding: 10px 50px 5px 15px;
+  .predictive-search-subtitle {
+    font-size: 11;
+    color: #777;
+    padding: 2;
+  }
+  &:hover {
+    background: #dceff6;
+  }
+}

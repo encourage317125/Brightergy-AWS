@@ -1,0 +1,35 @@
+<div class="team-member-list-header" ng-class="{'without-new-btn':!userCreatable}">
+    <div id="searchInputWrapper">
+        <input type="text" class="form-control" ng-model="search.name" placeholder="Search"/>
+        <i class="icon icon-search"></i>
+    </div>
+    <div id="createNewWrapper" ng-if="userCreatable">
+        <button class="btn btn-bl-default" ng-click="showNewMemberPanel()">
+            <i class="icon icon-plus"></i> Add New Member
+        </button>
+    </div>
+</div>
+<div class="team-member-list-content">
+    <ul class="list-team-member">
+        <li ng-repeat="user in availableUsers | filter: search" ng-click="showViewMemberPanel(user)">
+            <div class="media list-team-member-item">
+                <div class="media-left">
+                    <span class="member-photo" ng-show="user.profilePictureUrl">
+                        <img ng-src="{{user.profilePictureUrl}}" alt="{{user.name}}"/>
+                    </span>
+                    <span class="member-photo none" ng-show="!user.profilePictureUrl">
+                        {{user.name | nameInitial}}
+                    </span>
+                </div>
+                <div class="media-body">
+                    <h5 class="media-heading">
+                        {{ user.name }}
+                        <span class="label label-primary">{{user.role}}</span>
+                    </h5>
+                    <p>{{ user.email }}</p>
+                    <i class="icon icon-edit" ng-if="userModifiable"></i>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

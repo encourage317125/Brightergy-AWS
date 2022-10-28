@@ -1,0 +1,4 @@
+<div ng-style="{'width' : widgetParam.parameters.widthPadding + '%', 'height' : widgetParam.parameters.heightPadding + '%', 'margin': 'auto'}">
+    <div class="template-title" ng-hide="(widgetParam.parameters.headerFont.content == null) || (widgetParam.parameters.headerFont.content == '')" ng-style="{'font-size' : widgetParam.parameters.headerFont.size + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name, 'background-color' : '#' + widgetParam.parameters.primaryColor.color}">{{widgetParam.parameters.headerFont.content}}</div>
+    <iframe ng-src="{{widgetParam.parameters.widgetComplieIFrameUrl}}" ng-style="{'width' : '100%', 'height' : widgetParam.parameters.bodyHeightPadding + '%'}"></iframe>
+</div>

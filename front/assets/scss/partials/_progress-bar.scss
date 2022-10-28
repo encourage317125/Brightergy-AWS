@@ -1,0 +1,41 @@
+progress, progress[role]
+{
+    @include apperance (none);
+    border: 1px solid $color-small-header;
+    background-size: auto;
+    width: 55px;
+    height: 6px;
+    border-radius: 4px;
+}
+
+progress[role]:after {
+    background-image: none;
+}
+
+progress[role] strong {
+    display: none;
+}
+
+progress,
+progress[role][aria-valuenow] {
+    background: transparent !important;
+}
+progress::-webkit-progress-bar {
+    background: transparent;
+}
+
+progress {
+    color: black;
+}
+
+progress::-moz-progress-bar {
+    background: transparent;
+}
+
+progress::-webkit-progress-value {
+    background: $color-sp-kpi;
+}
+
+progress[aria-valuenow]:before  {
+    background: $color-sp-kpi;
+}

@@ -1,0 +1,29 @@
+#Dockerfile for MEAN stack
+
+FROM ubuntu:14.04
+MAINTAINER Samar Acharya <samar@techgaun.com>
+
+RUN sed 's/main$/main universe/' -i /etc/apt/sources.list
+#installation of openssh server and other common utilities
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-server xorg vim less net-tools inetutils-ping curl git telnet socat dnsutils netcat tree htop unzip sudo software-properties-common supervisor graphicsmagick optipng wget fontconfig xfonts-75dpi && \
+    mkdir -p /var/run/sshd && \
+    echo 'root:root' |chpasswd
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN sed -i "s/session.*required.*pam_loginuid.so/#session    required     pam_loginuid.so/" /etc/pam.d/sshd
+RUN sed -i "s/PermitRootLogin without-password/#PermitRootLogin without-password/" /etc/ssh/sshd_config
+
+#NodeJs
+RUN curl http://nodejs.org/dist/v4.2.4/node-v4.2.4-linux-x64.tar.gz | tar xz
+RUN mv node* node && \
+    ln -s /node/bin/node /usr/local/bin/node && \
+    ln -s /node/bin/npm /usr/local/bin/npm
+
+RUN wget http://download.gna.org/wkhtmltopdf/0.12/0.12.2.1/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb && \
+    dpkg -i wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+
+#Configure supervisor
+COPY ./.docker/supervisord.conf /etc/supervisord.conf
+COPY ./.docker/supervisord.sshd.conf /etc/supervisord.d/
+COPY ./.docker/supervisord.nodejs.conf /etc/supervisord.d/

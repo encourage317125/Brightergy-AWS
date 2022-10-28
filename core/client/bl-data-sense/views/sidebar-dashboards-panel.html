@@ -1,0 +1,71 @@
+<div class="panel bl-sidebar-panel" ng-controller="DashboardPanelCtrl">
+    <div class="panel-heading">
+        <a class="panel-title" data-toggle="collapse" data-parent="#l-panel" href="#panel-collections">
+            <span class="nav-label">Dashboards</span>
+        </a>
+    </div>
+    <div id="panel-collections" class="panel-collapse collapse in">
+        <button class="btn btn-bl-default inactive pull-right" ng-click="openDashboardDialog(null, $event)">
+            <i class="icon s-add"></i> Add Dashboard
+        </button>
+        <div class="panel-body">
+            <div class="section bl-sidebar-search-section">
+                <input type="text" class="form-control" ng-model="userInputSearchDashboards" placeholder="Search">
+                <span class="icon i-find"></span>
+            </div>
+            <div ng-show="orderedDashboards.length>0" class="ds-panel-actions">
+                <a ng-click="showSortableDashboards();" ng-hide="reordering" class="ds-panel-action ds-panel-action-reorder">
+                    <i class="fa fa-reorder"></i>Reorder collectons/dashboards
+                </a>
+                <a ng-click="applyReordering()" ng-show="reordering" class="ds-panel-action ds-panel-action-done">
+                    <i class="fa fa-check"></i>Done
+                </a>
+                <a ng-click="cancelReordering()" ng-show="reordering" class="ds-panel-action ds-panel-action-cancel">
+                    <i class="fa fa-remove"></i>Cancel
+                </a>
+            </div>
+            <div class="collection-list" m-custom-scrollbar="">
+                <div ng-show="reordering" class="ds-panel-sortable">
+                    <ul ui-sortable="sortableOptions" ng-model="sortDashboards" class="sort-list collections">
+                        <li ng-repeat="collection in sortDashboards" class="item-collection">
+                            <span>{{collection.text}}</span>
+                            <ul ng-if="collection.dashboards.length > 0" ui-sortable="sortableOptions" ng-model="collection.dashboards" class="sort-list dashboards">
+                                <li ng-repeat="dashboard in collection.dashboards" class="item-dashboard">
+                                    {{dashboard.text}}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <accordion close-others="false" ng-hide="reordering">
+                    <accordion-group class="nav-first-level"
+                                     ng-class="{collapsed:!isopen}"
+                                     is-open="isopen"
+                                     ng-repeat="collection in orderedDashboards"
+                                     ng-controller="AccorionItemCtrl"
+                            >
+                        <accordion-heading>
+                            <b class="caret flipped"></b>{{collection.text}}
+                        </accordion-heading>
+                        <ul class="nav nav-second-level">
+                            <li class="nav-second-level-item" ng-repeat="ds in collection.dashboards | filter:{text: userInputSearchDashboards}"
+                            ng-class="{active:isSelectedDashboard(ds.dashboard)}" ng-show="ds.dashboard.isPrivate == false || (ds.dashboard.isPrivate == true && ds.dashboard.creator == currentUser._id)">
+                                <a ng-click="routerDashboard(ds.dashboard._id, $event)" ng-show="!ds.dashboard.isRemoving">{{ds.text}}</a>
+                                <div class="ds-lmenu-actions">
+                                    <a class="ds-lmenu-action" ng-click="openDashboardDialog(ds.dashboard, $event)">
+                                        <i class="glyphicon glyphicon-edit"></i>
+                                    </a>
+                                    <a class="ds-lmenu-action" ng-if="$root.dashboards.length > 1" ng-click="toggleDashboardRemove(ds.dashboard, $event)">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </div>
+                                <delete-dialog ng-show="ds.dashboard.isRemoving" data-yes="deleteDashboard(ds.dashboard)" data-no="toggleDashboardRemove(ds.dashboard)" data-message="Really Delete?"></delete-dialog>
+                            </li>
+                        </ul>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </div>
+    </div>
+    <br><br>
+</div>

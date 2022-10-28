@@ -1,0 +1,49 @@
+#account-wrapper {
+	background: $platform-background;
+	.ppanel-section-heading .title {
+		margin-top: 5px;
+	}
+
+  	.ppanel-section-heading .jambo-left{
+
+	}
+
+	.avatar-wrapper {
+		.avatar {
+			&.empty {
+				background: inline-image("/components/platform-panel/assets/img/company-logo.png") no-repeat;
+				width: 53px;
+				height: 53px;
+				background-size: 100% 100%;
+				display: inline-block;
+			}
+		}
+	}
+}
+
+
+
+@media (max-width: 420px) {
+  #account-wrapper {
+	background: $platform-background;
+	.ppanel-section-heading .jambo-left {
+		width: 25%;
+	}
+
+	.ppanel-section-heading .jambo-body {
+	  width: 75%;
+	  .icon-salesforce{
+		margin-top: 0;
+	  }
+	}
+
+  }
+}
+
+@media (max-width: 375px) {
+  .ppanel-section-heading .jambo-body {
+	.icon-salesforce{
+	  margin-top: 0;
+	}
+  }
+}

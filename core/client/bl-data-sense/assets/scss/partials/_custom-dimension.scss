@@ -1,0 +1,130 @@
+.btn-view-cgd {
+	position: absolute;
+	margin-top: -41px;
+	right: 30px;
+}
+.hidden2 {
+	visibility: hidden;
+}
+.bl-modal-custom-dimension-wrapper .modal-dialog {
+  width: 980px;
+}
+
+// Remove sliding when modal opens
+.bl-modal-custom-dimension-wrapper.modal.fade .modal-dialog, .bl-modal-custom-dimension-wrapper.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.bl-modal-custom-dimension {
+	.tree-section {
+	  	background-color: #f9f9f9;
+		margin-left: 0;
+		margin-right: 0;
+		margin-bottom: 40px;
+		padding-top: 8px;
+		height: 360px;
+
+		treecontrol.datasource-tree li div.tree-label {
+		  &.facility .node-name {
+			width: 384px;
+			font-size: 16px;
+			.pull-right.actions {
+			  margin-top: 7px;
+			}
+		  }
+		  &.scope .node-name {
+			width: 362px;
+		  }
+		  &.node .node-name {
+			width: 346px;
+		  }
+		  &.dmetric .node-name {
+			width: 330px;
+		  }
+		}
+	  }
+
+	.defined-custom-dimensions {
+		height: 320px !important;
+	}
+
+  .left-side {
+  	width: 50%;
+  	padding-right: 30px;
+  	float: left;
+  	border-right: 2px solid #dedede;
+  	#select-custom-segment {
+  		margin-bottom: 5px;
+  	}
+  	.add-group-section {
+  		display: inline-block;
+  		margin-left: 118px;
+  		span {
+  			font-weight: 700;
+  		}
+  	}
+  }
+  .right-side {
+  	width: 50%;
+  	padding-left: 30px;
+  	float: left;
+  	.defined-groups {
+  		margin-bottom: 10px;
+		.defined-group {
+	  		background-color: #f5f5f5;
+	  		height: 34px;
+	  		margin-bottom: 0;
+	  		border-radius: 1px;
+	  		border: 1px solid #ccc;
+	  		line-height: 20px;
+	  		-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+			-webkit-transition: border linear .2s,box-shadow linear .2s;
+			transition: border linear .2s,box-shadow linear .2s;
+	  		.title {
+	  			padding: 6px;
+	  			display: block;
+	  			float: left;
+	  			width: 70%;
+	  			color: #000;
+	  			font-size: 13px;
+	  			font-weight: 600;
+	  		}
+	  		.actions {
+	  			float: right;
+	  			display: block;
+	  			width: 30%;
+	  			text-align: right;
+	  			li {
+	  				list-style: none;
+	  				margin: 0;
+	  				padding: 0;
+	  				.btn {
+	  					background: transparent;
+	  					border: 0 none;
+	  					border-left: 1px solid #ccc;
+	  					border-radius: 0;
+	  					width: 35px;
+	  					display: block;
+	  					float: right;
+	  					margin: 0;
+	  					line-height: 20px;
+	  					color: #AAA;
+	  				}
+	  				.remove-group {
+	  					display: none;
+	  				}
+	  			}
+	  		}
+	  		&:hover {
+	  			.remove-group {
+	  				display: block !important;
+	  			}
+	  		}
+  		}
+  	}
+  }
+  
+}

@@ -1,0 +1,116 @@
+
+html {
+  overflow-x: auto !important;
+}
+body {
+  @include FontFamily_BentonSans();
+  margin: -16px;
+  padding: 0;
+}
+ul {
+  margin: 0;
+  list-style-type: none;
+  li {
+    margin-left: 0;
+    list-style-type: none;
+  }
+  &.presentations {
+    li {
+      &:hover i {
+        display: block;
+      }
+    }
+    .item-title i {
+      float: right;
+      font-size: 13px;
+      margin-top: 5px;
+      margin-right: 10px;
+      color: $color_bv_blue_2;
+      cursor: pointer;
+      display: none;
+    }
+  }
+  &.source-list .type-node {
+    i.glyphicon {
+      font-size: 14px;
+      color: $color_bv_blue_3;
+      display: none;
+    }
+    &:hover i.glyphicon {
+      display: block;
+    }
+  }
+}
+a[data-tooltip] {
+  &:link {
+    position: relative;
+    text-decoration: none;
+  }
+  &:visited {
+    position: relative;
+    text-decoration: none;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    border-top: 5px solid $color_tooltip_background;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    visibility: hidden;
+    top: -10px;
+    left: 4px;
+  }
+  &:after {
+    content: attr(data-author) '\a' attr(data-tooltip);
+    position: absolute;
+    color: $color_white;
+    top: -28px;
+    left: 0;
+    background: $color_tooltip_background;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    visibility: hidden;
+    font-size: 12px;
+    height: 20px;
+  }
+  &:hover {
+    &:before {
+      visibility: visible;
+    }
+    &:after {
+      visibility: visible;
+    }
+  }
+}
+
+a {
+  &:hover {
+  }
+  &.has_full_tooltip[data-tooltip] {
+    &:after {
+      content: attr(data-tooltip) '\a Created by : ' attr(data-author);
+      position: absolute;
+      color: $color_white;
+      top: -45px;
+      left: 0;
+      background: $color_tooltip_background;
+      padding: 3px 8px;
+      border-radius: 4px;
+      white-space: pre;
+      visibility: hidden;
+      font-size: 12px;
+      height: auto;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      border-top: 15px solid $color_tooltip_background;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      visibility: hidden;
+      top: -9px;
+      left: 4px;
+    }
+  }
+}

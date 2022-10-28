@@ -1,0 +1,82 @@
+.sp-kpi-group
+  as-more-panel.as-more-panel(position="right top", classes="more-power-vs-energy", panel-title="Power vs Energy")
+    div(ng-include="'app/partials/more-panels/power-vs-energy.html'")
+  .row
+    .col-xs-12.col-sm-6.first-kpi
+      .wrapper-kpi
+        as-meter-bar(min="powerInfo.minAvg", max="powerInfo.maxAvg", ng-model="powerInfo.current")
+        .numeric-content(as-tooltip, tooltip-content-dom="#infoCurrentPower", tooltip-position="bottom left", tooltip-classes="kpi-tooltip")
+          div(ng-click="openPowerDrillDown()")
+            span.kpi-title Current Power
+            span.kpi-value
+              b(ng-bind="powerInfo.current", as-animated-number, data-num-decimals="1", nosuffix="true", compress="true") 0
+              sup(ng-bind="powerInfo.current | asDecimalUnitPrefix:'W':'k'") kW
+        #infoCurrentPower.info-panel
+          h5.title Current Power
+          p
+            | Your solar-energy system is currently generating &nbsp;
+            span.kpi-info(ng-bind="powerInfo.current|number") 0
+            | &nbsp;kilowatts (kW) of power out of a potential of &nbsp;
+            span.kpi-info(ng-bind="powerInfo.potential|number:1") 0
+            | &nbsp;kW.
+          p
+            | Your power will rise and fall throughout the day depending on the availability of sunlight.
+    .col-xs-12.col-sm-6
+      .wrapper-kpi
+        as-meter-bar(min="energyInfo.minAvg", max="energyInfo.maxAvg", ng-model="energyInfo.today")
+        .numeric-content(as-tooltip, tooltip-content-dom="#infoTodayEnergy", tooltip-position="bottom left", tooltip-classes="kpi-tooltip")
+          span.kpi-title Today"s Energy
+          span.kpi-value
+            b(ng-bind="energyInfo.today", as-animated-number, compress="true", data-num-decimals="0" nosuffix="true") 0
+            sup(ng-bind="energyInfo.today | asDecimalUnitPrefix:'Wh':'k'") kWh
+        #infoTodayEnergy.info-panel
+          h5.title Today's Energy
+          p
+            | As of <span ng-bind="$root.LAST_UPDATED_TIMETIME | amCalendar"></span>, your system has produced &nbsp;
+            span.kpi-info(ng-bind="energyInfo.today|number") 0
+            | &nbsp;kilowatt-hours (kWh) of energy, which represents a utility savings of about&nbsp;
+            span.kpi-info(ng-bind="'$'+energyInfo.utilitySavingToday") 0
+            | .
+.sp-kpi-group(style="margin-bottom: 15px;")
+  .wrapper-kpi.weather.row
+    .col-xs-6(as-tooltip, tooltip-content-dom="#infoTodayWeather", tooltip-position="right top", tooltip-classes="kpi-tooltip")
+      as-meter-bar(min="todayWeather.temperature.min", max="todayWeather.temperature.max", ng-model="todayWeather.temperature.now")
+      .numeric-content
+        span.kpi-title Current Weather
+        span.kpi-value
+          b(ng-bind="todayWeather.temperature.now", as-animated-number) 0
+          | °
+          i.icon(class="{{todayWeather.weatherIcon}}")
+      #infoTodayWeather.info-panel
+        h5.title
+          | {{todayWeather.cityName}}
+          br
+          as-current-time(format="EEE, MMM d", capitalweek="true")
+        // Todo: lastReportedTime to current Time
+        p.no-margin
+          | High:&nbsp;
+          span.kpi-info {{todayWeather.temperature.max}}°
+        p.no-margin
+          | Low:&nbsp;
+          span.kpi-info {{todayWeather.temperature.min}}°
+        p.no-margin
+          | Daylight:&nbsp;
+          span.kpi-info {{todayWeather.sunTime.sunrise | amDateFormat: 'h:mm a'}} ~ {{todayWeather.sunTime.sunset | amDateFormat: 'h:mm a'}}
+        p.no-margin
+          | Humidity:&nbsp;
+          span.kpi-info {{todayWeather.air.humidity}}%
+        p.no-margin
+          | Pressure:&nbsp;
+          span.kpi-info {{todayWeather.air.pressure}} hPa
+        p
+          | Wind:&nbsp;
+          span.kpi-info {{todayWeather.air.windSpeed}} mph W
+        p Last update {{todayWeather.lastReportedTime | amCalendar}}.
+    .col-xs-6
+      .iconic-content.temperature
+        span.min
+          i.icon.icon-ui-sunrise
+          | {{todayWeather.sunTime.sunrise | amDateFormat: 'h:mm a'}}
+        span.max
+          i.icon.icon-ui-sunset
+          | {{todayWeather.sunTime.sunset | amDateFormat: 'h:mm a'}}

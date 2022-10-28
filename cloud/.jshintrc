@@ -1,0 +1,20 @@
+{
+    "extends"       : "../.jshintrc",
+    "indent"        : 4,
+    "quotmark"      : "double",
+    "strict"        : true,
+    "esnext"        : true,
+    "globalstrict"  : false,
+    "laxbreak"      : false,
+    "loopfunc"      : false,
+
+    // Environments
+    "devel"         : true,
+    "node"          : true,
+
+    // Custom Globals
+    "globals": {
+        "require"     : true,
+        "exports"     : true
+    }
+}

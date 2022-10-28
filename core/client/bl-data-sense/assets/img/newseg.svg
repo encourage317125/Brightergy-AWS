@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="13.5 65.5 594 595" enable-background="new 13.5 65.5 594 595" xml:space="preserve">
+<g>
+	<g>
+		<path fill="#C0C0C0" stroke="#C0C0C0" d="M309.949,71.463c161.294,0,292.049,130.755,292.049,292.049
+			c0,161.294-130.755,292.048-292.049,292.048S17.9,524.807,17.9,363.512c0-14.195,1.035-28.368,3.097-42.414l108.357,15.906
+			c-14.643,99.741,54.346,192.463,154.087,207.105c99.74,14.64,192.463-54.349,207.103-154.086
+			c14.643-99.741-54.347-192.463-154.084-207.105c-8.778-1.288-17.638-1.937-26.511-1.937V71.463z"/>
+	</g>
+	<g id="present">
+		<path ng-attr-fill="{{selectedColor}}" stroke="#C0C0C0" d="M20.997,321.102C42.042,177.726,165.036,71.463,309.949,71.463v109.518
+			c-90.57,0-167.441,66.413-180.595,156.023L20.997,321.102z"/>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,76 @@
+<div class="navigator">
+	<nav class="navbar navbar-default glob-nav">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#!/main">
+					<div class="brand-image"></div>
+          <span class="large-space">{{application}}</span>
+				</a>
+			</div>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="link-apps-panel">
+          <a class="apps-panel-toggle" data-animation="am-fade" bs-dropdown="appsPanelDropdown" aria-haspopup="true" aria-expanded="false" data-placement="bottom-right" data-html="true">
+            <i class="icon-popup-grip"></i>
+          </a>
+        </li>
+        <li class="link-settings">
+          <a class="avatar-wrapper" data-animation="am-fade" bs-dropdown aria-haspopup="true" aria-expanded="false" data-placement="bottom-right">
+            <span class="availability" ng-class="{online: userInfo.online}"></span>
+            <span class="avatar" ng-style="userInfo.avatarStyle" ng-bind="userInfo.nameInitial"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a ng-click="$root.openPlatformPanel('user')">
+                <i class="icon icon-user"></i>Profile
+              </a>
+            </li>
+            <li>
+              <a ng-click="$root.openPlatformPanel('account')">
+                <i class="icon icon-account"></i>Account
+              </a>
+            </li>
+            <li>
+              <a ng-click="doLogOut()">
+                <i class="icon icon-exit"></i>Logout
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <a class="navbar-toggle" href="#mobile-dropdown-menu">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+     	</a>
+      <nav id="mobile-dropdown-menu" rs-mobile-nav-drop-down="right">
+        <div class="wrapper">
+          <ul class="list-settings-links">
+          	<li>
+              <a ng-click="$root.openPlatformPanel('user')">
+                <i class="icon icon-user"></i>Profile
+              </a>
+            </li>
+            <li>
+              <a ng-click="$root.openPlatformPanel('account')">
+                <i class="icon icon-account"></i>Account
+              </a>
+            </li>
+            <li>
+              <a ng-click="doLogOut()">
+                <i class="icon icon-exit"></i>Logout
+              </a>
+            </li>
+          </ul>
+          <div class="apps-wrapper link-apps-panel">
+            <ul>
+              <li ng-repeat="app in appsPanelDropdown">
+                <a ng-href="app.href" target="app.target" ng-bind-html="app.text"></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+		</div>
+	</nav>
+</div>

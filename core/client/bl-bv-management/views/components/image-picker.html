@@ -1,0 +1,78 @@
+<button class="btn btn-bv-default btn-bv-panel-default" ng-click="selectGoogleImage(pickerInfo.inputField);">Upload New Image</button>
+<div id="assets{{pickerInfo.inputField}}" class="img-picker modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="closeModal(pickerInfo.inputField);" aria-hidden="true">×</button>
+                <h3>Choose Asset</h3>
+            </div>
+            <div class="modal-body" >
+                <ul class="navbar-nav nav-tabs">
+                    <li class="active">
+                        <a href="#present_assets{{pickerInfo.inputField}}" data-toggle="tab">Presentation Assets</a>
+                    </li>
+                    <li>
+                        <a href="#client_assets{{pickerInfo.inputField}}" data-toggle="tab">Client Assets</a>
+                    </li>
+                    <li>
+                        <a href="#common_assets{{pickerInfo.inputField}}" data-toggle="tab">General Assets</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="present_assets{{pickerInfo.inputField}}">
+                        <div class="assetSelector">
+                            <ul>
+                                <li class="ng-scope" ng-repeat="image in $root.presentationAssets">
+                                    <a href="javascript:;" class="component_link" data-value="{{image.embedSource}}" ng-click="onImagePick(this)">
+                                        <div class="assetImage">
+                                            <img ng-src="{{image.thumbnailURL}}" class="img-responsive" />
+                                        </div>
+                                        <div class="assetLabel">{{image.title}}</div>
+                                    </a>
+                                    <a ng-click="$root.deleteFile(image.id, 'presentation');" class="trash-asset">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="common_assets{{pickerInfo.inputField}}">
+                        <div class="assetSelector">
+                            <ul>
+                                <li class="ng-scope" ng-repeat="image in $root.generalAssets">
+                                    {{pickerInfo.inputField}}
+                                    <a href="javascript:;" class="component_link" data-value="{{image.embedSource}}" ng-click="onImagePick(this)">
+                                        <div class="assetImage">
+                                            <img ng-src="{{image.thumbnailURL}}" class="img-responsive" />
+                                        </div>
+                                        <div class="assetLabel">{{image.title}}</div>
+                                    </a>
+                                    <a ng-click="$root.deleteFile(image.id, 'general');" class="trash-asset" ng-show="$root.isBrighterViewManager">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="client_assets{{pickerInfo.inputField}}">
+                        <div class="assetSelector">
+                            <ul>
+                                <li class="ng-scope" ng-repeat="image in $root.clientAssets">
+                                    <a href="javascript:;" class="component_link" data-value="{{image.embedSource}}" ng-click="onImagePick(this)">
+                                        <div class="assetImage">
+                                            <img ng-src="{{image.thumbnailURL}}" class="img-responsive" />
+                                        </div>
+                                        <div class="assetLabel">{{image.title}}</div>
+                                    </a>
+                                    <a ng-click="$root.deleteFile(image.id, 'client');" class="trash-asset" ng-show="$root.isBrighterViewManager || $root.isAdmin">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

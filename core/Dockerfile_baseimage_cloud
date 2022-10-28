@@ -1,0 +1,52 @@
+#Base Dockerfile for cloud deployment
+
+FROM docker.brighterlink.io:443/bldev/root:latest
+MAINTAINER Samar Acharya <samar@techgaun.com>
+
+# Set correct environment variables.
+ENV HOME /root
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+
+# set sane locale
+RUN locale-gen en_US.UTF-8
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 \
+    && echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.0 multiverse" > /etc/apt/sources.list.d/mongodb.list \
+    && add-apt-repository ppa:webupd8team/java \
+    && apt-get -y update \
+    && apt-get -y install software-properties-common python-software-properties redis-server mongodb-org
+RUN echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+RUN apt-get -y install oracle-java8-installer
+RUN apt-get clean
+RUN update-alternatives --display java
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+
+# some cleanup
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN cd /opt \
+    && curl -LO http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
+    && gunzip GeoLiteCity.dat.gz \
+    && rm -rf GeoLiteCity.dat.gz
+
+ENV     LOGSTASH_VERSION    1.4.2
+ENV     LOGSTASH_URL        https://download.elasticsearch.org/logstash/logstash/logstash-${LOGSTASH_VERSION}.tar.gz
+
+RUN     cd /tmp \
+    && curl -LO $LOGSTASH_URL \
+    && mkdir -p /opt \
+    && cd /opt \
+    && tar zxf /tmp/logstash-${LOGSTASH_VERSION}.tar.gz \
+    && mv logstash-${LOGSTASH_VERSION} logstash \
+    && rm -rf /tmp/logstash-${LOGSTASH_VERSION}.tar.gz \
+    && mkdir -p /etc/logstash \
+    && mkdir -p /etc/service/logstash
+
+RUN mkdir -p /data/db \
+    && sed -i 's/^\(daemonize .*\)$/# \1/' /etc/redis/redis.conf \
+    && sed -i 's/^\(bind\).*$/\1 0.0.0.0/' /etc/redis/redis.conf
+COPY ./.docker/logstash.conf /etc/logstash/logstash.conf
+COPY ./.docker/supervisord.logstash.conf /etc/supervisord.d/
+COPY ./.docker/supervisord.mongod.conf /etc/supervisord.d/
+COPY ./.docker/supervisord.redisd.conf /etc/supervisord.d/

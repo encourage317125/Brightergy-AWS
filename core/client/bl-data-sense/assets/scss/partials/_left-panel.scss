@@ -1,0 +1,465 @@
+.dashboards-panel {
+    width: 100%;
+}
+a {
+    &.collection-link {
+        @include FontFamily_BentonSans();
+        color: $grape;
+        font-weight: bold;
+        font-size: 16;
+        padding: 6px 15px !important;
+        margin-left: 5px;
+        &.collapsed {
+            color: $blue;
+        }
+    }
+    &.collapsed .caret.flipped {
+        //Instead of the line below you could use @includetransform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(0deg);
+    }
+}
+.bl-sidebar-panel {
+    .nav-stacked>li {
+        border-bottom: 1px solid #EAEAEA;
+        padding: 10px 0;
+        margin: 0 20px;
+    }
+    .nav {
+        &.nav-second-level {
+            &.collapse[style] {
+                height: auto !important;
+            }
+            > li {
+                padding-left: 20px;
+                border: none;
+                font-size: 12px;
+                position: relative;
+                &.active {
+                    color: red;
+                }
+                a {
+                    padding: 6px 10px;
+                    @include FontFamily_BentonSans();
+                    font-size: 13px;
+                    font-weight: bold;
+                    margin-left: 12px;
+                    color: $primary-nav-link-dark;
+                }
+                .ds-lmenu-actions {
+                    position: absolute;
+                    top: 6px;
+                    right: 4px;
+                    font-weight: normal;
+                    a {
+                        font-size: 12px;
+                        padding: 0;
+                        margin: 0 3px;
+                    }
+                }
+                &:hover > a {
+                    background-color: #eeeeee;
+                }
+                &:focus > a {
+                    background-color: #eeeeee;
+                }
+            }
+        }
+        > li.active {
+        }
+        li.active a {
+            color: #845984;
+            font-weight: bold;
+        }
+    }
+    .nav-first-level {
+        color: $blue-lighter;
+        font-size: 15px;
+    }
+    .nav>li>a {
+        padding: 10px;
+        .caret {
+            margin-left: 0;
+            margin-right: 6px;
+            border-bottom: 4px solid transparent;
+            border-top: 4px solid transparent;
+            border-left: 4px solid;
+        }
+    }
+    .nav-second-level {
+        .active {
+            color: $grape;
+        }
+        li:hover .ds-lmenu-actions {
+            display: block;
+            opacity: 1;
+        }
+    }
+    .ds-lmenu-actions {
+        opacity: 0;
+        float: right;
+        //Instead of the line below you could use @includetransition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+        transition: opacity .3s;
+    }
+    &.panel {
+        background-color: #f9f9f9;
+        border-bottom: none;
+        color: #c0c0c0;
+        padding: 0 10px;
+        height: 100%;
+        .panel-title {
+            display: inline-block;
+            width: 100%;
+            line-height: 60px;
+            color: black;
+            font-weight: normal;
+            font-size: 22px;
+            text-decoration: none;
+            float: none;
+            padding-top: 0;
+            @include FontFamily_BentonSansCond(Medium);
+            &.collapsed {
+                color: black;
+            }
+            .btn-bl-default {
+                margin-top: 15px;
+            }
+        }
+    }
+    .panel-heading {
+        padding: 30px 20px 0 20px;
+    }
+    #panel-collections {
+        margin-top: -50;
+    }
+    .nav-header a {
+        color: #DFE4ED;
+    }
+    .navbar-nav .share-dropdown .dropdown-menu {
+        position: absolute;
+        right: -380px;
+        top: 50px;
+        width: 590px;
+        background-color: #fff;
+        border: 1px solid #E3E2E2;
+        z-index: 999;
+        //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 3px;
+        padding: 10px 20px 30px;
+    }
+    .nav>li.active>a .caret {
+        //Instead of the line below you could use @includetransform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+        transform: rotate(90deg);
+    }
+    .panel-collapse button {
+        position: relative;
+        float: right;
+        margin-right: 15;
+    }
+    .panel-heading+.panel-collapse>.panel-body {
+        border-top: 0;
+    }
+    .ds-panel-actions {
+        text-align: right;
+        padding: 10px 20px;
+        .ds-panel-action {
+            .fa {
+                padding-right: 3px;
+            }
+        }
+        .ds-panel-action-done {
+            color: #34b36a;
+            padding-right: 10px;
+        }
+        .ds-panel-action-cancel {
+            color: #a94442;
+        }
+    }
+    .ds-panel-sortable {
+        .sort-list {
+            list-style: none outside none;
+        }
+        .item-collection {
+            border: 1px solid #cccccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .item-collection>span {
+            cursor: move;
+            font-family: "benton sans";
+            color: #3498d8;
+            margin-left: 0px;
+            font-weight: 700;
+            font-size: 14px;
+            display: block;
+            min-height: 34px;
+        }
+        .item-dashboard {
+            padding: 6px 15px;
+            margin: 3px 0 3px 15px;
+            border: 1px solid #cccccc;
+            background-color: #eeeeee;
+            cursor: move;
+            font-family: "benton sans";
+            color: #3498d8;
+            font-weight: 400;
+            font-size: 12px;
+            display: block;
+            min-height: 31px;
+        }
+        .item-dashboard:first {
+            margin-top: 0 !important;
+        }
+        .ds-panel-placeholder {
+            margin-left: 0px;
+            margin-bottom: 10px;
+            height: 120px;
+            border: 1px dashed #cccccc;
+        }
+        .item-collection .ds-panel-placeholder {
+            margin-left: 15px;
+            height: 30px;
+        }
+        .item-collection.ui-sortable-helper {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .item-dashboard.ui-sortable-helper {
+            width: calc(100% - 35px) !important;
+        }
+    }
+}
+.bl-sidebar-search-section {
+    position: relative;
+    padding: 30 15 15;
+    display: inline-block;
+    color: #EEE;
+    width: 100%;
+    input {
+        background: #fff;
+        border: 1px solid #EEE;
+        //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+        border-radius: 2;
+        //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: none;
+        font-size: 12px;
+        height: 30px;
+        padding-top: 9px;
+    }
+    span.i-find {
+        background: url(../img/icon_magnifier.png) 17px 16px;
+        position: absolute;
+        display: inline-block;
+        width: 17px;
+        height: 16px;
+        right: 25px;
+        top: 37px;
+    }
+}
+.widgets {
+    margin-top: 30px;
+    &.row {
+        margin-left: -4px;
+        margin-right: -4px;
+    }
+    .col-md-3 {
+        padding-left: 4px;
+        padding-right: 4px;
+        padding-bottom: 10px;
+    }
+}
+.widget {
+    height: 100px;
+    background-color: #fff;
+    padding: 3px 0 0;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 4px;
+    //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 2px 1px #ccc;
+    display: block;
+    color: #777;
+    text-decoration: none;
+    cursor: pointer;
+    &.active {
+        border-color: #2ecc71;
+        color: #23AB5D;
+        //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: 0 0 0 2px;
+    }
+    .wsprite {
+        height: 60px;
+        margin: 10px 0 0;
+        background-image: url(../img/widgets.png);
+    }
+}
+.dashboard {
+    height: 100px;
+    background-color: #fff;
+    padding: 3px 0 0;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 4px;
+    //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+    box-shadow: 0 1px 2px 1px #ccc;
+    display: block;
+    color: #777;
+    text-decoration: none;
+    cursor: pointer;
+    &.active {
+        border-color: #2ecc71;
+        color: #23AB5D;
+        //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: 0 0 0 2px;
+        .wsprite {
+            width: 58px;
+            height: 50px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 2px solid #2ecc71;
+            //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+            box-shadow: none;
+            margin-top: 17px;
+        }
+        &.blank .wsprite {
+            background-color: #AEF4BF;
+        }
+    }
+    &:hover {
+        color: #23AB5D;
+    }
+    .wsprite {
+        width: 58px;
+        height: 50px;
+        margin: 0 auto;
+        background-color: #fff;
+        border: 2px solid #c0c0c0;
+        margin-top: 17px;
+    }
+    &.blank .wsprite {
+        background-color: #eeeeee;
+    }
+    &.starter .wsprite {
+        background-image: url(../img/starter-dashboard.png);
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        border-color: #2ecc71;
+    }
+}
+.w-bar-chart {
+    .wsprite {
+        background-position: 300px 0;
+    }
+    &.active .wsprite {
+        background-position: 300px 60px;
+    }
+}
+.w-label {
+    text-align: center;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    @include FontFamily_BentonSansCond(Light);
+}
+.caret.flipped {
+    //Instead of the line below you could use @includetransform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+    transform: rotate(90deg);
+}
+#left-menu .panel-group {
+    background-color: #f9f9f9;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+.w-pie .wsprite {
+    background-position: 0 0;
+}
+.w-line-chart .wsprite {
+    background-position: 400px 0;
+}
+.w-area-chart .wsprite {
+    background-position: 500px 0;
+}
+.w-image .wsprite {
+    background-position: 200px 0;
+}
+.w-table .wsprite {
+    background-position: 100px 0;
+}
+
+.bl-sidebar-panel {
+    .collection-list {
+        height: calc(100% - 280px);
+    }
+    accordion {
+        .nav-first-level {
+            margin: 0 20px;
+            background-color: transparent;
+        }
+        .panel-group {
+            margin: 0;
+        }
+        .panel-heading {
+            border-bottom: 1px solid #EAEAEA;
+            padding: 10px 0px;
+            background-image: none;
+            background-color: transparent;
+        }
+        h4.panel-title {
+            font-size: 16px;
+            line-height: 22px !important;
+            a {
+                font-family: "benton sans";
+                color: #3498d8;
+                font-weight: bold;
+                font-size: 16px;
+                padding: 6px 15px !important;
+                margin-left: 5px;
+                display: block;
+                &.collapsed {
+                    color: #3498d8;
+                }
+                &:hover{
+                    background-color: #eeeeee;
+                }
+                .caret {
+                    margin-left: 0;
+                    margin-right: 6px;
+                    border-bottom: 4px solid transparent;
+                    border-top: 4px solid transparent;
+                    border-left: 4px solid;
+                    &.flipped {
+                        @include transform(rotate(0deg));
+                    }
+                }
+            }
+        }
+        .nav-first-level.panel {
+            overflow: visible;
+        }
+    }
+    .nav.nav-second-level li.active a {
+        color: #591f59;
+        font-weight: bold;
+    }
+}
+.animation-show {
+    transition: 400ms cubic-bezier(0.25,.25,.75,.75) all;
+    position: relative;
+    overflow: hidden;
+    text-overflow: clip;
+    opacity: 1;
+}
+.delete-box {
+    padding: 6px 10px;
+    margin-left: 12px;
+    p {
+        margin: 0 !important;
+        line-height: 22px !important;
+    }
+    a {
+        float: right;
+        padding: 2px 4px !important;
+        margin: 0 4px;
+    }
+}

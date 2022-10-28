@@ -1,0 +1,28 @@
+#Ignore logs
+errors.log
+npm-debug.log
+
+#Ignore modules
+node_modules/*
+
+#Ignore .DS_Store
+.DS_Store
+
+#Ignore tempoiq log
+core-*.log
+
+.idea/*
+front/vendor/*
+front/dist/*
+.sass-cache
+
+front/components
+
+#coverage outputs
+*-coverage/
+
+#gzipped files
+*.gz
+
+# Local configs
+config/environment/development.json

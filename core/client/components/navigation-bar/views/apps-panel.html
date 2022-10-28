@@ -1,0 +1,29 @@
+<!-- Start of apps panel -->
+<div class="btn-apps-panel-handler" ng-controller="AppPanelController">
+	<span class="icon icon-bv-lgrip"></span>
+    <span class="icon icon-nav-apps" ng-click="activePanel = !activePanel" ng-class="activePanel ? 'active' : ''"></span>
+    <div class="panel-before"  ng-show="activePanel"></div>
+    <div class="panel-after"  ng-show="activePanel"></div>
+    <div class="apps-panel" ng-show="activePanel">
+        <ul class="panel-apps-list">
+            <li ng-repeat="app in appPermissions" ng-mouseover="app.onhover = true;" ng-mouseleave="app.onhover = false;" ng-click="goToApp(app.name, app.url)">
+                <a class="app-link"><span class="icon-app" ng-class="(app.visible == 1) ? 'icon-app ' + app.class : 'icon-app-disable ' + app.class" ></span><span class="app-name" ng-show="!app.onhover">{{app.name}}</span></a>
+                <div class="title-section" ng-show="app.onhover"><span>{{app.name}}</span></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--
+<div class="apps-panel-main" ng-controller="AppPanelController">
+    <div class="row-fluid panel-body">
+       
+        <div ng-repeat="app in appPermissions" class="col-sm-1 m-t-b-62">
+            <div class="m-t-b-12">
+                <a ng-href="{{app.url}}"><i class="icon-app" ng-class="(app.visible == 1) ? 'icon-app ' + app.class : 'icon-app-disable ' + app.class" ></i></a>
+            </div>
+            <div class="apps-panel-title">{{app.name}}</div>
+        </div>
+    </div>
+</div>
+-->
+<!-- End of apps panel -->

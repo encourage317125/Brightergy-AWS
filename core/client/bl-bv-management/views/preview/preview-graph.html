@@ -1,0 +1,4 @@
+<div ng-style="{'width' : widgetParam.parameters.width + 'px', 'height' : widgetParam.parameters.height + 'px', 'margin': 'auto'}">
+	<div class="template-title" ng-hide="(widgetParam.parameters.headerFont.content == null) || (widgetParam.parameters.headerFont.content == '')" ng-style="{'font-size' : widgetParam.parameters.headerFont.size + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name, 'background-color' : '#' + widgetParam.parameters.primaryColor.color}">{{widgetParam.parameters.headerFont.content}}</div>
+	<highchart id="chartPreview" config="highchartsNG['preview']"></highchart>
+</div>

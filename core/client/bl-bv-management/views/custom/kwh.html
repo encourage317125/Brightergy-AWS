@@ -1,0 +1,24 @@
+<ul class="form-list label-left list-bordered dotted">
+	<li class="section-form">
+		<h4>Custom Details</h4>
+	</li>
+	<li class="form-group">
+		<label for="widgetkWhGeneratedReimbursement" class="control-label label-default" >Reimbursement</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetkWhGeneratedReimbursement" ng-model="widgetParam.parameters.widgetkWhGeneratedReimbursement" />
+		</div>
+	</li>
+	<li class="form-group">
+		<label for="widgetkWhGeneratedStartDate" class="control-label label-default">Date Range</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetkWhGeneratedDateRange">
+				<option value="Day">Day</option>
+				<option value="3 Days">3 Days</option>
+				<option value="Week">Week</option>
+				<option value="Month">Month</option>
+				<option value="Year">Year</option>
+				<option value="All">All</option>
+			</select>
+		</div>
+	</li>
+</ul>

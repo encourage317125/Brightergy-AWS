@@ -1,0 +1,404 @@
+<script type="text/ng-template" id="modalAddNewWidget.html">
+<!-- First tab for general options -->
+<div class="bl-modal bl-modal-add-new-widget" ng-show="!isAggregateFormOpen">
+<form role="form" name="dsWidgetForm" ng-submit="addNewWidget(dsWidgetForm)" mv-form-validate="{widgetTitle}" novalidate>
+<div class="modal-header">
+    <h3 class="modal-title">{{isEditMode?"Update a Widget":"Add a Widget"}}</h3>
+    <a class="btn btn-link tab-nav-link" ng-click="toggleAdvancedForm('opening')" ng-disabled="!hasAggregateOptions">Advanced Options</a>
+    <div class="clearfix"></div>
+</div>
+<div class="modal-body">
+<!--<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>-->
+<fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.widgetTitle.$invalid && (dsWidgetForm.widgetTitle.$dirty || submitted)}">
+    <label for="input-widget-title">Widget Title</label>
+    <input id="input-widget-title" name="widgetTitle" type="text" class="form-control" ng-model="widgetInfo.widgetTitle" required>
+    <span class="help-block" ng-show="dsWidgetForm.widgetTitle.$error.required && (dsWidgetForm.widgetTitle.$dirty || submitted)">Please input widget title.</span>
+</fieldset>
+<fieldset class="checkbox condensed">
+    <input id="chkbox-widget-titleShow" type="checkbox" ng-model="widgetInfo.widgetTitleShow">
+    <label for="chkbox-widget-titleShow">
+        Show Widget Title
+    </label>
+</fieldset>
+<fieldset class="form-group" style="margin:0;">
+    <label>Widget Types</label>
+</fieldset>
+<tabset>
+<tab active="widgetInfo.timeline.isSelected" disabled="isEditMode" select="initFormValidation('Timeline')">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-timeline"></i>
+        Timeline
+    </tab-heading>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.timelineMetric.$invalid && (dsWidgetForm.timelineMetric.$dirty ||submitted)}">
+        <label for="select-timeline-metric">Metric</label>
+        <select id="select-timeline-metric" name="timelineMetric" ng-model="widgetInfo.timeline.metric" class="form-control" ng-options="item as item.name for item in selectedDashboardMetrics.Timeline | orderBy:'name' track by item._id" required>
+            <option value="">-- Choose Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.timelineMetric.$error.required && (dsWidgetForm.timelineMetric.$dirty ||submitted)">Please select metric.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.timelineCompareMetric.$invalid && (dsWidgetForm.timelineCompareMetric.$dirty ||submitted)}">
+        <label for="select-timeline-compare-metric">Compare with (Optional)</label>
+        <select id="select-timeline-compare-metric" name="timelineCompareMetric" ng-model="widgetInfo.timeline.compareMetric" ng-different-with="timelineMetric" class="form-control" ng-options="item as item.name for item in selectedDashboardMetrics.Timeline | orderBy:'name' track by item._id">
+            <option value="">-- Choose Compare Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.timelineCompareMetric.$error.differentWith && (dsWidgetForm.timelineCompareMetric.$dirty ||submitted)">Please select compare metric as different value than metric.</span>
+    </fieldset>
+    <fieldset class="checkbox condensed sub-field" ng-show="widgetInfo.timeline.compareMetric">
+        <input id="chkbox-timeline-bar-compare" type="checkbox" ng-model="widgetInfo.timeline.compareAsBar" class="ng-valid ng-dirty">
+        <label for="chkbox-timeline-bar-compare">
+            Show as Bar Chart
+        </label>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="select-timeline-groupby">Group Dimension</label>
+        <select id="select-timeline-groupby" class="form-control" ng-model="widgetInfo.timeline.groupDimension" ui-select2="row_count" ng-options="item as item.value for item in attributes.timelineGroupDimension | orderBy:'name' track by item.value">
+            <option value="">-- Choose Group Dimension --</option>
+        </select>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="select-timeline-dashboard">Drilldown Dashboard (Optional)</label>
+        <select id="select-timeline-dashboard" ng-model="widgetInfo.timeline.drillDown" class="form-control" ng-options="item._id as item.title for item in dashboards">
+            <option value="">-- Choose Dashboard --</option>
+        </select>
+    </fieldset>
+</tab>
+<tab active="widgetInfo.pie.isSelected" disabled="isEditMode" select="initFormValidation('Pie')">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-pie"></i>
+        Pie
+    </tab-heading>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.pieMetric.$invalid && (dsWidgetForm.pieMetric.$dirty || submitted)}">
+        <label for="select-pie-showingwith">Metric</label>
+        <select id="select-pie-showingwith" name="pieMetric" class="form-control" ng-model="widgetInfo.pie.metric" ng-options="item as item.name for item in selectedDashboardMetrics.Pie | orderBy:'name' track by item._id" required>
+            <option value="">-- Choose Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.pieMetric.$error.required && (dsWidgetForm.pieMetric.$dirty || submitted)">Please select metric.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.pieGroupDimension.$invalid && (dsWidgetForm.pieGroupDimension.$dirty || submitted)}">
+        <label for="select-pie-groupby">Group Dimension</label>
+        <select id="select-pie-groupby" name="pieGroupdimension" class="form-control" ng-model="widgetInfo.pie.groupDimension" ng-options="item as item.value for item in attributes.groupDimension | orderBy:'name' track by item.value" ng-required="widgetInfo.pie.groupDimension" ng-change="changeGroupDimension()">
+            <option value="">-- Choose Group Dimension --</option>
+        </select>
+        <a class="btn btn-default btn-view-cgd" ng-click="changeGroupDimension()" ng-show="widgetInfo.pie.groupDimension.value==='--Custom--'">
+            <span class="glyphicon glyphicon-eye-open"></span>
+        </a>
+        <span class="help-block" ng-show="dsWidgetForm.pieGroupdimension.$error.required && (dsWidgetForm.pieGroupDimension.$dirty || submitted)">Please select group dimension.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.pieSlices.$invalid && (dsWidgetForm.pieSlices.$dirty || submitted)}">
+        <label for="select-pie-showupto"># of Slices</label>
+        <select name="pieSlices" id="select-pie-showupto" class="form-control" ng-model="widgetInfo.pie.showUpTo" ng-options="item.id as item.name for item in attributes.showUpTo" required>
+            <option value="">-- Choose Slice Counts --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.pieSlices.$error.required && (dsWidgetForm.pieSlices.$dirty || submitted)">Please select # of Slices.</span>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="select-pie-dashboard">Drilldown Dashboard (Optional)</label>
+        <select id="select-pie-dashboard" class="form-control" ng-model="widgetInfo.pie.drillDown" ng-options="item._id as item.title for item in dashboards">
+            <option value="">-- Choose Dashboard --</option>
+        </select>
+    </fieldset>
+</tab>
+<tab active="widgetInfo.bar.isSelected" disabled="isEditMode" select="initFormValidation('Bar')">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-bar"></i>
+        Bar
+    </tab-heading>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.barMetric.$invalid && (dsWidgetForm.barMetric.$dirty || submitted)}">
+        <label for="select-bar-metric">Metric</label>
+        <select id="select-bar-metric" name="barMetric" class="form-control" ng-model="widgetInfo.bar.metric" ng-options="item as item.name for item in selectedDashboardMetrics.Bar | orderBy:'name' track by item._id" required>
+            <option value="">-- Choose Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.barMetric.$error.required && (dsWidgetForm.barMetric.$dirty || submitted)">Please select metric.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.barGroupDimension.$invalid && (dsWidgetForm.barGroupDimension.$dirty || submitted)}">
+        <label for="select-bar-groupby">Group Dimension</label>
+        <select id="select-bar-groupby" class="form-control" ng-model="widgetInfo.bar.groupDimension" ui-select2="row_count" ng-options="item as item.value for item in attributes.groupDimension | orderBy:'name' track by item.value" required ng-change="changeGroupDimension()">
+            <option value="">-- Choose Group Dimension --</option>
+        </select>
+        <a class="btn btn-default btn-view-cgd" ng-click="changeGroupDimension()" ng-show="widgetInfo.bar.groupDimension.value==='--Custom--'">
+            <span class="glyphicon glyphicon-eye-open"></span>
+        </a>
+        <span class="help-block" ng-show="dsWidgetForm.barGroupDimension.$error.required && (dsWidgetForm.barGroupDimension.$dirty || submitted)">Please select group dimension.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.barPivotDimension.$invalid && (dsWidgetForm.barPivotDimension.$dirty || submitted)}">
+        <label for="select-bar-pivotby">Pivot Dimension</label>
+        <select id="select-bar-pivotby" class="form-control" ng-model="widgetInfo.bar.pivotDimension" ng-options="item.id as item.name for item in attributes.pivotDimension | orderBy:'name'">
+            <option value="">-- Choose Pivot Dimension --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.barPivotDimension.$error.required && (dsWidgetForm.barPivotDimension.$dirty || submitted)">Please select pivot dimension.</span>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="select-bar-dashboard">Drilldown Dashboard (Optional)</label>
+        <select id="select-bar-dashboard" class="form-control" ng-model="widgetInfo.bar.drillDown" ng-options="item._id as item.title for item in dashboards">
+            <option value="">-- Choose Dashboard --</option>
+        </select>
+    </fieldset>
+</tab>
+<tab active="widgetInfo.table.isSelected" disabled="isEditMode" select="initFormValidation('Table')">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-table"></i>
+        Table
+    </tab-heading>
+    <fieldset class="form-group">
+        <label for="table-column-list">Displaying the Following Columns</label>
+        <ul id="table-column-list" class="table-column-list">
+            <li ng-repeat="column in widgetInfo.table.displayedColumns">
+                <ng-form class="form-group" name="columnSubForm" ng-class="{'has-error': columnSubForm.tableMetric.$error.required && (columnSubForm.tableMetric.$dirty || submitted)}">
+                    <div>
+                        <select id="select-table-metric" ng-model="column.value" name="tableMetric" class="form-control" ng-options="item as item.name for item in selectedDashboardMetrics.Table | orderBy:'name' track by item._id" required>
+                            <option value="">-- Choose Metric --</option>
+                        </select>
+                        <a href="#" class="btn-link" ng-click="widgetInfo.table.displayedColumns.splice($index, 1)"><i class="icon ds-ficon-close"></i></a>
+                    </div>
+                    <span class="help-block" ng-show="columnSubForm.tableMetric.$error.required && (columnSubForm.tableMetric.$dirty || submitted)">Please select a metric.</span>
+                </ng-form>
+            </li>
+        </ul>
+        <span class="help-block" ng-show="dsWidgetForm.tableMetric.$error.required && submitted">Please select metric.</span>
+        <input type="hidden" name="tableColumns"/>
+        <button ng-click="addTableColumnsField($event)" ng-show="widgetInfo.table.displayedColumns.length < 2" class="btn btn-sm btn-bv-default">
+            <span class="text">Add extra column</span>
+        </button>
+    </fieldset>
+    <fieldset class="form-group" >
+        <label for="select-table-groupby">Group Dimension</label>
+        <select id="select-table-groupby" class="form-control" name="tableGroupDimension" ng-model="widgetInfo.table.groupDimension" ng-options="item as item.value for item in attributes.groupDimension | orderBy:'name' track by item.value" ng-change="changeGroupDimension()">
+            <option value="">-- Choose Group Dimension --</option>
+        </select>
+        <a class="btn btn-default btn-view-cgd" ng-click="changeGroupDimension()" ng-show="widgetInfo.table.groupDimension.value==='--Custom--'">
+            <span class="glyphicon glyphicon-eye-open"></span>
+        </a>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.tableRows.$invalid && (dsWidgetForm.tableRows.$dirty || submitted)}">
+        <label for="select-table-rowspertable">Show a Table With</label>
+        <select id="select-table-rowspertable" name="tableRows" class="form-control" ng-model="widgetInfo.table.rowsPerTable" ng-options="item.id as item.name for item in attributes.rowsPerTable" required>
+            <option value="">-- Choose Rows Per a Table --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.tableRows.$error.required && (dsWidgetForm.tableRows.$dirty || submitted)">Please choose rows per a table</span>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="select-table-dashboard">Drilldown Dashboard (Optional)</label>
+        <select id="select-table-dashboard" ng-model="widgetInfo.table.drillDown" class="form-control" ng-options="item._id as item.title for item in dashboards">
+            <option value="">-- Choose Dashboard --</option>
+        </select>
+    </fieldset>
+</tab>
+<tab active="widgetInfo.image.isSelected" disabled="isEditMode" select="initFormValidation('Image')">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-image"></i>
+        Image
+    </tab-heading>
+    <div class="flow-container" flow-init="{testChunks: false}" flow-files-submitted="onFlowFilesubmitted()" flow-file-success="onFlowFileSuccess($message)" flow-file-error="onFlowFileError($message)">
+        <fieldset class="form-group image-input">
+            <label>Image</label>
+            <div class="image-wrapper">
+                <img ng-hide="$flow.files.length > 0" src="/bl-data-sense/assets/img/noimage.gif" width="100%" class="img-responsive" />
+                <img flow-img="$flow.files[0]" width="100%" class="img-responsive" />
+            </div>
+            <div class="ajax_loading_panel" ng-show="imageUploadStatus"></div>
+            <div class="form-group has-error" ng-show="imageShowMessage">
+                <span class="help-block">{{imageErrorMessage}}</span>
+            </div>
+            <div class="upload-control-wrapper">
+                <div class="info-img-name">
+                    {{$flow.files[0].name}}
+                    <span class="info-img-size" ng-show="$flow.files.length > 0">
+                        {{$flow.files[0].size}} Bytes
+                    </span>
+                </div>
+                <button class="btn btn-sm btn-bv-default img-upload">
+                    <span class="text" ng-click="clearFileReceivedFlg()" flow-btn>Change image</span>
+                </button>
+                <div class="clearfix"></div>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label for="select-image-dashboard">Drilldown Dashboard (Optional)</label>
+            <select id="select-image-dashboard" ng-model="widgetInfo.image.drillDown" class="form-control" ng-options="item._id as item.title for item in dashboards">
+                <option value="">-- Choose Dashboard --</option>
+            </select>
+        </fieldset>
+    </div>
+</tab>
+<tab active="widgetInfo.equivalencies.isSelected" disabled="isEditMode" select="initFormValidation('Equivalencies')">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-equiv"></i>
+        Equivalencies
+    </tab-heading>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.equivalenciesMetric.$invalid && (dsWidgetForm.equivalenciesMetric.$dirty || submitted)}">
+        <label for="select-equivalencies-metric">Metric</label>
+        <select id="select-equivalencies-metric" name="equivalenciesMetric" ng-model="widgetInfo.equivalencies.metric" class="form-control" ng-options="item as item.name for item in selectedDashboardMetrics.Equivalencies | orderBy:'name' track by item._id" required>
+            <option value="">-- Choose Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.equivalenciesMetric.$error.required && (dsWidgetForm.equivalenciesMetric.$dirty || submitted)">Please select metric.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.equivalenciesOrientation.$invalid && (dsWidgetForm.equivalenciesOrientation.$dirty || submitted)}">
+        <label for="select-equiv-orientation">Orientation</label>
+        <select id="select-equiv-orientation" name="equivalenciesOrientation" class="form-control" ng-model="widgetInfo.equivalencies.orientation" ng-options="item.id as item.name for item in attributes.orientation">
+            <option value="">-- Choose Orientation --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.equivalenciesOrientation.$error.required && (dsWidgetForm.equivalenciesOrientation.$dirty || submitted)">Please select orientation.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.equivalenciesTypes.$invalid && (dsWidgetForm.equivalenciesTypes.$dirty || submitted)}">
+        <label for="select-equiv-type">Type</label>
+        <select id="select-equiv-type" name="equivalenciesTypes" class="form-control" ng-model="widgetInfo.equivalencies.equivType" ng-options="item.id as item.name for item in attributes.equivType" required>
+            <option value="">-- Choose Type --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.equivalenciesTypes.$error.required && (dsWidgetForm.equivalenciesTypes.$dirty || submitted)">Please select type.</span>
+    </fieldset>
+    <fieldset class="checkbox">
+        <input id="chkbox-equiv-showalltime" type="checkbox" ng-model="widgetInfo.equivalencies.showAllTime">
+        <label for="chkbox-equiv-showalltime">
+            Show All Time
+        </label>
+    </fieldset>
+    <fieldset class="checkbox">
+        <input id="chkbox-equiv-co2" type="checkbox" ng-model="widgetInfo.equivalencies.co2Kilograms">
+        <label for="chkbox-equiv-co2">
+            CO2 Avoided in Kilograms
+        </label>
+    </fieldset>
+    <fieldset class="checkbox">
+        <input id="chkbox-equiv-greenhouse" type="checkbox" ng-model="widgetInfo.equivalencies.greenhouseKilograms">
+        <label for="chkbox-equiv-greenhouse">
+            Greenhouse Emissions in Kilograms
+        </label>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="select-equiv-dashboard">Drilldown Dashboard (Optional)</label>
+        <select id="select-equiv-dashboard" class="form-control" ng-model="widgetInfo.equivalencies.drillDown" ng-options="item._id as item.title for item in dashboards">
+            <option value="">-- Choose Dashboard --</option>
+        </select>
+    </fieldset>
+</tab>
+<tab active="widgetInfo.kpi.isSelected" disabled="isEditMode" select="initFormValidation()">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-kpi"></i>
+        KPI
+    </tab-heading>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.kpiSummaryMethod.$invalid && (dsWidgetForm.kpiSummaryMethod.$dirty || submitted)}">
+        <label for="select-kpi-summaryMethod">Summary Method</label>
+        <select id="select-kpi-summaryMethod" name="kpiSummaryMethod" class="form-control" ng-model="widgetInfo.kpi.summaryMethod" ng-options="item.value as item.name for item in attributes.kpiSummaryMethod">
+            <option value="">-- Choose Summary Method --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.kpiSummaryMethod.$error.required && (dsWidgetForm.kpiSummaryMethod.$dirty || submitted)">Please select summary method.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.kpiMetric.$invalid && (dsWidgetForm.kpiMetric.$dirty || submitted)}">
+        <label for="select-kpi-metric">Metric</label>
+        <select id="select-kpi-metric" name="kpiMetric" ng-model="widgetInfo.kpi.metric" class="form-control" ng-options="item as item.name for item in selectedDashboardMetrics.Kpi | orderBy:'name' track by item._id" required>
+            <option value="">-- Choose Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.kpiMetric.$error.required && (dsWidgetForm.kpiMetric.$dirty || submitted)">Please select metric.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.kpiLabel.$invalid && (dsWidgetForm.kpiLabel.$dirty || submitted)}">
+        <label for="input-kpi-label">Label</label>
+        <input id="input-kpi-label" name="kpiLabel" type="text" class="form-control" ng-model="widgetInfo.kpi.label" required>
+        <span class="help-block" ng-show="dsWidgetForm.kpiLabel.$error.required && (dsWidgetForm.kpiLabel.$dirty || submitted)">Please input label.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.kpiCompareMetric.$invalid && submitted}">
+        <label for="select-kpi-compare-metric">Compare with (Optional)</label>
+        <select id="select-kpi-compare-metric" name="kpiCompareMetric" ng-model="widgetInfo.kpi.compareMetric" ng-different-with="kpiMetric" class="form-control" ng-options="item as item.name for item in selectedDashboardMetrics.Kpi | orderBy:'name' track by item._id">
+            <option value="">-- Choose Compare Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.kpiCompareMetric.$error.differentWith && submitted">Please select compare metric as different value than metric.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.kpiCompareLabel.$invalid && (dsWidgetForm.kpiCompareLabel.$dirty || submitted)}">
+        <label for="input-kpi-compare-label">Compare Label</label>
+        <input id="input-kpi-compare-label" name="kpiCompareLabel" type="text" class="form-control" ng-model="widgetInfo.kpi.compareLabel" required>
+        <span class="help-block" ng-show="dsWidgetForm.kpiCompareLabel.$error.required && (dsWidgetForm.kpiCompareLabel.$dirty || submitted)">Please input compare label.</span>
+    </fieldset>
+</tab>
+<tab active="widgetInfo.boilerplate.isSelected" disabled="isEditMode" select="initFormValidation('Boilerplate')">
+    <tab-heading>
+        <i class="widget-icon ds-icon-widget-boiler"></i>
+        Boilerplate
+    </tab-heading>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.boilerMetric.$invalid && submitted}">
+        <label for="select-boiler-metric">Metric</label>
+        <select id="select-boiler-metric" name="boilerMetric" ng-model="widgetInfo.boilerplate.metric" class="form-control" ng-options="item as item.name for item in selectedDashboardMetrics[widgetInfo.boilerplate.boilerplateType] | orderBy:'name' track by item._id" required>
+            <option value="">-- Choose Metric --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.boilerMetric.$error.required && submitted">Please select metric.</span>
+    </fieldset>
+    <fieldset class="form-group" ng-class="{'has-error': dsWidgetForm.boilerType.$invalid && submitted}">
+        <label for="select-boiler-type">Type</label>
+        <select id="select-boiler-type" name="boilerType" class="form-control" ng-model="widgetInfo.boilerplate.boilerplateType" ng-options="item.id as item.name for item in attributes.boilerType" required>
+            <option value="">-- Choose Type --</option>
+        </select>
+        <span class="help-block" ng-show="dsWidgetForm.boilerType.$error.required && submitted">Please select type.</span>
+    </fieldset>
+    <fieldset ng-if="widgetInfo.boilerplate.boilerplateType=='Boilerplate Communication Monitoring'" class="form-group">
+        <label for="input-boiler-last-connected">Last Connected (Optional)</label>
+        <input id="input-boiler-last-connected" name="boilerLastConnected" type="text" class="form-control" ng-model="widgetInfo.boilerplate.lastConnected" bl-date-picker="mm/dd/yyyy">
+    </fieldset>
+    <fieldset ng-if="widgetInfo.boilerplate.boilerplateType=='Boilerplate System Information'" class="form-group" ng-class="{'has-error': dsWidgetForm.boilerSystemPower.$invalid && (dsWidgetForm.boilerSystemPower.$dirty || submitted)}">
+        <label for="input-boiler-system-power">System Power</label>
+        <input id="input-boiler-system-power" name="boilerSystemPower" type="number" class="form-control" ng-model="widgetInfo.boilerplate.boilerplateSystemPower" required>
+        <span class="help-block" ng-show="dsWidgetForm.boilerSystemPower.$error.number && (dsWidgetForm.boilerSystemPower.$dirty || submitted)">Please input a number.</span>
+    </fieldset>
+    <fieldset ng-if="widgetInfo.boilerplate.boilerplateType=='Boilerplate System Information'" class="form-group" ng-class="{'has-error': dsWidgetForm.boilerCommissioning.$invalid && (dsWidgetForm.boilerSystemPower.$dirty || submitted)}">
+        <label for="input-boiler-commissioning">Commissioning</label>
+        <!-- <input id="input-boiler-commissioning" name="boilerCommissioning" type="text" class="form-control" datepicker-popup="MM/dd/yyyy" ng-model="widgetInfo.boilerplate.boilerplateCommissioning" datepicker-options="dateOptions" ng-required="true" close-text="Close" />-->
+        <input id="input-boiler-commissioning" name="boilerCommissioning" type="text" class="form-control" ng-model="widgetInfo.boilerplate.boilerplateCommissioning" bl-date-picker="mm/dd/yyyy" required>
+        <span class="help-block" ng-show="dsWidgetForm.boilerCommissioning.$error.required && (dsWidgetForm.boilerSystemPower.$dirty || submitted)">Please input a date.</span>
+    </fieldset>
+    <fieldset ng-if="widgetInfo.boilerplate.boilerplateType=='Boilerplate Location'" class="form-group" ng-class="{'has-error': dsWidgetForm.boilerLocation.$invalid && (dsWidgetForm.boilerSystemPower.$dirty || submitted)}">
+        <label for="input-boiler-location">Location</label>
+        <input id="input-boiler-location" name="boilerLocation" type="text" class="form-control" ng-model="widgetInfo.boilerplate.boilerplateLocation" required>
+        <span class="help-block" ng-show="dsWidgetForm.boilerLocation.$error.required && (dsWidgetForm.boilerSystemPower.$dirty || submitted)">Please input a location.</span>
+    </fieldset>
+    <fieldset class="form-group">
+        <label for="select-boiler-dashboard">Drilldown Dashboard (Optional)</label>
+        <select id="select-boiler-dashboard" class="form-control" ng-model="widgetInfo.boilerplate.drillDown" ng-options="item._id as item.title for item in dashboards">
+            <option value="">-- Choose Dashboard --</option>
+        </select>
+    </fieldset>
+</tab>
+</tabset>
+</div>
+
+<div class="modal-footer action-box">
+    <div class="bl-panel-command-border-wrapper">
+        <div class="bl-panel-command-wrapper">
+            <button type="submit" class="btn btn-ok" ng-disabled="getSelectedWidgetType() == 'Image' && widgetInfo.image.fileReceived == false">
+                {{isEditMode?"Update Widget":"Add Widget"}}
+            </button>
+            <a ng-click="cancel()" class="btn btn-cancel">Cancel</a>
+        </div>
+    </div>
+</div>
+</form>
+</div>
+
+<!-- Second tab for aggregate options -->
+<div class="bl-modal" ng-show="isAggregateFormOpen">
+    <div class="modal-header">
+        <h3 class="modal-title">{{isEditMode?"Update a Widget":"Add a Widget"}}</h3>
+        <a class="btn btn-link tab-nav-link" ng-click="toggleAdvancedForm()">General Options</a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="modal-body">
+        <fieldset class="form-group">
+            <label>Add Single-Point Aggregate</label>
+        </fieldset>
+        <div ng-repeat="option in attributes.aggregateOptions">
+            <fieldset class="form-group checkbox chk-label-text condensed">
+                <input id="chk-{{option.function}}" type="checkbox" ng-model="option.isSelected">
+                <label for="chk-{{option.function}}">
+                    {{option.function}}
+                </label>
+                <input type="text" placeholder="Optional Custom Title" ng-model="option.title" ng-disabled="!option.isSelected">
+                </input>
+            </fieldset>
+        </div>
+    </div>
+    <div class="modal-footer action-box">
+        <div class="bl-panel-command-border-wrapper">
+            <div class="bl-panel-command-wrapper">
+                <button ng-click="toggleAdvancedForm('saving')" class="btn btn-ok">Save</button>
+                <a ng-click="toggleAdvancedForm()" class="btn btn-cancel">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+</script>

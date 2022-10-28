@@ -1,0 +1,65 @@
+.bl-secondary-nav
+{
+    @include clearfix();
+    .navbar-brand {
+        font-size: 20px;
+
+        height: 61px;
+        padding: 21px 15px;
+
+        color: $secondary-nav-brand;
+
+        @include FontFamily_BentonSansCond(Medium);
+    }
+    .navbar-nav {
+        margin-right: 80px;
+        & > li {
+            & > a {
+                padding: 17px $xx-large-space;
+                &:hover,
+                &:focus {
+                    outline: 0;
+                    background: transparent;
+                }
+                &.link-company {
+                    padding: 5px $xx-large-space;
+                }
+            }
+            & + li {
+                position: relative;
+                &:before {
+                    position: absolute;
+                    top: 13px;
+
+                    display: block;
+
+                    width: 2px;
+                    height: 33px;
+
+                    content: ' ';
+
+                    background: inline-image('bl-data-sense/assets/img/icon-seperator.png') no-repeat;
+                }
+            }
+        }
+    }
+    .navbar-nav.navbar-right:last-child {
+        margin-right: 80px;
+    }
+    .link-company {
+        font-size: .9em;
+
+        color: $secondary-nav-brand;
+
+        @include FontFamily_BentonSansCond(Medium);
+        .logo-tiny {
+            display: inline-block;
+
+            width: 45px;
+            height: 45px;
+            margin-right: $x-large-space;
+
+            vertical-align: middle;
+        }
+    }
+}

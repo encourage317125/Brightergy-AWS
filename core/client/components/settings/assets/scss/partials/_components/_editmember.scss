@@ -1,0 +1,228 @@
+
+.edit-team-member-modal {
+  height: auto !important;
+  margin: 1px auto 88px !important;
+  margin-top: -195px !important;
+  .panel-body {
+	padding: 0 50px !important;
+  }
+  .form-group {
+	margin-bottom: 10px;
+	.user-avatar {
+	  background: inline-image("components/settings/assets/img/user-icon-empty.png") no-repeat center bottom;
+	  width: 70px;
+	  height: 70px;
+	  border: 1px solid #d8e0e6;
+	  border-radius: 50%;
+	}
+	.member-name {
+	  margin-top: 20px;
+	}
+	label {
+	  text-align: right;
+	  min-height: 34px;
+	  line-height: 34px;
+	  color: #89969d;
+	}
+	input {
+	  font-size: 14px;
+	  width: 100%;
+	  height: 34px;
+	  line-height: 34px;
+	  padding: 6px 12px;
+	  border: 2px solid #d8e0e6;
+	  border-radius: 5px;
+	  outline: none;
+	}
+	.require-field {
+	  color: #ff0000;
+	}
+  }
+}
+
+.membername {
+  color: #5d6b87;
+  font-size: 13px;
+  font-family: HelveticaNeueW02-55Roma;
+  font-weight: 800;
+  margin-top: 20px;
+  margin-left: 5px;
+}
+.notification {
+  color: #89969d;
+  font-size: 13px;
+  font-family: HelveticaNeueW02-55Roma;
+  margin-top: 10px;
+}
+.underline {
+  color: #ced2db;
+  font-weight: 800;
+  margin-top: -10px;
+  margin-left: 5px;
+}
+
+.recycle-link {
+  color: #89969d;
+  float:right;
+  margin-top: -55px;
+  font-family: HelveticaNeueW02-55Roma;
+}
+#emailEditor {
+  color: #aeb5c3;
+  font-size: 14px;
+  margin-top: 7px;
+}
+#emailEditor:hover {
+  color: #5d6b87;
+}
+#emailEditor p {
+  margin-top: -5px;
+}
+form-inline-editor .icon.icon-edit {
+  margin-top:0px !important;
+  margin-left: -20px !important;
+}
+#phoneEditor {
+  color: #aeb5c3;
+  font-size: 14px;
+  margin-top: 9px;
+}
+#phoneEditor:hover {
+  color: #5d6b87;
+}
+#accountEditor {
+  color: #aeb5c3;
+  font-size: 11px;
+  margin-top: 9px;
+}
+#accountEditor:hover {
+  color: #5d6b87;
+}
+#tagsEditor {
+  color: #aeb5c3;
+  font-size: 11px;
+  margin-top: 9px;
+}
+#tagsEditor:hover {
+  color: #5d6b87;
+}
+#rolesEditor {
+  color: #aeb5c3;
+  font-size: 11px;
+  margin-top: 9px;
+}
+#rolesEditor:hover {
+  color: #5d6b87;
+}
+.delete-team-member-modal {
+  width: 448px;
+  height: 230px;
+}
+.btn-button-delete {
+  background-color: #fff;
+  width:220px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #ff7940;
+  color: #ff7940;
+  font-size: 12px;
+  font-family: HelveticaNeueW02-55Roma;
+  margin-top: 60px;
+}
+.btn-button-cancel {
+  background-color: #fff;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid #338bbb;
+  color: #338bbb;
+  font-size: 12px;
+  font-family: HelveticaNeueW02-55Roma;
+  margin-top: 60px;
+  float: right;
+  margin-right: 65px;
+}
+.icon-blue-loading {
+  display: none;
+}
+.validation {
+  margin-top: 2px;
+  margin-left: 3px;
+  position: absolute;
+}
+.validation-alert {
+  position: absolute;
+  color: #e17576;
+  width: 160px;
+  font-size: 11px;
+  margin-left: 11px;
+}
+.icon-warning {
+  color: #e17576;
+  margin-top: 10px;
+}
+.form-control {
+  font-size: 14px;
+  line-height: 16px;
+  color: #aeb5c3;
+  outline: none;
+  border: 2px solid #d8e0e6;
+  padding: 6px 8px;
+  box-shadow: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.form-group .select-wrapper:after {
+  position: absolute;
+  font-family: brightergy;
+  font-size: 10px;
+  content: '\e610';
+  color: #a2acb1;
+  right: 22px;
+  top: 10px;
+}
+
+.edit-team-member-modal .form-group label {
+  text-align: right;
+  min-height: 34px;
+  line-height: 34px;
+  color: #89969d;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+.edit-team-member-modal .panel-body {
+  padding: 0 50px !important;
+}
+
+.input-danger {
+  position: absolute;
+  color: #ff7940 !important;
+  margin-top: 5px !important;
+  margin-bottom: -15px;
+  font-size: 10px !important;
+  font-family: HelveticaNeueW02-55Roma;
+  margin-left: -10px;
+}
+
+.input-danger :before {
+  font-family: brightergy;
+  font-size: 10px;
+  content: '\e617';
+  color: #ff7940;
+  padding:10px;
+}
+
+input.submitted.ng-invalid
+{
+  border:1px solid #f00;
+}
+
+input.form-control.ng-invalid-email.ng-valid-required
+{
+  border:2px solid #ff7940;
+}
+.edit-team-member-modal .form-group {
+  margin-top: 20px;
+}

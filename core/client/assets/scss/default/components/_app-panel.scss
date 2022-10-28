@@ -1,0 +1,188 @@
+.apps-panel-main{
+  background-color: #eee;
+  border-radius: 0;
+  @include box-shadow(0px 0px 3px 3px rgba(0,0,0,.25));
+  color: #000000;
+  display: none;
+  left: 0;
+  opacity: 0.94;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 61px;
+  z-index: 1002;
+}
+
+.apps-panel-logo {
+  font-weight: bolder;
+  line-height: 240px;
+  margin: 30px 0 10px 0;
+}
+
+.apps-panel-title {
+  color: #34495e;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: none;
+}
+
+.btn-apps-panel-handler {
+  position: relative;
+  float: right;
+  top: 0;
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  display: block;
+  outline: none;
+  text-indent: 0 !important;
+  @include transition(all 0.2s ease-in-out);
+  cursor: pointer;
+}
+
+.apps-panel {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-color: rgba(0,0,0,.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  outline: none;
+  overflow: hidden;
+  position: absolute;
+  left: -130px;
+  top: 70px;
+  border-radius: 2px;
+  min-height: 196px;
+  overflow-y: auto;
+  &:before, &:after {
+    left: 22px;
+    z-index: 1;
+    height: 0;
+    width: 0;
+    position: absolute;
+    border-color: transparent;
+    border-style: dashed dashed solid;
+    border-width: 0 8.5px 8.5px;
+  }
+  &:before {
+    top: 62px;
+    border-bottom-color: #ccc;
+    border-bottom-color: rgba(0,0,0,.2);
+  }
+  &:after {
+    border-bottom-color: #fff;
+    top: 63px;
+  }
+}
+
+/*=========================================================================
+New Apps Panel Style
+==========================================================================*/
+
+.apps-panel ul.panel-apps-list{
+  background: #fff;
+  margin: 0;
+  min-height: 100px;
+  padding: 33px 27px;
+  text-align: left;
+  white-space: normal;
+  width: 324px;;
+  li {
+    border: 1px solid #fff;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: top;
+    height: 90px;
+    width: 80px;
+    position: relative;
+    margin: 0 5px 10px;
+    text-align: center;
+    &:hover {
+      border: 1px solid #e5e5e5;
+    }
+  }
+
+}
+.apps-panel {
+  .panel-apps-list {
+    .app-link {
+      color: #404040;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 13px;
+      margin: 8px 2px;
+      text-align: center;
+      outline: none;
+    }
+    .app-name {
+      display: block;
+      line-height: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      width: 70px;
+      text-overflow: ellipsis;
+      margin-top: 10px;
+    }
+  }
+
+  .title-section {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 88px;
+    width: 100%;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    padding: 0 5px;
+    display: table;
+    color: #fff;
+    span {
+      font-size: 12px;
+      line-height: 14px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+.icon-nav-apps {
+  background-image: url(/assets/img/all-apps.png);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  display: block;
+  height: 61px;
+  width: 60px;
+  &:hover,
+  &.active {
+    background-color: #bce0ed;
+  }
+}
+
+.panel-before {
+    border-color: transparent;
+    border-style: dashed dashed solid;
+    border-width: 0 8.5px 8.5px;
+    position: absolute;
+    left: 22px;
+    z-index: 1;
+    height: 0;
+    width: 0;
+    border-bottom-color: #ccc;
+    border-bottom-color: rgba(0,0,0,.2);
+    top: 62px;
+}
+.panel-after {
+    border-color: transparent;
+    border-bottom-color: #fff;
+    border-style: dashed dashed solid;
+    border-width: 0 8.5px 8.5px;
+    position: absolute;
+    left: 22px;
+    top: 63px;
+    z-index: 1;
+    height: 0;
+    width: 0;
+}
+
+.datepicker {
+  &.dropdown-menu {
+    z-index: 9999!important;
+  }
+}

@@ -1,0 +1,75 @@
+<div class="sharePanel" ng-show="togglePanel">
+	<div class="icon-close" ng-click="toggleSharePanel($event);"></div>
+    <div class="row sharePanel-title">
+        <div class="col-md-3"></div>
+        <div class="share-panel-text">Share Your Dashboard</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 share-label">Dashboard Link:</div>
+        <div class="col-md-6"><input type="text" class="form-control" ng-model="dashboardLink" value="{{dashboardLink}}" readonly>
+            <span class="copied" ng-show="copyLabel != ''">{{copyLabel}}</span></div>
+        <div class="col-md-3"><a class="copy-link-share-dash" clip-copy="dashboardLink" clip-click="copyLink()" style="display: block; width: 77px;">Copy Link</a></div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-3 share-label">Send via Email:</div>
+        <div class="col-md-6 share-info">
+            <input type="text" ng-model="shareInfo.email" placeholder="Recipient Email Address">
+            <span class="error" ng-show="shareInfo.emailError">{{shareInfo.emailError}}</span>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-3 share-label">Subject</div>
+        <div class="col-md-6 share-info">
+            <input type="text" ng-model="shareInfo.subject" placeholder="Optional Subject" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 share-info">
+            <div class="checkbox">
+                <label><input type="checkbox" ng-model="shareInfo.withPDF"/> With PDF</label>
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-3 share-label">Message</div>
+        <div class="col-md-6 share-info">
+            <textarea ng-model="shareInfo.message", placeholder="Optional Message"></textarea>
+        </div>
+        <!--
+        <div class="col-md-3 share-info" ng-init="sendingLink = 'Send a Link'">
+            <a ng-click="sendLink()" class="copy-link-share-dash">{{sendingLink}}</a>
+        </div>
+        -->
+    </div>
+    <div class="share-btns-wrapper">
+        <ul class="list-inline">
+            <li>
+                <a href="" ng-click="sendLink($event)" class="copy-link-share-dash" >
+                {{shareInfo.sending? 'Sending Link...' : (shareInfo.withPDF? 'Email Link with PDF': 'Email Link')}}</a>
+            </li>
+            <li>
+                <a href="" ng-click="downloadDashboardPdf()" class="copy-link-share-dash">{{downloadCaption}}</a>
+                <a class="exported-dashboard-{{$root.selectedDashboard._id}}" ng-href="{{$root.selectedDashboard.exportedResourceUrl}}" target="_blank"></a>
+            </li>
+            <!--
+            <li ng-init="sending_pdf = 'Email PDF'">
+                <a href="" ng-click="sendPdf()" class="copy-link-share-dash">{{sending_pdf}}</a>
+            </li>
+            -->
+            <li ng-init="embed_webpage = 'Embed in Webpage'">
+                <a href="" ng-click="embedWebpage()" class="copy-link-share-dash">{{embed_webpage}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="embed-dialog" ng-show="embedDialogShow">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="share-panel-text">Embed Webpage</div>
+        </div>
+        <div class="row">
+            <div class="col-md-9"><textarea class="form-control">{{embedDashboardHtml}}</textarea><span class="copied">{{copyLabel}}</span></div>
+            <div class="col-md-3"><a class="copy-link-share-dash" style="display: block; width: 97px;" clip-copy="embedDashboardHtml" clip-click="copyLink()" >Copy HTML</a></div>
+        </div>
+    </div>
+</div>

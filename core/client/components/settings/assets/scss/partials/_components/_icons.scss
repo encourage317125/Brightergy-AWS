@@ -1,0 +1,29 @@
+.icon-salesforce {
+    display: inline-block;
+    background: inline-image("components/settings/assets/img/icon_SF.png") no-repeat;
+    background-size: cover;
+    height: 27px;
+    width: 27px;
+}
+
+.icon-blue-loading {
+    display: inline-block;
+    background: inline-image("components/settings/assets/img/ajax-loader.gif") no-repeat;
+    background-size: cover;
+    height: 15px;
+    width: 15px;
+}
+
+.icon-edit,
+.icon-trash,
+.icon-password {
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.icon {
+    &.social {
+        font-size: $font-size-xxlarger;
+        vertical-align: middle;
+    }
+}

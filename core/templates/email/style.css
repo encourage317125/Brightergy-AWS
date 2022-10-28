@@ -1,0 +1,68 @@
+body {
+    margin: 70px 0 0;
+    background: #333c4e;
+}
+.container-fluid {
+    width: 650px;
+    margin: 0 auto;
+    background: #333c4e;
+}
+.top-bar {background: #f7f7f7;}
+.top-bar .logo {
+    float: left;
+    background: #e16030;
+    padding: 17px 57px;
+}
+.top-bar .header a {
+	text-decoration: none;
+}
+.top-bar .header h1 {
+    float: left;
+    font-family: "Arial Bold", sans-serif;
+    font-size: 15px;
+    color: #666666;
+    margin: 27px 0px 0px 50px;
+    font-weight: 600;
+}
+.content {
+    background: #FFF;
+    padding: 100px 50px 70px 50px;
+    font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+}
+.content a {
+    color: #2980b9;
+}
+.content h1 {
+    color: #e16030;
+    font-size: 20px;
+}
+.footer {
+    background: #f7f7f7;
+}
+.footer .social_links{
+    float: left;
+    padding: 15px 0 15px 50px;
+}
+.footer .social_links img{
+    padding: 0 3px;
+}
+.footer .unsubscribe{
+    float: right;
+    padding: 25px 50px 0 0;
+    font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+    color: #666666;
+    font-size: 14px;
+}
+.footer .unsubscribe a{
+    color: #2980b9;
+    text-decoration: none;
+}
+.copyright p {
+    font-size: 13px;
+    font-family: Arial,Helvetica Neue,Helvetica,sans-serif;
+    text-align: center;
+    padding-top: 15px;
+}
+.clear {
+    clear: both;
+}

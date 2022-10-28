@@ -1,0 +1,67 @@
+<div class="panel edit-team-member-modal">
+    <div class="panel-heading">
+        <i class="icon icon-ui-info"></i>
+        <h3 class="panel-title">Team Member</h3>
+        <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close" ng-click="closeModal();">
+            <span aria-hidden="true">x</span>
+        </button>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <label class="col-md-3">
+                    <div class="user-avatar">&nbsp;</div>
+                </label>
+                <div class="col-md-9">
+                    <p class="membername">Team Member name</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-9 col-md-push-3">
+                        <a class="recycle-link" ng-click="deleteMemberModal();">
+                            <i class="icon icon-trash"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Email</label>
+                <div class="col-md-9">
+                    <form-inline-editor  type="email" id="emailEditor" field-model="emailEditor.name" field-on-save="editCurrentEmail()" validation="email" ng-model="email">
+                        {{ emailEditor.name || "Someone@domain.com" }}
+                    </form-inline-editor>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Phone</label>
+                <div class="col-md-9">
+                    <form-inline-editor id="phoneEditor" field-model="phoneEditor.phone"  validation="ng-phone-number">
+                        {{ phoneEditor.phone || "Add phone number" }}
+                    </form-inline-editor>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Account</label>
+                <div class="col-md-9 select-wrapper">
+                    <select class="form-control">
+                        <option value="" disabled selected style="display: none;">Select Account</option>
+                        <option>Brightergy</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Roles</label>
+                <div class="col-md-9 select-wrapper">
+                    <select class="form-control">
+                        <option value="" disabled selected style="display: none;">Select Role</option>
+                        <option>Admin</option>
+                        <option>Owner</option>
+                        <option>Billing</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

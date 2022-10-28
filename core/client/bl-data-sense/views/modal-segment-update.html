@@ -1,0 +1,44 @@
+<script type="text/ng-template" id="modalSegmentUpdate.html">
+    <div class="bl-modal bl-modal-segment-update">
+        <form name="dsSegmentForm" ng-submit="submit(dsSegmentForm)" novalidate>
+            <div class="modal-header">
+                <h3 class="modal-title">Choose Segments</h3>
+            </div>
+            <div class="modal-body">
+                <!--<div class="form-group bl-input-search-section">
+                    <input type="text" class="form-control" placeholder="Search for data sources">
+                    <span class="glyphicon glyphicon-search"></span>
+                </div>-->
+                <fieldset class="form-group" ng-class="{'has-error': dsSegmentForm.sname.$invalid && submitted}">
+                    <label>Segment Name</label>
+                    <input type="text" class="form-control" name="sname" ng-model="modelWrapper.segmentName" required=""/>
+                    <span class="help-block" ng-show="dsSegmentForm.sname.$error.required && submitted">Please enter segment name.</span>
+                </fieldset>
+                <div class="bl-dlg-description">
+                    Select data segments to compare in your dashboard.
+                </div>
+                <div class="bl-dlg-section tree-section" m-custom-scrollbar="">
+                    <treecontrol class="datasource-tree dashboard-tree" tree-model="modelWrapper.treedata" options="opt1" order-by="name" on-selection="setExpanded(node)" expanded-nodes="expandedNodes">
+                        <div class="node-name" ng-mouseover="node.onhover = true;" ng-mouseleave="node.onhover = false;">
+                            <span ng-class="{'dimmed': node.visible==false, 'node_disabled': node.disable, 'node_activated': node.active}">{{node.name}}</span>
+                            <div class="pull-right actions" ng-class="node.visible ? 'activated' : 'deactivated'">
+                                <span class="glyphicon" ng-show="node.onhover" ng-click="activateDataSource($event, node)" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                                
+                                <span class="glyphicon" ng-show="!node.onhover" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                            </div>
+                        </div>
+                    </treecontrol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="modal-footer action-box">
+                <div class="bl-panel-command-border-wrapper">
+                    <div class="bl-panel-command-wrapper">
+                        <button type="submit" class="btn btn-ok">{{isEditMode?"Update Segment":"Add Segment"}}</button>
+                        <button class="btn btn-cancel" ng-click="dismiss()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>

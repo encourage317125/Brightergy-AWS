@@ -1,0 +1,24 @@
+<div class="panel element-numeric element-atom avoided-widget" as-element-show-loading="{{ !isDataLoaded }}" id="avoided-carbon">
+	<div class="panel-heading">
+		<as-more-panel class="as-col-xl-hidden as-col-lg-hidden as-col-md-hidden as-col-sm-hidden" panel-title="What does Avoided Carbon Dioxide mean?" classes="more-carbon">
+			<div ng-include="'app/partials/more-panels/avoided-carbon.html'"></div>
+		</as-more-panel>
+		<as-more-panel class="as-col-xs-hidden" position="top right" panel-title="What does Avoided Carbon Dioxide mean?" classes="more-carbon">
+			<div ng-include="'app/partials/more-panels/avoided-carbon.html'"></div>
+		</as-more-panel>
+		<h5 class="panel-title carbon">
+			Avoided Carbon Dioxide Emissions
+		</h5>
+		<as-date-range-selector ng-model="dateRange" ranges="month,year,total" force-dropdown="true"></as-date-range-selector>
+	</div>
+	<div class="panel-body">
+		<div class="content">
+			<div class="avoided-value">
+				<b as-tooltip tooltip-text="infoPanelText" tooltip-position="left middle" tooltip-classes="kpi-tooltip">
+					<as-animated-number ng-bind="lastCarbonAvoided.carbonAvoided" data-num-decimals="1" compress="true"></as-animated-number><sup>lbs</sup>
+				</b>
+			</div>
+			<div class="avoided-total">Total All Time: <as-animated-number ng-bind="lastCarbonAvoided.carbonAvoidedTotal"></as-animated-number> lbs</div>
+		</div>
+	</div>
+</div>

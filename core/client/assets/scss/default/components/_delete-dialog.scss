@@ -1,0 +1,51 @@
+.delete-box {
+	background-color: $color_delete_background;
+	color: $color_delete;
+	border-radius: 5px;
+	font-size: 13px;
+	padding: 12px 10px 5px;
+	p {
+		margin-right: 40px !important;
+		min-width: 110px;
+		float: left;
+		font-weight: 700;
+		color: $color_delete !important;
+		line-height: 1 !important;
+		font-size: 13px !important;
+		b, span {
+			color: #a94442 !important;
+		}
+		span {
+			display: block;
+			margin: 2px 0 0 2px;
+			font-weight: 400;
+		}
+	}
+	i {
+		display: inline-block !important;
+		font-style: normal;
+		color: $color_delete !important;
+		cursor: pointer;
+		margin-right: 5px;
+		position: relative !important;
+		top: 0 !important;
+		font-size: 13px !important;
+	}
+	a {
+		margin-right: 20px;
+		float: right;
+		&:hover{
+			color: $color_delete_hover !important;
+		}
+	}
+	&:hover{
+		i{
+			display: inline-block !important;
+		}
+	}
+}
+.company-panel-main {
+	.delete-box {
+		margin: 10px 0;
+	}
+}

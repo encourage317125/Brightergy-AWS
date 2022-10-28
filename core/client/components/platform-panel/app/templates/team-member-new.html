@@ -1,0 +1,62 @@
+<form id="frmTeamMemberCreate" name="newUserForm" class="form-platform-panel form-horizontal" ng-submit="createNewTeamMember(newUserForm)" novalidate>
+    <div class="row member-create-upload">
+        <div class="col-sm-3 col-xs-3 no-left-padding">
+            <div class="member-photo">&nbsp;</div>
+        </div>
+        <div class="col-sm-1 col-xs-1"></div>
+        <div class="col-sm-8 col-xs-8">
+            <input type="text" class="form-control" placeholder="Name" ng-model="newUser.name" required name="name" ng-full-name>
+            <p class="input-danger" ng-show="(newUserForm.name.$dirty || submitted) && newUserForm.name.$invalid">
+                <span ng-if="newUserForm.name.$error.required">Name is required.</span>
+                <span ng-if="newUserForm.name.$error.fullname">First name and Last name are required.</span>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectNewTeamMemberAccount" class="col-xs-4 control-label no-left-padding">Account</label>
+        <div class="col-xs-8 control-wrapper">
+            <select ng-model="newUser.accountId" ng-options="item.id as item.name for item in accountListForSelectBox" id="selectNewTeamMemberAccount" name="account" required class="form-control">
+                <option value="">Select Account ...</option>
+            </select>
+            <p class="input-danger" ng-show="(newUserForm.name.$dirty || submitted) && newUserForm.account.$invalid">
+                <span ng-if="newUserForm.account.$error.required">Account is required.</span>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectNewTeamMemberRole" class="col-xs-4 control-label no-left-padding">Role</label>
+        <div class="col-xs-8 control-wrapper">
+            <select name="role" ng-model="newUser.role" ng-options="item.id as item.name for item in userRoleForSelectBox" id="selectNewTeamMemberRole" required class="form-control">
+                <option value="">Select Role ...</option>
+            </select>
+            <p class="input-danger" ng-show="(newUserForm.name.$dirty || submitted) && newUserForm.role.$invalid">
+                <span ng-if="newUserForm.role.$error.required">Role is required.</span>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectNewTeamMemberPhone" class="col-xs-4 control-label no-left-padding">Contact Phone</label>
+        <div class="col-xs-8 control-wrapper">
+            <input id="selectNewTeamMemberPhone" type="tel" class="form-control" placeholder="Example: 1-800-275-2273" name="phone" ng-model="newUser.phone" ng-phone-number>
+            <p class="input-danger" ng-show="(newUserForm.name.$dirty || submitted) && newUserForm.phone.$invalid">
+                <span ng-if="newUserForm.phone.$error.phonenumber">Please input valid a phone number ( ex: 1-800-275-2273).</span>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="selectNewTeamMemberEmail" class="col-xs-4 control-label no-left-padding">Email</label>
+        <div class="col-xs-8 control-wrapper">
+            <input id="selectNewTeamMemberEmail" type="email" name="email" class="form-control" placeholder="Email" ng-model="newUser.email" required>
+            <p class="input-danger" ng-show="(newUserForm.name.$dirty || submitted) && newUserForm.email.$invalid">
+                <span ng-if="newUserForm.email.$error.required">Email is required.</span>
+                <span ng-if="newUserForm.email.$error.email">Invalid email address.</span>
+            </p>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-xs-offset-4 col-xs-8">
+            <button type="submit" class="btn btn-primary" ng-disabled="isCreatingUser">{{ isCreatingUser ? 'Saving...' : 'Save' }}</button>
+            <button type="button" class="btn btn-default" ng-click="backToTeamList();">Back to List</button>
+        </div>
+    </div>
+</form>

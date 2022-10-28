@@ -1,0 +1,23 @@
+<ul class="form-list label-left list-bordered dotted">
+	<li class="section-form">
+		<h4>Custom Details</h4>
+	</li>
+	<li class="form-group">
+		<label for="videoURL" class="control-label label-default">Video URL</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetURL" id="videoURL"/>
+			<span class="help-block">Recommended resolution of 1920x1080 at 72dpi</span>
+		</div>
+	</li>
+	<li class="form-group">
+		<label class="control-label label-default">Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.videoType">
+				<option value="">Youtube</option>
+				<option value="video/mp4">MP4</option>
+				<option value="video/webm">WEBM</option>
+				<option value="video/ogg">OGG</option>
+			</select>
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,90 @@
+/* FLOAT */
+@-webkit-keyframes float {
+    0%{transform: translateY(0)}
+    50%{transform: translateY(-6px)}
+    100%{transform: translateY(0)}
+}
+@keyframes float {
+    0%{transform: translateY(0)}
+    50%{transform: translateY(-6px)}
+    100%{transform: translateY(0)}
+}
+@-webkit-keyframes sink {
+    0%{transform: translateY(0)}
+    50%{transform: translateY(6px)}
+    100%{transform: translateY(0)}
+}
+@keyframes sink {
+    0%{transform: translateY(0)}
+    50%{transform: translateY(6px)}
+    100%{transform: translateY(0)}
+}
+.as-float.animated {
+    @include animation(float 2s linear infinite);
+    &.fast {
+        animation: float 3s linear infinite;
+    }
+    &.slow {
+        animation: float 1s linear infinite;
+    }
+}
+.as-sink.animated {
+    @include animation(sink 2s linear infinite);
+    &.fast {
+        animation: sink 3s linear infinite;
+    }
+    &.slow {
+        animation: sink 1s linear infinite;
+    }
+}
+
+.animate-hide {
+    -webkit-transition:all linear 0.5s;
+    transition:all linear 0.5s;
+}
+
+.animate-hide.ng-hide {
+    opacity:0;
+}
+
+/** Global loading dots.... **/
+@-webkit-keyframes dots {
+    0%, 20% {
+        color: rgba($brand-primary,0);
+        text-shadow:
+        .25em 0 0 rgba($brand-primary,0),
+        .5em 0 0 rgba($brand-primary,0);}
+    40% {
+        color: $brand-primary;
+        text-shadow:
+        .25em 0 0 rgba($brand-primary,0),
+        .5em 0 0 rgba($brand-primary,0);}
+    60% {
+        text-shadow:
+        .25em 0 0 $brand-primary,
+        .5em 0 0 rgba($brand-primary,0);}
+    80%, 100% {
+        text-shadow:
+        .25em 0 0 $brand-primary,
+        .5em 0 0 $brand-primary;}
+}
+@keyframes dots {
+    0%, 20% {
+        color: rgba($brand-primary,0);
+        text-shadow:
+        .25em 0 0 rgba($brand-primary,0),
+        .5em 0 0 rgba($brand-primary,0);}
+    40% {
+        color: $brand-primary;
+        text-shadow:
+        .25em 0 0 rgba($brand-primary,0),
+        .5em 0 0 rgba($brand-primary,0);}
+    60% {
+        text-shadow:
+        .25em 0 0 $brand-primary,
+        .5em 0 0 rgba($brand-primary,0);}
+    80%, 100% {
+        text-shadow:
+        .25em 0 0 $brand-primary,
+        .5em 0 0 $brand-primary;}
+}

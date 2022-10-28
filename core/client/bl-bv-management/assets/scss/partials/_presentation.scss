@@ -1,0 +1,227 @@
+#presentationNameLabel {
+  color: $color_white;
+  position: relative;
+  top: -40px;
+  height: 0;
+  text-align: center;
+}
+.open-create-editor {
+  width: 580px;
+  height: 580px;
+  background-color: $color_white;
+  @include box-shadow(0 5px 10px $color_box_shadow_1);
+  border-radius: 6px;
+  z-index: 9999;
+  position: absolute;
+  top: 0;
+  margin-bottom: 20px;
+  left: 30px;
+  animation: open-editor 0.5s ease-in 1;
+  display: none;
+  .tree-control {
+    height: 260px;
+    padding: 20px;
+  }
+  .note {
+    padding: 30px 30px 10px 30px;
+    color: #5d5d5d;
+    font-size: 14px;
+    font-weight: 600;
+    span.user {
+      color: $color_bv_blue_3;
+    }
+  }
+  .editor-list {
+    padding: 20px 40px;
+    background-color: #f6fafd;
+    border-bottom: 1px solid $color_white_light_2;
+  }
+  .source-list {
+    padding: 0 40px;
+    height: 290px;
+    overflow-y: auto;
+    li {
+      padding-bottom: 10px;
+    }
+  }
+  .source_form {
+    padding: 0 30px;
+  }
+}
+.presentations-list {
+  height: calc(100% - 190px);
+}
+.presentations-create {
+  padding-bottom: 20px;
+  .presentations i.glyphicon {
+    color: $color_bv_blue_3;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    font-size: 16px;
+  }
+  ul.source-list {
+    padding-bottom: 0;
+    max-height: calc(100% - 510px);
+    overflow: auto;
+  }
+}
+.presentation-type {
+  margin-top: 20px;
+  > div {
+    width: 150px;
+    height: 130px;
+    background-color: $color_white;
+    border: 1px solid #E3E2E2;
+    @include box-shadow(0 1px 3px $color_box_shadow_1);
+    border-radius: 4px;
+    cursor: pointer;
+    &.active {
+      border: 2px solid $color_bv_green;
+      h5 {
+        color: $color_bv_green;
+      }
+      > div {
+        border-color: $color_bv_green;
+        background-color: $color_white;
+      }
+      span.icon-template {
+        background-image: url(/bl-bv-management/assets/img/template-active.png);
+      }
+    }
+    h5 {
+      text-align: center;
+    }
+    > div {
+      height: 50px;
+      width: 60px;
+      margin: auto;
+      border: 2px solid $color_border_grey;
+      background: $color_white_light;
+      margin-top: 20px;
+    }
+  }
+}
+.editor-list {
+  padding: 0 15px 20px 20px;
+  ul {
+    .media-body {
+      margin-top: 7px;
+    }
+    li {
+      cursor: pointer;
+      position: relative;
+      h5 {
+        color: $color_bv_blue_3;
+      }
+      .email {
+        font-size: 12px;
+      }
+    }
+  }
+  .media {
+    .pull-left {
+      margin-right: 30px;
+    }
+    &:hover {
+      .dimmid {
+        opacity: 1;
+        filter: alpha(opacity = 100);
+      }
+      i.glyphicon {
+        display: block;
+      }
+    }
+  }
+  .media-object {
+    width: 50px;
+    height: 50px;
+  }
+  .media-list {
+    .dimmid {
+      opacity: 0.5;
+      filter: alpha(opacity = 50);
+    }
+    i {
+      &.glyphicon {
+        color: $color_bv_blue_3;
+        position: absolute;
+        right: 0;
+        top: 15px;
+        font-size: 16px;
+        display: none;
+      }
+      &.custom-puls-icon {
+        background: url(/assets/img/icon_add.png) 16px 16px;
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+#datas ul.source-list {
+  padding: 0 20px;
+  margin-bottom: 20px;
+}
+p.comment {
+  font-size: 12px;
+  color: #808080;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+
+
+span.icon-template {
+  background-image: url(/bl-bv-management/assets/img/template-deactive.png);
+  width: 48px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: 48px 24px;
+  display: block;
+  margin: auto;
+  margin-top: 12px;
+}
+.btns-area {
+  position: relative;
+  float: right;
+  margin-bottom: -34px;
+  z-index: 999;
+  padding: 0 5px;
+  background: $color_white;
+  display: none;
+  a {
+    @include presentationButtonArea();
+    &:hover {
+      background: $color_white_light;
+      text-decoration: none;
+    }
+  }
+  a[data-tooltip] {
+    &:before {
+      @include presentationButtonAreaBefore();
+    }
+    &:after {
+      @include presentationButtonAreaAfter();
+    }
+  }
+}
+.visibility-btns-area {
+  position: relative;
+  float: left;
+  margin-bottom: -34px;
+  padding: 0 0 0 8px;
+  background: $color_white;
+  display: none;
+  a {
+    @include presentationButtonArea();
+  }
+  a[data-tooltip] {
+    &:before {
+      @include presentationButtonAreaBefore();
+    }
+    &:after {
+      @include presentationButtonAreaAfter();
+    }
+  }
+}

@@ -1,0 +1,40 @@
+<div id="currentpower-modal" class="opened-sp">
+	<div class="clearfix">
+		<div class="col-md-12 no-padding">
+			<div class="panel current-power" as-element-show-loading="{{ !isDataLoaded }}">
+				<div class="panel-heading">
+					<h5 class="panel-title drilldown">
+						Current Power
+					</h5>
+					<a class="drilldown-close" ng-click="closeDrilldown()"></a>
+				</div>
+				<div class="panel-body">
+					<div id="energy-drilldown-combochart" class="chart-container">
+						<!--<highchart id="energy-drilldown-combochart" config="chartConfig" style="width:98%"></highchart>-->
+					</div>
+					<div class="footer">
+						<div class="kpis">
+							<div class="kpi">
+								<div class="kpi-title">Total Production</div>
+								<div class="kpi-value">
+									{{kpiData.totalEnergy | number:1 }}
+									<span class="unit">kWh</span>
+								</div>
+							</div>
+							<div class="kpi" ng-repeat="energySource in kpiData.energyBySources">
+								<div class="kpi-title">
+									<span style="color: {{ ::energySource.color }};">&#9679;</span>
+									{{ ::energySource.displayName }}
+								</div>
+								<div class="kpi-value">
+									{{energySource.kwh | number:1 }}
+									<span class="unit">kWh</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

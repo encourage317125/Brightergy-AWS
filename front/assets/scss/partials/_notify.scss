@@ -1,0 +1,41 @@
+.source-notify {
+    display: none;
+    position: fixed;
+    top: -9999px;
+    left: -9999px;
+    background: rgba(35,43,57,0.9);
+    border-radius: 3px;
+    padding: 12px 20px;
+    font-size: 13px;
+    z-index: $zindex-tootip;
+
+    .source-notify-arrow {
+        position: absolute;
+        bottom: -5px;
+        left: 20px;
+        background: url(/dist/img/arrow-bottom.png) no-repeat;
+        width: 10px;
+        height: 5px;
+        z-index: $zindex-tootip;
+    }
+
+    .source-notify-icon {
+        float: left;
+        background: url(/dist/img/icon-warning.png) no-repeat;
+        width: 15px;
+        height: 15px;
+        margin: 12px 12px 0 0;
+    }
+
+    .source-notify-message {
+        float: left;
+        width: 170px;
+        color: white;
+    }
+
+    &::after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}

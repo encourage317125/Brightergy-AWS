@@ -1,0 +1,102 @@
+<div id="equivalencies-drilldown">
+    <!-- element equivalencies-drilldown-->
+    <div class="panel" as-element-show-loading="{{ !isDataLoaded }}">
+        <div class="panel-heading">
+            <h5 class="panel-title drilldown">
+                Equivalencies
+            </h5>
+            <a class="drilldown-close" ng-click="closeDrilldown()"></a>
+        </div>
+        <div class="panel-body">
+            <div class="equiv-widget-detail">
+            <div class="detail-info row">
+                <div class="col-md-6">
+                    <ul>
+                        <li>
+                            <i class="icon icon-cars"></i>
+                            <span class="equiv-name">Cars Removed</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.carsRemoved|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-homes"></i>
+                            <span class="equiv-name">Homes Powered</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.homePowered|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-seedlings"></i>
+                            <span class="equiv-name">Seedlings Grown</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.seedlingsGrown|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-refrigirator"></i>
+                            <span class="equiv-name">Refrigerators</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.refrigerators|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-mobile"></i>
+                            <span class="equiv-name">Mobile Phones</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.mobilePhones|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-aa-battery"></i>
+                            <span class="equiv-name">AA Batteries</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.batteries|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-co2"></i>
+                            <span class="equiv-name">Avoided Carbon</span>
+                            <b class="equiv-value"><as-animated-number ng-bind="lastEquiv.avoidedCarbon|number:2" data-num-decimals="2"></as-animated-number><sup>kg</sup></b>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li>
+                            <i class="icon icon-gas"></i>
+                            <span class="equiv-name">Gallons of Gas</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.gallonsGas|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-gas-gallons"></i>
+                            <span class="equiv-name">Tankers of Gas</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.tankersGas|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-railroad-car"></i>
+                            <span class="equiv-name">Railroad Cars of Coal</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.railroadCarsCoal|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-oil-barrel"></i>
+                            <span class="equiv-name">Barrels Oil</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.barrelsOil|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-propane"></i>
+                            <span class="equiv-name">Propane Cylinders</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.propaneCylinders|number:2" data-num-decimals="2"></b>
+                        </li>
+                        <li>
+                            <i class="icon icon-power-plant"></i>
+                            <span class="equiv-name">Power Plants</span>
+                            <b class="equiv-value" as-animated-number ng-bind="lastEquiv.powerPlants|number:2" data-num-decimals="2"></b>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="description row">
+                <div class="col-md-12 title"><b>How Are Equivalencies Calculated?</b></div>
+                <div class="col-md-6">
+                    <p>Energy is produced, consumed, or stored. So, comparing the watt-hours of energy stored by a battery to the kilowatt-hours produced by your solar array is relatively easy. But, what about the energy stored in a gallon of gas or a barrel of oil? And, how is there any correlation between a kilowatt-hour and a seedling?</p>
+                    <p>The Emissions & Generation Resource Integrated Database (eGRID) publishes an emissions rate for carbon dioxide (CO2). This rate represents how much CO2 is produced in the U.S. annually through the generation of electric power. </p>
+                </div>
+                <div class="col-md-6">
+                    <p>Generally speaking, a kWh from the United States power grid produces 15.2 pounds of CO2. This is known as the “Emissions Factor.“</p>
+                    <p>Like utility power plants, fuels such as gas, oil, and propane produce CO2 when they are converted to energy. Likewise, plants absorb CO2. So, we can use the Emissions Factor to compare the energy produced by your solar array to the CO2 something produces or consumes. </p>
+                    <p>To learn more, visit eGrid or do you own calculations using the EPA’s Greenhouse Gas Equivalencies Calculator. </p>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

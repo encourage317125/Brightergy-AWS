@@ -1,0 +1,122 @@
+.dashboard-wrapper {
+	text-align: center;
+}
+.dashboard-selector {
+	color: $text-color;
+	margin-top: $x-large-space;
+	position: relative;
+	z-index: 998;
+	font-size: $font-size-base;
+	display: inline-block;	
+	text-align: initial;
+	margin-left: 235px;
+
+	&.viewonly{
+		display:block;
+		margin-left: 0;
+		h3{
+			&.dashboard-label{
+				text-align:center;
+			}
+		}
+	}
+
+	.dashboard-label {
+		padding: 10px 20px;
+		text-align: left;
+		@include clearfix();
+		.name {
+			font-size: $font-size-h1;
+			vertical-align: middle;
+			margin-right: 20px;
+		}
+		.down-caret {
+			color: $border-gray;
+			font-size: $font-size-xx-large;
+			padding: 0px 0px 10px 12px;
+			border-left: 1px solid #d6d4dc;
+			.fa-sort-up {
+				height: 0px;
+				vertical-align: middle;
+			}
+		}
+	}
+	.dropdown-panel {
+		color: $text-color;
+		background: #fff;
+		border-radius: 6px;
+		padding: 20px 30px;
+		position: absolute;
+		top: 67px;
+		width: 565px;
+		border: 1px solid $border-gray-light;
+	    z-index: 998;
+		@include box-shadow(-2px 2px 4px rgba(0, 0, 0, 0.3));
+		@include clearfix();
+
+		&:before {
+			content: ' ';
+			display: inline-block;
+			width: 0;
+			height: 0;
+			top: -9px;
+			left: 27px;
+			margin-left: 0;
+			border-bottom: 8px #ebebeb solid;
+			border-left: 6px transparent solid;
+			border-right: 6px transparent solid;
+			position: absolute;
+		}
+
+		&:after {
+			content: ' ';
+			display: inline-block;
+			width: 0;
+			height: 0;
+			margin-left: 1px;
+			top: -7px;
+			left: 27px;
+			border-bottom: 7px #fff solid;
+			border-left: 5px transparent solid;
+			border-right: 5px transparent solid;
+			position: absolute;
+		}
+
+		.nav-tabs {
+			display: none;
+		}
+	}
+	.aside {
+		float: left;
+		display: block;
+		width: 210px;
+		text-align: center;
+		margin: $large-space 0;
+		p {
+			color: #000;
+			font-weight: 700;
+		}
+	}
+	.dashboard-list {
+		width: 287px;
+		margin: 0;
+		display: block;
+		float: left;
+		& > li {
+			margin: $large-space 0;
+			&.active > a {
+				font-weight: bold;
+				color: #591f59;
+			}
+		}
+		& > li > a {
+			color: $text-color;
+			&:hover, &:active {
+				text-decoration: none;
+			}
+		}
+	}
+	.edit-tab {
+		margin: -20px -25px;
+	}
+} 

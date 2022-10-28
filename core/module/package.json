@@ -1,0 +1,33 @@
+{
+  "name": "core-service-old",
+  "version": "1.0.2",
+  "description": "A module providing communication channel between two core instances",
+  "main": "index.js",
+  "dependencies": {
+    "request": "^2.40.0",
+    "lodash": "^3.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Brightergy/Core.git"
+  },
+  "author": "Aleksei Pylyp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Brightergy/Core/tree/Production/module/issues"
+  },
+  "homepage": "https://github.com/Brightergy/Core/tree/Production/module#readme",
+  "readmeFilename": "README.md",
+  "scripts": {},
+  "keywords": [
+    "brightergy",
+    "brighterlink",
+    "core",
+    "communication",
+    "api",
+    "channel"
+  ],
+  "publishConfig": {
+      "registry": "https://npm.brighterlink.io"
+  }
+}

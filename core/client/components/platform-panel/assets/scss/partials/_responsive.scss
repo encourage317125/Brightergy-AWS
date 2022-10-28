@@ -1,0 +1,85 @@
+
+@media (min-width: $screen-as-xlarge) {
+	#wrapper.collapsed {
+		#platform-panel-wrapper {
+			margin-left: 60px;
+		}
+	}
+}
+
+@media (max-width: 1199px) {
+  #platform-panel-wrapper{
+	height: auto;
+
+	.panel-content{
+	  height: auto;
+
+	  #user-profile-wrapper{
+		height: auto;
+	  }
+	  #account-wrapper{
+		height: auto;
+	  }
+	}
+	.ppanel-section{
+	  height: auto;
+	}
+  }
+  #team-members-wrapper .member-section{
+	height: auto;
+  }
+  #social-login-wrapper {
+	.social-networks {
+	  padding: 20px 50px 0;
+	}
+  }
+}
+
+@media (max-width: $screen-as-lg-max) and (min-width: $screen-as-tablet){
+	#platform-panel-wrapper {
+		margin-left: 60px;
+	}
+}
+
+@media (max-width: $screen-as-limit-social) {
+  user-panel {
+	#social-login-wrapper {
+	  .social-networks {
+		width: 312px;
+		padding: 20px 25px 0;
+	  }
+	}
+  }
+  .plugin {
+	#providers {
+	  .provider {
+		width: 77px;
+		height: 69px;
+		.name {
+		  text-align: center;
+		  margin: 30px 0 0;
+		  line-height: inherit;
+		}
+	  }
+	}
+  }
+}
+
+@media (max-width: $screen-as-xs-max) {
+	#platform-panel-wrapper {
+		margin-left: 5px;
+	}
+}
+
+@media (min-width: 1200px) and (max-width: 1400px) {
+  #social-login-wrapper  {
+	.social-networks {
+	  p {
+		text-align: left;
+	  }
+	  width: 360px;
+	  padding: 90px 0 0 ;
+	  text-align: center;
+	}
+  }
+}

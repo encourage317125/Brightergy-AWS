@@ -1,0 +1,342 @@
+<div id="companypanel-account" class="companypanel-account" ng-controller="CompanyAccountsController">
+<!-- Start of account list panel -->
+<div id="accounts" class="account-panel active">
+    <h4 class="tab-title">Accounts</h4>
+    <div class="action-box">
+        <div class="row">
+            <div class="col-md-7">
+                <p class="comment">Add new accounts and share presentation with them, just click "New Account" and fill a form..</p>
+            </div>
+            <div class="col-md-5" ng-show="isBrighterViewManager || isAdmin">
+                <a class="btn btn-bv-default pull-right" ng-click="openAddAccount();"><span class="icon icon-bv-add"></span><span class="text">New Account</span></a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="sub-content">
+        <form class="nav-searchbox form-group">
+            <div class="section search-section">
+                <input type="text" class="form-control bg-smoke" placeholder="Search" ng-model="searchAccount" placeholder="Search">
+                <span class="icon bv-find"></span>
+            </div>
+        </form>
+        <ul class="accounts-list" m-custom-scrollbar="">
+            <li class="account-{{mm._id}} row" ng-animate="'animate'" ng-repeat="mm in BVAccounts | orderBy:'name' | filter:{name: searchAccount}">
+                <div class="col-md-2 profile-img">
+                    <a ng-click="openViewAccount(mm.index)"><img ng-src="{{mm.profileImg}}" alt="{{mm.index}} Cover Image" onerror="this.src = baseCDNUrl + '/assets/img/company-logo1.png'" class="img-responsive" /></a>
+                </div>
+                <div class="col-md-9" style="padding-left: 10px;">
+                    <a class="account-name" ng-click="openViewAccount(mm.index)">{{mm.name}}</a>
+                    <p class="account-descript"><a href="{{mm.webSite}}" target="_blank">{{mm.webSite}}</a></p>
+                </div>
+                <div class="col-md-1" ng-show="isBrighterViewManager">
+                    <a href="{{mm.sfdcAccountURL}}" target="_blank"><i class="bv-sales-force icon"></i></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- End of account list panel -->
+
+<!-- Start of account view panel -->
+<div id="account-view" class="panel account-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Account Details</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="openListAccount()"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row account-action">
+            <div class="col-md-3 text-center">
+                <img ng-src="{{selectedAccount.profileImg}}" alt="{{selectedAccount.index}} Cover Image" onerror="this.src = baseCDNUrl + '/assets/img/company-logo1.png'" class="img-responsive" ng-src="{{baseCDNUrl}}/assets/img/company-logo.png"/>
+            </div>
+            <div class="col-md-5">
+                <h4 class="account-name">{{selectedAccount.name}}</h4>
+                <p class="account-descript">{{selectedAccount.webSite}}</p>
+            </div>
+            <div class="col-md-1" ng-show="isBrighterViewManager">
+                <a href="{{selectedAccount.sfdcAccountURL}}" target="_blank"><i class="bv-sales-force icon"></i></a>
+            </div>
+            <div class="col-md-3" ng-show="isBrighterViewManager || isAdmin">
+                <a class="btn btn-bv-default pull-right" ng-click="openEditAccount();"><span class="icon icon-bv-edit"></span><span class="text">Edit</span></a>
+            </div>
+        </div>
+        <div class="account-infobox">
+            <div class="row">
+                <div class="col-md-3 account-label">Contact Phone</div>
+                <div class="col-md-9 account-info">{{selectedAccount.phone}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 account-label">Custom Url</div>
+                <div class="col-md-9 account-info">
+                    <div id="custom-url-text">
+                        {{selectedAccount.cname ? ('http://' + selectedAccount.cname + '.brightergy.com') : 'No Url'}}
+                    </div>
+                    <div class="custom-flashing-section custom-url" ng-show="selectedAccount.cname">
+                        <div class="anchor">
+                            <a clip-copy="selectedAccount.cname ? ('http://' + selectedAccount.cname + '.brightergy.com') : ''" ng-click="highlightCustomURL($event)">
+                                Copy Link
+                            </a>
+                        </div>
+                        <div class="col-md-6 note">
+                            Custom URL Copied
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 account-label">Email</div>
+                <div class="col-md-9 account-info">{{selectedAccount.email}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 account-label">Website</div>
+                <div class="col-md-9 account-info">{{selectedAccount.webSite}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 account-label">Billing Address</div>
+                <div class="col-md-9 account-info">{{selectedAccount.billingAddress || 'No Address'}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 account-label">Shipping Address</div>
+                <div class="col-md-9 account-info">{{selectedAccount.shippingAddress || 'No Address'}}</div>
+            </div>
+        </div>
+        <div class="account-related-mms">
+            <div class="row">
+                <div class="col-md-7"><h5 class="tab-sub-title">Team Members</h5></div>
+                <div class="col-md-5"><button ng-click="goTeamTab(); openAddUser(selectedAccount.index);" ng-hide="currentUser.role == 'TM'" class="btn btn-bv-default pull-right"><span class="icon icon-bv-add"></span><span class="text">Create Member</span></button></div>
+            </div>
+            <ul class="accounts-list" m-custom-scrollbar="">
+                <li class="account-{{thisUtility._id}} row" ng-repeat="thisUtility in selectedAccountMembers | orderBy:'name'" ng-class="{mastermanager: (thisUtility.role == 'Admin')}">
+                    <div class="col-md-2">
+                        <img ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png" alt="" class="img-responsive" />
+                    </div>
+                    <div class="col-md-9" style="padding-left: 10px;" ng-click="goTeamTab(); openViewUser(thisUtility._id); ">
+                        <h4 class="account-name">
+                            {{thisUtility.firstName}} {{thisUtility.middleName}} {{thisUtility.lastName}}<span class="managerTag" ng-show="thisUtility.role == 'Admin' || thisUtility.role == 'BP'">{{thisUtility.role}}</span>
+                        </h4>
+                        <p class="account-descript">{{thisUtility.email}}</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- End of account view panel -->
+
+<!-- Start of account edit panel -->
+<div id="account-edit" class="panel account-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Edit Account</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="returnViewAccount();"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="ajax_loading_panel" ng-show="ajaxLoading"></div>
+        </div>
+        <form name="editForm" class="form-horizontal" ng-submit="commitEditAccount(editForm)" novalidate="novalidate" m-custom-scrollbar="">
+            <div class="form-group account-action" ng-class="{'has-error': editForm.edit_companyName.$invalid && (editForm.edit_companyName.$dirty || submitted)}">
+                <div class="col-md-3 text-center">
+                    <a href="#" class="image-change">
+                        <img ng-src="{{selectedAccount.profileImg}}" alt="{{selectedAccount.index}} Cover Image" onerror="this.src = baseCDNUrl + '/assets/img/company-logo1.png'" class="img-responsive" ng-src="{{baseCDNUrl}}/assets/img/company-logo.png"/>
+                        <div class="image-chLabel">
+                            <p>change logo</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" id="edit_companyName" name="edit_companyName" ng-model="editAccount.name" class="form-control" placeholder="Acme Widgets Co." required/>
+                    <span class="help-block" ng-show="editForm.edit_companyName.$error.fullname && (editForm.edit_companyName.$dirty || submitted)">Please input a valid user name.</span>
+                    <span class="help-block" ng-show="editForm.edit_companyName.$error.required && (editForm.edit_companyName.$dirty || submitted)">Please input a user name.</span>
+                    <p class="account-descript">Please use caution when changing your Company Name</p>
+                </div>
+            </div>
+            <div class="account-infobox">
+                <div class="form-group" ng-class="{'has-error': editForm.edit_sfdcAccountURL.$invalid && (editForm.edit_sfdcAccountURL.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">SFDC URL: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="url" id="edit_sfdcAccountURL" name="edit_sfdcAccountURL" ng-model="editAccount.sfdcAccountURL" placeholder="" class="form-control"/>
+                        <span class="help-block" ng-show="editForm.edit_sfdcAccountURL.$error.url && (editForm.edit_sfdcAccountURL.$dirty || submitted)">Please input a valid url.</span>
+                        <span class="help-block" ng-show="addForm.edit_sfdcAccountURL.$error.required && (addForm.edit_sfdcAccountURL.$dirty || submitted)">Please input SFDC URL.</span>
+                    </div>
+                </div>
+                <div class="form-group cname" ng-class="{'has-error': editForm.edit_cname.$invalid && (editForm.edit_cname.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Custom URL: </label>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-6 account-info">
+                                <input type="text" id="edit_cname" name="edit_cname" ng-model="editAccount.cname" ng-disabled="showLoadingBtn" class="form-control" placeholder="AcmeWidgets"/>
+                            </div>
+                            <div class="col-md-3 account-cname">
+                                .brightergy.com
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-bv-default" ng-click="verifyCname()"><span class="icon-bv-loading" ng-show="showLoadingBtn"></span>Verify</button>
+                            </div>
+                        </div>
+                        <span class="help-block" ng-show="editForm.edit_cname.$error.required && (editForm.edit_cname.$dirty || submitted)">Please input a CNAME!</span>
+                        <span ng-show="cnameNotify" class="cname-notify " ng-class="cnameVerify ? '' : 'error-cname'">{{cnameVerifyMessage}}</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editForm.edit_phonenumber.$invalid && (editForm.edit_phonenumber.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Contact Phone: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="text" id="edit_phonenumber" name="edit_phonenumber" ng-model="editAccount.phone" placeholder="1-816-866-0555" class="form-control" ng-phone-number/>
+                        <span class="help-block" ng-show="editForm.edit_phonenumber.$error.phonenumber && (editForm.edit_phonenumber.$dirty || submitted)">Please input a valid phone number!</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editForm.edit_email.$invalid && (editForm.edit_email.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Email: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="text" id="edit_email" name="edit_email" ng-model="editAccount.email" placeholder="support@brightergy.com" class="form-control" required ng-rfc-email/>
+                        <span class="help-block" ng-show="(!editForm.edit_email.$error.required && editForm.edit_email.$error.rfcEmail) && (editForm.edit_email.$dirty || submitted)">Please input a valid email address.</span>
+                        <span class="help-block" ng-show="editForm.edit_email.$error.required && (editForm.edit_email.$dirty || submitted)">Please input an email address.</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editForm.edit_webSite.$invalid && (editForm.edit_webSite.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Website: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="url" id="edit_website" name="edit_webSite" ng-model="editAccount.webSite" placeholder="http://Brightergy.com" class="form-control"/>
+                        <span class="help-block" ng-show="editForm.edit_webSite.$error.url && (editForm.edit_webSite.$dirty || submitted)">Please input a valid url.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Billing Address: </label>
+                    <div class="col-md-9 account-info"><textarea id="edit_billingAddress" ng-model="editAccount.billingAddress" class="form-control">{{editAccount.billingAddress}}</textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Shipping Address: </label>
+                    <div class="col-md-9 account-info"><textarea id="edit_shippingAddress" ng-model="editAccount.shippingAddress" class="form-control">{{editAccount.shippingAddress}}</textarea></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><div class="line-bar"></div></div>
+                <div class="col-md-6">
+                    <button type="submit" class="action-btn btn-ok">Update Account</button>
+                    <button type="button" class="action-btn btn-cancel" ng-click="returnViewAccount();">Cancel</button>
+                </div>
+                <div class="col-md-3"><div class="line-bar"></div></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End of account edit panel -->
+
+<!-- Start of account add panel -->
+<div id="account-add" class="panel account-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Add Account</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="openListAccount();"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="ajax_loading_panel" ng-show="ajaxLoading"></div>
+        </div>
+        <form name="addForm" class="form-horizontal" ng-submit="commitAddAccount(addForm)" novalidate="novalidate" m-custom-scrollbar="">
+            <div class="form-group account-action" ng-class="{'has-error': addForm.edit_companyName.$invalid && (addForm.edit_companyName.$dirty || submitted)}">
+                <div class="col-md-3 text-center">
+                    <a href="#" class="image-change">
+                        <img ng-src="{{selectedAccount.profileImg}}" alt="{{selectedAccount.index}} Cover Image" onerror="this.src = baseCDNUrl + '/assets/img/company-logo1.png'" class="img-responsive" />
+                        <div class="image-chLabel">
+                            <p>add logo</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" name="edit_companyName" ng-model="editAccount.name" class="form-control" placeholder="Acme Widgets Co." required/>
+                    <span class="help-block" ng-show="addForm.edit_companyName.$error.fullname && (addForm.edit_companyName.$dirty || submitted)">Please input a valid user name.</span>
+                    <span class="help-block" ng-show="addForm.edit_companyName.$error.required && (addForm.edit_companyName.$dirty || submitted)">Please input a user name.</span>
+                    <p class="account-descript">Please use caution when changing your Company Name</p>
+                </div>
+            </div>
+            <div class="account-infobox">
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">SFDC: </label>
+                    <div class="col-md-9 account-info">
+                        <predictive-auto-complete data-placeholder="001C000001JP9Zc" data-model="editAccount.sfdcAccountName" data-func="getSFDCAccounts" data-loading="sfdcLoading" data-events></predictive-auto-complete>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': addForm.edit_sfdcAccountURL.$invalid && (addForm.edit_sfdcAccountURL.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">SFDC URL: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="url" id="edit_sfdcAccountURL" name="edit_sfdcAccountURL" ng-model="editAccount.sfdcAccountURL" placeholder="" class="form-control"/>
+                        <span class="help-block" ng-show="addForm.edit_sfdcAccountURL.$error.url && (addForm.edit_sfdcAccountURL.$dirty || submitted)">Please input a valid url.</span>
+                        <span class="help-block" ng-show="addForm.edit_sfdcAccountURL.$error.required && (addForm.edit_sfdcAccountURL.$dirty || submitted)">Please input SFDC URL.</span>
+                    </div>
+                </div>
+                <div class="form-group cname" ng-class="{'has-error': addForm.edit_cname.$invalid && (addForm.edit_cname.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Custom URL: </label>
+                    <div class="col-md-9">
+                        <div class="row">
+                            <div class="col-md-6 account-info">
+                                <input type="text" id="edit_cname" name="edit_cname" ng-model="editAccount.cname" ng-disabled="showLoadingBtn" class="form-control" placeholder="AcmeWidgets"/>
+                            </div>
+                            <div class="col-md-3 account-cname">
+                                .brightergy.com
+                            </div>
+                            <div class="col-md-3">
+                                <button type="button" class="btn btn-bv-default" ng-click="verifyCname()"><span class="icon-bv-loading" ng-show="showLoadingBtn"></span>Verify</button>
+                            </div>
+                        </div>
+                        <span class="help-block" ng-show="addForm.edit_cname.$error.required && (addForm.edit_cname.$dirty || submitted)">Please input a CNAME!</span>
+                        <span ng-show="cnameNotify" class="cname-notify " ng-class="cnameVerify ? '' : 'error-cname'">{{cnameVerifyMessage}}</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': addForm.add_sfdc_name.$invalid && (addForm.add_sfdc_name.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Contact Name: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="text" id="add_sfdc_name" name="add_sfdc_name" placeholder="John Snow" class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': addForm.add_sfdc_phone.$invalid && (addForm.add_sfdc_phone.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Contact Phone: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="text" id="add_sfdc_phone" name="add_sfdc_phone" ng-model="editAccount.phone" placeholder="1-816-866-0555" class="form-control" ng-phone-number/>
+                        <span class="help-block" ng-show="addForm.add_sfdc_phone.$error.phonenumber && (edaddFormitForm.add_sfdc_phone.$dirty || submitted)">Please input a valid phone number!</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': addForm.add_sfdc_email.$invalid && (addForm.add_sfdc_email.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Email: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="text" id="add_sfdc_email" name="add_sfdc_email" ng-model="editAccount.email" placeholder="support@brightergy.com" ng-maxlength="100" class="form-control" required ng-rfc-email/>
+                        <span class="help-block" ng-show="(!addForm.add_sfdc_email.$error.required && addForm.add_sfdc_email.$error.rfcEmail) && (addForm.add_sfdc_email.$dirty || submitted)">Please input a valid email address.</span>
+                        <span class="help-block" ng-show="addForm.add_sfdc_email.$error.required && (addForm.add_sfdc_email.$dirty || submitted)">Please input an email address.</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': addForm.edit_webSite.$invalid && (addForm.edit_webSite.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Website: </label>
+                    <div class="col-md-9 account-info">
+                        <input type="url" id="edit_website" name="edit_webSite" ng-model="editAccount.webSite" placeholder="http://Brightergy.com" class="form-control"/>
+                        <span class="help-block" ng-show="addForm.edit_webSite.$error.url && (addForm.edit_webSite.$dirty || submitted)">Please input a valid url.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Billing Address: </label>
+                    <div class="col-md-9 account-info"><textarea id="edit_billingAddress" ng-model="editAccount.billingAddress" class="form-control">{{editAccount.billingAddress}}</textarea></div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Shipping Address: </label>
+                    <div class="col-md-9 account-info"><textarea id="edit_shippingAddress" ng-model="editAccount.shippingAddress" class="form-control">{{editAccount.shippingAddress}}</textarea></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><div class="line-bar"></div></div>
+                <div class="col-md-6">
+                    <button type="submit" class="action-btn btn-ok">Add Account</button>
+                    <button type="button" class="action-btn btn-cancel" ng-click="openListAccount()">Cancel</button>
+                </div>
+                <div class="col-md-3"><div class="line-bar"></div></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End of account add panel -->
+</div>

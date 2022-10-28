@@ -1,0 +1,72 @@
+<div class="lpanel-body" id="presentation-list-panel" ng-show="!showCreatePanel">
+    <div class="row">
+        <div class="section search-section">
+            <input type="text" class="form-control" ng-model="searchPresentation" placeholder="Search for presentations">
+            <span class="icon bv-find"></span>
+        </div>
+    </div>
+    <div class="row presentations-list" m-custom-scrollbar="">
+        <ul class="source-list presentations">
+            <li class="source-item presentation-{{presentation._id}}" ng-repeat="presentation in allPresentations | orderBy:'name' | filter :{name: searchPresentation}" ng-init="presentation.toggleDelete = false">
+                <div ng-show="!presentation.toggleDelete" class="animation-show">
+                    <h4 class="item-title"><a class="item-link " href="#!/{{presentation._id}}"></i>{{presentation.name || 'Unnamed Presentation'}}</a><i class="glyphicon glyphicon-trash" ng-show="(currentUser.role == 'BP') || ((currentUser.role == 'Admin') && (presentation.creatorRole != 'BP')) || ((currentUser.role == 'TM') && (presentation.creator == currentUser._id))" ng-click="toggleDeletePresentation(presentation, 'show');"></i><i class="glyphicon glyphicon-edit" ng-show="(currentUser.role == 'BP') || ((currentUser.role == 'Admin') && (presentation.creatorRole != 'BP')) || ((currentUser.role == 'TM') && (presentation.creator == currentUser._id))" ng-click="setTempPresentationDetails(presentation._id);goPresentation();"></i></h4>
+                    <p ng-show="presentation.description">{{(presentation.description || '')}}</p>
+                    <p ng-hide="presentation.creatorName.length > 18">{{'Creator: ' + (presentation.creatorName || '') + '; Created Date: ' + (presentation.createdDate | date:'MM/dd/yyyy' )}}</p>
+                    <p ng-show="presentation.creatorName.length > 18">{{'Creator: ' + (presentation.creatorName || '')}}</p>
+                    <p ng-show="presentation.creatorName.length > 18">{{'Created Date: ' + (presentation.createdDate | date:'MM/dd/yyyy' )}}</p>
+                    <p ng-show="presentation._id != presentationId">{{'Duration: ' + (presentation.duration || '0') + ' sec'}}</p>
+                    <p ng-show="presentation._id == presentationId" ng-load="presentationDetails.duration = presentation.duration" >{{'Duration: ' + (presentationDetails.duration || '0') + ' sec'}}</p>
+                </div>
+                <delete-dialog ng-show="presentation.toggleDelete" data-yes="deletePresentation(presentation._id)" data-no="toggleDeletePresentation(presentation, 'hide')" data-message="Really Delete?"></delete-dialog>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="lpanel-body" id="presentation-create-panel" ng-show="showCreatePanel">
+    <form class="source-form" ng-submit="createPresentation();" >
+        <div class="row presentations-create">
+            <div class="section search-section">
+                <label class="control-label">Presentation Name</label>
+                <input type="text" class="form-control" ng-model="presentationObject.name" required/>
+                <div class="presentation-type">
+                    <div class="pull-left" ng-click="checkBlankCanvas()" ng-class="(presentationType == 0) ? 'active' : ''">
+                        <div></div>
+                        <h5>BLANK CANVAS</h5>
+                    </div>
+                    <div class="pull-right" ng-click="checkPresentationTemplate()" ng-class="(presentationType == 1) ? 'active' : ''">
+                        <div><span class="icon-template"></span></div>
+                        <h5>PRESENTATION TEMPLATE</h5>
+                    </div>
+                   
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <ul class="source-list presentations" ng-show="presentationType == 1">
+                <li class="source-item" ng-repeat="template in presentationTemplates | orderBy:'name'">
+                    <div class="animation-show">
+                        <h4 class="item-title"><a class="item-link " ng-click="setTemplateId(template)"></i>{{template.name || 'Unnamed Template'}}</a></h4>
+                        <p>{{'Description:  ' + (template.description || '')}}</p>
+                        <i class="glyphicon " ng-class="template.active ? 'glyphicon-ok' : ''"></i>
+                    </div>
+                </li>
+            </ul>
+            <div class="form-group" ng-hide="currentUser.role != 'BP'">
+                <label class="col-sm-3 control-label bp-lock">BP-Lock</label>
+                <div class="col-sm-9 bp-lock">
+                    <input type="checkbox" class="form-checkbox" name="presentationbpLock" id="presentationbpLock" ng-model="presentationObject.bpLock" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div>
+                <div class="border-wrapper">
+                    <div class="btn-group-wrapper">
+                        <button class="action-btn btn-ok" type="submit">Create Presentation</button>
+                        <a class="action-btn btn-cancel" ng-click="backList();">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

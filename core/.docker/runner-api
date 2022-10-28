@@ -1,0 +1,12 @@
+#!/bin/bash
+# a wrapper script to source env-vars, do other housekeeping and run node process
+# author : samar[at]techgaun[dot]com
+
+#source ./.docker/setenv
+source ./.docker/post-setup
+sysctl_tuning
+cd $SRV_DIR && \
+  chown -R nobody . && \
+  chmod +x ./.docker/post-setup ./.docker/runner && \
+  sh ./.docker/post-setup && \
+  /usr/local/bin/node --max_old_space_size=1976 --gc_interval=100 app.js

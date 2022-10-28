@@ -1,0 +1,99 @@
+<div id="solar-energy-production-drilldown">
+  <div class="clearfix">
+    <div class="col-sm-12 no-padding">
+      <!-- Element solar-energy-production-->
+      <div class="panel" id="solar-energy-production-drilldown-element-1" as-element-show-loading="{{ !isDataLoaded.candle }}">
+        <div class="panel-heading">
+          <h5 class="panel-title drilldown">
+            Solar Energy Production
+          </h5>
+          <a class="drilldown-close" ng-click="closeDrilldown()"></a>
+        </div>
+        <!--
+        <div class="date-range-nav row">
+          <div class="col-xs-4 text-left">
+            <a ng-click="prevDate()" class="prev-nav"><span class="hidden-xs">{{prevDateLabel}}</span></a>
+          </div>
+          <div class="col-xs-4 text-center">
+            <span class="cur-nav">{{currentDateLabel}}</span>
+          </div>
+          <div class="col-xs-4 text-right">
+            <a ng-click="nextDate()" class="next-nav"><span class="hidden-xs">{{nextDateLabel}}</span></a>
+          </div>
+        </div>
+        -->
+        <div class="panel-body">
+          <div id="candlestickChartContainer" class="chart-container">
+            <highchart config="candleChartConfig" class="widget candlestick-widget"></highchart>
+          </div>
+          <div class="footer">
+            <div class="kpis">
+              <div class="kpi">
+                <div class="kpi-title">Total Savings</div>
+                <div class="kpi-value">${{lastSEG.kpiData.totalSaving }}</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-title">Total Production</div>
+                <div class="kpi-value">{{lastSEG.kpiData.totalProduction|number }}<span class="unit">kWh</span></div>
+              </div>
+              <div class="kpi" ng-repeat="source in lastSEG.kpiData.totalProductionBySources">
+                <div class="kpi-title">
+                  <span style="color: {{ ::source.color }};">&#9679;</span>
+                  {{source.displayName}}
+                </div>
+                <div class="kpi-value">
+                  {{source.kwh|number }}<span class="unit">kwh</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End solar-energy-production -->
+    </div>
+    <div class="col-sm-4 no-padding">
+      <!-- Element production-per-sources -->
+      <div class="panel" id="solar-energy-production-drilldown-element-2" as-element-show-loading="{{ !isDataLoaded.pie }}">
+        <div class="panel-heading">
+          <h5 class="panel-title">
+            Production Per Source
+          </h5>
+        </div>
+        <div class="panel-body">
+          <div class="widget">
+            <!--<highchart id="gpsPieChart" config="pieChartConfig" class="widget pie-widget"></highchart>-->
+            <div id="gpsPieChart" class="widget pie-widget"></div>
+          </div>
+        </div>
+      </div>
+      <!-- End production-per-sources -->
+    </div>
+    <div class="col-sm-8 no-padding">
+      <!-- Elelement generation-per-month -->
+      <div class="panel" id="solar-energy-production-drilldown-element-3" as-element-show-loading="{{ !isDataLoaded.table }}">
+        <div class="panel-heading">
+          <h5 class="panel-title">
+            Production Per Month
+          </h5>
+        </div>
+        <div class="panel-body">
+          <div as-sp-list-scroll-bar class="row widget table-widget" scroll-wrapper-height="494px">
+          <table class="table ng-table-responsive">
+            <tr class="">
+              <th colspan="2"></th>
+              <th ng-repeat="column in tableChart.columns"><span>{{column}}</span></th>
+            </tr>
+            <tr ng-repeat="row in tableChart.data">
+              <td colspan="2"><span class="diff-percent">{{row.percent}}%</span><span class="dimensions">{{row.date | amDateFormat:'MMMM, YYYY'}}</span></td>
+              <td ng-repeat="sourceId in tableChart.sourceIds | limitTo: 5" class="data">
+                <span class="bold">{{(row.sources[sourceId].kwh||0) | number:0 }} <span>kWh</span></span>
+              </td>
+            </tr>
+          </table>
+        </div>
+        </div>
+      </div>
+      <!-- End production-per-month -->
+    </div>
+  </div>
+</div>

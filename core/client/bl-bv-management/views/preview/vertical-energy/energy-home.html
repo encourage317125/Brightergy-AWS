@@ -1,0 +1,26 @@
+<div class="vertical-energy-block" ng-style="{'width' : widgetParam.parameters.width + 'px', 'height' : widgetParam.parameters.height + 'px', 'margin': 'auto'}">
+	<div class="energy-obj">
+		<div class="reduced-top" ng-style="{'background-color' : '#' + widgetParam.parameters.primaryColor.color}">
+			<div class="reduced-center">
+				<div class="title" ng-style="{'font-size': widgetParam.parameters.energyTitleSize + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name}">{{widgetParam.parameters.headerFont.content}}</div> 
+				<div class="avoid" ng-show="widgetParam.parameters.widgetEnergyCO2Kilograms" ng-style="{'font-size': widgetParam.parameters.energyPoundFont + 'em', 'color' : '#' + widgetParam.parameters.subHeaderFont.color, 'font-family' : widgetParam.parameters.subHeaderFont.name}">CO<sub>2</sub> Avoided : <span class="pound">{{widgetParam.parameters.co2AvoidedInPounds | number}} pounds</span></div>
+				<div class="emission" ng-show="widgetParam.parameters.widgetEnergyGreenhouseKilograms" ng-style="{'font-size': widgetParam.parameters.energyPoundFont + 'em', 'color' : '#' + widgetParam.parameters.subHeaderFont.color, 'font-family' : widgetParam.parameters.subHeaderFont.name}">Greenhouse Emissions : <span class="pound">{{widgetParam.parameters.greenhouseEmissionsInPounds | number}} pounds</span></div>
+			</div>
+		</div>
+		<div class="equal">
+			<img class="centered img-responsive" ng-src="{{imgUrl}}equal.png" alt="" ng-style="{'background-color' : '#' + widgetParam.parameters.primaryColor.color}"/>
+
+		</div>
+		<div class="reduced-bottom" ng-style="{'background-color' : '#' + widgetParam.parameters.backgroundColor}">
+			<div class="img-part">
+				<img class="centered img-responsive" ng-src="{{widgetParam.parameters.backgroundImage}}" alt=""/>
+			</div>
+			<div class="text-part">
+				<div class="top-name" ng-style="{'font-size': widgetParam.parameters.energyTopName + 'em'}">Energy for</div>
+				<div class="inverter-value" ng-style="{'font-size': widgetParam.parameters.energyInveterValue + 'em', 'color' : '#' + widgetParam.parameters.normal1Font.color, 'font-family' : widgetParam.parameters.normal1Font.name}">{{widgetParam.parameters.widgetEnergyParamEnergyHome | number}}</div>
+				<div class="two-line">homes</div>
+				<div class="inverter-name" ng-style="{'font-size': widgetParam.parameters.energyInveterName + 'em', 'color' : '#' + widgetParam.parameters.normal2Font.color, 'font-family' : widgetParam.parameters.normal2Font.name}">Generated</div>
+			</div>
+		</div>
+	</div>
+</div>

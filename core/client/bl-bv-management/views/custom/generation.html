@@ -1,0 +1,73 @@
+<ul class="form-list label-left list-bordered dotted">
+	<li class="section-form">
+		<h4>Custom Details</h4>
+	</li>
+	<!--
+	<li class="form-group">
+		<label for="widgetSolarGenerationCombineInverters" class="control-label label-default" >Combine Inverters</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" ng-model="widgetParam.parameters.widgetSolarGenerationCombineInverters" />
+		</div>
+	</li>
+	
+	<li class="form-group" ng-hide="widgetParam.parameters.widgetSolarGenerationCombineInverters">
+		<label for="widgetSolarGenerationInverter" class="control-label label-default">Inverter</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetSolarGenerationInverter" ng-change="soloarInverterChange()"/>
+		</div>
+	</li>
+	-->
+    <li class="form-group">
+        <label for="widgetSolarGenerationCurrent" class="control-label label-default">Current Generation</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetSolarGenerationCurrent" ng-model="widgetParam.parameters.widgetSolarGenerationCurrent" />
+		</div>
+	</li>
+    <li class="form-group">
+        <label for="widgetSolarGenerationkWh" class="control-label label-default">kWh Generated</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetSolarGenerationkWh" ng-model="widgetParam.parameters.widgetSolarGenerationkWh" />
+		</div>
+	</li>
+    <li class="form-group">
+        <label for="widgetSolarGenerationReimbursement" class="control-label label-default">Reimbursement</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetSolarGenerationReimbursement" ng-model="widgetParam.parameters.widgetSolarGenerationReimbursement" />
+		</div>
+	</li>
+    <li class="form-group">
+        <label for="widgetSolarGenerationDateRange" class="control-label label-default">Date Range</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetSolarGenerationDateRange" ng-change="selectGenerationDate()">
+				<option value="Day">Day</option>
+				<option value="3 Days">3 Days</option>
+				<option value="Week">Week</option>
+				<option value="Month">Month</option>
+				<option value="Year">Year</option>
+				<option value="All">All</option>
+				<option value="-- Custom --">-- Custom --</option>
+			</select>
+		</div>
+	</li>
+    <li class="form-group" ng-show="widgetParam.generationCustom">
+        <label for="widgetSolarGenerationStartDate" class="control-label label-default">Start Date</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetSolarGenerationStartDate" datepicker="datepicker"/> 
+		</div>
+	</li>
+    <li class="form-group" ng-show="widgetParam.generationCustom">
+        <label for="widgetSolarGenerationEndDate" class="control-label label-default">End Date</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetSolarGenerationEndDate" datepicker="datepicker"/> 
+		</div>
+	</li>
+	<li class="form-group">
+		<label for="widgetSolarGenerationOrientation" class="control-label label-default">Orientation</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetSolarGenerationOrientation">
+				<option value="Horizontal">Horizontal</option>
+				<option value="Vertical">Vertical</option>
+			</select>
+		</div>
+	</li>
+</ul>

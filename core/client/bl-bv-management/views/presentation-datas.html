@@ -1,0 +1,74 @@
+<div class="lpanel-body">
+    <div class="row">
+        <div class="section search-section">
+            <input type="text" ng-model="searchNode.name" class="form-control" ng-change="startSearchNode()" placeholder="Search for data sources">
+            <span class="icon bv-find"></span>
+        </div>
+        <div class="ajax_loading_panel" ng-show="nodeLoading"></div>
+        <div class="action-box">
+            <p class="comment">Manage data sources that will be used at current presentation.
+            Make each presentatoin unique by editing data sources.</p>  
+        </div>
+    </div>
+    <div ng-show="no_nodes" class="no-exit-list">
+        <p>There aren't any DataSources.</p>
+    </div>
+    <div class="tree-control data" m-custom-scrollbar="">
+        <treecontrol class="datasource-tree presentation-tree" tree-model="treedata" order-by="name" on-selection="setExpanded(node)" expanded-nodes="expandedNodes">
+            <div class="node-name" ng-mouseover="node.onhover = true;" ng-mouseleave="node.onhover = false;">
+                <span ng-class="node.visible ? '' : 'dimmed'">{{node.name}}</span>
+                <div class="pull-right actions" ng-class="node.visible ? 'activated' : 'deactivated'">
+                    <span class="glyphicon" ng-show="node.onhover" ng-click="activateDataSource($event, node)" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                    
+                    <span class="glyphicon" ng-show="!node.onhover" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                </div>
+            </div>
+        </treecontrol>
+        <div class="clearfix"></div>
+    </div>
+     <div class="page-box">
+            <table cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td><span style="padding-right:4px;">Displaying page</span></td>
+                        <td><span style="padding-right:4px;">{{currentPage}}</span></td>
+                        <td><span style="padding-right:4px;">of</span></td>                        
+                        <td><span style="padding-right:4px;">{{totalPage}}</span></td>
+                        <td>
+                            <a ng-click="goFirstPage();" href="javascript:void(0)" ng-class="currentPage == 1 ? 'l-btn-disabled' : ''" class="l-btn l-btn-small  l-btn-plain">
+                                <span class="l-btn-left l-btn-icon-left"><span class="l-btn-text l-btn-empty">&nbsp;</span>
+                                <span class="l-btn-icon pagination-first">&nbsp;</span></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a ng-click="goPrevPage();" href="javascript:void(0)" ng-class="currentPage == 1 ? 'l-btn-disabled' : ''" class="l-btn l-btn-small l-btn-plain">
+                                <span class="l-btn-left l-btn-icon-left"><span class="l-btn-text l-btn-empty">&nbsp;</span>
+                                <span class="l-btn-icon pagination-prev">&nbsp;</span></span>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="pagination-btn-separator"></div>
+                        </td>
+                        <td>
+                            <input class="pagination-num" type="text" value="1" size="2" readonly ng-model="currentPage">
+                        </td>
+                        <td>
+                            <div class="pagination-btn-separator"></div>
+                        </td>
+                        <td>
+                            <a ng-click="goNextPage();" href="javascript:void(0)" ng-class="currentPage == totalPage ? 'l-btn-disabled' : ''" class="l-btn l-btn-small l-btn-plain">
+                                <span class="l-btn-left l-btn-icon-left"><span class="l-btn-text l-btn-empty">&nbsp;</span>
+                                <span class="l-btn-icon pagination-next">&nbsp;</span></span>
+                            </a>
+                        </td>
+                        <td>
+                            <a ng-click="goLastPage();" href="javascript:void(0)" ng-class="currentPage == totalPage ? 'l-btn-disabled' : ''" class="l-btn l-btn-small l-btn-plain">
+                                <span class="l-btn-left l-btn-icon-left"><span class="l-btn-text l-btn-empty">&nbsp;</span>
+                                <span class="l-btn-icon pagination-last">&nbsp;</span></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>

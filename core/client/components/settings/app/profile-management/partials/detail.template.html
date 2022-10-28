@@ -1,0 +1,61 @@
+<div class="form-wrapper">
+    <form class="form-setting-panel form-horizontal">
+        <fieldset class="form-group no-margin-left-right">
+            <label class="col-xs-2 control-label">Your Name</label>
+            <div class="col-xs-3 control-wrapper">
+                <form-inline-editor id="inputUserName" field-model="currentUser.name" field-on-save="updateCurrentUser()" validation="required ng-full-name">
+                    {{ currentUser.name || "No User Name" }}
+                </form-inline-editor>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group no-margin-left-right">
+            <label class="col-xs-2 control-label">Account</label>
+            <div class="col-xs-3 control-wrapper" ng-bind="currentAccount.name || 'No Account'">
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group no-margin-left-right">
+            <label class="col-xs-2 control-label">Role</label>
+            <div class="col-xs-3 control-wrapper">
+                {{ currentUser.role || "No Role" }}
+                <a class="link-more">
+                    <i class="icon icon-ui-info" ppanel-tooltip tooltip-text="infoTextOfRole"></i>
+                </a>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group no-margin-left-right">
+            <label for="inputUserPhone" class="col-xs-2 control-label">Phone</label>
+            <div class="col-xs-3 control-wrapper">
+                <form-inline-editor id="inputUserPhone" field-model="currentUser.phone" field-on-save="updateCurrentUser()" validation="ng-phone-number">
+                    {{ currentUser.phone || "No Phone Number" }}
+                </form-inline-editor>
+            </div>
+        </fieldset>
+
+        <fieldset class="form-group no-margin-left-right">
+            <label for="inputUserEmail" class="col-xs-2 control-label">Email</label>
+            <div class="col-xs-3 control-wrapper">
+                <form-inline-editor id="inputUserEmail" field-model="currentUser.email" field-on-save="updateCurrentUser()" type="email" validation="required">
+                    {{ currentUser.email || 'No Email Address' }}
+                </form-inline-editor>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<hr/>
+<div class="panel-actions">
+    <div class="row">
+        <div class="col-xs-4 col-xs-offset-2">
+            <div class="profile-page-actions">
+                <a class="btn-link" ng-click="showResetPwdModal();">
+                    <i class="icon icon-password"></i> Reset Password
+                </a>
+                <a class="btn-link" ng-click="showDeleteMeModal();">
+                    <i class="icon icon-trash"></i> Delete Account
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

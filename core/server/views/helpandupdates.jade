@@ -1,0 +1,47 @@
+html(lang="en", id="ng-app", ng-app="blApp.helpAndUpdates", xmlns:ng="http://angularjs.org")
+    head
+        meta(charset='utf8')
+        title BrighterLink Help & Updates
+        != CDN('/assets/img/favicon.ico')
+        != CDN('/bl-help-and-updates/assets/css/helpandupdates.min.css')
+
+        script.
+            window.config = "#{(new Buffer(JSON.stringify(config))).toString('base64')}"
+
+    body(ng-controller="HelpAndUpdatesController", class="ng-cloak", ng-cloak)
+        div.main.help-and-update-panel
+            div.header
+                h1 BrighterLink - 
+                    a(ng-href="#/" ng-click="goBack()") Help and Updates
+            div.container
+                div.left-panel(ng-hide="currentSection")
+                    ul.sections
+                        li 
+                            a.app-overview(href="#/app-overview" target="_blank") App Overview
+                        li 
+                            a.recent-updates(href="#/recent-updates" target="_blank") Recent Updates
+                        li 
+                            a.help-center(href="#/help-center" target="_blank") Help Center
+                        li 
+                            a.provide-feedback(href="#/provide-feedback" target="_blank") Provide Feedback
+                
+                div.contents(ui-view="")
+                
+            div.footer
+        
+        != CDN('/lib/angular/angular.min.js')
+        != CDN('/lib/angular/angular-route.min.js')
+        != CDN('/lib/angular/angular-sanitize.js')
+        != CDN('/lib/angular-ui/angular-ui.js')
+        != CDN('/lib/angular-ui-router/angular-ui-router.min.js')
+
+        if (config.env == 'production')
+            script(src='/dist/app-helpandupdates.min.9c5cbcb2.js')
+            script(src='/dist/tmpl-helpandupdates.min.e73cd.js')
+        else
+            script(src='/components/component.js')
+            script(src='/components/services/toggle.js')
+            script(src='/components/services/notify.js')
+            script(src='/components/services/interceptors.js')
+            script(src='/bl-help-and-updates/js/app.js')
+            script(src='/bl-help-and-updates/js/controllers/help-and-updates.js')

@@ -1,0 +1,10 @@
+<div class="widgets">
+    <div class="widgetsSelector">
+        <div class="overflowTable">
+            <ul m-custom-scrollbar="">
+                <li ng-repeat="widget in dynamicWidgets"><a class="component_link" widgets="widget._id"><div class="widget-color" ng-show="widget.used.instanceNumber > 0" ng-style ="{'background' : '#' + widget.parameters.widgetRandomColor}"></div><img ng-src="{{widget.icon}}" class="img-responsive" /><div class="widget-name">{{widget.name}}</div><input type="hidden" class="component-linkid" value="{{widget._id}}" /></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

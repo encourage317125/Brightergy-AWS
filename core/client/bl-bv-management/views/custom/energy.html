@@ -1,0 +1,87 @@
+<ul class="form-list label-left list-bordered dotted energy-ul">
+	<li class="section-form">
+		<h4>Custom Details</h4>
+	</li>
+   <!--
+	<li class="form-group">
+		<label for="widgetEnergyCombineInverters" class="control-label label-default" >Combine Inverters</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" ng-model="widgetParam.parameters.widgetEnergyCombineInverters" />
+		</div>
+	</li>
+	
+	<li class="form-group" ng-hide="widgetParam.parameters.widgetEnergyCombineInverters">
+		<label for="widgetEnergyInverter" class="control-label label-default">Inverter</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetEnergyInverter" ng-change="inverterChange()"/>
+		</div>
+	</li>
+	-->
+	<li class="form-group">
+		<label for="widgetEnergyOrientation" class="control-label label-default">Orientation</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetEnergyOrientation" ng-change="selectEnergyType()">
+				<option value="Horizontal">Horizontal</option>
+				<option value="Vertical">Vertical</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group">
+		<label for="widgetEnergyType" class="control-label label-default">Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetEnergyType" ng-change="selectEnergyType()">
+				<option value="Cars Removed">Cars Removed</option>
+				<option value="Waste Recycled">Waste Recycled</option>
+				<option value="Gallons Gas Saved">Gallons Gas Saved</option>
+				<option value="Tanker Gas Saved">Tanker Gas Saved</option>
+				<option value="Energy Homes Generated">Energy Homes Generated</option>
+				<option value="Electricity Homes Generated">Electricity Homes Generated</option>
+				<option value="Coal Eliminated">Coal Eliminated</option>
+				<option value="Oil Unneeded">Oil Unneeded</option>
+				<option value="Propane Cylinders">Propane Cylinders</option>
+				<option value="Plants Idled">Plants Idled</option>
+				<option value="Seedling Grown">Seedling Grown</option>
+				<option value="Forests Preserved">Forests Preserved</option>
+				<option value="Forests Conversion Prevented">Forests Conversion Prevented</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group">
+		<label for="widgetEnergyDateRange" class="control-label label-default">Date Range</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetEnergyDateRange" ng-change="selectEnergyDate()">
+				<option value="Day">Day</option>
+				<option value="3 Days">3 Days</option>
+				<option value="Week">Week</option>
+				<option value="Month">Month</option>
+				<option value="Year">Year</option>
+				<option value="All">All</option>
+				<option value="-- Custom --">-- Custom --</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group" ng-show="widgetParam.energyCustom">
+		<label for="widgetGraphStartDate" class="control-label label-default">Start Date</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetGraphStartDate" datepicker="datepicker"/> 
+		</div>
+	</li>
+	<li class="form-group" ng-show="widgetParam.energyCustom">
+		<label for="widgetEnergyEndDate" class="control-label label-default">End Date</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetEnergyEndDate" datepicker="datepicker"/> 
+		</div>
+	</li>
+	<li class="form-group">
+		<label for="widgetEnergyCO2Kilograms" class="control-label label-default" >CO2 Avoided in Kilograms</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetEnergyCO2Kilograms" ng-model="widgetParam.parameters.widgetEnergyCO2Kilograms" />
+		</div>
+	</li>
+	<li class="form-group">
+		<label for="widgetEnergyGreenhouseKilograms" class="control-label label-default" >Greenhouse Emissions in Kilograms</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetEnergyGreenhouseKilograms" ng-model="widgetParam.parameters.widgetEnergyGreenhouseKilograms" />
+		</div>
+	</li>
+</ul>

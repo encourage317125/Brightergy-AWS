@@ -1,0 +1,207 @@
+div.stefan-datepicker {
+	position: relative;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	width: 196px;
+	height: 147px;
+	position: absolute;
+	cursor: default;
+	top: 0;
+	left: 0;
+	display: none;
+}
+.stefan-datepicker .datepickerContainer {
+	position: absolute;
+	top: 1px;
+	left: 1px;
+}
+.stefan-datepicker .datepickerBorderT {
+	position: absolute;
+	left: 1px;
+	top: 0;
+	right: 1px;
+	height: 1px;
+}
+.stefan-datepicker .datepickerBorderB {
+	position: absolute;
+	left: 1px;
+	bottom: 0;
+	right: 1px;
+	height: 1px;
+}
+.stefan-datepicker .datepickerBorderL {
+	position: absolute;
+	left: 0;
+	bottom: 1px;
+	top: 1px;
+	width: 1px;
+}
+.stefan-datepicker .datepickerBorderR {
+	position: absolute;
+	right: 0;
+	bottom: 1px;
+	top: 1px;
+	width: 1px;
+}
+.stefan-datepicker .datepickerBorderTL {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 1px;
+	height: 1px;
+}
+.stefan-datepicker .datepickerBorderTR {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 1px;
+	height: 1px;
+}
+.stefan-datepicker .datepickerBorderBL {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 1px;
+	height: 1px;
+}
+.stefan-datepicker .datepickerBorderBR {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 1px;
+	height: 1px;
+}
+.stefan-datepicker .datepickerHidden {
+	display: none;
+}
+div.stefan-datepicker table {
+	border-collapse: collapse;
+}
+div.stefan-datepicker table table td {
+	font-size: 10px;
+}
+div.stefan-datepicker table table td,
+div.stefan-datepicker .datepickerDoW th {
+	font-family: Arial;
+	border: 1px solid #ebebeb;
+	font-weight: bold;
+}
+div.stefan-datepicker a {
+	color: #6f6f6f;
+	text-decoration: none;
+	cursor: default;
+	outline: none;
+}
+div.stefan-datepicker table td {
+	text-align: center;
+	margin: 0;
+}
+div.stefan-datepicker th {
+	text-align: center;
+	color: #000;
+	font-weight: bold;
+}
+div.stefan-datepicker th:first-child {
+	display: none;
+}
+div.stefan-datepicker tbody th {
+	text-align: center;
+}
+div.stefan-datepicker tbody a {
+	display: block;
+}
+.stefan-datepicker .datepickerDays a {
+	font-family: Arial, sans-serif;
+	width: 20px;
+	line-height: 16px;
+	height: 16px;
+}
+.stefan-datepicker .datepickerYears a,
+.stefan-datepicker .datepickerMonths a{
+	width: 44px;
+	line-height: 36px;
+	height: 36px;
+	text-align: center;
+}
+.stefan-datepicker td.datepickerNotInMonth a {
+	color: #666;
+}
+.stefan-datepicker tbody.datepickerDays td.datepickerSelected{
+	background: #2980b9;
+}
+.stefan-datepicker tbody.datepickerDays td.datepickerSelected a{
+	color: #fff;
+}
+.stefan-datepicker tbody.datepickerDays td.datepickerCompared{
+	background: #FA6144;
+}
+.stefan-datepicker tbody.datepickerDays td.datepickerCompared a{
+	color: #fff;
+}
+.stefan-datepicker tbody.datepickerDays td.datepickerNotInMonth.datepickerSelected {
+	background: #c0e0f5;
+}
+.stefan-datepicker tbody.datepickerYears td.datepickerSelected,
+.stefan-datepicker tbody.datepickerMonths td.datepickerSelected{
+	background: #c0e0f5;
+}
+.stefan-datepicker tbody.datepickerDays td.datepickerNotInMonth.datepickerCompared {
+	background: #FAA595;
+}
+.stefan-datepicker tbody.datepickerYears td.datepickerCompared,
+.stefan-datepicker tbody.datepickerMonths td.datepickerCompared{
+	background: #FAA595;
+}
+div.stefan-datepicker td > a:hover,
+div.stefan-datepicker td > a:active {
+	color: #88c5eb;
+	cursor: pointer;
+}
+div.stefan-datepicker td.datepickerNotInMonth a:hover {
+	color: #999;
+}
+.stefan-datepicker .datepickerSpace div {
+	width: 9px;
+}
+.stefan-datepicker .datepickerGoNext a,
+.stefan-datepicker .datepickerGoPrev a,
+.stefan-datepicker .datepickerMonth a {
+	font: normal 11px/31px 'Myriad Pro', Arial;
+	text-align: center;
+	height: 31px;
+}
+.stefan-datepicker .datepickerGoNext a {
+	float: right;
+	width: 21px;
+}
+.stefan-datepicker .datepickerGoPrev a {
+	float: left;
+	width: 21px;
+}
+.stefan-datepicker table.datepickerViewDays tbody.datepickerMonths,
+.stefan-datepicker table.datepickerViewDays tbody.datepickerYears {
+	display: none;
+}
+.stefan-datepicker table.datepickerViewMonths tbody.datepickerDays,
+.stefan-datepicker table.datepickerViewMonths tbody.datepickerYears,
+.stefan-datepicker table.datepickerViewMonths tr.datepickerDoW {
+	display: none;
+}
+.stefan-datepicker table.datepickerViewYears tbody.datepickerDays,
+.stefan-datepicker table.datepickerViewYears tbody.datepickerMonths,
+.stefan-datepicker table.datepickerViewYears tr.datepickerDoW {
+	display: none;
+}
+.stefan-datepicker td.datepickerDisabled a,
+.stefan-datepicker td.datepickerDisabled.datepickerNotInMonth a{
+	color: #333;
+}
+.stefan-datepicker td.datepickerDisabled a:hover {
+	color: #333;
+}
+.stefan-datepicker td.datepickerSpecial a {
+	background: #700;
+}
+.stefan-datepicker td.datepickerSpecial.datepickerSelected a {
+	background: #a00;
+}

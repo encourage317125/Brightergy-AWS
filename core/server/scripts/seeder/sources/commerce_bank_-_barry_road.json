@@ -1,0 +1,845 @@
+[
+  {
+    "_id": "549186ccadcc581500d216ab",
+    "name": "Facility-f375891d",
+    "tagType": "Facility",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "usersWithAccess": [
+      {
+        "id": "54135f90c6ab7c241e28095e"
+      },
+      {
+        "id": "54135ec74f09ccc06d5be3d6"
+      },
+      {
+        "id": "5429d0ba89c1849502287d5c"
+      },
+      {
+        "id": "55954766be6800bed19ad56b"
+      }
+    ],
+    "appEntities": [
+      {
+        "appName": "Dashboard",
+        "id": "54918f98adcc581500d216b6"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "5492ea2e88640c230094a8a4"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54934303c137bf1900018b97"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54935c4f474d2027007d0e79"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "5493ed77f84f663a00441c6d"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "5493ed81f84f663a00441c6e"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54943e3669df363300bc331e"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "5494dd35deac969900c6182e"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54983e02d012502100c9feab"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "5498638bcce4eb29003464b9"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54987794b65ee82300fc134c"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "549896c2b65ee82300fc1350"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "549d57651f0b52250069a373"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "549d5f59ef71ef2800b70ecc"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "549d641516377f3700f53be7"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "549d66c016377f3700f53be9"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "549d67e048ebf2580034d27a"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a147812f23471700ad36aa"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2ba1a26b8fc3d00d22dbc"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2bc6560f7f44000e5959d"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54638f8edaed9615003bac51"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2d4c8d3d5a09700834088"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2d57dffd019fa00440294"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2d5a9ffd019fa00440296"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2d65affd019fa00440297"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2d69effd019fa00440299"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2e8f9ffd019fa0044029f"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2ec08d3d5a09700834096"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a2fdc4321a5ee70048ce47"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a3110a2eb26232015d05b4"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54a80bd3cb16731400ba1776"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54ac169fb4f22ec30153ea84"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54aeb706243a7f1400aea82f"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54afe9536790cb3a00218c58"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54afe9e6243a7f1400aea833"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54afebda6790cb3a00218c61"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b00856243a7f1400aea848"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b3c2d5ffe576b601702231"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b41d2f765e895100c7b2f9"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b4202b765e895100c7b2fc"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b4217ca28a231500385357"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b42240765e895100c7b2fe"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b4223fa28a23150038535a"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b42272765e895100c7b300"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b4229c765e895100c7b302"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b422d6a28a23150038535f"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b43016626a5b1d00f93a05"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b66bc0498498160011129c"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54b908bc1be3dbba0183bc26"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54c004cab93343180044b0f6"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54c2424426e9c3150024de90"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54c2491632484314000a6071"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54c2661826e9c3150024de97"
+      },
+      {
+        "appName": "Presentation",
+        "id": "5491a945adcc581500d216ca"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54ddc38219f8ae16009892c9"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54ec7e21f8d07314007ddaf3"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54ec7e32f8d07314007ddaf5"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54ef45ee95529e15001d1940"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54f5d62281c37018002fd404"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54f5d73c81c37018002fd408"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54f5e4aab122c9140090dcd6"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54f72ad6a233a61500020ad4"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "54f9ee012726121500748aa2"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "55006795043382da0134343e"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "5500781fe1e0e51600b3c828"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "5505c5988d78c943000fa6ed"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "550ad6be3167973800ecb801"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "550c5c165264641600bb36a1"
+      },
+      {
+        "appName": "Dashboard",
+        "id": "55118094cd70d0140092178f"
+      },
+      {
+        "id": "55228e123deca51500002464",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "552467e9f5d8213b00a88f66",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "5527bde74be708170062e377",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "5535107c86c17c1400b9b61c",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "5535557ac5b346170023c52a",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "5535101702b1e11500fdc1a6",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "553939927241ba19003300c0",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "553e84c058f2eab5016e07e6",
+        "appName": "Dashboard"
+      },
+      {
+        "id": "554b772e1d7a31bc019696db",
+        "appName": "Presentation"
+      }
+    ],
+    "children": [
+      {
+        "tagType": "Scope",
+        "id": "5491ed7488640c230094a89c"
+      }
+    ],
+    "parents": [],
+    "summaryMethod": null,
+    "formula": null,
+    "metricID": null,
+    "metricType": null,
+    "metric": null,
+    "sensorTarget": null,
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": null,
+    "longitude": null,
+    "latitude": null,
+    "webAddress": null,
+    "interval": null,
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": null,
+    "device": null,
+    "manufacturer": null,
+    "utilityAccounts": [
+      ""
+    ],
+    "utilityProvider": "Kansas City Power and Light",
+    "nonProfit": false,
+    "taxID": "",
+    "address": "Street-4bf6, Kansas City, MO 28234, USA",
+    "street": "Street-4bf6",
+    "state": "MO",
+    "postalCode": 28234,
+    "country": "USA",
+    "city": "Kansas City",
+    "__v": 1,
+    "fake": false,
+    "continent": "North America",
+    "region": "North America"
+  },
+  {
+    "_id": "5491ed7488640c230094a89c",
+    "name": "Enphase Envoy",
+    "tagType": "Scope",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "usersWithAccess": [
+      {
+        "id": "54135f90c6ab7c241e28095e"
+      }
+    ],
+    "appEntities": [],
+    "children": [
+      {
+        "tagType": "Node",
+        "id": "5491edc388640c230094a89d"
+      }
+    ],
+    "parents": [
+      {
+        "id": "549186ccadcc581500d216ab",
+        "tagType": "Facility"
+      }
+    ],
+    "summaryMethod": null,
+    "formula": null,
+    "metricID": null,
+    "metricType": null,
+    "metric": null,
+    "sensorTarget": null,
+    "timezone": "America/Chicago",
+    "enphaseUserId": "4d6a49784e7a67790a",
+    "endDate": "2015-08-11T10:15:00.000Z",
+    "weatherStation": "--Use NOAA--",
+    "longitude": -94.582069,
+    "latitude": 39.247022,
+    "webAddress": "https://api.enphaseenergy.com/api/v2",
+    "interval": "Hourly",
+    "destination": null,
+    "accessMethod": "Download via API",
+    "deviceID": "409274",
+    "device": "Envoy",
+    "manufacturer": "Enphase",
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 1,
+    "dateTimeFormat": "UTC",
+    "displayName": "Scope",
+    "fake": false
+  },
+  {
+    "_id": "5491edc388640c230094a89d",
+    "name": "Solar Array",
+    "tagType": "Node",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "usersWithAccess": [
+      {
+        "id": "54135f90c6ab7c241e28095e"
+      }
+    ],
+    "appEntities": [],
+    "children": [
+      {
+        "tagType": "Metric",
+        "id": "5491edd688640c230094a89e"
+      },
+      {
+        "tagType": "Metric",
+        "id": "5491ee8a88640c230094a89f"
+      },
+      {
+        "tagType": "Metric",
+        "id": "5491ee94c5247f2900221a93"
+      },
+      {
+        "tagType": "Metric",
+        "id": "5491ee9dc5247f2900221a94"
+      },
+      {
+        "tagType": "Metric",
+        "id": "5530eac396dc6b14007089b5"
+      },
+      {
+        "id": "558e8c5bdd74dd081d1ddb3c",
+        "tagType": "Metric"
+      }
+    ],
+    "parents": [
+      {
+        "id": "5491ed7488640c230094a89c",
+        "tagType": "Scope"
+      }
+    ],
+    "summaryMethod": null,
+    "formula": null,
+    "metricID": null,
+    "metricType": null,
+    "metric": null,
+    "sensorTarget": "Solar Array",
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": "--Use NOAA--",
+    "longitude": -94.582069,
+    "latitude": 39.247022,
+    "webAddress": null,
+    "interval": "Hourly",
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": "Envoy:409274",
+    "device": "Envoy",
+    "manufacturer": "Enphase",
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 7,
+    "nodeType": "Solar",
+    "displayName": "Node",
+    "fake": false
+  },
+  {
+    "_id": "5491edd688640c230094a89e",
+    "name": "Power (W)",
+    "tagType": "Metric",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "usersWithAccess": [
+      {
+        "id": "54135f90c6ab7c241e28095e"
+      }
+    ],
+    "appEntities": [],
+    "children": [],
+    "parents": [
+      {
+        "id": "5491edc388640c230094a89d",
+        "tagType": "Node"
+      }
+    ],
+    "summaryMethod": "Maximum",
+    "formula": null,
+    "metricID": "powr",
+    "metricType": "Datafeed",
+    "metric": "Standard",
+    "sensorTarget": null,
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": null,
+    "longitude": null,
+    "latitude": null,
+    "webAddress": null,
+    "interval": null,
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": null,
+    "device": null,
+    "manufacturer": null,
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 1,
+    "externalId": "409274-Envoy:409274-powr",
+    "fake": false
+  },
+  {
+    "_id": "5491ee8a88640c230094a89f",
+    "name": "Power (kW)",
+    "tagType": "Metric",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "usersWithAccess": [
+      {
+        "id": "54135f90c6ab7c241e28095e"
+      }
+    ],
+    "appEntities": [],
+    "children": [],
+    "parents": [
+      {
+        "id": "5491edc388640c230094a89d",
+        "tagType": "Node"
+      }
+    ],
+    "summaryMethod": "Maximum",
+    "formula": null,
+    "metricID": "powr",
+    "metricType": "Datafeed",
+    "metric": "Standard",
+    "sensorTarget": null,
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": null,
+    "longitude": null,
+    "latitude": null,
+    "webAddress": null,
+    "interval": null,
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": null,
+    "device": null,
+    "manufacturer": null,
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 1,
+    "externalId": "409274-Envoy:409274-powr",
+    "fake": false
+  },
+  {
+    "_id": "5491ee94c5247f2900221a93",
+    "name": "Energy (Wh)",
+    "tagType": "Metric",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "usersWithAccess": [
+      {
+        "id": "54135f90c6ab7c241e28095e"
+      }
+    ],
+    "appEntities": [
+      {
+        "appName": "Dashboard",
+        "id": "5461fef951d2f91500187460"
+      }
+    ],
+    "children": [],
+    "parents": [
+      {
+        "id": "5491edc388640c230094a89d",
+        "tagType": "Node"
+      }
+    ],
+    "summaryMethod": "Total",
+    "formula": null,
+    "metricID": "enwh",
+    "metricType": "Datafeed",
+    "metric": "Standard",
+    "sensorTarget": null,
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": null,
+    "longitude": null,
+    "latitude": null,
+    "webAddress": null,
+    "interval": null,
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": null,
+    "device": null,
+    "manufacturer": null,
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 0,
+    "externalId": "409274-Envoy:409274-enwh",
+    "fake": false
+  },
+  {
+    "_id": "5491ee9dc5247f2900221a94",
+    "name": "Energy (kWh)",
+    "tagType": "Metric",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "usersWithAccess": [
+      {
+        "id": "54135f90c6ab7c241e28095e"
+      }
+    ],
+    "appEntities": [
+      {
+        "appName": "Dashboard",
+        "id": "5461fef951d2f91500187460"
+      }
+    ],
+    "children": [],
+    "parents": [
+      {
+        "id": "5491edc388640c230094a89d",
+        "tagType": "Node"
+      }
+    ],
+    "summaryMethod": "Total",
+    "formula": null,
+    "metricID": "enwh",
+    "metricType": "Datafeed",
+    "metric": "Standard",
+    "sensorTarget": null,
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": null,
+    "longitude": null,
+    "latitude": null,
+    "webAddress": null,
+    "interval": null,
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": null,
+    "device": null,
+    "manufacturer": null,
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 0,
+    "externalId": "409274-Envoy:409274-enwh",
+    "fake": false
+  },
+  {
+    "_id": "5530eac396dc6b14007089b5",
+    "name": "Max Watts",
+    "tagType": "Metric",
+    "creatorRole": "BP",
+    "creator": "54621cd2349cc84500dee9ea",
+    "potentialPower": null,
+    "nodeType": null,
+    "bpLock": false,
+    "usersWithAccess": [],
+    "appEntities": [],
+    "children": [],
+    "parents": [
+      {
+        "id": "5491edc388640c230094a89d",
+        "tagType": "Node"
+      }
+    ],
+    "summaryMethod": "Maximum",
+    "formula": null,
+    "metricID": "powr",
+    "metricType": "Calculated",
+    "metric": "Custom",
+    "rate": null,
+    "sensorTarget": null,
+    "password": null,
+    "username": null,
+    "dateTimeFormat": null,
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": null,
+    "longitude": null,
+    "latitude": null,
+    "webAddress": null,
+    "interval": null,
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": null,
+    "device": null,
+    "manufacturer": null,
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 1,
+    "externalId": "409274-Envoy:409274-powr",
+    "fake": false
+  },
+  {
+    "_id": "558e8c5bdd74dd081d1ddb3c",
+    "name": "Reimbursement",
+    "tagType": "Metric",
+    "creatorRole": "BP",
+    "creator": "54135f90c6ab7c241e28095e",
+    "commissioningDate": null,
+    "potentialPower": null,
+    "nodeType": null,
+    "bpLock": false,
+    "usersWithAccess": [],
+    "appEntities": [],
+    "children": [],
+    "parents": [
+      {
+        "id": "5491edc388640c230094a89d",
+        "tagType": "Node"
+      }
+    ],
+    "externalId": "409274-Envoy:409274-powr",
+    "summaryMethod": "Total",
+    "formula": null,
+    "metricID": "powr",
+    "metricType": "Calculated",
+    "metric": "Standard",
+    "rate": 0.1,
+    "sensorTarget": null,
+    "password": null,
+    "username": null,
+    "dateTimeFormat": null,
+    "timezone": null,
+    "enphaseUserId": null,
+    "endDate": null,
+    "weatherStation": null,
+    "longitude": null,
+    "latitude": null,
+    "webAddress": null,
+    "interval": null,
+    "destination": null,
+    "accessMethod": null,
+    "deviceID": null,
+    "device": null,
+    "manufacturer": null,
+    "billingInterval": 30,
+    "utilityAccounts": [],
+    "utilityProvider": null,
+    "nonProfit": null,
+    "taxID": null,
+    "address": null,
+    "street": null,
+    "state": null,
+    "postalCode": null,
+    "country": null,
+    "city": null,
+    "__v": 0,
+    "fake": false
+  }
+]

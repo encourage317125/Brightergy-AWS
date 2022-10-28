@@ -1,0 +1,77 @@
+<div class="panel add-team-member-modal">
+    <div class="loading-overlay" ng-hide="isReceivedResponse"></div>
+    <div class="panel-heading">
+        <i class="icon icon-ui-info"></i>
+        <h3 class="panel-title">Add Team Member</h3>
+        <button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close" ng-click="closeModal();">
+            <i class="icon icon-close"></i>
+        </button>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" name="addMemberForm" role="form" novalidate>
+            <div class="form-group">
+                <label class="col-md-3">
+                    <div class="user-avatar">&nbsp;</div>
+                </label>
+                <div class="col-md-9">
+                    <input type="text" class="member-name" placeholder="Name" ng-model="memberName" name="memberName" required="">
+                    <div class="add-member-validate" ng-show="addMemberForm.$submitted || addMemberForm.memberName.$touched">
+                        <div class="validate-msg" ng-show="addMemberForm.memberName.$error.required">Please input name.</div>
+                        <div class="validate-msg" ng-show="!existSpaceInName">Please separate first name and last name by space.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Email<span class="require-field">*</span></label>
+                <div class="col-md-9">
+                    <input type="email" ng-model="memberEmail" name="memberEmail" required="">
+                    <div class="add-member-validate" ng-show="addMemberForm.$submitted || addMemberForm.memberEmail.$touched">
+                        <div class="validate-msg" ng-show="addMemberForm.memberEmail.$error.required">Please input E-mail address.</div>
+                        <div class="validate-msg" ng-show="addMemberForm.memberEmail.$error.email">This is not a valid email.</div>
+                        <div class="validate-msg" ng-show="memberDuplicateEmail">Duplicated Email address. Please input another Email address.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Phone</label>
+                <div class="col-md-9">
+                    <input type="text" ng-model="memberPhone">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Account<span class="require-field">*</span></label>
+                <div class="col-md-9 select-wrapper">
+                    <select class="form-control" ng-model="memberAccount" name="memberAccount" required="">
+                        <option value="">Select Account</option>
+                        <option ng-repeat="account in accountList" value="{{account._id}}">{{account.name}}</option>
+                    </select>
+                    <div class="add-member-validate" ng-show="addMemberForm.$submitted || addMemberForm.memberAccount.$touched">
+                        <div class="validate-msg" ng-show="addMemberForm.memberAccount.$error.required">Please select account.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-3">Roles<span class="require-field">*</span></label>
+                <div class="col-md-9 select-wrapper">
+                    <select class="form-control" ng-model="memberRole" name="memberRole" required="">
+                        <option value="">Select Role</option>
+                        <option ng-repeat="role in roleList" value="{{role}}">{{role}}</option>
+                    </select>
+                    <div class="add-member-validate" ng-show="addMemberForm.$submitted || addMemberForm.memberRole.$touched">
+                        <div class="validate-msg" ng-show="addMemberForm.memberRole.$error.required">Please select account.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-wrapper">
+                <div class="col-md-8">
+                    <div class="row">
+                        <button type="submit" class="add-member-btn" ng-click="addMember();"><span class="symbol">+</span>Add Team Member</button>
+                    </div>
+                </div>
+                <div class="col-md-4 require-wrapper">
+                    <div class="row">required field<span class="require-field">*</span></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

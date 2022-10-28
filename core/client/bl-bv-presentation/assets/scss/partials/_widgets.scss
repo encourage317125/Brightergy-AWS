@@ -1,0 +1,525 @@
+.animation-hide-show.ng-hide {
+  opacity: 0;
+}
+.animation-show.ng-hide {
+  opacity: 0;
+}
+
+.template-title {
+  padding: 5px 15px;
+  line-height: 1em;
+}
+
+.horizontal-energy-block {
+  width: 790px;
+  height: 190px;
+  .energy-obj {
+    .reduced-left {
+      float: left;
+      width: 31%;
+      background-color: $color_pst_blue_2;
+      height: 100%;
+      border-radius: 4px;
+      color: $white;
+      .title {
+        font-size: 2.2em;
+        width: 60%;
+        line-height: 1.15em;
+        margin-top: 7%;
+        margin-left: 10%;
+        z-index: 3;
+        position: relative;
+        margin-bottom: 5px;
+      }
+      .avoid {
+        margin-left: 10%;
+        z-index: 3;
+        position: relative;
+        line-height: 1.2em;
+        margin-bottom: 7px;
+      }
+      .emission {
+        margin-left: 10%;
+        z-index: 3;
+        position: relative;
+        line-height: 1.2em;
+        margin-bottom: 7px;
+      }
+    }
+    .equal {
+      float: left;
+      width: 8.6%;
+      margin-left: -4.3%;
+      height: 100%;
+      position: relative;
+      z-index: 1;
+      img {
+        width: 100%;
+        opacity: 0.9;
+        background-color: $color_pst_blue_2;
+        border-radius: 100px;
+      }
+    }
+    .reduced-right {
+      float: left;
+      width: 68%;
+      height: 100%;
+      margin-left: -3.8%;
+      background-color: $white;
+      position: relative;
+      border-radius: 4px;
+    }
+  }
+  .reduced-right {
+    .img-part {
+      float: right;
+      .center {
+        vertical-align: bottom;
+      }
+    }
+    .text-part {
+      position: absolute;
+      line-height: normal;
+      left: 9%;
+      top: 8%;
+    }
+  }
+  .dummy {
+    padding-top: 100%;
+  }
+  .img-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+  }
+  .centerer {
+    text-align: right;
+    font: 0/0 a;
+  }
+  .center {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+  .centered {
+    vertical-align: middle;
+    display: inline-block;
+  }
+  .img-part img {
+    width: 64%;
+  }
+  .text-part .four-line {
+    display: inline-block;
+  }
+}
+.energy-obj {
+  height: 100%;
+  width: 100%;
+}
+.text-part {
+  .inverter-value {
+    font-size: 4.3em;
+    color: $color_pst_blue_2;
+    display: inline-block;
+  }
+  .right-bottom-name {
+    color: $color_pst_blue_2;
+    font-size: 0.3em;
+    width: 10%;
+    display: inline-block;
+  }
+  .right-top-name {
+    color: $color_pst_blue_2;
+    font-size: 0.3em;
+    vertical-align: top;
+    line-height: 2.2em;
+  }
+  .inverter-name {
+    color: $color_pst_grey_dark_2;
+    font-size: 2.2em;
+    text-transform: uppercase;
+  }
+  .top-name {
+    color: $color_pst_grey_dark_2;
+    font-size: 1.8em;
+  }
+  .two-line {
+    color: $color_pst_blue_2;
+    font-size: 1.3em;
+    display: inline-block;
+    margin-left: 10px;
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .one-line {
+    color: $color_pst_blue_2;
+    font-size: 1.3em;
+  }
+  .three-line {
+    color: $color_pst_grey_dark_2;
+    font-size: 1.3em;
+  }
+  .inline {
+    display: inline-block;
+  }
+  .four-line {
+    color: $color_pst_grey_dark_2;
+    font-size: 1.3em;
+    margin-left: 10px;
+  }
+}
+.vertical-energy-block {
+  margin: 20px 0;
+  width: 360px;
+  height: 380px;
+  background-color: $color_pst_white_light;
+  .reduced-top {
+    height: 26%;
+    width: 100%;
+    background-color: $color_pst_blue_2;
+    border-radius: 4px;
+    display: table;
+    .reduced-center {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      color: $white;
+      padding: 10px 0;
+    }
+    .title {
+      font-size: 2.2em;
+      margin: auto;
+      width: 90%;
+      line-height: 1.15em;
+      margin-bottom: 5px;
+      position: relative;
+      z-index: 3;
+    }
+  }
+  .reduced-center {
+    .avoid {
+      position: relative;
+      z-index: 3;
+      line-height: 1em;
+      margin-bottom: 7px;
+    }
+    .emission {
+      position: relative;
+      z-index: 3;
+      line-height: 1em;
+      margin-bottom: 7px;
+    }
+  }
+  .equal {
+    text-align: center;
+    margin-top: -9%;
+    position: relative;
+    z-index: 2;
+    img {
+      height: 100%;
+      width: 19.1%;
+      background-color: $color_pst_blue_2;
+      border-radius: 100px;
+    }
+  }
+  .reduced-bottom {
+    height: 71%;
+    width: 100%;
+    background-color: $white;
+    margin-top: -8.8%;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+    display: table;
+    img {
+      height: 81.4%;
+      width: 100%;
+    }
+    .img-part {
+      display: table-cell;
+      vertical-align: bottom;
+    }
+    .text-part {
+      position: absolute;
+      line-height: normal;
+      left: 9%;
+      top: 8%;
+    }
+  }
+  .text-part .four-line {
+    margin-left: 0;
+  }
+}
+.how-does-solar {
+  background-image: url('/bl-bv-presentation/assets/img/HDSW_illustration_clean.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.weather-widget {
+  .weather-info {
+    width: 100%;
+    height: 100%;
+    background: $white;
+    border-radius: 4px;
+    display: table;
+  }
+  .weather-detail {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    background: $white;
+    .wind-info {
+      height: 24%;
+      margin: auto;
+      width: 84%;
+    }
+  }
+}
+.today-6days {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  height: 100%;
+  li {
+    float: left;
+    width: 16.2%;
+    height: 100%;
+    border-left: 1px solid $color_pst_blue;
+    &.first {
+      border-left: 0;
+    }
+    .day-info {
+      height: 100%;
+      margin: auto;
+      text-align: center;
+    }
+  }
+}
+.horizontal-generation-block {
+  .reduced-left {
+    float: left;
+    width: 30%;
+    background-color: $color_pst_blue_2;
+    height: 100%;
+    border-radius: 4px;
+    .title {
+      color: $white;
+      font-size: 2.2em;
+      line-height: 1.15em;
+      margin-left: 10%;
+    }
+  }
+  .reduced-right {
+    float: left;
+    width: 70%;
+    height: 100%;
+    background-color: $white;
+    position: relative;
+    border-radius: 4px;
+    display: table;
+    .current-block {
+      width: 96%;
+      padding-left: 3%;
+      padding-right: 3%;
+      margin-bottom: 5px;
+      .reimbursement {
+        color: $color_pst_blue_2;
+      }
+    }
+    .summary {
+      display: inline-block;
+      font-size: 1.8em;
+      width: 47%;
+      line-height: 1em;
+      .since-date {
+        font-size: 0.7em;
+        line-height: 0.7em;
+        color: $color_pst_grey_3;
+        margin-top: 4%;
+        line-height: 1em;
+      }
+    }
+    .value {
+      display: inline-block;
+      border-left: 1px solid $color_pst_grey_3;
+      height: 0.88em;
+      font-size: 3.5em;
+      line-height: 1em;
+      color: $color_pst_blue_2;
+      padding-left: 1%;
+    }
+  }
+}
+.vertical-generation-block {
+  .reduced-left {
+    background-color: $color_pst_green_dark;
+    border-radius: 4px;
+    display: table;
+    width: 100%;
+    height: 21%;
+    .reduced-left-box {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .title {
+      color: $white;
+      font-size: 2em;
+      width: 87%;
+      margin: auto;
+      margin-top: 4%;
+      margin-bottom: 4%;
+    }
+  }
+  .reduced-right {
+    background-color: $white;
+    border-radius: 4px;
+    height: 79%;
+    font-size: 1.8em;
+    display: table;
+    width: 100%;
+    .reduced-right-box {
+      width: 100%;
+      display: table-cell;
+      vertical-align: middle;
+      padding: 4% 0;
+      .summary {
+        font-weight: bold;
+        line-height: 1em;
+      }
+    }
+    .current-block {
+      width: 88%;
+      margin: auto;
+      line-height: 1em;
+      margin-top: 2%;
+      .reimbursement {
+        color: $color_pst_orange;
+      }
+    }
+    .value {
+      height: 0.88em;
+      font-size: 2em;
+      line-height: 1em;
+      color: $color_pst_orange;
+      margin-top: 3%;
+    }
+    .since-date {
+      font-size: 0.7em;
+      color: $color_pst_grey_2;
+      line-height: 1em;
+    }
+  }
+}
+
+.box-center {
+  display: table;
+}
+.weather-info .main {
+  width: 83%;
+  margin: auto;
+}
+.weather-detail .wind-info {
+  .wind-number {
+    font-size: 2.5em;
+    color: $color_pst_grey_dark_2;
+    line-height: 1em;
+    font-weight: bold;
+  }
+  .wind-kind {
+    font-size: 0.9em;
+    color: $color_pst_grey_2;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  .wind-percent {
+    font-size: 0.8em;
+    color: $color_pst_grey_4;
+  }
+  .wind-block {
+    width: 22%;
+    float: left;
+    color: $color_pst_grey_3;
+    height: 50%;
+  }
+}
+.day-info .week {
+  line-height: 1em;
+  font-size: 1.2em;
+  color: $white;
+  opacity: 0.5;
+}
+
+/*----- preview wather-minimal.html ------*/
+
+.weather-widget {
+  .weather-content {
+    display: table-cell;
+    vertical-align: middle;
+    .temperature {
+      height: 100%;
+      width: 38%;
+      float: left;
+    }
+    .summary {
+      height: 100%;
+      width: 23%;
+      float: left;
+      margin-top: -4%;
+    }
+    .wind {
+      width: 35%;
+      float: right;
+      color: #b4b5ba;
+      margin-top: 2%;
+    }
+  }
+  .current-date > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  .weather-detail .box-center {
+    border-top: 1px solid #e3e5ec;
+    border-bottom: 1px solid #e3e5ec;
+    height: 31%;
+    width: 92%;
+    margin: auto;
+  }
+}
+
+.weather-detail {
+  .box-center {
+    > div {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .summary {
+      height: 100%;
+      width: 50%;
+      float: left;
+    }
+    .temperature {
+      height: 100%;
+      width: 48%;
+      float: left;
+    }
+  }
+  .wind-info {
+    > div {
+      width: 100%;
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .wind-speed {
+      width: 35%;
+      float: left;
+      color: #b4b5ba;
+      margin-top: -1%;
+    }
+  }
+}

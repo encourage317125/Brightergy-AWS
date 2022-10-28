@@ -1,0 +1,105 @@
+.date-range-picker {
+    margin-top: 30px;
+    position: relative;
+
+    span {
+        color: $drp-color-1;
+        display: inline-block;
+
+        &.dateLabel {
+            margin-right: 13px;
+        }
+
+        &.dateValue {
+            margin-right: 19px;
+            border: 1px solid $drp-color-2;
+            padding: 4px 22px;
+            border-radius: 13px;
+            cursor: pointer;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.date-picker-wrapper {
+    z-index: 1250;
+    border: 1px solid #232b39;
+    background-color: #232b39;
+    opacity: 0.95;
+    padding: 0 2px;
+    border-radius: 4px;
+    font-family: "HelveticaNeueW02-55Roma",Helvetica,Arial;
+
+    .drp_top-bar {
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
+    }
+
+    span, b {
+        color: #f5f5f5 !important;
+        font-weight: 400;
+    }
+
+    .month-wrapper {
+        background-color: #232b39;
+        border: 1px solid #232b39;
+        color: #fff;
+
+        table {
+            .week-name {
+                font-size: 10px;
+            }
+
+            .day {
+                font-size: 11px;
+                color: #fff;
+
+                &.toMonth.valid {
+                    color: #fff;
+                }
+
+                &.checked {
+                    background: #1c222c;
+                }
+            }
+
+            div.day.lastMonth, 
+            div.day.nextMonth {
+                opacity: 0.4;
+            }
+
+            th:last-child {
+                color: #d5683e;
+            }
+
+            tr {
+                td:nth-child(7) div.day {
+                    color: #d5683e !important;
+
+                    &.toMonth.valid {
+                        color: #d5683e;
+                    }
+
+                    &.nextMonth.invalid {
+                        opacity: 0.4;
+                    }
+                }
+            }
+        }
+    }
+
+    .drp_top-bar {
+        .apply-btn {
+            display: none;
+        }
+    }
+
+    .gap {
+        display: none !important;
+        width: 0;
+    }
+}

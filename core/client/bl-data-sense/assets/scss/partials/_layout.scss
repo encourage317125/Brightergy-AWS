@@ -1,0 +1,23 @@
+// Columns
+//
+// Common styles for small and large grid columns
+/* @include make-layout-columns();
+@include make-layout(); */
+
+.container-fluid {
+	@include container-fixed();
+}
+body > .container-fluid {
+    padding-left: 0;
+}
+
+.row {
+    @include make-row();
+}
+
+.clearfix {
+  clear: both;
+}
+
+@include make-grid("bl");
+@include make-layout-columns("bl");

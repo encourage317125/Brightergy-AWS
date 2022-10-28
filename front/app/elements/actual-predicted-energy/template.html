@@ -1,0 +1,18 @@
+<div class="panel" id="actual-predicted-energy" as-element-show-loading="{{ !isDataLoaded }}">
+    <div class="panel-heading">
+        <as-more-panel position="top left" panel-title="Actual vs Estimated Energy">
+            <div ng-include="'app/partials/more-panels/actual-predicted-energy.html'"></div>
+        </as-more-panel>
+        <h5 class="panel-title" ng-click="detailElement()">
+            Actual vs Estimated Energy
+        </h5>
+        <as-date-range-selector class="small" ng-model="dateRange" ranges="year,total"></as-date-range-selector>
+    </div>
+    <div class="panel-body">
+        <div class="widget">
+            <div class="chart-container">
+                <highchart id="chartActualPredictedEnergy" config="avpeChartConfig"></highchart>
+            </div>
+        </div>
+    </div>
+</div>

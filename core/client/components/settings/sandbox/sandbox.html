@@ -1,0 +1,196 @@
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BrighterLink - Analyze Solar Surface</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="dist/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="dist/img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="dist/css/vendor.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/css/assurf.min.css">
+    <link rel="stylesheet" type="text/css" href="dist/settings.min.css">
+</head>
+<body ng-app="bl.analyze.solar.surface">
+    <div id="wrapper">
+        <div class="main-container">
+            <div id="page-sidebar">
+                <side class="qab-wrapper"><a href="#!/main" class="navbar-brand"><i class="icon icon-brighterlink"></i></a>
+                    <ul class="nav qab-nav bottom">
+                        <li><a href="#!/help" class="qab-link with-icon">?</a></li>
+                    </ul>
+                    <div id="sp-toggle-mobile" as-toggle-collapse="#wrapper"></div>
+                </side>
+                <div class="sp-wrapper">
+                    <div class="sp-content" ng-controller="MainController">
+                        <button ui-sref="settings.profile.detail" class="btn-primary">User Profile</button>
+                        <button ui-sref="settings.source" class="btn-primary">Source</button>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                        <div class="test-container">
+                            <a class="btn btn-default" style="position: relative;">
+                                Modal
+                                <as-info-panel placement="bottom right" theme="dark">
+                                    <p>Sat, Apr 11</p>
+                                    <p>High:  68°</p>
+                                    <p>Low:  42°</p>
+                                    <p>Daylight:  1:32 pm ~ 2:34 am</p>
+                                    <p>Humidity:  56%</p>
+                                    <p>Pressure:  1023 hPa</p>
+                                    <p>Wind:  4 mph W</p>
+                                </as-info-panel>
+                            </a>
+                        </div>
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    </div>
+                </div>
+            </div>
+            <settings-wrapper on-close="$root.closeSetting()" ng-show="$root.isShowingSetting">
+            </settings-wrapper>
+            <div id="page-content-wrapper" ng-cloak class="page-wrapper" ng-controller="MainController" ng-hide="$root.isShowingSetting">
+                <h1>Welcome</h1>
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="icon icon-ui-info"></i>
+                            <h3 class="panel-title">
+                                Panel title
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+<<<<<<< HEAD
+        var apiDomain = "http://localhost:7000";
+        var platformDomain = "http://localhost:7000";
+        var renderCurrentUser = {"_id":"54135ec74f09ccc06d5be3d6","firstName":"Ilya","lastName":"Shekhurin","email":"ilya.shekhurin@brightergy.com","emailUser":"ilya.shekhurin","emailDomain":"brightergy.com","__v":266,"accounts":["546b32f580f57514008590cf"],"collections":[{"dashboards":["5461fee651d2f9150018745f","5461fef951d2f91500187460","5461ff1251d2f91500187462","5461363bdfef7c4800146f4b","54ef45ee95529e15001d1940"],"text":"PV Solar Power Plant"},{"dashboards":["54638f05dfcbe62000a7ee07","546dea3e4c61421400b6cec0","54638f30dfcbe62000a7ee09","54638f3ddfcbe62000a7ee0a","54638f1bdfcbe62000a7ee08"],"text":"Liberty Lofts - Energy Profile"},{"dashboards":["54b41d2f765e895100c7b2f9","54b42240765e895100c7b2fe","54b42272765e895100c7b300","54b43016626a5b1d00f93a05","54b908bc1be3dbba0183bc26","54f5e4aab122c9140090dcd6","553e84c058f2eab5016e07e6"],"text":"Default Dashboards for Solar"},{"dashboards":["54f72ad6a233a61500020ad4","54f9ee012726121500748aa2","550c5c165264641600bb36a1","55228e123deca51500002464"],"text":"Hancock School District"},{"dashboards":["55006795043382da0134343e","5505c5988d78c943000fa6ed","550ad6be3167973800ecb801"],"text":"Saint Luke's East"},{"dashboards":["552467e9f5d8213b00a88f66"],"text":"Parkway School District"},{"dashboards":["5527bde74be708170062e377"],"text":"Posty Cards"},{"dashboards":["5535107c86c17c1400b9b61c","5535101702b1e11500fdc1a6"],"text":"University United Methodist"},{"dashboards":["5535557ac5b346170023c52a"],"text":"Commerce Bank"},{"dashboards":["553939927241ba19003300c0"],"text":"Belton School District"}],"accessibleTags":[{"tagType":"Scope","id":"5491554800e34b15006f2da1"},{"tagType":"Node","id":"549155b900e34b15006f2da2"},{"tagType":"Metric","id":"549155ce00e34b15006f2da3"},{"tagType":"Metric","id":"549155feadcc581500d216a7"},{"tagType":"Metric","id":"54915609adcc581500d216a8"},{"tagType":"Metric","id":"5491561eadcc581500d216a9"},{"id":"5530ea8b96dc6b14007089b4","tagType":"Metric"},{"id":"5530eac396dc6b14007089b5","tagType":"Metric"},{"id":"5530eae796dc6b14007089b6","tagType":"Metric"},{"id":"5530eb1196dc6b14007089b7","tagType":"Metric"},{"id":"5530eba296dc6b14007089b8","tagType":"Metric"}],"profilePictureUrl":"","sfdcContactId":null,"defaultApp":"Present","apps":[],"previousEditedDashboardId":"5461363bdfef7c4800146f4b","lastEditedDashboardId":"553e84c058f2eab5016e07e6","previousEditedPresentation":"54f609ac1688f21600d74b2c","lastEditedPresentation":"549194c200e34b15006f2db2","role":"BP","enphaseUserId":"4d6a49784e7a67790a","socialToken":"a0c53f1a-0486-4f58-9c9e-271a8c24d0c7","phone":"123456789","middleName":"","name":"Ilya Shekhurin","sfdcContactURL":null,"id":"54621cd2349cc84500dee9ea"};
+=======
+        var apiDomain = "http://localhost:5000";
+        var platformDomain = "http://localhost:3000";
+        var renderCurrentUser = {"_id":"54f5b91ab122c9140090dcc6","firstName":"Ivan","lastName":"Vesely","email":"ivan.vesely@brightergy.com","emailUser":"ivan.vesely","emailDomain":"brightergy.com","__v":18,"accounts":["546b32f580f57514008590cf"],"collections":[{"dashboards":["5461ff0951d2f91500187461","5499b1779ae27d14002f7f7e","5461fef951d2f91500187460","5461ff1251d2f91500187462","5461fee651d2f9150018745f","54ef45ee95529e15001d1940","5461363bdfef7c4800146f4b"],"text":"PV Solar Power Plant","id":null},{"dashboards":["54a29817a678ea18008f23ad","54638f05dfcbe62000a7ee07","546dea3e4c61421400b6cec0","54638f30dfcbe62000a7ee09","54638f3ddfcbe62000a7ee0a","54638f1bdfcbe62000a7ee08","54afe9e6243a7f1400aea833"],"text":"Liberty Lofts - Energy Profile","id":null},{"dashboards":["54943e3669df363300bc331e","54a147812f23471700ad36aa","54ac169fb4f22ec30153ea84","54afebda6790cb3a00218c61","54b00856243a7f1400aea848","54b3c2d5ffe576b601702231","54b66bc0498498160011129c","54c004cab93343180044b0f6"],"text":"Oakley Collection","id":null},{"dashboards":["54a2994da678ea18008f23af","54ac164abf44e8ba01edbe64"],"text":"Oakley Personal Collection","id":null},{"dashboards":["54a29ceda678ea18008f23b3","54a29c4aa678ea18008f23b1"],"text":"Oakley TM","id":null},{"dashboards":["54a2bc6560f7f44000e5959d","54a2d69effd019fa00440299","54a2e8f9ffd019fa0044029f","54a2ec08d3d5a09700834096","54a3110a2eb26232015d05b4"],"text":"Headley Grouping","id":null},{"dashboards":["54b41d2f765e895100c7b2f9","54b42240765e895100c7b2fe","54b42272765e895100c7b300","54b43016626a5b1d00f93a05","54b908bc1be3dbba0183bc26","54f5e4aab122c9140090dcd6"],"text":"Default Dashboards for Solar","id":null},{"dashboards":["54c2424426e9c3150024de90","54c2491632484314000a6071"],"text":"Jessica's Default Solar Dashboards","id":null},{"dashboards":["54c2661826e9c3150024de97"],"text":"Gabe's Default Dashboards","id":null},{"dashboards":["54ec7e21f8d07314007ddaf3"],"text":"Hancock School District","id":null},{"dashboards":["54ec7e32f8d07314007ddaf5"],"text":"Saint Luke's East","id":null}],"accessibleTags":[],"profilePictureUrl":"https://cdn-core.brighterlink.io/CustomAssets/userProfileAssets/0BwW4a4uizniHLXl6SHA3VDh3LUE/1434054206342_cropped.jpg","sfdcContactId":"005C00000089KChIAM","defaultApp":"Analyze","apps":[],"previousEditedDashboardId":null,"lastEditedDashboardId":"5461ff0951d2f91500187461","previousEditedPresentation":"555365bd18910c1a00804e2d","lastEditedPresentation":"55a8162717a6ad15021a5905","role":"BP","enphaseUserId":null,"socialToken":"13216db0-f119-40de-944a-22bc51d188c1","phone":"","middleName":"","name":"Ivan Vesely","sfdcContactURL":"https://na8.salesforce.com/005C00000089KChIAM","id":"54f5b91ab122c9140090dcc6"};
+>>>>>>> 102906494
+    </script>
+    <script src="dist/js/vendor.min.js"></script>
+    <script src="dist/settings.min.js"></script>
+    <script>
+        'use strict';
+
+        var dependencies = ['angularMoment', 'ui.bootstrap', 'btford.socket-io', 'blComponents.Settings'],
+
+        app = angular.module('bl.analyze.solar.surface', dependencies);
+
+        app.constant('wsEntryPoint', '123');
+
+        app.constant('wsConfig', '123');
+
+        app.constant('firstLoadEventList', []);
+
+        app.constant('angularMomentConfig', {
+            preprocess: 'utc',
+            timezone: /*jstz.determine().name() || */'America/Los_Angeles' // e.g. 'Default Time is Kansas Time'
+        });
+
+        app.provider('url', function () {
+            this.$get = function () {
+                return {
+                    get: function () {
+                        return window.apiDomain + '/v1';
+                    }
+                };
+            };
+        })
+
+        .factory('httpRequestInterceptor', ['url', function (url) {
+            var appendApiEntryPoint = function (originalUrl) {
+                if (originalUrl.search(/(.html|.js|.css|.png|.svg|.jpg|.gif|.swf)/i) === -1) {
+                    return url.get() + originalUrl;
+                } else {
+                    return originalUrl;
+                }
+            };
+            return {
+                appendApiEntryPoint: appendApiEntryPoint,
+                request: function (config) {
+                    // Insert api entry point if request is api call
+                    config.url = appendApiEntryPoint(config.url);
+                    if (config.url.search(/(.html|.js|.css|.png|.svg|.jpg|.gif|.swf)/i) === -1) {
+                        config.withCredentials = true;
+                    }
+                    return config;
+                }
+            };
+        }])
+
+        .factory('httpResponseInterceptor', ['$q',
+            function ($q) {
+                return {
+                    response: function (response) {
+                        if (typeof response.data === 'object' && response.data.success !== 1) {
+                            // if call is api call && call is failed
+                            return $q.reject(response);
+                        } else if (typeof response.data === 'object' && response.data.message) {
+                            return $q.when(response.data.message);
+                        } else {
+                            return $q.when(response);
+                        }
+                    },
+                    responseError: function (rejection) {
+                        console.error('[ERROR] - ' + rejection.data.message);
+                        if (typeof rejection.data === 'object' && rejection.data.success === 0) {
+                            return $q.reject(rejection.data.message);
+                        } else {
+                            return $q.reject(rejection);
+                        }
+                    }
+                };
+            }
+        ]);
+
+        app.config(['$httpProvider', function ($httpProvider) {
+            // Register Interceptors
+            $httpProvider.interceptors.push('httpRequestInterceptor');
+            $httpProvider.interceptors.push('httpResponseInterceptor');
+        }]);
+
+        app.run(function ($rootScope, $state, $location) {
+            $rootScope.isShowingSetting = false;
+            $rootScope.closeSetting = function () {
+                $location.url('');
+                $rootScope.$apply(function () {
+                    $rootScope.isShowingSetting = false;
+                });
+            };
+
+            $rootScope.$on('$locationChangeSuccess', function (e, newUrl) {
+                if (newUrl.indexOf('settings/') > -1 && !$rootScope.isShowingSetting) {
+                    $rootScope.isShowingSetting = true;
+                }
+            });
+
+            $rootScope.$on('$stateChangeSuccess', function () {
+                if ($state.includes('settings') && !$rootScope.isShowingSetting) {
+                    $rootScope.isShowingSetting = true;
+                }
+            });
+        });
+    </script>
+    <script>
+        angular.module('bl.analyze.solar.surface')
+        .controller('MainController', ['$rootScope', '$scope', '$filter', 'moment',
+            function ($rootScope, $scope, $filter, moment) {
+                $scope.viewUserProfile = function () {
+                    $rootScope.panelData.menu = 'user';
+                };
+                $scope.viewAccount = function () {
+                    $rootScope.panelData.menu = 'account';
+                };
+            }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<div class="presentationPanel" id="presentationPanel" ng-controller="PresentationPanelController" ng-show="viewPresentationPanel">
+
+    <div class="panelHeader">
+        <button aria-hidden="true" ng-click="goAdvancedPanel()" type="button" class="btn btn-bv-default font-bold font-bigger" ng-show="viewedGeneralPresentationPanel">
+            <span class="icon icon-bv-advanced"></span><span class="text">Advanced Formatting</span>
+        </button>
+        <button aria-hidden="true" ng-click="goGeneralPanel()" type="button" class="btn btn-bv-default font-bold font-bigger" ng-show="!viewedGeneralPresentationPanel">
+            <span class="icon icon-bv-back"></span><span class="text">Back</span>
+        </button>
+        <a class="btn btn-panel-close" ng-click="closePresentationPanel()"><span class="icon icon-bv-close-blue"></span></a>
+        <h4>{{ viewedGeneralPresentationPanel? "General Details": "Advanced Formatting" }}</h4>
+    </div>
+
+    <div class="panelBody">
+
+        <div class="panelGeneralBody" ng-show="viewedGeneralPresentationPanel">
+            <div class="col-md-6">
+                <ul class="form-list label-left list-bordered">
+                    <li class="form-group">
+                        <label for="detail_name" class="control-label label-default">Presentation Name</label>
+                        <div class="controls">
+                            <input type="text" ng-model="tempPresentationDetails.name" id="detail_name" />
+                        </div>
+                    </li>
+                    <li class="form-group" ng-show="tempPresentationDetails.authorId !='' && tempPresentationDetails.authorId!=null">
+                        <label for="detail_author_name" class="control-label label-default">Author Name</label>
+                        <div class="controls">
+                            <span id="detail_author_name">{{tempPresentationDetails.authorName}}</span>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="detail_desc" class="control-label label-default">Description</label>
+                        <div class="controls">
+                            <textarea id="detail_desc" ng-model="tempPresentationDetails.description"></textarea>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="presentation_logo" class="control-label label-default">Logo</label>
+                        <div class="controls">
+                            <input type="hidden" id="presentation_logo" ng-model="tempPresentationDetails.Logo" ng-model-options="{updateOn: 'blur'}"/>
+                            <img class="previewPanelLogo" src="{{ tempLogo? tempLogo: '/assets/img/no-logo-prepanel.png' }}" alt="" />
+                            <image-picker info="logo"></image-picker>
+                            <div class="tempLogoName">My logo {{ tempLogo.substring(tempLogo.lastIndexOf('/')+1) }}</div>
+                        </div>
+                    </li>
+                    <li class="form-group" ng-show="isBrighterViewManager">
+                        <label for="select_folder" class="control-label label-default">Primary Admin</label>
+                        <div class="controls" style="position: relative;">
+                            <ui-select ng-model="selectedAccountId" theme="bootstrap" id="select_folder" name="select_folder" ng-change="onPresntationDetailAccountChange(selectedAccountId);">
+                                <ui-select-match placeholder="Select Account...">{{$select.selected.name}}</ui-select-match>
+                                <ui-select-choices repeat="thisUtility._id as thisUtility in BVAccounts | filter: $select.search">
+                                  <div ng-bind-html="thisUtility.name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="backgroungImage_presentation" class="control-label label-default">Related ECM</label>
+                        <div class="controls">
+                            <button class="btn btn-bv-default btn-bv-panel-default" ng-click="selectGoogleImage(pickerInfo.inputField);">Show all related ECM Accounts</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="form-list label-left list-bordered">
+                    <li class="form-group" ng-show="isBrighterViewManager">
+                        <label for="presentation_isTemplate" class="control-label label-default label-default-bg">This presentation is template</label>
+                        <div class="controls controls-bg">
+                            <input id="presentation_isTemplate" type="checkbox" class="checkbox" ng-model="tempPresentationDetails.isTemplate"/>
+                            <img class="imgChked" src="/assets/img/icon-chk-{{ tempPresentationDetails.isTemplate? 'on': 'off' }}.png" alt="" />
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="presentation_titleView" class="control-label label-default label-default-bg">Display title in presentation</label>
+                        <div class="controls controls-bg">
+                            <input id="presentation_titleView" type="checkbox" class="checkbox" ng-model="tempPresentationDetails.titleView" />
+                            <img class="imgChked" src="/assets/img/icon-chk-{{ tempPresentationDetails.titleView? 'on': 'off' }}.png" alt="" />
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="presentation_systemSizeView" class="control-label label-default label-default-bg">Display "System Size"</label>
+                        <div class="controls controls-bg">
+                            <input id="presentation_systemSizeView" type="checkbox" class="checkbox" ng-model="tempPresentationDetails.systemSizeView" />
+                            <img class="imgChked" src="/assets/img/icon-chk-{{ tempPresentationDetails.systemSizeView? 'on': 'off' }}.png" alt="" />
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="presentation_generatingSinceView" class="control-label label-default label-default-bg">Display "Generating Since"</label>
+                        <div class="controls controls-bg">
+                            <input id="presentation_generatingSinceView" type="checkbox" class="checkbox" ng-model="tempPresentationDetails.generatingSinceView" />
+                            <img class="imgChked" src="/assets/img/icon-chk-{{ tempPresentationDetails.generatingSinceView? 'on': 'off' }}.png" alt="" />
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="presentation_lastUpdatedView" class="control-label label-default label-default-bg">Display "Last Updated"</label>
+                        <div class="controls controls-bg">
+                            <input id="presentation_lastUpdatedView" type="checkbox" class="checkbox" ng-model="tempPresentationDetails.lastUpdatedView" />
+                            <img class="imgChked" src="/assets/img/icon-chk-{{ tempPresentationDetails.lastUpdatedView? 'on': 'off' }}.png" alt="" />
+                        </div>
+                    </li>
+                    <li class="form-group" ng-hide="currentUser.role != 'BP'">
+                        <label for="presentation_lastUpdatedView" class="control-label label-default label-default-bg">BP-Lock</label>
+                        <div class="controls controls-bg">
+                            <input id="presentation_lastUpdatedView" type="checkbox" class="checkbox" ng-model="tempPresentationDetails.bpLock" />
+                            <img class="imgChked" src="/assets/img/icon-chk-{{ tempPresentationDetails.bpLock? 'on': 'off' }}.png" alt="" />
+                        </div>
+                    </li>
+                    <li class="section-panel with-gaps">Upload New Assets</li>
+                    <file-uploader info="file"></file-uploader>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="panelAdvancedBody" ng-show="!viewedGeneralPresentationPanel">
+            <div class="col-md-6">
+                <ul class="form-list label-left list-bordered">
+                    <li class="section-panel">Header</li>
+                    <li class="form-group">
+                        <label for="headerFontSize_presentation" class="control-label label-default">Font Size</label>
+                        <div class="controls" fontsize-tooltip="tempPresentationDetails.parameters.headerFont.size">
+                            <input type="number" step="any" class="input-sm" ng-model="tempPresentationDetails.parameters.headerFont.size" id="headerFontSize_presentation" /> <span>em</span>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="headerFontColor_presentation" class="control-label label-default">Font Color</label>
+                        <div class="controls">
+                            <input type="text" class="input-sm" ng-model="tempPresentationDetails.parameters.headerFont.color" id="headerFontColor_presentation"/>
+                            <div ng-model="tempPresentationDetails.parameters.headerFont.color" class="color_pickers">
+                                <div></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="backgroungImage_presentation" class="control-label label-default">Header Background Image</label>
+                        <div class="controls">
+                            <input type="hidden" ng-model="tempPresentationDetails.parameters.backgroundImage" id="backgroungImage_presentation"/>
+                            <img class="previewPanelBG" src="{{ tempBackground? tempBackground: '/assets/img/no-logo-prepanel.png' }}" alt="" />
+                            <image-picker info="presentationBackgroundImage"></image-picker>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="backgroundColor_presentation" class="control-label label-default">Header Background Color</label>
+                        <div class="controls">
+                            <input type="text" class="input-sm" ng-model="tempPresentationDetails.parameters.backgroundColor" id="backgroundColor_presentation"/>
+                            <div ng-model="tempPresentationDetails.parameters.backgroundColor" class="color_pickers">
+                                <div></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <ul class="form-list label-left list-bordered">
+                    <li class="section-panel">Supplementary Text</li>
+                    <li class="form-group">
+                        <label for="subHeaderFontSize" class="control-label label-default">Font Size</label>
+                        <div class="controls" fontsize-tooltip="tempPresentationDetails.parameters.subHeaderFont.size">
+                            <input type="number" class="input-sm" step="any" ng-model="tempPresentationDetails.parameters.subHeaderFont.size" id="subHeaderFontSize"/> <span>em</span>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="subHeaderFontColor" class="control-label label-default">Font Color</label>
+                        <div class="controls">
+                            <input type="text" class="input-sm" ng-model="tempPresentationDetails.parameters.subHeaderFont.color" id="subHeaderFontColor"/>
+                            <div class="color_pickers" ng-model="tempPresentationDetails.parameters.subHeaderFont.color">
+                                <div></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="form-group">
+                        <label for="fontSelect" class="control-label label-default">Font Name</label>
+                        <div class="controls">
+                            <div class="fontSelect" id="fontSelect" ng-model="tempPresentationDetails.parameters.subHeaderFont.name"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+
+    <div class="panelFooter">
+        <button class="btn btn-boo" ng-click="savePresentDetail()">Save</button>
+        <a class="btn btn-panel-cancel" ng-click="closePresentationPanel()">Cancel</a>
+    </div>
+</div>

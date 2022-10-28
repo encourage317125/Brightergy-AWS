@@ -1,0 +1,86 @@
+.wrapper-sources
+  .header
+    ul.nav.nav-tabs.sp-tab
+      //li
+        a Groups
+      li.active
+        a Sources
+    as-more-panel.pull-right(position="right top", panel-title="Power Plant Details")
+      #wrapperMorePowerPlantDetails(ng-include="'app/partials/more-panels/sources-power-plant-detail.html'")
+    as-sp-search-box.pull-right(ng-model="facilitySearch.displayName") hi
+    .source-checkbox-wrapper.pull-right
+      input.source-checkbox(type="checkbox", id="checkbox-source-all", ng-model="isSelectAll" ng-change="toggleSelectAllSource();")
+      label.source-checkbox(for="checkbox-source-all") {{ isSelectAll ? 'Deselect All' : 'Select All' }}
+  .content(as-sp-list-scroll-bar, as-element-show-loading="{{!isMainStageLoaded}}")
+    ul#facilityList.list-selection-panel.list-source
+      li.source-group(ng-repeat="facility in facilities track by facility.id", ng-show="([facility] | filter:facilitySearch).length > 0" ng-class="{'expanded': facility.expanded, 'not-available': !facility.selected}")
+        .inner
+          input.source-checkbox(type="checkbox", ng-model="facility.selected" ng-change="toggleSelectSource(facility, 'facility');", name="facilityCheckbox[]", id="facility-{{::facility.id}}")
+          label.source-percentage.source-checkbox.facility-label(for="facility-{{::facility.id}}") {{ facility.selected ? (!$parent.isSourceListLoaded ? '-' : facility.percent + '%') : '0%' }}
+          div.source-title.has-info
+            span(ng-bind="::(facility.displayName|truncate:false:20)", ng-click="showFacilityDetails(facility)") Facility Name
+          ul.list-inline.list-source-detail.pull-right
+            li.source-numeric-info.has-info(as-tooltip tooltip-content-dom="#facilityPowerTooltip" tooltip-position="left bottom" tooltip-classes="facility-tooltip" ng-if="facility.selected")
+              b(ng-bind="facility.lastReportedValue", as-animated-number, data-num-decimals="1") 0
+              small kW
+              sup.as-sink.animated(ng-class="{'as-float': facility.trend == 'up', 'as-sink': facility.trend == 'down'}", ng-bind-html="facility.trendText")
+              #facilityPowerTooltip.facility-tooltip
+                h5.title Current Power
+                p.no-margin
+                  | Commissioning Date:&nbsp;
+                  span.kpi(ng-bind="::(facility.commissioningDate | amDateFormat:'MMMM D, YYYY')") ...w
+                p.no-margin
+                  | Potential Power:&nbsp;
+                  span.kpi(ng-bind="::(facility.potentialPower | number:1) + 'kW'") 0kW
+                p.no-margin
+                  | Total Energy Production:&nbsp;
+                  span.kpi(ng-bind="(facility.totalEnergyGenerated | number) +'kWh'") 0kWh
+            li(ng-if="facility.selected")
+              a.rounded-info.source-child-info.blue(ng-bind="facility.countSelectedChilds")
+                | 0
+            li(ng-if="!facility.selected")
+              a.source-related-info
+                span(ng-bind="facility.scopes.length") 0
+                | &nbsp;
+                | Related Source(s)
+            li
+              a.rounded-info.source-toggle(ng-click="toggleExpandSource(facility)")
+                i.icon.icon-ui-corner-down
+        ul.list-source.list-selection-panel.list-child
+          li.source-group(ng-repeat="scope in facility.scopes", ng-class="{expanded: scope.expanded, 'not-available': !scope.selected}")
+            .inner
+              input.source-checkbox(type="checkbox", ng-model="scope.selected", ng-change="toggleSelectSource(scope, 'scope');", name="scopeCheckbox[]", id="scope-{{scope.id}}")
+              label.source-percentage.source-checkbox.scope-label(for="scope-{{scope.id}}", ng-bind="scope.percent+'%'") 0%
+              div.source-title.has-info
+                span(ng-bind="::(scope.displayName|truncate:false:20)") Scope Name
+              ul.list-inline.list-source-detail.pull-right
+                li(ng-if="scope.selected")
+                  span.source-numeric-info
+                    b(ng-bind="scope.lastReportedValue", as-animated-number, data-num-decimals="1") 0
+                    small kW
+                    sup.as-sink.animated(ng-class="{'as-float': scope.trend == 'up', 'as-sink': scope.trend == 'down'}", ng-bind-html="scope.trendText")
+                li(ng-if="scope.selected")
+                  a.rounded-info.source-child-info.green(ng-bind="scope.countSelectedChilds")
+                    | 0
+                li(ng-if="!scope.selected")
+                  a.source-related-info
+                    span(ng-bind="::scope.nodes.length") 0
+                    | &nbsp;
+                    | Related Source(s)
+                li
+                  a.rounded-info.source-toggle(ng-click="toggleExpandSource(scope)")
+                    i.icon.icon-ui-corner-down
+            ul.list-source.list-selection-panel.list-child
+              li.source-group(ng-repeat="node in scope.nodes", ng-class="{'not-available': !node.selected}")
+                .inner
+                  input.source-checkbox.green.node-border(type="checkbox", ng-model="node.selected", ng-change="toggleSelectSource(node, 'node');", name="nodeCheckbox[]", id="node-{{node.id}}")
+                  label.source-percentage.source-checkbox.node-label(for="node-{{::node.id}}", ng-if="node.selected", ng-bind="node.percent+'%'") 0%
+                  label.source-percentage.source-checkbox(for="node-{{::node.id}}", ng-if="!node.selected", ng-bind="node.percent+'%'") 0%
+                  div.source-title.has-info
+                    span(ng-bind="(node.name|truncate:false:28)") Node Name
+                  ul.list-inline.list-source-detail.pull-right
+                    li
+                      span.source-numeric-info
+                        b(ng-bind="node.lastReportedValue", as-animated-number, data-num-decimals="1") 0
+                        small kW
+                        sup.as-sink.animated(ng-class="{'as-float': node.trend == 'up', 'as-sink': node.trend == 'down'}", ng-bind-html="node.trendText")

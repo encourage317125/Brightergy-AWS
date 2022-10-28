@@ -1,0 +1,227 @@
+html(lang="en", id="ng-app", ng-app="blApp.management", xmlns:ng="http://angularjs.org")
+    head
+        meta(charset='utf8')
+        title BrighterLink Present
+        != CDN('/assets/img/favicon.ico')
+        link(rel='stylesheet', href='//cloud.webtype.com/css/f3ad5809-8f3d-4d94-a57b-31fdc688f3fa.css')
+        link(rel='stylesheet', href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css')
+
+        != CDN('/lib/ng-tags-input/ng-tags-input.css')
+        != CDN('/assets/css/general.min.css')
+        != CDN('/assets/css/components.min.css')
+        != CDN('/assets/css/animate.min.css')
+        != CDN('/assets/css/isotope.css')
+        != CDN('/bl-bv-management/assets/css/timeline.css')
+        != CDN('/bl-bv-management/assets/css/management.min.css')
+
+        != CDN('/lib/select2/select2.css')
+        != CDN('/lib/uniform/css/uniform-theme.css')
+        != CDN('/lib/colorpicker/css/colpick.css')
+        != CDN('/lib/fontpicker/jquery.ui.fontSelector.css')
+        != CDN('/lib/notyfy/jquery.notyfy.css')
+        != CDN('/lib/notyfy/boo-notyfy.css')
+        != CDN('/lib/notyfy/themes/boo-notyfylight.css')
+        != CDN('/lib/jQueryUITimepicker/css/jquery-ui-timepicker-addon.css')
+        != CDN('/lib/angular-ui/angular-ui.css')
+        != CDN('/lib/jquery-ui/jquery-ui.css')
+        != CDN('/lib/lightbox/css/lightbox.css')
+        != CDN('/lib/angular-treeview/css/tree-control.css')
+        != CDN('/lib/angular-treeview/css/tree-control-attribute.css')
+        != CDN('/lib/angular-ui-select/select.css')
+        != CDN('/lib/custom-forumla/jquery.tagsinput.css')
+        != CDN('/lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.css')
+        != CDN('/lib/bugreport/bug.report.js')
+        != CDN('/lib/jquery/jquery.js')
+        != CDN('/lib/ajaxupload/ajaxupload.3.5.js')
+        != CDN('/lib/jquery/jquery.event.drag-2.2.js')
+        != CDN('/lib/jquery/jquery.nicescroll.min.js')
+        != CDN('/lib/jquery/jquery.blockUI.js')
+        != CDN('/lib/bootstrap/js/bootstrap.min.js')
+        != CDN('/lib/bootstrap/js/bootstrap-hover-dropdown.js')
+        != CDN('/lib/jquery-ui/jquery-ui.js')
+        != CDN('/lib/select2/select2.js')
+        != CDN('/lib/uniform/jquery.uniform.js')
+        != CDN('/lib/colorpicker/colpick.js')
+        != CDN('/lib/fontpicker/jquery.ui.fontSelector.js')
+        != CDN('/lib/tinymce/tinymce.min.js')
+        != CDN('/lib/notyfy/jquery.notyfy.js')
+        != CDN('/lib/jQueryUITimepicker/js/jquery-ui-timepicker-addon.js')
+        != CDN('/lib/jQueryUITimepicker/js/jquery-ui-sliderAccess.js')
+        != CDN('/lib/highcharts/highcharts.js')
+        != CDN('/lib/jquery/jquery.tabSlideOut.v1.3.js')
+        != CDN('/lib/validate/js/jquery.validate.min.js')
+        != CDN('/lib/imagesloaded/imagesloaded.pkgd.js')
+        != CDN('/lib/lightbox/js/lightbox.js')
+        != CDN('/lib/modernizr/modernizr.js')
+        != CDN('/lib/TapDigit/TapDigit.js')
+        != CDN('/lib/custom-forumla/jquery.tagsinput.js')
+        != CDN('/lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js')
+
+        script.
+            window.config = "#{(new Buffer(JSON.stringify(config))).toString('base64')}"
+        script(type="text/javascript").
+            var renderErrors=!{JSON.stringify(errors)};
+            var renderPermissions=!{JSON.stringify(permissions)};
+            var renderCurrentUser=!{JSON.stringify(currentUser)};
+            var renderAvailableWidgets=!{JSON.stringify(availableWidgets)};
+            var renderPresentations=!{JSON.stringify(presentations)};
+            var renderPresentTemplates=!{JSON.stringify(presentTemplates)};
+            var renderApps=!{JSON.stringify(apps)};
+            var renderPresentUsers=!{JSON.stringify(presentUsers)};
+            var renderAccounts=!{JSON.stringify(accounts)};
+            var renderFoundUsers=!{JSON.stringify(foundUsers)};
+            var renderAdmins=!{JSON.stringify(admins)};
+            /*var renderUserTags=!{JSON.stringify(userTags)};*/
+            var renderAssets=!{JSON.stringify(assets)};
+            var renderGroups=!{JSON.stringify(groups)};
+            var renderAvailableGroups=!{JSON.stringify(availableGroups)};
+            var renterOtherCompanyData=!{JSON.stringify(otherCompanyData)};
+
+    body(ng-controller="ManagementController", resize="widow-resize", class="ng-cloak", ng-cloak, close-component-dialog)
+        div(class="ui-widget-overlay bv-overlay")
+        div(ng-include="'/bl-bv-management/views/presentation-panel.html'")
+        div(ng-include="'/components/navigation-bar/views/navigation-bar.html'")
+        div.main
+            div.header
+                div(ng-include="'/components/company-panel/views/company-panel.html'")
+                
+                div.headerMar
+                    ul.setting-nav
+                        button(aria-hidden="true", ng-click="clonePresentation()", class="btn btn-bv-default font-bold font-bigger", type="button")
+                            span.icon.icon-bv-document
+                            span.text Clone Presentation
+                        button(aria-hidden="true", ng-click="toggleSharePanel($event)", class="btn btn-bv-default font-bold font-bigger", ng-class="(togglePanel) ? 'bv-active' : ''", type="button", id="sharePanel_btn")
+                            span.icon.icon-bv-share
+                            span.text Share Presentation
+                        share-dialog(template-url="/components/share-dialog/presentation.html")
+                    ul.viewer-nav
+                        li.dropdown
+                            div.btn-group
+                                button(class="btn-success dropdown-toggle", style="font-family: Benton sans cond Medium; font-weight:normal", ng-click="isCanvasPlaying == false ? playCanvas() : stopCanvas()")
+                                    i(ng-class="isCanvasPlaying  ? 'fa fa-pause' : 'fa fa-play'", style="margin-right:10px;")
+                                    div {{isCanvasPlaying?'Stop':'Play'}} Presentation
+                                button(class="btn-success dropdown-toggle arrow", data-toggle="dropdown", style="height:42px; margin-left:-5px;border-top-left-radius: 0;border-bottom-left-radius: 0; padding-right:10px; font-size:14pt;")
+                                    i.fa.fa-chevron-down
+                                    div(style="height: 22px;width: 2px;display: block;background: #697329;position: relative;left: -11px;top: -20px;")
+                                ul.dropdown-menu
+                                    li
+                                        p Viewer Mode
+                                    li.new-tab
+                                        a(href="javascript:;", ng-click="playPresentation(windowWidth, windowHeight, true)")
+                                            span.viewer-icon
+                                            span.viewer-name New Tab ({{windowWidth}}x{{windowHeight}})
+                                    li.desktop
+                                        a(href="javascript:;", ng-click="playPresentation(1920, 1080, false)")
+                                            span.viewer-icon
+                                            span.viewer-name Desktop (1920x1080)
+                                    li.hd-tablet
+                                        a(href="javascript:;", ng-click="playPresentation(1920, 1200, false)")
+                                            span.viewer-icon
+                                            span.viewer-name HD Tablet (1920x1200)
+                                    li.tablet
+                                        a(href="javascript:;", ng-click="playPresentation(1280, 800, false)")
+                                            span.viewer-icon
+                                            span.viewer-name Tablet (1280x800)
+                                    li.landscape
+                                        a(href="javascript:;", ng-click="playPresentation(480, 320, false)")
+                                            span.viewer-icon
+                                            span.viewer-name Phone - Landscape (480x320)
+                                    li.portrait
+                                        a(href="javascript:;", ng-click="playPresentation(320, 480, false)")
+                                            span.viewer-icon
+                                            span.viewer-name Phone - Portrait (320x480)
+            div.presentationContainer
+                div(ng-include="'/bl-bv-management/views/panel-presentation.html'")
+                div(ng-include="'/bl-bv-management/views/canvas.html'")
+            div(ng-include="'/bl-bv-management/views/timeline.html'")
+        div(ui-view="routerView")
+
+        != CDN('/lib/angular/angular.min.js')
+        != CDN('/lib/angular/angular-animate.min.js')
+        != CDN('/lib/angular/angular-route.min.js')
+        != CDN('/lib/angular/angular-sanitize.js')
+        != CDN('/lib/angular-cookies/angular-cookies.min.js')
+        != CDN('/lib/angular-image-crop/ng-img-crop.js')
+        != CDN('/lib/angular-clipboard/ng-clip.min.js')
+        != CDN('/lib/angular-clipboard/ZeroClipboard.min.js')
+        != CDN('/lib/angular-ui-router/angular-ui-router.min.js')
+        != CDN('/lib/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.5.min.js')
+        != CDN('/lib/angular-ui-select/select.js')
+        != CDN('/lib/angular-isotope/isotope.pkgd.js')
+        != CDN('/lib/angular-treeview/angular-tree-control.js')
+        != CDN('/lib/angular-autocomplete/autocomplete.js')
+        != CDN('/lib/angular-highchart/highcharts-ng.min.js')
+        != CDN('/lib/storyjs/storyjs-embed.js')
+        != CDN('/lib/timeline/timeline.js')
+        != CDN('/lib/ng-tags-input/ng-tags-input.js')
+
+        != CDN('/lib/videogular/videogular.js')
+        != CDN('/lib/videogular/vg-controls.js')
+        != CDN('/lib/videogular/youtube.js')
+
+        if (config.env == 'production')
+            script(src='/dist/app-management.min.d748dd63.js')
+            script(src='/dist/tmpl-management.min.3a354.js')
+        else
+            script(src='/bl-bv-management/js/app.js')
+            script(src='/bl-bv-management/js/directives/colorpicker.js')
+            script(src='/bl-bv-management/js/directives/date-picker.js')
+            script(src='/bl-bv-management/js/directives/file-uploader.js')
+            script(src='/bl-bv-management/js/directives/font-picker.js')
+            script(src='/bl-bv-management/js/directives/image-picker.js')
+            script(src='/bl-bv-management/js/directives/markers.js')
+            script(src='/bl-bv-management/js/directives/nicescroll.js')
+            script(src='/bl-bv-management/js/directives/resize.js')
+            script(src='/bl-bv-management/js/directives/template.js')
+            script(src='/bl-bv-management/js/directives/widgets.js')
+            script(src='/bl-bv-management/js/directives/fontsize-tooltip.js')
+            script(src='/bl-bv-management/js/controllers/available-widget.js')
+            script(src='/bl-bv-management/js/controllers/canvas.js')
+            script(src='/bl-bv-management/js/controllers/management.js')
+            script(src='/bl-bv-management/js/controllers/presentation.js')
+            script(src='/bl-bv-management/js/controllers/presentation-projects.js')
+            script(src='/bl-bv-management/js/controllers/presentation-editors.js')
+            script(src='/bl-bv-management/js/controllers/presentation-datas.js')
+            script(src='/bl-bv-management/js/controllers/presentation-router.js')
+            script(src='/bl-bv-management/js/controllers/timeline.js')
+
+            script(src='/components/component.js')
+            script(src='/components/services/account.js')
+            script(src='/components/services/user.js')
+            script(src='/components/services/presentation.js')
+            script(src='/components/services/project.js')
+            script(src='/components/services/asset.js')
+            script(src='/components/services/editor.js')
+            script(src='/components/services/tag.js')
+            script(src='/components/services/widget.js')
+            script(src='/components/services/toggle.js')
+            script(src='/components/services/util.js')
+            script(src='/components/services/notify.js')
+            script(src='/components/services/tagFactory.js')
+            script(src='/components/services/interceptors.js')
+            script(src='/components/services/group.js')
+
+            script(src='/components/directives/company-panel-uploader.js')
+            script(src='/components/directives/formula.js')
+            script(src='/components/directives/tab-slide-out.js')
+            script(src='/components/directives/close-component-dialog.js')
+            script(src='/components/directives/custom-scrollbar.js')
+            script(src='/components/directives/delete-confirm-dialog.js')
+            script(src='/components/directives/validate-compare.js')
+            script(src='/components/directives/upload.js')
+            script(src='/components/directives/source-uploader.js')
+            script(src='/components/directives/share-dialog.js')
+            script(src='/components/directives/predictive-auto-complete.js')
+
+            script(src='/components/company-panel/js/directives/asset.js')
+            script(src='/components/company-panel/js/controllers/company.js')
+            script(src='/components/company-panel/js/controllers/company-accounts.js')
+            script(src='/components/company-panel/js/controllers/company-assets.js')
+            script(src='/components/company-panel/js/controllers/company-users.js')
+            script(src='/components/company-panel/js/controllers/company-sources.js')
+            script(src='/components/company-panel/js/controllers/company-groups.js')
+
+            script(src='/components/navigation-bar/js/controllers/navbar.js')
+            script(src='/components/navigation-bar/js/controllers/user-profile.js')
+            script(src='/components/navigation-bar/js/controllers/upload-photo.js')
+            script(src='/components/navigation-bar/js/controllers/app-panel.js')

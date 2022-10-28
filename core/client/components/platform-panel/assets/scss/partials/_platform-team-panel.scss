@@ -1,0 +1,368 @@
+#team-members-wrapper {
+
+    .member-section {
+        padding-left: 25px;
+        height: calc(100% - 60px);
+    }
+    .label {
+        font-size: 9px;
+        font-weight: 400;
+        background-color: #337ab7;
+    }
+    .member-photo {
+        border-radius: 50%;
+        text-align: center;
+        display: inline-block;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .panel-title {
+        .icon-ui-corner-left {
+            color: $link-color;
+        }
+    }
+
+    .no-left-padding{
+        padding-left: 0;
+    }
+
+}
+
+.team-member-list {
+
+    .mCSB_scrollTools {
+        .mCSB_dragger {
+            .mCSB_dragger_bar{
+                background: #dbddde;
+                width: 6px;
+            }
+        }
+
+        .mCSB_draggerRail{
+            background: #ffffff;
+        }
+    }
+    #createNewWrapper {
+        .btn {
+            text-align: center;
+            padding: 8px 15px;
+            i {
+                font-size: 15px;
+            }
+        }
+    }
+    .team-member-list-header {
+        position: relative;
+        #searchInputWrapper, #createNewWrapper {
+            display: block;
+        }
+        #searchInputWrapper {
+            position: relative;
+            margin-right: 180px;
+            .form-control {
+                padding: 8px 30px 8px 12px;
+                height: 36px;
+            }
+            .icon {
+                position: absolute;
+                right: 5px;
+                top: 6px;
+                font-size: 22px;
+            }
+        }
+        #createNewWrapper {
+            width: 160px;
+            position: absolute;
+            right: 10px;
+            top: 0;
+        }
+        &.without-new-btn {
+            #searchInputWrapper {
+                margin-right: 10px;
+            }
+        }
+    }
+    .list-team-member {
+        margin-top: 25px;
+        height: calc(100% - 100px);
+        padding:0;
+
+        li {
+            list-style: none;
+            padding: 13px 15px;
+            margin: 0;
+            border-radius: 5px;
+            cursor: pointer;
+
+            &:hover, &:active, &.active {
+                background: #f1f4f6;
+            }
+            &:hover {
+                .icon-edit {
+                    display: block;
+                }
+            }
+            .icon-edit {
+                color: $link-color;
+                margin-top: 10px;
+                font-size: 15px;
+                display: none;
+            }
+            .member-photo {
+                width: 42px;
+                height: 42px;
+                &.none {
+                    border: 1px solid #89969d;
+                    line-height: 42px;
+                }
+            }
+        }
+    }
+    .media.list-team-member-item {
+        .media-heading {
+            margin-top: 3px;
+            color: $link-color !important;
+            .label {
+                margin-left: 5px;
+            }
+        }
+        .media-left {
+            padding-right: 20px;
+        }
+        .media-body {
+            color: $blue-lighter;
+            font-size: $font-size-base;
+            position: relative;
+            .icon-edit {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                margin-top: -6px;
+            }
+        }
+    }
+}
+
+.team-member-new {
+    padding-right: 45px;
+    .form-group {
+        label {
+            font-weight: 400;
+            padding-top: 7px;
+            padding-bottom: 7px;
+            line-height: 20px;
+        }
+    }
+    #frmTeamMemberCreate {
+        .member-create-upload {
+            margin-bottom: 45px;
+            .member-photo {
+                width: 91px;
+                height: 91px;
+                border-radius: 50%;
+                background: inline-image("/components/platform-panel/assets/img/user-avatar-empty.png") no-repeat;
+                background-size: 100% 100%;
+            }
+            input {
+                margin-top: 22px;
+            }
+        }
+    }
+
+}
+
+.team-member-view {
+
+    .ppanel-section-jambo-brief{
+        padding: 0 !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border-bottom: none !important;
+    }
+
+    .member-photo {
+        width: 90px;
+        height: 90px;
+        margin-right: 10px;
+        text-align: center;
+        display: inline-block;
+        overflow: hidden;
+
+        &.none {
+            border: 1px solid $blue-lighter;
+            padding: 33px 0;
+        }
+
+        img {
+            width: 90px;
+            height: 90px;
+        }
+    }
+    .member-photo + .label {
+        position: absolute;
+        top: 40px;
+        right: 13px;
+    }
+
+    .member-action{
+        .jambo-left{
+            text-align: right;
+            .icon-edit{
+                margin-top: 5px;
+            }
+        }
+        .title{
+            margin-top: 30px;
+            .icon-trash{
+                float: right;
+                margin-top: 5px;
+            }
+        }
+        .jambo-body{
+            padding-left: 30px;
+        }
+
+    }
+    #inputMemberDetailName{
+        width: calc(100% - 30px);
+    }
+
+    .team-member-view-content{
+        .form-group{
+            .control-label{
+                font-weight: 400;
+                text-align: right;
+                padding-top: 7px;
+                padding-bottom: 7px;
+                line-height: 20px;
+            }
+            .social-link{
+                color: $link-color;
+                font-size: 25px;
+                .icon {
+                    padding: 4px 0;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-lg) and (max-width: $screen-lg-max) {
+    .team-member-list {
+
+        padding-left: 0 !important;
+        padding-right: 0;
+
+        .no-right-padding {
+            padding-right: 0;
+        }
+        #createNewWrapper {
+            .btn-bl-default {
+                i {
+                    margin-right: 2px;
+                    margin-top: -3px;
+                }
+            }
+        }
+    }
+
+    .team-member-new{
+        padding-right: 20px;
+
+        .no-right-padding{
+            padding-right: 0;
+        }
+    }
+
+    .team-member-view{
+
+    }
+}
+
+@media (max-width: 480px) {
+
+    .team-member-view {
+
+        padding-left: 0;
+
+        .team-member-view-content {
+            .form-group {
+                .control-label {
+                    width: 30%;
+                }
+                .control-wrapper{
+                    width: 70%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+
+    .team-member-list {
+
+        padding-left: 0 !important;
+        padding-right: 0;
+
+        .no-right-padding {
+            padding-right: 0;
+        }
+
+        .team-member-list-header {
+            #createNewWrapper {
+                .btn {
+                    padding-left: 5px;
+                    padding-right: 5px;
+                }
+                .btn-bl-default {
+                    i {
+                        margin-right: 2px;
+                        margin-top: -3px;
+                    }
+                }
+            }
+        }
+
+        .list-team-member {
+            li {
+                .member-photo {
+                    margin-left: -5px;
+                }
+            }
+        }
+
+        .mCSB_inside {
+            .mCSB_container {
+                margin-right: 0px;
+            }
+        }
+    }
+
+    .team-member-new {
+        padding-right: 0;
+    }
+
+}
+@media (max-width: $screen-as-xsmall) {
+    .team-member-new {
+        #member-create {
+            .member-create-upload {
+                .member-photo{
+                    margin-left: -15px;
+                }
+            }
+        }
+    }
+    .team-member-view {
+        padding-left: 0;
+        .member-photo+.label{
+            right: -13px;
+        }
+    }
+
+}

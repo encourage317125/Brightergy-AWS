@@ -1,0 +1,4 @@
+<div ng-style="{'width' : widgetParam.parameters.width + 'px', 'height' : widgetParam.parameters.height + 'px', 'margin': 'auto', 'background' : widgetParam.parameters.backgroundShowImage, 'background-color' : '#' + widgetParam.parameters.backgroundColor, 'overflow' : 'auto'}">
+	<div class="template-title" ng-hide="(widgetParam.parameters.headerFont.content == null) || (widgetParam.parameters.headerFont.content == '')" ng-style="{'font-size' : widgetParam.parameters.headerFont.size + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name, 'background-color' : '#' + widgetParam.parameters.primaryColor.color}">{{widgetParam.parameters.headerFont.content}}</div>
+	<div ng-bind-html="widgetParam.parameters.widgetComplieTextareaContent" class="text-preview"></div>
+</div>

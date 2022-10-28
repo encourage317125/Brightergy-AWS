@@ -1,0 +1,103 @@
+<div id="powerplantdetails-modal" class="panel corner powerplant-details" as-element-show-loading="{{ !isDataLoaded }}">
+    <div class="panel-heading">
+        <i class="icon icon-ui-info"></i>
+        <h5 class="panel-title drilldown">
+            Power Plant Details
+        </h5>
+        <a class="drilldown-close" ng-click="closeDrilldown()"></a>
+    </div>
+    <div class="panel-body">
+        <div class="widget">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="ppd-row has-padding">
+                        <div class="ppd-label">Location</div>
+                        <div class="ppd-value"><strong>{{lastFacilityInfo.installAddress ? lastFacilityInfo.installAddress : 'N/A'}}</strong></div>
+                    </div>
+                    <div class="ppd-row">
+                        <div class="ppd-label">Operator</div>
+                        <div class="ppd-value"><strong>{{lastFacilityInfo.operator}}</strong></div>
+                    </div>
+                    <div class="ppd-row">
+                        <div class="ppd-label">Commissioning Date</div>
+                        <div class="ppd-value"><strong>{{lastFacilityInfo.commissioningDate}}</strong></div>
+                    </div>
+                    <div class="ppd-row has-padding">
+                        <div class="ppd-label">Potential Power</div>
+                        <div class="ppd-value">
+                            <strong><span class="kpi">{{lastFacilityInfo.potentialPower | number:1 }} kW</span></strong>
+                        </div>
+                    </div>
+                    <div class="ppd-row">
+                        <div class="ppd-label">Estimated Annual Production</div>
+                        <div class="ppd-value">
+                            <strong>Approx. <span class="kpi">{{lastFacilityInfo.predictedAnnualGeneration | number:0}} kWh</span></strong>
+                        </div>
+                    </div>
+                    <div class="ppd-row">
+                        <div class="ppd-label">Estimated Carbon Dioxide Emissions Avoided</div>
+                        <div class="ppd-value">
+                            <strong>Approx. <span class="kpi">{{lastFacilityInfo.predictedAnnualCarbon | number:1}} lbs</span> per year</strong>
+                        </div>
+                    </div>
+                    <!--div class="ppd-row has-padding">
+                        <div class="ppd-label">Description</div>
+                        <div class="ppd-value">{{currentFacility.description}}</div>
+                    </div-->
+                </div>
+                <div class="col-md-6 ppd-mapphoto">
+                    <div class="col-md-6 ppd-photo pull-right" ng-if="lastFacilityInfo.facilityImage !== 'NOIMAGE'">
+                        <img ng-src="{{lastFacilityInfo.facilityImage}}" class="img-responsive" alt="Power Plant Picture"/>
+                    </div>
+                    <div class="col-md-6 map-wrapper pull-right" id="ppdmap_container">
+                    </div>
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+        <div class="ppd-charts">
+            <tabset>
+                <tab heading="Real-Time Max Power" class="first" select="onPowerTabOpen();">
+                    <div class="chart-container" as-element-show-loading="{{ !isPowerChartDataLoaded }}">
+                        <highchart id="ppdAreaChart" config="powerChartConfig" style="width:100%"></highchart>
+                    </div>
+                </tab>
+                <tab heading="Energy" class="last" select="onEnergyTabOpen();">
+                    <div class="energy" as-element-show-loading="{{ !isEnergyChartDataLoaded }}">
+                        <div class="date-range-nav row">
+                            <div class="col-xs-4 text-left">
+                                <a class="prev-nav" ng-click="selectYear(selectedYear - 1)" style="display: block;">
+                                    <span class="hidden-xs">
+                                        <i class="icon-ui-arrow-left"></i>  {{selectedYear - 1}}
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="col-xs-4 text-center">
+                                <span class="cur-nav">Year {{selectedYear}}</span>
+                            </div>
+                            <div class="col-xs-4 text-right">
+                                <a class="next-nav" ng-click="selectYear(selectedYear + 1)" style="display: {{ selectedYear < currentYear ? 'block' : 'none' }}">
+                                    <span class="hidden-xs">
+                                        {{selectedYear + 1}}
+                                        <i class="icon-ui-arrow-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <highchart config="energyChartConfig" style="width:100%"></highchart>
+                        <div class="footer">
+                            <div class="kpis">
+                                <div class="kpi">
+                                    <div class="kpi-title">Total Production</div>
+                                    <div class="kpi-value">
+                                        {{lastFacilityInfo.energyChart.totalProduction | number:0 }} kWh
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div>

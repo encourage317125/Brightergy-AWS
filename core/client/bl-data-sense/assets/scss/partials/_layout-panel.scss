@@ -1,0 +1,39 @@
+.layout-panel {
+  position: absolute;
+  left: 169px;
+  top: -140px;
+  width: 660px;
+  background-color: #fff;
+  border: 1px solid #E3E2E2;
+  z-index: 100500;
+  @include box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+  border-radius: 3px;
+  padding: $medium-space $x-large-space $medium-space;
+  height: 450px;
+
+  .checkbox {
+    margin: 0 0 $xx-large-space;
+    padding-left: 30px;
+    input { display: none; }
+    label {
+      position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        left: -30px;
+        top: 0;
+        display: block;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    input[type=checkbox]:checked + label:before {
+      background: inline-image('bl-data-sense/assets/img/icon-checkbox-checked.png') no-repeat;
+    }
+    &.condensed label {
+      padding-left: $small-space;
+    }
+  }
+}

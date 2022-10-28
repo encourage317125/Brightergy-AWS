@@ -1,0 +1,14 @@
+// Overriding for tests
+{
+    "extends": "../../.jshintrc",
+    "expr": true,
+    "globals": {
+        "it" : true,
+        "describe" : true,
+        "before" : true,
+        "after" : true,
+        "beforeEach" : true,
+        "afterEach" : true,
+        "Promise" : true
+    }
+}

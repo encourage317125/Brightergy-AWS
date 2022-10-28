@@ -1,0 +1,42 @@
+<div class="presentation-gap"></div>
+<div class="presentation" ng-controller="CanvasController as ctrl">
+    <div class="presentationHeader">
+        <input id="presentationname" name="presentationname" ng-focus="bLabel=true" ng-blur="savePresentName();" ng-model="presetationTempName" ng-init="presetationTempName=''" />
+        <div id="presentationNameLabel" ng-click="setfocusToPname();" ng-init="bLabel=false" ng-hide="bLabel">{{presentationDetails.name}}</div>
+    </div>
+    <div class="presentationBody" id="ga_design_stage" ng-show="!isCanvasPlaying">
+        <div ng-repeat="widget in widgets" ng-class="widget.name == 'TextArea' ? 'component-textarea' : ''" id="field_{{$index}}" ng-show="components_widget && !widget.isDeleted" ng-dblclick="openEditfieldModal(widget.availableWidgetId, widget._id, widget.parameters.rowPosition, widget.parameters.colPosition, false);" class="component_{{widget._id}} components widget" data-startpoint="{{widget.parameters.startDate}}" data-duration="{{widget.parameters.duration}}" data-transitionin="{{widget.parameters.transitionIn}}" data-transitionout="{{widget.parameters.transitionOut}}" ng-style="{'border' : '2px solid #' + widget.parameters.widgetRandomColor, 'z-index' : 500 - widget.parameters.timelineRowPosition, 'left' : widget.parameters.left + 'px', 'top' : widget.parameters.top + 'px', 'height' : widget.parameters.height + 'px', 'width' : widget.parameters.width + 'px'}" template="widget.parameters.widgetIndex">
+            <div class="round">
+                <div class="visibility-btns-area">
+                    <a ng-click="backwardWidget(widget._id);" tooltip="Send Layer Down"><i class="w-icon w-arrow-left"></i></a>
+                    <a ng-click="forwardWidget(widget._id);" tooltip="Bring Layer Up"><i class="w-icon w-arrow-right"></i></a>
+                </div>
+                <div class="btns-area">
+                    <a ng-click="duplicateWidget(widget._id);" tooltip="Duplicate"><i class="w-icon w-plus"></i></a>
+                    <a ng-click="openEditfieldModal(widget.availableWidgetId, widget._id, widget.parameters.rowPosition, widget.parameters.colPosition, false);"  tooltip="Edit"><i class="w-icon w-edit"></i></a>
+                    <a ng-click="deleteWidget(widget._id);"  tooltip="Delete"><i class="w-icon w-trash"></i></a>
+                    <a ng-click="openEditfieldModal(widget.availableWidgetId, widget._id, widget.parameters.rowPosition, widget.parameters.colPosition, true);"  tooltip="Preview"><i class="w-icon w-eye-open"></i></a>
+                </div>
+                <div class="widget-content">
+                    <div class="widget-box-center">
+                        <img ng-src="{{widget.icon}}" ng-class="widget.parameters.rowCount == '1' ? 'resize-img-icon' : ''" class="img-responsive" />
+                        <div class="widget-font" ng-class="widget.parameters.rowCount == '1' ? 'resize-widge-name' : ''">{{widget.name}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="presentationBody" id="ga_design_stage" ng-show="isCanvasPlaying">
+        <div ng-repeat="widgetParam in widgets" id="field_{{widgetParam._id}}" class="widget-preview-container component_{{widgetParam._id}} pt_components widget" data-startpoint="{{widgetParam.parameters.startDate}}" data-duration="{{widgetParam.parameters.duration}}" data-transitionin="{{widgetParam.parameters.transitionIn}}" data-transitionout="{{widgetParam.parameters.transitionOut}}" ng-style="{'width' : widgetParam.parameters.width + 'px', 'height' : widgetParam.parameters.height + 'px', 'left' : widgetParam.parameters.left + 'px', 'top' : widgetParam.parameters.top + 'px', 'position' : 'absolute', 'display': 'none' , 'z-index' : 500 - widget.parameters.timelineRowPosition}" style="z-index: {{500 - widgetParam.parameters.timelineRowPosition}};">
+            <div ng-show="widgetParam.dataLoaded && widgetTmplLoaded[widgetParam.name]" ng-include="widgetParam.templateName" onload="widgetTemplateLoaded(widgetParam.name)"></div>
+            <div class="widget-preview-preloader" ng-show="!widgetParam.dataLoaded || !widgetTmplLoaded[widgetParam.name] "><img ng-src="{{baseCDNUrl}}/bl-bv-management/assets/img/preloader.GIF"></div>
+        </div>
+    </div>
+    <div class="presentationFooter">
+        <span>Presentation Footer</span>
+    </div>
+
+    <!-- Start Widget Instance Modal -->
+    <div ng-include="'/bl-bv-management/views/modal-widget-instance.html'"></div>
+    <!-- End Widget Instance Modal -->
+</div>

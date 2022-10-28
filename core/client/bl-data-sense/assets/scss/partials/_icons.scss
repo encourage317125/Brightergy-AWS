@@ -1,0 +1,48 @@
+@font-face {
+  font-family: 'datasenseicons';
+  src:url('../font/datasenseicons.eot?oysbaz');
+  src:url('../font/datasenseicons.eot?#iefixoysbaz') format('embedded-opentype'),
+      url('../font/datasenseicons.woff?oysbaz') format('woff'),
+      url('../font/datasenseicons.ttf?oysbaz') format('truetype'),
+      url('../font/datasenseicons.svg?oysbaz#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ds-ficon-"], [class*=" ds-ficon-"] {
+  font-family: 'datasenseicons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ds-ficon-plus-big:before {
+  content: "\e601";
+}
+
+.ds-ficon-plus:before {
+  content: "\e600";
+}
+
+.ds-ficon-close-big:before {
+  content: "\e602";
+}
+
+.ds-ficon-close:before {
+  content: "\e603";
+}
+
+.ds-icon-all-apps {
+  @include iconInlineImage("bl-data-sense/assets/img/icon-all-apps.png", 24px, 24px);
+}
+
+.ds-icon-segment {
+  @include iconInlineImage("bl-data-sense/assets/img/icon-segment.png", 20px, 20px);
+}

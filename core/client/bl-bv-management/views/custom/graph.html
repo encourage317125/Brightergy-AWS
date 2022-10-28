@@ -1,0 +1,156 @@
+<ul class="form-list label-left list-bordered dotted">
+	<li class="section-form">
+		<h4>Custom Details</h4>
+	</li>
+	<!--
+	<li class="form-group">
+		<label for="widgetGraphCombineInverters" class="control-label label-default" >Combine Inverters</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" ng-model="widgetParam.parameters.widgetGraphCombineInverters" />
+		</div>
+	</li>
+	
+	<li class="form-group" ng-hide="widgetParam.parameters.widgetGraphCombineInverters">
+-		<label for="widgetGraphInverter" class="control-label label-default">Inverter</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetGraphInverter" ng-change="graphInverterChange()"/>
+		</div>
+	</li>
+	-->
+    <li class="form-group graph-interval">
+        <label for="widgetGraphInterval" class="control-label label-default">Interval</label>
+		<div class="controls">
+			<select class="graph-interval" ng-model="widgetParam.parameters.widgetGraphInterval" > <!-- ng-change="selectInterval()" -->
+				<option value="Hourly">Hourly</option>
+				<option value="Daily">Daily</option>
+				<option value="Weekly">Weekly</option>
+				<option value="Monthly">Monthly</option>
+				<option value="Yearly">Yearly</option>
+			</select>
+		</div>
+	</li>
+    <li class="form-group">
+        <label for="widgetGraphDateRange" class="control-label label-default">Date Range</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetGraphDateRange" ng-change="selectGraphDate()">
+				<option value="Day">Day</option>
+				<option value="3 Days">3 Days</option>
+				<option value="Week">Week</option>
+				<option value="Month">Month</option>
+				<option value="Year">Year</option>
+				<option value="All">All</option>
+				<option value="-- Custom --">-- Custom --</option>
+			</select>
+		</div>
+	</li>
+    <li class="form-group" ng-show="widgetParam.graphCustom">
+        <label for="widgetGraphStartDate" class="control-label label-default">Start Date</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetGraphStartDate" datepicker="datepicker"/> 
+		</div>
+	</li>
+    <li class="form-group" ng-show="widgetParam.graphCustom">
+        <label for="widgetGraphEndDate" class="control-label label-default">End Date</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetGraphEndDate" datepicker="datepicker"/> 
+		</div>
+	</li>
+	<!--
+	<li class="form-group">
+		<label for="widgetGraphIrradiance" class="control-label label-default" >Irradiance (W/m2)</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetGraphIrradiance" ng-model="widgetParam.parameters.widgetGraphIrradiance" />
+		</div>
+	</li>
+	<li class="form-group">
+		<label for="widgetGraphIrradianceChartType" class="control-label label-default">Irradiance Chart Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetGraphIrradianceChartType">
+				<option value="bar">bar</option>
+				<option value="line">line</option>
+			</select>
+		</div>
+	</li>
+	-->
+	<li class="form-group">
+        <label for="widgetGraphGeneration" class="control-label label-default" >Generation (kWh)</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetGraphGeneration" ng-model="widgetParam.parameters.widgetGraphGeneration" />
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphGenerationChartType" class="control-label label-default">Generation Chart Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetGraphGenerationChartType">
+				<option value="bar">bar</option>
+				<option value="line">line</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphTemperature" class="control-label label-default" >Temperature</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetGraphTemperature" ng-model="widgetParam.parameters.widgetGraphTemperature" />
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="wIdgetGraphTemperatureChartType" class="control-label label-default">Temperature Chart Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.wIdgetGraphTemperatureChartType">
+				<option value="bar">bar</option>
+				<option value="line">line</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphHumidity" class="control-label label-default" >Humidity (%)</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetGraphHumidity" ng-model="widgetParam.parameters.widgetGraphHumidity" />
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphHumidityChartType" class="control-label label-default">Humidity Chart Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetGraphHumidityChartType">
+				<option value="bar">bar</option>
+				<option value="line">line</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphCurrentPower" class="control-label label-default" >Current Power (kW)</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetGraphCurrentPower" ng-model="widgetParam.parameters.widgetGraphCurrentPower" />
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphCurrentPowerChartType" class="control-label label-default">Current Power Chart Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetGraphCurrentPowerChartType">
+				<option value="bar">bar</option>
+				<option value="line">line</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphMaxPower" class="control-label label-default" >Max Power (kW)</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetGraphMaxPower" ng-model="widgetParam.parameters.widgetGraphMaxPower" />
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphMaxPowerChartType" class="control-label label-default">Max Power Chart Type</label>
+		<div class="controls">
+			<select ng-model="widgetParam.parameters.widgetGraphMaxPowerChartType">
+				<option value="bar">bar</option>
+				<option value="line">line</option>
+			</select>
+		</div>
+	</li>
+	<li class="form-group">
+        <label for="widgetGraphWeather" class="control-label label-default" >Weather</label>
+		<div class="controls">
+			<input type="checkbox" class="checkbox" id="widgetGraphWeather" ng-model="widgetParam.parameters.widgetGraphWeather" />
+		</div>
+	</li>
+</ul>

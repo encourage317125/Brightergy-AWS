@@ -1,0 +1,29 @@
+<div class="modal-wrapper account-delete-modal">
+	<div class="header row">
+		<div class="title col-md-12">Reset Password</div>
+		<button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close" ng-click="closeModal();">
+            <span aria-hidden="true">x</span>
+        </button>
+	</div>
+	<div class="row">
+        <div class="col-md-12" ng-if="!isSucceeded && !isFailure">
+            <p>This will send reset password link to your personal email address. </p>
+            <p>Please check your inbox.</p>
+        </div>
+        <div class="col-md-12" ng-if="isSucceeded">
+            <p>An e-mail has been sent with password reset instruction at your inbox.</p>
+            <p>Please check your inbox or re-send the email</p>
+        </div>
+        <div class="col-md-12 text-danger" ng-if="isFailure">
+            <p>There was an error while resetting your password.</p>
+        </div>
+	</div>
+	<div class="row">
+		<a ng-click="resetPassword()" class="btn danger" ng-disabled="isSaving" >
+			{{ isSaving ? 'Sending...' : (isSucceeded ? 'Re-send' : 'Confirm and Send Link') }}
+		</a>
+		<a ng-click="closeModal()" class="btn info">
+			Cancel
+		</a>
+	</div>
+</div>

@@ -1,0 +1,38 @@
+<script type="text/ng-template" id="modalUploadPhoto.html">
+<div ng-init="setFileHandler();">
+    <div class="bl-modal" id="bl-modal-upload-photo">
+        <div class="modal-header">
+            <h3 class="modal-title">Upload Photo</h3>
+        </div>
+        <div class="modal-body">
+            <div class="photo-upload-section" ng-show="isFileSelected">
+                <div class="photo-upload-left-panel">
+                    <div class="cropArea">
+                        <img-crop image="images.myOriginalImage" result-image="images.myCroppedImage" area-type="square" change-on-fly="true"></img-crop>
+                    </div>
+                    <h4>Drag frame to adjust portrait.</h4>
+                    <div>
+                        <button ng-click="selectFileClicked();" class="action-btn btn-ok btn-no-margin">Upload a new photo</button>
+                    </div>
+                </div>
+                <div class="photo-upload-right-panel">
+                    <h4>Cropped Image:</h4>
+                    <div><img ng-src="{{images.myCroppedImage}}" id="croppedImage"/></div>
+                    <div class="button-group" style="display:inline-flex; position:relative;">
+                        <button ng-click="saveProfilePicture();" class="action-btn btn-ok btn-no-margin">Save Picture</button>
+                        <button ng-click="cancel();" class="action-btn btn-cancel">Cancel</button>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="no-photo-section" ng-hide="isFileSelected">
+                <div class="button-wrapper">
+                    <input type="file" id="fileInput" accept="image/png,image/gif,image/jpeg"/>
+                    <button ng-click="selectFileClicked();" class="action-btn btn-ok">Upload a new photo</button>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</script>

@@ -1,0 +1,22 @@
+<div class="panel element-numeric element-atom total-energy-production" as-element-show-loading="{{ !isDataLoaded }}">
+	<div class="panel-heading">
+		<as-more-panel position="bottom left" panel-title="Total Energy Production">
+			<div ng-include="'app/partials/more-panels/total-energy-production.html'"></div>
+		</as-more-panel>
+		<h5 class="panel-title">
+			Total Energy Production
+		</h5>
+		<as-date-range-selector ng-model="dateRange" ranges="week,month,year,total" force-dropdown="true"></as-date-range-selector>
+	</div>
+	<div class="panel-body">
+		<div class="widget">
+			<div class="total-generation">
+				<a class="link-info">Total Production</a>
+				<div as-tooltip tooltip-text="infoPanelText" tooltip-position="left middle" tooltip-classes="kpi-tooltip" class="numeric-data-wrapper">
+					<span ng-bind="lastTEG.value" as-animated-number compress="true" data-num-decimals="1" nosuffix="true" class="numeric-data">0</span>
+					<sup ng-bind="lastTEG.unit">kWh</sup>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

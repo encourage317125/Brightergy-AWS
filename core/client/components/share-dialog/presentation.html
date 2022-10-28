@@ -1,0 +1,41 @@
+<div class="sharePanel" ng-show="togglePanel">
+	<div class="icon-close" ng-click="togglePanel = false"></div>
+	<div class="row sharePanel-title">
+		<div class="col-md-3"></div>
+		<div class="share-panel-text">
+			Share Presentation
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3 share-label">Presentation Link:</div>
+		<div class="col-md-7 share-info">
+			<input type="text" ng-model="presentationLink" value="{{presentationLink}}" readonly>
+			<span class="copied">{{copyLabel}}</span>
+		</div>
+		<div class="col-md-2 share-info">
+			<a class="copy-link-share-present" clip-copy="presentationLink" clip-click="copyLink()" style="display: block; width: 77px;">Copy Link</a>
+		</div>
+	</div>
+	<div class="row margin-top-10">
+		<div class="col-md-3 share-label">Send via Email:</div>
+		<div class="col-md-6 share-info" ng-init="emailError = ''">
+			<input type="text" ng-model="recipientEmail" placeholder="Recipient Email Address">
+			<span class="error" ng-show="emailError != ''">{{emailError}}</span>
+		</div>
+	</div>
+	<div class="row margin-top-10">
+		<div class="col-md-3 share-label">Subject</div>
+		<div class="col-md-6 share-info">
+			<input type="text" ng-model="recipientEmailSubject" placeholder="Optional Subject" />
+		</div>
+	</div>
+	<div class="row margin-top-10">
+		<div class="col-md-3 share-label">Message</div>
+		<div class="col-md-6 share-info">
+			<textarea ng-model="recipientEmailMessage", placeholder="Optional Message"></textarea>
+		</div>
+		<div class="col-md-3 share-info" ng-init="sendingLink = 'Send a Link'">
+			<a ng-click="sendLink()" class="copy-link">{{sendingLink}}</a>
+		</div>
+	</div>
+</div>

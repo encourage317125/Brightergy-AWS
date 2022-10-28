@@ -1,0 +1,81 @@
+<div class="lpanel-body" id="editor-panel">
+    <div class="row">
+        <div class="section search-section">
+            <input type="text" class="form-control" ng-model="searchEditor" placeholder="Search for editors">
+            <span class="icon bv-find"></span>
+        </div>
+        <div class="action-box">
+            <p class="comment">Share your presentation with your co-workers, they will be able 
+            to share and edit all data that used in presentation.</p>  
+        </div>
+    </div>
+    <div ng-show="no_users" class="no-exit-list">
+        <p>There aren't editors and associated users with account</p>
+    </div>
+    <div class="editor-list"  ng-show="!no_users" m-custom-scrollbar="">
+        <ul class="media-list">
+            <li class="media editor-{{editor._id}}" ng-repeat="editor in editors | filter:{name: searchEditor}" ng-init="editor.name = (editor.firstName ? editor.firstName : '').trim() + ' ' + (editor.middleName ? (editor.middleName + ' '): '').trim() + (editor.lastName ? editor.lastName : '').trim()">
+                <div ng-show="!editor.toggleDelete" class="animation-show">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">{{editor.name}}</h5>
+                        <div class="email">{{editor.email}}</div>
+                    </div>
+                    <i class="glyphicon glyphicon-remove-circle" ng-click="toggleDeleteEditor(editor, 'show'); "></i>
+                </div>
+                <delete-dialog ng-show="editor.toggleDelete" data-yes="deleteEditor(editor)" data-no="toggleDeleteEditor(editor, 'hide')" data-message="Really Delete?"></delete-dialog>
+            </li>
+            <li class="media" ng-repeat="member in unEditors">
+                <a class="pull-left dimmid" href="#">
+                    <img class="media-object" ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png">
+                </a>
+                <div class="media-body dimmid">
+                    <h5 class="media-heading">{{member.firstName}} {{member.middleName}} {{member.lastName}}</h5>
+                    <div class="email">{{member.email}}</div>
+                </div>
+                <i class="glyphicon custom-puls-icon" ng-click="openCreateEditor($event, member)"></i>
+            </li>
+        </ul>
+    </div>
+    <div class="open-create-editor" id="open-create-editor">
+        <div class="row note">
+            <p>Editor <span class="user">{{addEditor.firstName}} {{addEditor.middleName}} {{addEditor.lastName}}</span> does not currently have access to the Data Sources below. 
+            By clicking the "Confirm Access" button, <span class="user">{{addEditor.firstName}} {{addEditor.middleName}} {{addEditor.lastName}}</span> will become an Editor and have full access to the listed Data Sources.</p>
+        </div>
+        <div class="editor-list">
+            <ul class="media-list">
+                <li class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png">
+                    </a>
+                    <div class="media-body">
+                        <h5 class="media-heading">{{addEditor.firstName}} {{addEditor.middleName}} {{addEditor.lastName}}</h5>
+                        <div class="email">{{addEditor.email}}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="tree-control mCustomScrollbar">
+            <treecontrol class="datasource-tree" tree-model="treedata" options="opt1" order-by="name" on-selection="setExpanded(node)">
+                <div class="node-name" ng-mouseover="node.onhover = true;" ng-mouseleave="node.onhover = false;">
+                    <span ng-class="node.visible ? '' : 'dimmed'">{{node.name}}</span>
+                    <div class="pull-right actions" ng-class="node.visible ? 'activated' : 'deactivated'">
+                        <span class="glyphicon" ng-show="node.onhover" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                        <span class="glyphicon" ng-show="!node.onhover" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                    </div>
+                </div>
+            </treecontrol>
+            <div class="clearfix"></div>
+        </div>
+        <form class="source-form">
+            <div class="border-wrapper">
+                <div class="btn-group-wrapper">
+                    <a class="action-btn btn-ok" ng-click="createEditor()">Confirm Access</a>
+                    <a class="action-btn btn-cancel" ng-click="closeEditor()">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

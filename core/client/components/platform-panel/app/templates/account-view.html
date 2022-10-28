@@ -1,0 +1,134 @@
+<div id="account-wrapper" class="ppanel-section">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="icon icon-ui-info"></i>
+            <h3 class="panel-title">Account</h3>
+        </div>
+        <div class="panel-body no-padding" ng-if="accountModifiable">
+            <div class="ppanel-section-jambo-brief ppanel-section-heading">
+                <div class="row no-margin-left-right">
+                    <div class="col-xs-3 jambo-left">
+                        <a class="avatar-wrapper" href="#">
+                            <span class="avatar empty"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-8 jambo-body">
+                        <h3 class="title row">
+                            <ppanel-form-field-live id="inputAccountName" field-model="currentAccount.name" class="col-xs-12 col-sm-8" field-on-save="updateCurrentAccount()" validation="required">
+                                {{ currentAccount.name }}
+                            </ppanel-form-field-live>
+                        </h3>
+                        <p>
+                            <a class="btn-link" target="_blank" href="{{currentAccount.webSite || '#'}}">{{currentAccount.webSite || 'No Site'}}</a>
+                        </p>
+                        <a href="#" class="sf-linked pull-right"><i class="icon icon-salesforce"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-wrapper">
+                <form class="form-platform-panel form-horizontal">
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputContactPhone" class="col-xs-3 control-label">*Contact Phone</label>
+                        <div class="col-xs-4 control-wrapper">
+                            <ppanel-form-field-live id="inputContactPhone" field-model="currentAccount.phone" field-on-save="updateCurrentAccount()" type="tel" validation="required ng-phone-number">
+                                {{ currentAccount.phone || "No Phone Number" }}
+                            </ppanel-form-field-live>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomEmail" class="col-xs-3 control-label">*Email</label>
+                        <div class="col-xs-4 control-wrapper">
+                            <ppanel-form-field-live id="inputCustomEmail" field-model="currentAccount.email" field-on-save="updateCurrentAccount()" type="email" validation="required">
+                                {{currentAccount.email || 'No Email'}}
+                            </ppanel-form-field-live>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomWebSite" class="col-xs-3 control-label">*Website</label>
+                        <div class="col-xs-4 control-wrapper">
+                            <ppanel-form-field-live id="inputCustomWebSite" field-model="currentAccount.webSite" field-on-save="updateCurrentAccount()" type="url" validation="required">
+                                {{currentAccount.webSite || 'No Website'}}
+                            </ppanel-form-field-live>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomBillingAddress" class="col-xs-3 control-label">Billing Address</label>
+                        <div class="col-xs-4 control-wrapper">
+                            <ppanel-form-field-live id="inputCustomBillingAddress" field-model="currentAccount.billingAddress" field-on-save="updateCurrentAccount()">
+                                {{currentAccount.billingAddress || 'No Address'}}
+                            </ppanel-form-field-live>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomShippingAddress" class="col-xs-3 control-label">Shipping Address</label>
+                        <div class="col-xs-4 control-wrapper">
+                            <ppanel-form-field-live id="inputCustomShippingAddress" field-model="currentAccount.shippingAddress" field-on-save="updateCurrentAccount()">
+                                {{currentAccount.shippingAddress || 'No Address'}}
+                            </ppanel-form-field-live>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="panel-body no-padding" ng-if="!accountModifiable">
+            <div class="ppanel-section-jambo-brief ppanel-section-heading">
+                <div class="row no-margin-left-right">
+                    <div class="col-xs-3 jambo-left">
+                        <a class="avatar-wrapper" href="#">
+                            <span class="avatar empty"></span>
+                        </a>
+                    </div>
+                    <div class="col-xs-8 jambo-body">
+                        <h3 class="title row">
+                            {{ currentAccount.name }}
+                        </h3>
+                        <p>
+                            <a class="btn-link" target="_blank" href="{{currentAccount.webSite || '#'}}">{{currentAccount.webSite || 'No Site'}}</a>
+                        </p>
+                        <a href="#" class="sf-linked pull-right"><i class="icon icon-salesforce"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-wrapper">
+                <form class="form-platform-panel form-horizontal">
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputContactPhone" class="col-xs-3 control-label">*Contact Phone</label>
+                        <div class="col-xs-4 control-wrapper">
+                            {{ currentAccount.phone || "No Phone Number" }}
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomEmail" class="col-xs-3 control-label">*Email</label>
+                        <div class="col-xs-4 control-wrapper">
+                            {{currentAccount.email || 'No Email'}}
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomWebSite" class="col-xs-3 control-label">*Website</label>
+                        <div class="col-xs-4 control-wrapper">
+                            {{currentAccount.webSite || 'No Website'}}
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomBillingAddress" class="col-xs-3 control-label">Billing Address</label>
+                        <div class="col-xs-4 control-wrapper">
+                            {{currentAccount.billingAddress || 'No Address'}}
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputCustomShippingAddress" class="col-xs-3 control-label">Shipping Address</label>
+                        <div class="col-xs-4 control-wrapper">
+                            {{currentAccount.shippingAddress || 'No Address'}}
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

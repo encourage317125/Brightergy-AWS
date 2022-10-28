@@ -1,0 +1,15 @@
+<div class="modal-wrapper tm-delete-modal">
+	<div class="header row">
+		<div class="title col-md-12">Delete Team Member</div>
+		<button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close" ng-click="closeModal();">
+			<span aria-hidden="true">x</span>
+		</button>
+	</div>
+	<div class="row">
+		<p>Please confirm that you really want to delete this team member.</p>
+	</div>
+	<div class="row">
+		<a ng-click="deleteUser()" class="btn danger" ng-disabled="isRemoving"> {{ isRemoving ? 'Removing...' : 'Confirm' }}</a>
+		<a ng-click="closeModal()" class="btn info">Cancel</a>
+	</div>
+</div>

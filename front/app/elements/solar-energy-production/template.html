@@ -1,0 +1,54 @@
+<div class="panel" id="solar-energy-production" as-element-show-loading="{{ !isDataLoaded }}">
+  <div class="panel-heading">
+
+    <as-more-panel position="bottom left" panel-title="Solar Energy Production" classes="more-seg">
+      <div ng-include="'app/partials/more-panels/solar-energy-production.html'"></div>
+    </as-more-panel>
+    <h5 class="panel-title">
+      Solar Energy Production
+    </h5>
+    <as-date-range-selector ng-model="dateRange" ranges="week,month,year,total"></as-date-range-selector>
+  </div>
+  <div class="panel-body">
+    <div class="chart-container">
+      <div class="date-range-nav row">
+        <div class="col-xs-4 text-left">
+          <a ng-click="prevDate()" class="prev-nav"><span class="hidden-xs">{{prevDateLabel}}</span></a>
+        </div>
+        <div class="col-xs-4 text-center">
+          <span class="cur-nav">{{currentDateLabel}}</span>
+        </div>
+        <div class="col-xs-4 text-right">
+          <a ng-click="nextDate()" class="next-nav"><span class="hidden-xs">{{nextDateLabel}}</span></a>
+        </div>
+      </div>
+      <div id="segMainChartContainer">
+        <highchart id="segMainChart" config="segMainChartConfig" class="widget chart-widget"></highchart>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="kpis">
+        <div class="kpi">
+          <div class="kpi-title">Total Savings</div>
+          <div class="kpi-value">${{lastSEG.kpiData.totalSaving |number}}</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-title">Total Production</div>
+          <div class="kpi-value">{{lastSEG.kpiData.totalProduction|number }}<span class="unit">kWh</span></div>
+        </div>
+        <div class="kpi" ng-repeat="source in lastSEG.kpiData.totalProductionBySources | limitTo: 3">
+          <div class="kpi-title">
+            <span style="color: {{ ::source.color }};">&#9679;</span>
+            {{source.displayName}}
+          </div>
+          <div class="kpi-value">
+            {{source.kwh|number }}<span class="unit">kWh</span>
+          </div>
+        </div>
+        <div class="drilldown-picker">
+          <span class="circle">&nbsp;</span><span class="circle">&nbsp;</span><span class="circle">&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

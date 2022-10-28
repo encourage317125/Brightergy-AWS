@@ -1,0 +1,42 @@
+<div class="controls-wrapper" ng-show="selectedDashboard!=null && !isViewer">
+    <ul class="nav nav-pills">
+        <li><a ng-click="openNewWidgetDialog()">+ Add New Widget</a></li>
+        <li class="seperate"></li>
+        <li><a href="#" ng-click="layoutPanelToggle()" id="set-layout">Layout</a></li>
+        <li class="seperate"></li>
+        <li>
+            <a ng-click="toggleSharePanel($event)">
+                Share <span class="caret"></span>
+            </a>
+            <!--<ul class="dropdown-menu" role="menu">-->
+                <!--<li><a href="#">Facebook</a></li>-->
+                <!--<li><a href="#">Twitter</a></li>-->
+                <!--<li><a href="#">Linked in</a></li>-->
+            <!--</ul>-->
+            <share-dialog template-url="/components/share-dialog/dashboard.html"></share-dialog>
+        </li>
+    </ul>
+</div>
+<div class="segments-wrapper" ng-show="selectedDashboard!=null && !isViewer" ng-controller="SegmentController">
+    <span class="title">Segments</span>
+    <ul class="segments list-inline">
+        <li ng-show="isAllSegment">
+            <a class="btn btn-default segment" ng-click="openSegmentDialog('s-all', $event)">
+                <span class="ds-icon-segment" style="background:url('/bl-data-sense/assets/img/segment3.svg')"></span> All segments
+            </a>
+        </li>
+        <li ng-hide="isAllSegment" ng-repeat="segment in segments">
+            <a class="btn btn-default segment" ng-click="openSegmentDialog(segment.id, $event)">
+                <span class="ds-icon-segment">
+                    <span id="ds-icon-{{segment._id}}" segment-icon="segment-icon"></span>
+                </span> {{segment.name}}
+            </a>
+            <a class="btn-remove-segment" ng-click="removeSegment(segment.id)" ng-hide="!Dsmodifyable"><i class="fa fa-times"></i></a>
+        </li>
+        <li>
+            <a class="btn btn-default add-segment" ng-click="openSegmentDialog('s-add', $event)">
+                <span class="glyphicon-plus"></span>
+            </a>
+        </li>
+    </ul> 
+</div>

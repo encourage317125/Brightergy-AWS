@@ -1,0 +1,52 @@
+
+.timelineinfo-label {
+  @include FontFamily_BentonSans();
+  font-size: 14;
+}
+.timelineinfo-number {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 14;
+}
+.timelineinfo-editBtn {
+  margin: 0;
+  position: relative;
+  left: 10px;
+  top: 1px;
+}
+
+.timeline-footer {
+  float: right;
+  margin-top: -12px;
+  margin-right: -34px;
+  color: #666;
+  a {
+    font-size: 17px;
+    z-index: 999;
+  }
+  a[data-tooltip] {
+    &:after {
+      left: -255px;
+    }
+    &:before {
+      left: -3px;
+    }
+  }
+}
+
+.timeline-wrapper-fix {
+  margin-top: -13px;
+}
+
+#timeline-widgetInfo {
+  text-align: right;
+  h5 {
+    display: inline;
+  }
+  a {
+    cursor: pointer;
+    &:hover {
+      background: none !important;
+    }
+  }
+}

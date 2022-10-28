@@ -1,0 +1,60 @@
+<div class="wrapper-weather-history">
+    <div class="header" >
+        <div ng-transclude></div>
+        <as-daterange-picker start-date="requestDateRange.start" end-date="requestDateRange.end" id="weather-history-daterange"></as-daterange-picker>
+    </div>
+    <div class="content">
+        <div class="weather-history-control">
+            <ul class="list-selection-panel list-weather-history">
+                <li ng-repeat="ws in weatherHistory track by $index">
+                    <div class="inner">
+                        {{ ws.date | amDateFormat: 'MMM D, YYYY'}}
+                        <ul class="list-inline pull-right">
+                            <li class="temperature" as-tooltip tooltip-content-dom="#infoWeatherHistoryDetail" tooltip-position="right bottom" tooltip-classes="kpi-tooltip">
+                                {{ ws.temperature.high }}° / {{ ws.temperature.low }}°
+                                <div id="infoWeatherHistoryDetail" class="info-panel">
+                                    <h5 class="title">
+                                        {{ ws.city }} <br/>
+                                        {{ ws.date | amDateFormat: 'ddd, MMM D'}}
+                                    </h5>
+                                    <p class="no-margin">
+                                        High:&nbsp;
+                                        <span class="kpi">{{ws.temperature.high}}°</span>
+                                    </p>
+                                    <p class="no-margin">
+                                        Low:&nbsp;
+                                        <span class="kpi">{{ws.temperature.low}}°</span>
+                                    </p>
+                                    <p class="no-margin">
+                                        Daylight:&nbsp;
+                                    <span class="kpi">
+                                        {{ws.sunTime.sunrise | amDateFormat: 'h:mm a'}} ~ {{ws.sunTime.sunset | amDateFormat: 'h:mm a'}}
+                                    </span>
+                                    </p>
+                                    <p class="no-margin">
+                                        Humidity:&nbsp;
+                                        <span class="kpi">{{ws.air.humidity}}%</span>
+                                    </p>
+                                    <p class="no-margin">
+                                        Pressure:&nbsp;
+                                        <span class="kpi">{{ws.air.pressure}} hPa</span>
+                                    </p>
+                                    <p>
+                                        Wind:&nbsp;
+                                        <span class="kpi">{{ws.air.windSpeed}} mph W</span>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="weather-icon">
+                                <i class="icon {{ ws.weatherIcon }}"></i>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <div class="offset">
+                <p><img src="assets/img/ajax-loader-sp.gif" width="20px" height="20px" align="middle"/>&nbsp; Loading.... </p>
+            </div>
+        </div>
+    </div>
+</div>

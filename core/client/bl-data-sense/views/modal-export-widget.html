@@ -1,0 +1,62 @@
+<script type="text/ng-template" id="modalExportWidget.html">
+    <div class="bl-modal bl-modal-export-widget">
+        <form role="form">
+            <div class="modal-header">
+                <h3 class="modal-title">Export Widget Data</h3>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Export options</label>
+                    </div>
+                </div>
+                <fieldset class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="panel-export-to-container">
+                                <div class="panel-export-to-pdf panel-export-to" ng-click="setExportFormat('pdf')" ng-class="{active: wrapper.exportFormat === 'pdf'}">
+                                    <div class="icon-export-to-pdf icon-export-to"></div>
+                                    <div class="label-export-to-pdf label-export-to">
+                                        <span>Export to PDF</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="panel-export-to-container">
+                                <div class="panel-export-to-csv panel-export-to" ng-click="setExportFormat('csv')" ng-class="{active: wrapper.exportFormat === 'csv'}">
+                                    <div class="icon-export-to-csv icon-export-to"></div>
+                                    <div class="label-export-to-csv label-export-to">
+                                        <span>Export to CSV</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="checkbox" class="form-control" ng-model="wrapper.exportDataType.data"><span>Export Data</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="checkbox" class="form-control" ng-model="wrapper.exportDataType.chart" ng-disabled="wrapper.exportFormat === 'csv'"><span>Export Chart</span>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer action-box">
+                <div class="bl-panel-command-border-wrapper">
+                    <div class="bl-panel-command-wrapper">
+                        <a ng-click="exportWidget('email-link')" class="btn btn-export btn-email-link" ng-disabled="!wrapper.exportDataType.data && !wrapper.exportDataType.chart">Email Link</a>
+                        <a ng-click="exportWidget('download-content')" class="btn btn-export btn-download-pdf" ng-disabled="!wrapper.exportDataType.data && !wrapper.exportDataType.chart">Download <span class="uppercase-label">{{wrapper.exportFormat}}</span></a>
+                        <a ng-click="exportWidget('email-content')" class="btn btn-export btn-email-pdf" ng-disabled="!wrapper.exportDataType.data && !wrapper.exportDataType.chart">Email <span class="uppercase-label">{{wrapper.exportFormat}}</span></a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>

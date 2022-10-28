@@ -1,0 +1,154 @@
+mixin ie(condition, content)
+    | <!--[!{condition}]>!{content}<![endif]-->
+// doctype html
+html(lang="en", ng-app="blApp.components.auth", xmlns:ng="http://angularjs.org")
+    head
+        meta(charset='utf8')
+        meta(name="viewport", content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1")
+        title BrighterLink Login
+        != CDN('/assets/img/favicon.ico')
+        //- style sheets
+        link(href="//cloud.webtype.com/css/f3ad5809-8f3d-4d94-a57b-31fdc688f3fa.css", rel="stylesheet", type="text/css")
+        != CDN('/assets/css/general.min.css')
+        != CDN('/assets/css/components.min.css')
+        script(type="text/javascript").
+            var oa = document.createElement('script');
+            oa.type = 'text/javascript'; oa.async = true;
+            oa.src = '//brightergy.api.oneall.com/socialize/library.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(oa, s);
+        <!--[if lte IE 8]>
+        != CDN('/lib/JSON-js/json2.js')
+        <![endif]-->
+    body.ng-cloak(ng-controller="AuthController", ng-cloak)
+        div#wrapper
+            div.main-container
+                div#page-content-wrapper
+                    div.general-login-wrapper
+                        div.login-back
+                        div.col-lg-12
+                            div.header
+                                div.row.no-margin
+                                    img(src="/assets/img/login-logo.png")
+                                div.row.no-margin
+                                    img(class="text" src="/assets/img/login-text.png")
+                            div.col-xs-12.login-container
+                                div.col-sm-6
+                                    div.login-content
+                                        div.loading-overlay(ng-class="{'show': isDoingReset || isDoingLogin}", style="display:none;")
+                                        div.alert.alert-error(ng-if="loginErrorMessage || forgotErrorMessage || socialLoginErrorMessage")
+                                            p(ng-if="loginErrorMessage" ng-bind="loginErrorMessage")
+                                            p(ng-if="forgotErrorMessage" ng-bind="forgotErrorMessage")
+                                            p(ng-if="socialLoginErrorMessage" ng-bind="socialLoginErrorMessage")
+                                        div.alert.alert-success(ng-class="{'show': resetPasswordSucceeded}", style="display:none;")
+                                            p.input-success(ng-bind="'Email has been sent with reset password link'")
+                                        div.left-wrap
+                                            div.login-form(ng-show="selectedForm == 'login'")
+                                                form(name="loginForm" novalidate="true" ng-submit="doLogin();" onsubmit="return false;")
+                                                    div.heading.row
+                                                        h5 Sign in
+                                                        p with your email
+                                                    div.row
+                                                        p Username
+                                                        input(type="email" id="email" name="email" placeholder="antony@brightergy.com" ng-model="login.email" required)
+                                                        p.text-danger(ng-if="loginForm.submitted && loginForm.email.$error.required", ng-bind="'Please enter a email address'")
+                                                        p.text-danger(ng-if="loginForm.submitted && loginForm.email.$error.email", ng-bind="'Please enter a valid email address'")
+                                                    div.row
+                                                        p Password
+                                                        input(type="password" id="password" name="password" placeholder="********" ng-model="login.password" required)
+                                                        p.text-danger(ng-if="loginForm.submitted && loginForm.password.$error.required", ng-bind="'Please enter password'")
+                                                    div.row
+                                                        button(type="submit" class="btn signin login-btn" name="Submit" ng-disabled="isDoingLogin" ng-bind="isDoingLogin ? 'Sign in...' : 'Sign in'") Sign in
+                                                    div.row
+                                                        div.login-actions
+                                                            div.forgot-password
+                                                                a(id="forget-password" ng-click="switchForm('forgot');") Forgot password?
+                                                            div.remember-me
+                                                                span Remember me
+                                                                input(type="checkbox" ng-model="login.rememberMe")
+                                            div.forgot-form(ng-class="{'show': selectedForm == 'forgot'};")
+                                                form(name="resetForm" novalidate="true" ng-submit="doResetPassword();" onsubmit="return false;")
+                                                    div.heading.row
+                                                        h5 Forget Password?
+                                                    div.row
+                                                        p Email
+                                                        input(type="text" id="emailForgot" name="email", placeholder="Email", ng-model="forgot.email", required)
+                                                        p.text-danger(ng-if="resetForm.submitted && resetForm.email.$error.required") Please enter a email address
+                                                        p.text-danger(ng-if="resetForm.submitted && resetForm.email.$error.email") Please enter a valid email address
+                                                    div.row
+                                                        button(type="submit" class="btn signin forgot-pass-btn" name="Reset Password" ng-disabled="isDoingReset" ng-bind="isDoingReset ? 'Sending...' : 'Send'") Send
+                                                    div.row
+                                                        span Remembered? &nbsp;&nbsp;
+                                                            a(id="login" ng-click="switchForm('login');") Try to log in again.
+                                        div.split-wrap
+                                            div.split-line
+                                            span or
+                                            div.split-line
+                                        div.right-wrap
+                                            div.row
+                                                h5 Sign in
+                                                p with your social account
+                                            div.row
+                                                div(id="oa_social_login_container")
+                            div.copyright.col-xs-12
+                                div.col-xs-6.cell.no-padding
+                                    ul.footer-links
+                                        li
+                                            a(href="#") Tour
+                                        li.separator |
+                                        li
+                                            a(href="#") Pricing
+                                        li.separator |
+                                        li
+                                            a(href="#") Support
+                                        li.separator |
+                                        li
+                                            a(href="#") Developers
+                                        li.separator |
+                                        li
+                                            a(href="#") Blog
+                                        li.separator |
+                                        li
+                                            a(href="#") Contact
+                                div.col-xs-6.cell.no-padding
+                                    p.reserved BrighterLink &copy; #{(new Date()).getFullYear()}. All rights reserved.&nbsp;
+                                    p.privacy_link
+                                        span |&nbsp;
+                                        a(href="#") Privacy Policy&nbsp;
+                                        font |&nbsp;
+                                        a(href="#") Terms of Use
+    script.
+        window.config = "#{(new Buffer(JSON.stringify(config))).toString('base64')}";
+    script(type="text/javascript").
+            var renderErrors=!{JSON.stringify(errors)};
+    != CDN('/lib/bugreport/bug.report.js')
+    != CDN('/lib/jquery/jquery.js')
+    != CDN('/lib/angular/angular.min.js')
+    != CDN('/lib/angular/angular-animate.min.js')
+    != CDN('/lib/ng-tags-input/ng-tags-input.js')
+    script(src='/components/component.js')
+    script(src='/components/services/interceptors.js')
+    script(src='/components/services/notify.js')
+    script(src='/components/services/toggle.js')
+    script(src='/components/auth/auth.module.js')
+    script(src='/components/auth/login.controller.js')
+    script(type='text/javascript').
+        /* Replace #your_callback_uri# with the url to your own callback script */
+        var your_callback_script = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '') + '/v1/sociallogin';
+        var site_url = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port : '');
+        //console.log('CALLBACK URL = ' + your_callback_script);
+        /*var fullUrl = utils.getDomain(req, false);*/
+        /* Embeds the buttons into the container oa_social_login_container */
+        var _oneall = _oneall || [];
+        _oneall.push(['social_login', 'set_providers', ['google', 'facebook', 'twitter', 'amazon', 'yahoo', 'windowslive', 'linkedin', 'github', 'openid']]);
+        _oneall.push(['social_login', 'set_grid_sizes', [3,]]);
+        _oneall.push(['social_login', 'set_callback_uri', your_callback_script]);
+        _oneall.push(['social_login', 'set_custom_css_uri', site_url + '/assets/css/components.min.css']);
+        _oneall.push(['social_login', 'do_render_ui', 'oa_social_login_container']);
+
+        $(function () {
+            $(window).on('resize', function () {
+                $('#oa_social_login_container iframe').width($('#oa_social_login_container').parent().width());
+            });
+            $('#oa_social_login_container iframe').width($('#oa_social_login_container').parent().width());
+        });

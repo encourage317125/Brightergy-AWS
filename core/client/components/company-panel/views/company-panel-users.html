@@ -1,0 +1,443 @@
+<div id="companypanel-users" class="companypanel-users" ng-controller="CompanyUsersController">
+<script type="text/ng-template" id="memberSearchPopup.html">
+    <a class="clearfix">
+        <img class="pull-left" ng-src="{{match.model.profilePicture}}">
+        <span class="dropdown-item-info">
+            <span class="dropdown-item-label" bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+            <p class="dropdown-item-comment" ng-bind="match.model.email"></p>
+        </span>
+    </a>
+</script>
+<!-- Start of users panel -->
+<div id="user-list" class="users-panel active">
+    <h4 class="tab-title">Team</h4>
+    <div class="row">
+        <div class="col-md-7"><h5 class="tab-sub-title">Team Members</h5></div>
+        <div class="col-md-5"><button ng-click="openAddUser(null);" ng-hide="currentUser.role == 'TM'" class="btn btn-bv-default pull-right"><span class="icon icon-bv-add"></span><span class="text">Add Member</span></button></div>
+    </div>
+    <div class="sub-content">
+        <div class="row">
+            <div class="ajax_loading_panel" ng-show="ajaxLoading" style="margin-bottom: 20px;"></div>
+        </div>
+        <form class="nav-searchbox">
+            <div class="section search-section" ng-hide="allMembers.length > 30">
+                <input type="text" class="form-control bg-smoke" placeholder="Search" ng-model="searchUser" placeholder="Search" ng-blur="search_blur()" ng-change="(allMembers.length > 30) ? getUsersInfoByName() : '';">
+                <span class="icon bv-find"></span>
+            </div>
+            <div class="section search-section" ng-show="allMembers.length > 30">
+                <input type="text" class="form-control bg-smoke" placeholder="Search" ng-model="searchUser" typeahead="member as member.fullName for member in getUsersInfoByNameForTypeahead($viewValue)" typeahead-loading="loadingMembers" typeahead-template-url="memberSearchPopup.html" typeahead-on-select="openViewUser($model._id)">
+                <span class="icon bv-find" ng-hide="loadingMembers"></span>
+                <span class="icon-bv-loading" ng-show="loadingMembers"></span>
+            </div>
+            <div class="search-panel" ng-show="search_panel">
+                <ul>
+                    <li ng-repeat="thisUtility in searchMembers | orderBy:'name'" ng-click="openViewUser(thisUtility._id)">
+                        <div class="userLine">
+                            <img class="userPhoto img-responsive" ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png" />
+                            <a class="userName" ng-click="">
+                                <span>
+                                    <h4>{{thisUtility.firstName}} {{thisUtility.middleName}}
+                                        {{thisUtility.lastName}}</h4>
+                                    <br />
+                                    <h5>{{thisUtility.email}}</h5>
+                                </span>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="no-match" ng-show="noMatch">
+                        <div class="userLine">
+                            <p>No Match Users</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </form>
+        <div class="users-list" m-custom-scrollbar="">
+            <ul>
+            <li ng-repeat="thisUtility in searchedMembers | orderBy:'name' | filter:{name: searchUser}" ng-hide="allMembers.length > 30" ng-init="thisUtility.name = thisUtility.firstName + ' ' + thisUtility.middleName + ' ' + thisUtility.lastName;" class="user-{{thisUtility._id}} row" ng-class="{newuser: thisUtility.isNewUser}" >
+                <div class="col-md-2">
+                    <img ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png" alt="" class="img-responsive"/>
+                </div>
+                <div class="col-md-9 l-padding-nop" ng-click="openViewUser(thisUtility._id)">
+                    <a class="account-name">{{thisUtility.name}}<span class="managerTag" ng-show="thisUtility.role == 'Admin' || thisUtility.role == 'BP'">{{thisUtility.role}}</span></a>
+                    <p class="account-descript">{{thisUtility.email}}</p>
+                </div>
+                <div class="col-md-1" ng-show="isBP">
+                    <a href="{{thisUtility.sfdcContactURL}}" target="_blank"><i class="bv-sales-force icon"></i></a>
+                </div>
+            </li>
+            <li ng-repeat="thisUtility in searchedMembers | orderBy:'name'" class="user-{{thisUtility._id}} row" ng-show="allMembers.length > 30" ng-class="{newuser: thisUtility.isNewUser}" >
+                <div class="col-md-2">
+                    <img ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png" alt="" class="img-responsive" />
+                </div>
+                <div class="col-md-9" ng-click="openViewUser(thisUtility._id)">
+                    <a class="account-name">{{thisUtility.name}}<span class="managerTag" ng-show="thisUtility.role == 'Admin' || thisUtility.role == 'BP'">{{thisUtility.role}}</span></a>
+                    <p class="account-descript">{{thisUtility.email}}</p>
+                </div>
+                <div class="col-md-1">
+                    <a href="{{thisUtility.sfdcContactURL}}" target="_blank"><i class="bv-sales-force icon"></i></a>
+                </div>
+            </li>
+        </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!-- End of users panel -->
+
+<!-- Start of users view panel -->
+<div id="user-view" class="panel users-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Member Details</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="activeAccount ? goAccountSection() : openListUser()"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <delete-dialog ng-show="editUser.toggleDelete" data-yes="deleteMember(editUser._id);editUser.toggleDelete = false;toggleDeleteUser('hide');" data-no="editUser.toggleDelete = false;toggleDeleteUser('hide');" data-message="This action cannot be undone. Continue?"></delete-dialog>
+        </div>
+        <div class="row">
+            <div class="ajax_loading_panel" ng-show="ajaxLoading"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <img ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png" alt="" class=""/>
+            </div>
+            <div class="col-md-4">
+                <h5 class="account-name">{{editUser.name}}</h5>
+                <p class="account-descript"><span class="managerTag" style="margin: 0; top: 5px;" ng-show="editUser.isChangeMM">Admin</span></p>
+            </div>
+            <div class="col-md-1">
+                <a href="{{editUser.sfdcContactURL}}" ng-show="editUser.sfdcContactURL" target="_blank"><i class="bv-sales-force icon"></i></a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-bv-default btn-edit-user" ng-click="openEditUser();" ng-hide="currentUser.role == 'TM'"><span class="icon icon-bv-edit"></span><span class="text">Edit</span></a>
+                <a class="btn btn-delete-user" ng-click="editUser.toggleDelete = true; toggleDeleteUser('show');"><span class="icon icon-bv-delete"></span></a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-3 account-label">Contact phone :</div>
+            <div class="col-md-9 account-info">{{editUser.phone}}</div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-3 account-label">Email :</div>
+            <div class="col-md-9 account-info">
+                <div style="margin-bottom: 10px;">{{editUser.email}}</div>
+                <div class="custom-flashing-section pwd-reset-link" ng-show="currentUser.role == 'BP'">
+                    <div class="anchor">
+                        <a ng-click="sendResetPwdLink(editUser)">
+                            Send Reset Password Link
+                        </a>
+                    </div>
+                    <div class="note">
+                        {{msgResetPwdLink}}
+                    </div>
+                </div>
+                <div class="custom-flashing-section connect-sfdc-link" ng-hide="editUser.role !== 'BP'">
+                    <div class="anchor" ng-hide="editUser.sfdcContactURL">
+                        <a ng-click="connectBPUserToSFDC(editUser)">Connect to SFDC</a>
+                    </div>
+                    <div class="note">
+                        {{msgConnectSFDC}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-3 account-label">Linked accounts :</div>
+            <div class="col-md-9 account-info">
+                <span ng-show="linkedSocialAccountsErr != ''">{{linkedSocialAccountsErr}}</span>
+                <div ng-repeat="socialAccount in linkedSocialAccounts" style="padding-top:12px">
+                    <a class="social-link" href="{{socialAccount.profileUrl}}" target="_blank">
+                        <i class="social-icon icon_{{socialAccount.provider}}"></i>{{socialAccount.displayName}}
+                    </a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row permission" style="margin-top: 20px">
+            <div class="col-md-3 account-label">Permissions :</div>
+            <div class="col-md-9 account-info">
+                <a ng-click="openPermissionApp();">Apps</a> <br><br>
+                <a ng-click="openPermissionSources();">Sources & Groups</a>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-3 account-label">Enphase :</div>
+            <div class="col-md-9 account-info"><a href="{{enphaseURL}}" target="_blank">{{currentUser.enphaseUserId == null ? 'Create Access' : 'Access Granted'}}</div>
+        </div>
+    </div>
+</div>
+<!-- End of users view panel -->
+
+<!-- Start of data sources permission view panel -->
+
+<div id="permission-sources-view" class="panel users-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Team Member Groups & Sources Permissions</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="returnViewUser();"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="section search-section">
+            <input type='text' placeholder="Search"/>
+            <span class="icon bv-find"></span>
+        </div>
+        <div class="action-box">
+            <p class="comment">Manage data sources that will be shared at current team member.
+                Make each team member unique by editing data sources.</p>
+        </div>
+        <div class="tree-control" m-custom-scrollbar="">
+            <treecontrol class="datasource-tree user-tree" tree-model="treedata" order-by="name" on-selection="setExpanded(node)" expanded-nodes="expandedNodes">
+                <div class="node-name" ng-mouseover="node.onhover = true;" ng-mouseleave="node.onhover = false;">
+                    <span ng-class="{'dimmed': node.visible==false, 'node_disabled': node.disable, 'node_activated': node.active}">{{node.name}}</span>
+                    <div class="pull-right actions" ng-class="node.visible ? 'activated' : 'deactivated'">
+                        <span class="glyphicon" ng-show="node.onhover" ng-click="activateDataSource($event, node)" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                        <span class="glyphicon" ng-show="!node.onhover" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                    </div>
+                </div>
+            </treecontrol>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- End of data sources permission view panel -->
+
+<!-- Start of users app view panel -->
+<div id="permission-app-view" class="panel users-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Edit Apps Permissions</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="returnViewUser();"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="panel-body">
+            <ul class="app-list">
+                <li ng-repeat="app in editUser.apps" ng-mouseover="app.onhover = true;" ng-mouseleave="app.onhover = false;">
+                    <i class="glyphicon glyphicon-home favorite-app" ng-show="checkFavorite(app.name)"></i>
+                    <span ng-click="setUserDefaultApp(app.name);" class="icon-app" ng-class="app.class"></span>
+                    <a ng-click="setUserDefaultApp(app.name);">{{app.name}}</a>
+                    <i ng-click="activePermissionApp($event, app.name, app.visible);" class="glyphicon" ng-show="app.onhover" ng-class="app.visible ? 'glyphicon-remove-circle' : 'custom-puls-icon'"></i>
+                    <i class="glyphicon" ng-show="!app.onhover" ng-class="app.visible ? 'glyphicon-eye-open' : ''"></i>
+                </li>
+            </ul>
+            <br>
+            <span class="comment">Click an App's name to set this user's default BrighterLink page.</span>
+
+            <button style="margin-left:43%;margin-top:30px;" ng-click="commitEditUser(editUser._id, editUserForm);" class="action-btn btn-ok">Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- End of users app view panel -->
+
+<!-- Start of users edit panel -->
+<div id="user-edit" class="panel users-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Edit Team Member Details</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="returnViewUser();"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="ajax_loading_panel" ng-show="ajaxLoading"></div>
+        </div>
+        <form name="editUserForm" class="form-horizontal" ng-submit="commitEditUser(editUser._id, editUserForm)" novalidate="novalidate" m-custom-scrollbar="">
+            <div class="form-group account-action" ng-class="{'has-error': editUserForm.editUserRole.$invalid && (editUserForm.editUserRole.$dirty || submitted)}">
+                <div class="col-md-3 text-center">
+                    <a href="#" class="image-change">
+                        <img ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png" alt="" class="img-responsive" />
+                        <div class="image-chLabel">
+                            <p>change logo</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" ng-model="editUser.name" name="editUserRole" id="editUserRole" class="form-control" ng-full-name required/>
+                    <span class="help-block" ng-show="editUserForm.editUserRole.$error.fullname && (editUserForm.editUserRole.$dirty || submitted)">Please input a valid user name.</span>
+                    <span class="help-block" ng-show="editUserForm.editUserRole.$error.required && (editUserForm.editUserRole.$dirty || submitted)">Please input a user name.</span>
+                </div>
+            </div>
+            <div class="account-infobox">
+                <div class="form-group" ng-show="isBrighterViewManager || isAdmin">
+                    <label class="col-md-3 account-label control-label">Account :</label>
+                    <div class="col-md-9 account-info">
+                        <p>{{editUser.accountName}}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Role :</label>
+                    <div class="col-md-9 account-info">
+                        <p>{{editUser.role}}</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editUserForm.editUserphone.$invalid && (editUserForm.editUserphone.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Contact phone :</label>
+                    <div class="col-md-9">
+                        <input type="text" ng-model="editUser.phone" name="editUserphone" id="editUserphone" placeholder="Example: 1-800-275-2273" class="form-control" ng-phone-number/>
+                        <span class="help-block" ng-show="editUserForm.editUserphone.$error.phonenumber && (editUserForm.editUserphone.$dirty || submitted)">Please input valid a phone number ( ex: 1-800-275-2273).</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': editUserForm.editUseremail.$invalid && (editUserForm.editUseremail.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Email :</label>
+                    <div class="col-md-9">
+                        <input type="text" ng-model="editUser.email" name="editUseremail" id="editUseremail" placeholder="john.perry@brightergy.com" class="form-control" required ng-rfc-email/>
+                        <span class="help-block" ng-show="(!editUserForm.editUseremail.$error.required && editUserForm.editUseremail.$error.rfcEmail) && (editUserForm.editUseremail.$dirty || submitted)">Please input a valid email address.</span>
+                        <span class="help-block" ng-show="editUserForm.editUseremail.$error.required && (editUserForm.editUseremail.$dirty || submitted)">Please input an email address.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Linked accounts :</label>
+                    <div class="col-md-9 account-info">
+                        <!--<div class="row" style="margin-bottom: 20px;">
+                            <a href="{{editUser.sfdcContactURL}}" target="_blank"><i class="bv-sales-force icon" style="margin-top: -5px; margin-right: 20px;"></i>SalesForce.com/users/TLanister</a>
+                        </div>-->
+                        <!-- <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-9">
+                                <a class="social-link" href="#"><i class="social-icon icon_twitter"></i>@TLanister</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="btn btn-bv-default pull-right" href="#" style="margin-top: -10px; padding: 5px 15px;">Unlink</a>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-9">
+                                <a class="social-link" href="#"><i class="social-icon icon_facebook"></i>@TLanister</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="btn btn-bv-default pull-right" href="#" style="margin-top: -10px; padding: 5px 15px;">Unlink</a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><div class="line-bar"></div></div>
+                <div class="col-md-6">
+                    <button type="submit" class="action-btn btn-ok">Update Member</button>
+                    <button type="button" class="action-btn btn-cancel" ng-click="returnViewUser();">Cancel</button>
+                </div>
+                <div class="col-md-3"><div class="line-bar"></div></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End of users edit panel -->
+
+<!-- Start of users add panel -->
+<div id="user-add" class="panel users-panel">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Add Team Member</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="activeAccount ? goAccountSection() : openListUser();"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="ajax_loading_panel" ng-show="ajaxLoading"></div>
+        </div>
+        <form name="addUserForm" class="form-horizontal" ng-submit="commitAddUser(addUserForm)" novalidate="novalidate" m-custom-scrollbar="">
+            <div class="form-group account-action" ng-class="{'has-error': addUserForm.addUserName.$invalid && (addUserForm.addUserName.$dirty || submitted)}">
+                <div class="col-md-3 text-center">
+                    <a href="#" class="image-change">
+                        <img ng-src="{{baseCDNUrl}}/assets/img/mm-picture.png" alt="" class="img-responsive" />
+                        <div class="image-chLabel">
+                            <p>add logo</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <input type="text" ng-model="addUser_name" id="addUserName" name="addUserName" placeholder="Example: John snow" class="form-control" ng-full-name required/>
+                    <span class="help-block" ng-show="addUserForm.addUserName.$error.fullname && (addUserForm.addUserName.$dirty || submitted)">Please input a valid user name.</span>
+                    <span class="help-block" ng-show="addUserForm.addUserName.$error.required && (addUserForm.addUserName.$dirty || submitted)">Please input a user name.</span>
+                </div>
+            </div>
+            <div class="account-infobox">
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Role :</label>
+                    <div class="col-md-9 account-info" ng-show="addUser.accountName != 'BrightergyPersonnel'">
+                        <select ng-model="addUser.role" id="addUserRole" name="addUserRole" ng-init="addUser.role='Admin'" class="form-control">
+                            <option value="Admin">Admin</option>
+                            <option value="TM">Team Member</option>
+                        </select>
+                    </div>
+                    <div class="col-md-9 account-info" ng-show="addUser.accountName == 'BrightergyPersonnel'">
+                        <p>BP</p>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="isBrighterViewManager || isAdmin" ng-class="{'has-error': addUserForm.addAccountIds.$invalid && (addUserForm.addAccountIds.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Account :</label>
+                    <div class="col-md-9 account-info">
+                        <ui-select ng-model="addUser.addAccountIds" theme="bootstrap" id="addAccountIds" name="addAccountIds" ng-change="changeAccountId(addUser.addAccountIds)" required>
+                            <ui-select-match placeholder="Select account ...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="bvaccount._id as bvaccount in BVAccounts | filter: $select.search">
+                              {{bvaccount.name}}
+                            </ui-select-choices>
+                        </ui-select>
+                        <span class="help-block" ng-show="addUserForm.addAccountIds.$error.required && (addUserForm.addAccountIds.$dirty || submitted)">Please select an account.</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': addUserForm.addUserPhone.$invalid && (addUserForm.addUserPhone.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Contact phone :</label>
+                    <div class="col-md-9">
+                        <input type="text" ng-model="addUser.phone" id="addUserPhone" name="addUserPhone" placeholder="Example: 1-800-275-2273" class="form-control" ng-phone-number/>
+                        <span class="help-block" ng-show="addUserForm.addUserPhone.$error.phonenumber && (addUserForm.addUserPhone.$dirty || submitted)">Please input valid phone number ( ex: 1-800-275-2273).</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': addUserForm.addUserEmail.$invalid && (addUserForm.addUserEmail.$dirty || submitted)}">
+                    <label class="col-md-3 account-label control-label">Email :</label>
+                    <div class="col-md-9">
+                        <input type="text" ng-model="addUser.email" id="addUserEmail" name="addUserEmail" placeholder="john.perry@brightergy.com" class="form-control" required ng-rfc-email/>
+                        <span class="help-block" ng-show="(!addUserForm.addUserEmail.$error.required && addUserForm.addUserEmail.$error.rfcEmail) && (addUserForm.addUserEmail.$dirty || submitted)">Please input a valid email address.</span>
+                        <span class="help-block" ng-show="addUserForm.addUserEmail.$error.required && (addUserForm.addUserEmail.$dirty || submitted)">Please input an email address.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 account-label control-label">Password :</label>
+                    <div class="col-md-9 account-info">
+                        <p>Password will be sent your Team Member.</p>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="addUser.accountName != 'BrightergyPersonnel' && (currentUser.role == 'BP' || currentUser.role == 'Admin')">
+                <!--<div class="section search-section">
+                    <input type='text' placeholder="Search"/>
+                    <span class="icon bv-find"></span>
+                </di>-->
+                <div class="action-box">
+                    <p class="comment">Manage data sources that will be shared at current team member.
+                        Make each team member unique by editing data sources.</p>
+                </div>
+                <div class="tree-control" m-custom-scrollbar="">
+                    <treecontrol class="datasource-tree user-tree" tree-model="treedata" order-by="name" on-selection="setExpanded(node)" expanded-nodes="expandedNodes">
+                        <div class="node-name" ng-mouseover="node.onhover = true;" ng-mouseleave="node.onhover = false;">
+                            <span ng-class="{'dimmed': node.visible==false, 'node_disabled': node.disable, 'node_activated': node.active}">{{node.name}}</span>
+                            <div class="pull-right actions" ng-class="node.visible ? 'activated' : 'deactivated'">
+                                <span class="glyphicon" ng-show="node.onhover" ng-click="activateDataSource($event, node)" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                                <span class="glyphicon" ng-show="!node.onhover" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                            </div>
+                        </div>
+                    </treecontrol>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"><div class="line-bar"></div></div>
+                <div class="col-md-6">
+                    <button type="submit" class="action-btn btn-ok">Create Member</button>
+                    <button type="button" class="action-btn btn-cancel" ng-click="openListUser();">Cancel</button>
+                </div>
+                <div class="col-md-3"><div class="line-bar"></div></div>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- End of users add panel -->
+</div>

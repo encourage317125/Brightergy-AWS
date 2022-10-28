@@ -1,0 +1,152 @@
+html(lang="en", id="ng-app", ng-app="blApp.presentation", style="background-color:#cecece;", xmlns:ng="http://angularjs.org")
+    head
+        meta(charset='utf8')
+        title BrighterLink Presentation
+        != CDN('/assets/img/favicon.ico')
+        != CDN('/assets/css/general.min.css')
+        != CDN('/assets/css/animate.min.css')
+        != CDN('/bl-bv-presentation/assets/css/presentation.min.css')
+
+        != CDN('/lib/angular-ui/angular-ui.css')
+        != CDN('/lib/jquery-ui/jquery-ui.css')
+        != CDN('/lib/notyfy/jquery.notyfy.css')
+        != CDN('/lib/notyfy/boo-notyfy.css')
+        != CDN('/lib/notyfy/themes/boo-notyfylight.css')
+
+        script.
+            window.config = "#{(new Buffer(JSON.stringify(config))).toString('base64')}"
+        script(type="text/javascript").
+            var renderLoadWidgets=!{JSON.stringify(loadWidgets)};
+    body(ng-controller="PresentationController", class="ng-cloak", ng-init="init(#{JSON.stringify(presentation)})", ng-cloak)
+        if presentation == null
+            div.main
+                div.header_pt
+                    div.header_mar(style="background-color: rgb(242, 103, 42);")
+                        div.pt_logo
+                            img(ng-src="{{presentationDetails.Logo}}", style="height:85%")
+                        div.header-section
+                            div.pt_title
+                                div
+                                    div.pn Presentation Not Found
+                        div.pt_infomation
+                            div.pt_wrapper
+                                div.pt_description
+                                    div.pt_info_line
+                                        div.pt_info_title 
+                                        div.pt_info_value 
+                                        div.clearfix
+                                div.pt_sub_logo
+                                    != CDN("/bl-bv-presentation/assets/img/logo-brightergy.png")
+                                div.clearfix
+                        div.clearfix
+                div.presentationContainer
+                    div.presentation
+                        div#ga_design_stage.presentationBody
+                div.presentationFooter
+        else
+            div.main
+                div.header_pt
+                    div(class="header_mar", ng-style="{'background' : #{presentation.parameters.backgroundImage}, 'background-color' : '#' + '#{presentation.parameters.backgroundColor}'}")
+                        div(class="pt_logo", ng-show="presentationDetails.Logo != null && presentationDetails.Logo != ''")
+                            img(ng-src="{{presentationDetails.Logo}}", style="height:85%")
+                        div(class="header-section")
+                            div(class="pt_title", ng-show="tempPresentationDetails.titleView")
+                                div
+                                    div(class="pn", ng-style="{'font-size' : headerFontSize + 'em', 'color' : '#' + presentationDetails.parameters.headerFont.color, 'font-family' : presentationDetails.parameters.headerFont.name}") {{presentationDetails.name}}
+                        div.pt_infomation
+                            div.pt_wrapper
+                                div(class="pt_description", ng-style="{'font-size' : tempPresentationDetails.parameters.subHeaderFont.size + 'em', 'color' : '#' + tempPresentationDetails.parameters.subHeaderFont.color, 'font-family' : tempPresentationDetails.parameters.subHeaderFont.name}")
+                                    div(class="pt_info_line", ng-show="tempPresentationDetails.systemSizeView")
+                                        div.pt_info_title System Size:
+                                        div.pt_info_value {{systemSize}}
+                                        div.clearfix
+                                    div(class="pt_info_line", ng-show="tempPresentationDetails.generatingSinceView")
+                                        div.pt_info_title Generating Since:
+                                        div.pt_info_value {{generatingSinceDate}}
+                                        div.clearfix
+                                    div(class="pt_info_line", ng-show="tempPresentationDetails.lastUpdatedView")
+                                        div.pt_info_title Last Updated:
+                                        div.pt_info_value {{lastUpdatedDate}}
+                                        div.clearfix
+                                div(class="pt_sub_logo", ng-show="presentationDetails.subLogo")
+                                    img(ng-src="{{presentationDetails.subLogo}}")
+                                div(class="pt_sub_logo", ng-hide="presentationDetails.subLogo")
+                                    != CDN("/bl-bv-presentation/assets/img/logo-brightergy.png")
+                                div.clearfix
+                        div.clearfix
+                div.presentationContainer
+                    div.presentation
+                        div(class="presentationBody", id="ga_design_stage")
+                            div(ng-repeat="widgetParam in widgets", id="field_{{$index}}", class="component_{{widgetParam._id}} pt_components widget",
+                                data-widgetId="{{widgetParam._id}}", data-startPoint="{{widgetParam.parameters.startDate}}",
+                                data-duration="{{widgetParam.parameters.duration}}", data-transitionIn="{{widgetParam.parameters.transitionIn}}",
+                                data-transitionOut="{{widgetParam.parameters.transitionOut}}",
+                                ng-style="{'width' : widgetParam.parameters.widthPercent + '%', 'height' : widgetParam.parameters.heightPercent + '%',\
+                                           'left' : widgetParam.parameters.left + '%', 'top' : widgetParam.parameters.top + '%', 'z-index' :  $index}",
+                                template="widgetParam.parameters.widgetIndex", ng-include="widgetParam.templateName")
+                div.presentationFooter
+            div.loadingData
+                != CDN("/bl-bv-presentation/assets/img/loading.gif")
+            != CDN('/lib/bugreport/bug.report.js')
+            != CDN('/lib/jquery/jquery.js')
+            != CDN('/lib/jquery/jquery.scalabletext.js')
+            script(src='/socket.io/socket.io.js')
+            != CDN('/lib/jquery-ui/jquery-ui.js')
+            != CDN('/lib/bootstrap/js/bootstrap.min.js')
+            != CDN('/lib/angular/angular.min.js')
+            != CDN('/lib/angular/angular-route.min.js')
+            != CDN('/lib/angular/angular-sanitize.js')
+            != CDN('/lib/angular-ui/angular-ui.js')
+            != CDN('/lib/angular-socket-io/socket.min.js')
+            != CDN('/lib/highcharts/highcharts.js')
+            != CDN('/lib/angular-highchart/highcharts-ng.min.js')
+            != CDN('/lib/notyfy/jquery.notyfy.js')
+
+            != CDN('/lib/videogular/videogular.js')
+            != CDN('/lib/videogular/vg-controls.js')
+            != CDN('/lib/videogular/youtube.js')
+            
+            if (config.env == 'production')
+                script(src='/dist/app-presentation.min.aebbc9f6.js')
+                script(src='/dist/tmpl-presentation.min.ea28f.js')
+            else
+                script(src='/components/component.js')
+                script(src='/components/services/presentation.js')
+                script(src='/components/services/account.js')
+                script(src='/components/services/user.js')
+                script(src='/components/services/project.js')
+                script(src='/components/services/asset.js')
+                script(src='/components/services/editor.js')
+                script(src='/components/services/tag.js')
+                script(src='/components/services/widget.js')
+                script(src='/components/services/toggle.js')
+                script(src='/components/services/util.js')
+                script(src='/components/services/notify.js')
+                script(src='/components/services/interceptors.js')
+                script(src='/components/services/tagFactory.js')
+                script(src='/components/services/group.js')
+
+                script(src='/components/directives/company-panel-uploader.js')
+                script(src='/components/directives/formula.js')
+                script(src='/components/directives/tab-slide-out.js')
+                script(src='/components/directives/close-component-dialog.js')
+                script(src='/components/directives/delete-confirm-dialog.js')
+                script(src='/components/directives/custom-scrollbar.js')
+                script(src='/components/directives/validate-compare.js')
+
+                script(src='/components/company-panel/js/directives/asset.js')
+                script(src='/components/company-panel/js/controllers/company.js')
+                script(src='/components/company-panel/js/controllers/company-accounts.js')
+                script(src='/components/company-panel/js/controllers/company-assets.js')
+                script(src='/components/company-panel/js/controllers/company-users.js')
+                script(src='/components/company-panel/js/controllers/company-sources.js')
+                script(src='/components/navigation-bar/js/controllers/navbar.js')
+                script(src='/components/navigation-bar/js/controllers/user-profile.js')
+                script(src='/components/navigation-bar/js/controllers/upload-photo.js')
+                script(src='/components/navigation-bar/js/controllers/app-panel.js')
+
+                script(src='/bl-bv-presentation/js/app.js')
+                script(src='/bl-bv-presentation/js/services/presentation.js')
+                script(src='/bl-bv-presentation/js/directives/resizable.js')
+                script(src='/bl-bv-presentation/js/directives/fittext.js')
+                script(src='/bl-bv-presentation/js/controllers/presentation.js')

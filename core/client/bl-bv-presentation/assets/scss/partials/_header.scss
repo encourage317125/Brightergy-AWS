@@ -1,0 +1,19 @@
+/*----- index.html ------*/
+
+.header-section {
+  float: left;
+  height: 100%;
+  width: auto;
+  .pt_title {
+    display: table;
+    height: 100%;
+    > div {
+      display: table-cell;
+      vertical-align: middle;
+      float: none;
+    }
+    .pn {
+      float: none;
+    }
+  }
+}

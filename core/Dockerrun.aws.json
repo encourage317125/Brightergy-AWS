@@ -1,0 +1,19 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Authentication": {
+    "Bucket": "bldocker-cred",
+    "Key": ".dockercfg"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ],
+  "Volumes": [
+    {
+      "HostDirectory": "/var/app/current/",
+      "ContainerDirectory": "/var/app/"
+    }
+  ],
+  "Logging": "/var/log/nginx"
+}

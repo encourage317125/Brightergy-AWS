@@ -1,0 +1,28 @@
+<div class="horizontal-energy-block" ng-style="{'width' : widgetParam.parameters.widthPadding + '%', 'height' : widgetParam.parameters.heightPadding + '%', 'margin': 'auto'}">
+    <div class="energy-obj">
+        <div class="reduced-left" ng-style="{'background-color' : '#' + widgetParam.parameters.primaryColor.color}">
+            <div class="title" fittext="fittext" ng-style="{'font-size': widgetParam.parameters.energyTitleSize + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name}">{{widgetParam.parameters.headerFont.content}}</div>
+            <div class="avoid" fittext="fittext" ng-show="widgetParam.parameters.widgetEnergyCO2Kilograms" ng-style="{'font-size': widgetParam.parameters.energyPoundFont + 'em', 'color' : '#' + widgetParam.parameters.subHeaderFont.color, 'font-family' : widgetParam.parameters.subHeaderFont.name}">CO<sub>2</sub> Avoided : <br><span class="pound">{{widgetParam.parameters.co2AvoidedInPounds | number}} pounds</span></div>
+            <div class="emission" fittext="fittext" ng-show="widgetParam.parameters.widgetEnergyGreenhouseKilograms" ng-style="{'font-size': widgetParam.parameters.energyPoundFont + 'em', 'color' : '#' + widgetParam.parameters.subHeaderFont.color, 'font-family' : widgetParam.parameters.subHeaderFont.name}">Greenhouse Emissions : <br><span class="pound">{{widgetParam.parameters.greenhouseEmissionsInPounds | number}} pounds</span></div>
+        </div>
+        <div class="equal">
+          <div class="img-container centerer">
+            <div class="center"></div>
+            <img class="centered" ng-src="{{imgUrl}}equal.png" alt="" ng-style="{'background-color' : '#' + widgetParam.parameters.primaryColor.color}"/>
+          </div>
+        </div>
+        <div class="reduced-right" ng-style="{'background-color' : '#' + widgetParam.parameters.backgroundColor}">
+            <div class="img-part">
+                <div class="img-container centerer">
+                    <div class="center"></div>
+                    <img class="centered" ng-src="{{widgetParam.parameters.backgroundImage}}" alt=""/>
+                  </div>
+            </div>
+            <div class="text-part">
+                <div class="inverter-value" fittext="fittext" ng-style="{'font-size': widgetParam.parameters.energyInveterValue + 'em', 'color' : '#' + widgetParam.parameters.normal1Font.color, 'font-family' : widgetParam.parameters.normal1Font.name}">{{widgetParam.parameters.widgetEnergyParamBarrels | number}}</div>
+                <div class="two-line" fittext="fittext" ng-style="{'font-size': widgetParam.parameters.energyLineFont + 'em'}"><p>barrels</p><p>of oil</p></div>
+                <div class="inverter-name" fittext="fittext" ng-style="{'font-size': widgetParam.parameters.energyInveterName + 'em', 'color' : '#' + widgetParam.parameters.normal2Font.color, 'font-family' : widgetParam.parameters.normal2Font.name}">Unneeded</div>
+            </div>
+        </div>
+    </div>
+</div>

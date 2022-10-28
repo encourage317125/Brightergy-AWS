@@ -1,0 +1,185 @@
+#page-sidebar {
+    position: fixed;
+    z-index: $zindex-sidebar + 8;
+    top: 0;
+    left: 0;
+    height: 100%;
+    color: $color-sp-kpi;
+    a {
+        &:hover, &:focus {
+            text-decoration: none;
+        }
+    }
+    @include clearfix();
+}
+.qab-wrapper {
+    @include transition(all, 0.5s, ease-in-out);
+    width: $width-qab;
+    padding: 6px 2px 63px;
+    position: relative;
+    background: $brand-primary;
+    width: $width-qab;
+    height: 100%;
+    display: block;
+    float: left;
+    &:after {
+        position: absolute;
+        display: block;
+        content: ' ';
+        width: 5px;
+        height: 104px;
+        top: 60px;
+        right: 0px;
+        background: url(/dist/img/qab-bg.png) no-repeat;
+        background-position: 0;
+    }
+    .qab-nav {
+        & > li {
+            margin: 10px 0;
+            .with-icon {
+                margin: 0 auto;
+            }
+        }
+        & > li > a {
+            cursor: pointer;
+            padding: 5px 11px 4px;
+            text-align: center;
+            color: #fff;
+            &:hover, &:focus {
+                background: transparent;
+            }
+        }
+
+        &.top {
+            margin-top: 82px;
+        }
+        &.bottom {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            margin-left: -2px;
+        }
+    }
+    .qab-link {
+        border: 2px solid #fff;
+        border-radius: 4px;
+        font-size: 15px;
+        .icon {
+            font-size: 20px;
+        }
+        &.with-icon {
+            padding: 2px 0 0;
+            width: 30px;
+            height: 30px;;
+        }
+    }
+    #sp-toggle {
+        .icon.collapsed {
+            display: none;
+        }
+    }
+    & > .navbar-brand {
+        padding-left: 13px;
+        margin-bottom: 30px;
+        color: $color-small-header;
+        visibility: hidden;
+        &:hover, &:focus {
+            color: $color-small-header;
+        }
+    }
+}
+.navbar-brand {
+    color: $color-sp-kpi;
+    font-size: 27px;
+    &:hover, &:focus {
+        color: #fff;
+    }
+}
+.list-kpi-mini {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    color: $color-sp-kpi;
+    li {
+        display: block;
+        text-align: center;
+        padding: 13px 0;
+        cursor: pointer;
+        position: relative;
+        > span {
+            font-size: 1.8em;
+            font-family: $font-helvetica-bold;
+        }
+        b {
+            font-weight: 400;
+        }
+        small {
+            font-size: 50%;
+            line-height: .5em;
+            display: block;
+        }
+        .floating-panel.right {
+            left: 100%;
+            padding-left: 20px;
+            top: 50%;
+            margin-top: -24px;
+            text-align: left;
+        }
+    }
+}
+.sp-wrapper {
+    @include transition(all, 0.5s, ease-in-out);
+    background-color: $brand-secondary;
+    margin-left: $width-qab;
+    position: absolute;
+    width: $width-selection-panel;
+    height: 100%;
+    z-index: -1;
+    .sp-top {
+        padding: 4px 12px;
+        min-height: $height-topbar;
+        .sp-info {
+            color: $brand-primary;
+            margin: 18px 15px;
+        }
+    }
+    .sp-content {
+        padding: 10px 26px;
+    }
+    .sp-top-mobile {
+        display: none;
+        padding: 10px 15px;
+        min-height: 50px;
+        background-color: #ff7935;
+        .sp-info {
+            color: $brand-primary;
+            margin: 18px 15px;
+        }
+    }
+}
+#wrapper.collapsed {
+    #page-content-wrapper {
+        margin-left: $width-qab;
+    }
+
+    .qab-wrapper {
+        background: $brand-secondary;
+        & > .navbar-brand {
+            visibility: visible;
+        }
+        &:after {
+            right: -5px;
+            background-position: -5px 0;
+        }
+        #sp-toggle {
+            @include transform(rotate(180deg));
+        }
+        .list-kpi-mini {
+            display: block;
+        }
+    }
+    .sp-wrapper {
+        margin-left: -$width-selection-panel;
+    }
+}

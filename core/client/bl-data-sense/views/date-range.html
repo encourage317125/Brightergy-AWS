@@ -1,0 +1,111 @@
+<div class="daterange-panel-container" ng-show="currentDashboard!=null">
+	<a class="bl-daterange-picker pull-right">
+		<p class="bl-daterange-picker-real-time" ng-show="currentDashboard.isRealTimeDateRange">
+			<span>
+				Updating in Real-Time...
+			</span>
+		</p>
+		<p class="bl-daterange-picker-main-range">
+			<span ng-bind="daterangeStartDate.format('MMM DD YYYY')"></span>
+			-
+			<span ng-bind="daterangeEndDate.format('MMM DD YYYY')"></span>
+		</p>
+		<p class="bl-daterange-picker-compare-range" ng-show="isCompareTo">Compare to:
+			<span ng-bind="daterangeCompareStartDate.format('MMM DD YYYY')"></span>
+			-
+			<span ng-bind="daterangeCompareEndDate.format('MMM DD YYYY')"></span>
+		</p>
+	</a>
+	<div class="panel panel-default bl-daterange-panel fading-in fading-out">
+		<div class="panel-body">
+			<div class="bl-daterange-widget-controls">
+				<button class="btn btn-default btn-bl-daterange-widget-prev">←</button>
+				<button class="btn btn-default btn-bl-daterange-widget-next">→</button>
+			</div>
+			<div id="bl-daterange-widget">
+			</div>
+			<div class="bl-daterange-compare">
+				<div class="section-daterange" style="border-bottom: 1px solid #ebebeb; margin-bottom: 10px;">
+					<div>
+						<div class="bl-daterange-label">Date Range</div>
+						<div class="bl-daterange-select-compare-mode">
+							<select class="form-control" ng-model="dateRangeType" ng-change="changeDateRangeShortcut()">
+								<option ng-repeat="type in rangeShortcuts" value={{type.value}}>{{type.display}}</option>
+							</select>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div>
+						<div class="input-daterange" id="bl-daterange-datepicker">
+							<input type="text" id="bl-daterange-start-date" ng-model="tmpStartDate" class="input-sm form-control bl-daterange-input" placeholder="MM/DD/YY">
+							<div class="bl-daterange-spliter-dash"></div>
+							<input type="text" id="bl-daterange-end-date" ng-model="tmpEndDate" class="input-sm form-control bl-daterange-input" placeholder="MM/DD/YY">
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix">
+						<label class="bl-daterange-label">
+							<span class="custom-checkbox">
+								<input type="checkbox" id="bl-daterange-chk-subday" ng-model="isSubDaySelected">
+							</span>
+							Sub-Day options
+						</label>
+						<div class="bl-daterange-select-subday">
+							<select class="form-control" ng-model="subDay" ng-change="" ng-disabled="!isSubDaySelected">
+								<option ng-repeat="subday in subDayOptions" value={{subday.value}}>{{subday.display}}</option>
+							</select>
+						</div>
+					</div>
+					<div class="clearfix">
+						<label class="bl-daterange-label">
+							<span class="custom-checkbox">
+								<input type="checkbox" id="bl-daterange-chk-real-time" ng-model="isRealTime">
+							</span>
+							Maintain Real-Time
+						</label>
+					</div>
+				</div>
+				<div class="section-compare" style="border-bottom: 1px solid #ebebeb; margin-bottom: 10px;">
+					<div>
+						<label class="bl-daterange-label">
+							<span class="custom-checkbox">
+								<input type="checkbox" id="bl-daterange-chk-compare-to" ng-change="changeCompareRange()" ng-model="isCompareToSaved">
+							</span>
+							Compare to:
+						</label>
+						<div class="bl-daterange-select-compare-mode">
+							<select class="form-control" ng-model="compareRangeType" ng-change="changeCompareRange()" ng-disabled="!isCompareToSaved">
+								<option ng-repeat="type in rangeCompareShortcuts" value={{type.value}}>{{type.display}}</option>
+							</select>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix">
+						<div class="input-daterange" id="bl-daterange-datepicker-compare" ng-show="isCompareToSaved">
+							<input type="text" id="bl-daterange-compare-start-date" ng-model="tmpCompareStartDate" class="input-sm form-control bl-daterange-input" placeholder="MM/DD/YY">
+							<div class="bl-daterange-spliter-dash"></div>
+							<input type="text" id="bl-daterange-compare-end-date" ng-model="tmpCompareEndDate" class="input-sm form-control bl-daterange-input" placeholder="MM/DD/YY">
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="section-extra" style="border-bottom: 1px solid #ebebeb; margin-bottom: 10px;">
+					<div class="clearfix">
+						<label class="bl-daterange-label">
+							<span class="custom-checkbox">
+								<input type="checkbox" id="bl-daterange-chk-viewer-tz" ng-model="isViewerTime">
+							</span>
+							Show in your local time zone (UTC{{tzOffsetString}})
+						</label>
+					</div>
+				</div>
+				<div class="pull-right">
+					<a class="btn btn-default btn-bl-daterange-blue" ng-click="changeDateRange()">Apply</a>
+					<a class="btn btn-default btn-bl-daterange-blue" ng-click="closeDateRangePane()">Cancel</a>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

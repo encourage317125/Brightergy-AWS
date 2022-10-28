@@ -1,0 +1,123 @@
+{
+    "port": "3000",
+    "env": "test",
+    "instance": "blmean_local",
+    "apidomain": "http://localhost:3000",
+    "domain": "http://localhost:3000",
+    "platformdomain": "http://localhost:3000",
+    "db": {
+        "connection": "mongodb://127.0.0.1:27017/BrighterLink_test"
+    },
+    "redis": {
+        "port": "6379",
+        "host": "127.0.0.1",
+        "compressedkey": "_compressed_"
+    },
+    "utilityprovidersgeneralwords": [
+        "company",
+        "inc",
+        "and",
+        "."
+    ],
+    "replacements": {
+        "+": "plus"
+    },
+    "cookie": {
+        "secure": false
+    },
+    "session": {
+        "key": "test",
+        "cookiename": "test",
+        "cookiedomain": "test"
+    },
+    "email": {
+        "username": "test",
+        "password": "test",
+        "recipients": {
+            "erroroccured": "test",
+            "newutilityprovider": "test"
+        },
+        "onerrorsendemail": false
+    },
+    "salesforce": {
+        "auth": {
+            "url": "test",
+            "username": "test",
+            "password": "test",
+            "apikey": "test"
+        },
+        "loaddatacrontime": "0 */20 * * * *",
+        "contacturl": "/sfdccontacts",
+        "accountsurl": "/sfdcaccounts",
+        "accountupdateurl": "/sfdcaccountupdate",
+        "projectsurl": "/sfdcprojects"
+    },
+    "aws": {
+        "auth": {
+            "accesskeyid": "test",
+            "secretaccesskey": "test",
+            "region": "us-west-2"
+        },
+        "route53": {
+            "createcname": false,
+            "hostedzoneid": "test",
+            "resourcerecordsetbasename": ".brightergy.com.",
+            "resourcerecordvalue": "brighterlink.brightergy.com."
+        },
+        "assets": {
+            "generalassetskeyprefix": "generalAssets",
+            "accountassetskeyprefix": "accountAssets",
+            "presentationassetskeyprefix": "presentationAssets",
+            "dashboardassetskeyprefix": "dashboardAssets",
+            "userassetskeyprefix": "userAssets",
+            "userprofileassetskeyprefix": "userProfileAssets"
+        },
+        "kinesis": {
+            "streamname": "DevicesDataStream",
+            "failtimeoutseconds": 20,
+            "readperiodmilliseconds": 1000,
+            "shardsparallelread": 5
+        }
+    },
+    "tempoiq": {
+        "apikey": "test",
+        "apisecret": "test",
+        "host": "test",
+        "parallelprocessing": 20
+    },
+    "enphase": {
+        "apikey": "test",
+        "authurl": "https://enlighten.enphaseenergy.com/app_user_auth/new?app_id=1409611230371",
+        "apiurl": "https://api.enphaseenergy.com/api/v2"
+    },
+    "smartystreets": {
+        "authid": "test",
+        "authtoken": "test",
+        "apiurl": "https://api.smartystreets.com/street-address"
+    },
+    "cdn": {
+        "hostname": "test",
+        "domain": "cdn.brightergy.com",
+        "bucket": "ressurfassets",
+        "env": "development"
+    },
+    "api": {
+        "host": "api.brightergy.com",
+        "version": "v1",
+        "secure": true
+    },
+    "oneall": {
+        "publickey": "test",
+        "privatekey": "test",
+        "apiurl": "https://brightergy.api.oneall.com",
+        "usertokencryptokey": "qwerty"
+    },
+    "time": {
+        "profiling": {
+            "enable": "false"
+        }
+    },
+    "assurf": {
+        "compression": "false"
+    }
+}

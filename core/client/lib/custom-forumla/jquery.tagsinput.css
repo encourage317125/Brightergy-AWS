@@ -1,0 +1,143 @@
+div.tagsinput { border:1px solid #CCC; background: #FFF; padding:5px; height:120px; }
+div.tagsinput span.tag { position: relative; cursor: pointer; border: 2px solid #c7edfd; -moz-border-radius:2px; -webkit-border-radius:2px; display: block; float: left; padding: 5px; text-decoration:none; background: #fff; color: #333; margin-right: 5px; margin-bottom:5px;font-family: helvetica;  font-size:13px;}
+div.tagsinput span.tag a { font-weight: bold; color: #82ad2b; text-decoration:none; font-size: 11px;  } 
+#sub-navigation-companyPanel .tab-pane div.tagsinput input { width:30px !important; margin:0px; font-family: helvetica; font-size: 13px; border:1px solid transparent; padding:5px; background: transparent; color: #000; outline:0px;  margin-right:5px; margin-bottom:5px; }
+div.tagsinput div { display:block; float: left; } 
+.tags_clear { clear: both; width: 100%; height: 0px; }
+.not_valid {background: #FBD8DB !important; color: #90111A !important;}
+div.tagsinput div.addtag { 
+	position: relative;
+}
+div.tagsinput span.special {
+	border: 0;
+	padding: 0; 
+}
+div.tagsinput span.special span.metric, div.tagsinput span.clock{
+	position: relative; 
+	cursor: pointer; 
+	border: 2px solid #c7edfd; 
+	display: block; 
+	float: left; 
+	padding: 5px; 
+	text-decoration:none; 
+	background: #fff; 
+	color: #333; 
+	margin-right: 5px; 
+	font-family: helvetica;  font-size:13px;
+}
+div.tagsinput span.special span.metric {
+	font-size: 12px;
+}
+
+div.tagsinput span.tag span.clock{
+	margin-right: 0px; 
+}
+
+div.tagsinput span.clock img{
+	width: 14px; 
+	font-size: 14px;
+}
+
+div.tagsinput div.addMetric {
+	position: relative;
+	cursor: pointer; 
+	padding: 6px; 
+	text-decoration:none; 
+	background: #bce0ed; 
+	color: #3391b4; 
+	margin-right: 5px; 
+	margin-bottom:5px;
+	font-family: helvetica;  
+	font-size:13px;
+	border-radius: 3px;
+}
+div.tagsinput div.metric-block { 
+	position: absolute;
+	display: none;
+	width: 250px;
+	top: 30px;
+	background-color: #fff;
+	background-color: #fff;
+	border: 1px solid #E3E2E2;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	padding: 20px 20px 10px;
+	height: 200px;
+	overflow: auto;
+	z-index: 1;
+	right: 0;
+}
+div.metric-block ul{ 
+	padding: 0;
+	margin: 0;
+}
+div.metric-block ul li{ 
+    list-style-type: none;
+    padding: 10px 0;
+	border-bottom: 1px solid #ccc;
+	color: #333;
+	cursor: pointer;
+}
+div.metric-block ul li.last{ 
+	border-bottom: 0; 
+}
+div.tagsinput span.tag .remove-metric {
+	display: none !important;
+	position: absolute;
+	right: 2px;
+	top: 0;
+	z-index: 1;
+}
+div.tagsinput span.tag:hover .remove-metric {
+	display: inline !important;
+}
+
+div.tagsinput div.clock-block {
+	display: none;
+	position: absolute;
+	width: 330px;
+	right: -100px;
+	top: 27px;
+	background-color: #fff;
+	background-color: #fff;
+	border: 1px solid #E3E2E2;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 3px;
+	padding: 15px;
+	z-index: 1;
+}
+div.tagsinput div.clock-block .trailing_value{
+	width: 60px;
+	margin: 0 10px;
+}
+div.tagsinput div.clock-block .interval_type{
+	width: 115px;
+	display: inline-block;
+	margin-bottom: 0;
+	height: 30px;
+}
+div.tagsinput div.clock-block a{
+	padding: 5px 9px;
+	margin-left: 5px;
+	border-radius: 3px;
+	border: 1px solid #eee;
+	color: #3391b4;
+	font-size: 15px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+div.tagsinput div.clock-block {
+	font-size: 16px;
+	vertical-align: middle;
+}
+div.formula-footer {
+	padding: 10px;
+	background-color: #f7f7f7;
+}
+div.formula-footer span{
+	margin-right: 10px;
+}
+div.formula-footer input{
+	margin-right: 10px;
+	width: 100px;
+}

@@ -1,0 +1,22 @@
+<div id="team-members-wrapper" class="ppanel-section">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="icon icon-ui-info"></i>
+            <h3 class="panel-title">
+                Team members <i>({{availableUsers.length}})</i>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="member-section team-member-list" ng-show="selectedTeamPanel == 'list'">
+                <team-member-list></team-member-list>
+            </div>
+            <div class="member-section team-member-new" ng-show="selectedTeamPanel == 'new'">
+                <team-member-new></team-member-new>
+            </div>
+            <div class="member-section team-member-view" ng-show="selectedTeamPanel == 'view'">
+                <team-member-view></team-member-view>
+            </div>
+        </div>
+    </div>
+</div>
+<del-tm-modal ng-hide="!showConfirmModal"></del-tm-modal>

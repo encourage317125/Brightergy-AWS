@@ -1,0 +1,66 @@
+.sharePanel {
+  right: -407px;
+  background-color: $color_white;
+  border: 1px solid $color_border_grey_light;
+  z-index: 999;
+  height: 341px;
+  .sharePanel-title {
+    margin-bottom: 20px;
+    h3 {
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+  .share-label {
+    color: $color_grey_light;
+    text-align: right;
+    font-size: 13px;
+    padding-top: 5px;
+  }
+  .share-info {
+    input {
+      background: $color_white_light;
+      border-radius: 2px;
+      padding: 7px 8px;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+    textarea {
+      background: $color_white_light;
+      width: 100%;
+      max-width: 100%;
+      height: 100px;
+      max-height: 100px;
+    }
+    a {
+      display: inline-block;
+      border-radius: 2px;
+      border: 1px solid;
+      border-color: #E3E2E2;
+      background-color: $color_white;
+      list-style-type: none;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 9px;
+      cursor: pointer;
+      color: $color_bv_blue_2;
+      @include FontFamily_BentonSans();
+      position: relative;
+      text-decoration: none;
+      width: 86px;
+      text-align: center;
+      &:hover{
+        background: #bce0ed;
+        border: 1px solid #3788be;
+      }
+    }
+    span {
+      color: $color_grey_dark;
+      font-size: 12px;
+      display: block;
+      &.error {
+        color: $color_red;
+      }
+    }
+  }
+}

@@ -1,0 +1,436 @@
+<div class="content-warning" ng-show="selectedDashboard==null && currentUser && dashboards">
+    <h4>Please create a new dashboard!</h4>
+</div>
+<div class="analyze-canvas" ng-controller="CanvasController" ng-hide="selectedDashboard==null">
+    <div style="position:relative" id="layout-dialog">
+        <div ng-hide="!layoutPanelShown" class="layout-panel">
+            <div class="panel panel-default bl-layout-option-panel">
+                <div class="panel-body">
+                    <!--<div class="icon-close" ng-click="layoutPanelShown = false">X</div>-->
+                    <div class="bl-layout-option-panel-title">Layout options</div>
+                    <hr />
+                    <!--{{layoutStyle}}-->
+                    <div class="row">
+                        <div class="col-xs-4 active" ng-click="chooseLayout(1)">
+                            <div class="bl-layout-icon lay_1 clearfix">
+                                <div class="col-md-12">100%</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4" ng-click="chooseLayout(2)">
+                            <div class="bl-layout-icon row lay_2 clearfix">
+                                <div class="col-md-6">50%</div>
+                                <div class="col-md-6">50%</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4" ng-click="chooseLayout(3)">
+                            <div class="bl-layout-icon lay_3 clearfix">
+                                <div class="col-md-3">25%</div>
+                                <div class="col-md-3">25%</div>
+                                <div class="col-md-3">25%</div>
+                                <div class="col-md-3">25%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bl-layout-separator"></div>
+                    <div class="row">
+                        <div class="col-xs-4" ng-click="chooseLayout(4)">
+                            <div class="bl-layout-icon lay_4 clearfix">
+                                <div class="col-md-3">25%</div>
+                                <div class="col-md-9">75%</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4" ng-click="chooseLayout(5)">
+                            <div class="bl-layout-icon lay_5 clearfix">
+                                <div class="col-md-3">25%</div>
+                                <div class="col-md-6">50%</div>
+                                <div class="col-md-3">25%</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="bl-layout-icon lay_6 clearfix" ng-click="chooseLayout(6)">
+                                <div class="col-md-9">75%</div>
+                                <div class="col-md-3">25%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bl-layout-separator"></div>
+                    <fieldset class="checkbox condensed">
+                        <input type="checkbox" id="chk_includePrimary" name="include-primary" ng-model="isIncludePrimary"/>
+                        <label for="chk_includePrimary" class="class-check-img">
+                            <b>Include Primary</b>
+                            <i>(widget at top of canvas spans 100% of available area, regardless of layout).</i>
+                        </label>
+                    </fieldset>
+                    <hr />
+                    <button class="btn btn-default bl-layout-btn-default-blue" ng-click="saveLayout()">Save</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="dashboard-title">
+        <h3>{{selectedDashboard.title}}</h3>
+    </div>
+    -->
+    
+    <div class="layouts-drag-drop">
+        <img id="loading-new-widget" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/loading.gif" ng-show="processingWidget">
+
+        <div ui-sortable="sortableOptions" ng-repeat="column in columns" data-id="{{column.name}}" style="position: relative;" class="{{column.class}} drop-container" ng-class="{primary:column.name=='primary',empty:!columnWidgets[column.name].length}">
+            <div class="widget-drag widget-container clearfix" ng-repeat="widget in columnWidgets[column.name]" id="widget-container-{{widget._id}}" 
+                ng-hide="widget.isDeleted" ng-class="{'ds-equivalencies-widget-container': widget.type == 'Equivalencies'}" 
+                context-menu="onContextMenu(widget)" context-menu-close="onContextMenuClose()"
+                data-target="menu-datasense">
+                <div ng-if="widget.type == 'Image'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-image-widget">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded" ng-hide="isViewer || !Dsmodifyable"><i class="fa fa-arrows" tooltip="Drag"></i></div>
+                    <h5 class="text-center" ng-cloak ng-if="widget.titleShow">{{widget.title}}</h5>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed" >
+                            <span class="glyphicon glyphicon-chevron-left" tooltip="{{widget.collapsed ? 'Restore' : 'Minimize'}}"></span>
+                        </a>
+                        <a class="exported-widget-{{widget._id}}" ng-href="{{widget.exportedResourceUrl}}" target="_blank"></a>
+                        <a class="dropdown-toggle ds-widget-action-export" ng-click="exportWidget(widget)" tooltip="Export">export</a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit ds-widget-action-edit" ng-click="editWidget(widget)" tooltip="Edit" ng-hide="isViewer"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash ds-widget-action-delete" ng-click="removeWidget(widget)" tooltip="Delete" ng-hide="isViewer || !Dsmodifyable"></a>
+                    </div>
+                    <div id="ds-widget-content-{{widget._id}}" class="row ds-widget-content-{{widget._id}} slideable image-widget-thumbnail" ng-show="widget.bLoaded" collapsed="widget.collapsed">
+                        <img ng-src="{{widget.imageUrl}}">
+                    </div>
+                </div>
+
+                <div ng-if="widget.type == 'Pie'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-pie-widget">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded"><i class="fa fa-arrows" tooltip="Drag" ng-hide="isViewer || !Dsmodifyable"></i></div>
+                    <h5 class="text-center" ng-cloak ng-if="widget.titleShow">{{widget.title}}</h5>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed">
+                            <span class="glyphicon glyphicon-chevron-left" tooltip="{{widget.collapsed ? 'Restore' : 'Minimize'}}"></span>
+                        </a>
+                        <a class="dropdown-toggle ds-widget-action-legend" ng-click="toggleLegend(widget)" data-tooltip="Legend">Legend</a>
+                        <a class="exported-widget-{{widget._id}}" ng-href="{{widget.exportedResourceUrl}}" target="_blank"></a>
+                        <a class="dropdown-toggle ds-widget-action-export" ng-click="exportWidget(widget)" tooltip="Export">export</a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit ds-widget-action-edit" ng-click="editWidget(widget)" tooltip="Edit" ng-hide="isViewer"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash ds-widget-action-delete" ng-click="removeWidget(widget)" tooltip="Delete" ng-hide="isViewer || !Dsmodifyable"></a>
+                    </div>
+                    <div id="ds-widget-content-{{widget._id}}" class="row ds-widget-content-{{widget._id}} slideable" ng-show="widget.bLoaded" collapsed="widget.collapsed">
+                        <div ng-repeat="segment in segments" pie-auto-column="segments.length" ng-hide="widget.groupDimension==='--Custom--' && widget.customGroupDimension.groupBySegment">
+                            <div id="pie-widget-{{widget._id}}-{{$index}}" class="segment-pie">
+                                <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-show="!widget.bLoaded">
+                                <svg></svg>
+                            </div>
+                        </div>
+                        <div pie-auto-column="1" ng-show="widget.groupDimension==='--Custom--' && widget.customGroupDimension.groupBySegment">
+                            <div id="pie-widget-{{widget._id}}" class="segment-pie">
+                                <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-show="!widget.bLoaded">
+                                <svg></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="widget.type == 'Bar'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-bar-widget">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded" ng-hide="isViewer || !Dsmodifyable"><i class="fa fa-arrows" tooltip="Drag"></i></div>
+                    <h5 class="text-center" ng-cloak ng-if="widget.titleShow">{{widget.title}}</h5>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed">
+                            <span class="glyphicon glyphicon-chevron-left" tooltip="{{widget.collapsed ? 'Restore' : 'Minimize'}}"></span>
+                        </a>
+                        <a class="dropdown-toggle ds-widget-action-legend" ng-click="toggleLegend(widget)" data-tooltip="Legend">Legend</a>
+                        <a class="exported-widget-{{widget._id}}" ng-href="{{widget.exportedResourceUrl}}" target="_blank"></a>
+                        <a class="dropdown-toggle ds-widget-action-export" ng-click="exportWidget(widget)" tooltip="Export">export</a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit ds-widget-action-edit" ng-click="editWidget(widget)" tooltip="Edit" ng-hide="isViewer"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash ds-widget-action-delete" ng-click="removeWidget(widget)" tooltip="Delete" ng-hide="isViewer || !Dsmodifyable"></a>
+                    </div>
+                    <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-show="!widget.bLoaded">
+                    <div id="bar-widget-{{widget._id}}" class="ds-widget-content-{{widget._id}} slideable" ng-show="widget.bLoaded" collapsed="widget.collapsed">
+                        <div class="ds-widget-chart-area"><svg></svg></div>
+                    </div>
+                </div>
+
+                <div ng-if="widget.type == 'Table'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-table-widget">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded" ng-hide="isViewer || !Dsmodifyable"><i class="fa fa-arrows" tooltip="Drag"></i></div>
+                    <h5 class="text-center" ng-cloak ng-if="widget.titleShow">{{widget.title}}</h5>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed">
+                            <span class="glyphicon glyphicon-chevron-left" tooltip="{{widget.collapsed ? 'Restore' : 'Minimize'}}"></span>
+                        </a>
+                        <a class="exported-widget-{{widget._id}}" ng-href="{{widget.exportedResourceUrl}}" target="_blank"></a>
+                        <a class="dropdown-toggle ds-widget-action-export" ng-click="exportWidget(widget)" tooltip="Export">export</a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit ds-widget-action-edit" ng-click="editWidget(widget)" tooltip="Edit" ng-hide="isViewer"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash ds-widget-action-delete" ng-click="removeWidget(widget)" tooltip="Delete" ng-hide="isViewer || !Dsmodifyable"></a>
+                    </div>
+                    <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-show="!widget.bLoaded">
+                    <div id="table-widget-{{widget._id}}" class="ds-widget-content-{{widget._id}} slideable" ng-show="widget.bLoaded" collapsed="widget.collapsed">
+                        <table class="table ng-table-responsive" ng-table="widget.drawInfo.param">
+                            <tr class="header-row">
+                                <th></th>
+                                <th ng-repeat="segment in widget.drawInfo.segments" style="color: {{segment.color}};" colspan="{{segment.colCnt}}"><span>{{segment.title}}</span></th>
+                            </tr>
+                            <tr class="header-row">
+                                <th ng-repeat="column in widget.drawInfo.columns" style="color: {{column.color}};"><span>{{column.title}}</span></th>
+                            </tr>
+                            <tr ng-repeat="row in $data">
+                                <td ng-repeat="column in widget.drawInfo.columns" style="color: {{column.color}};"><span>{{row[column.field]}}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div ng-if="widget.type == 'Timeline'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-timeline-widget">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded" ng-hide="isViewer || !Dsmodifyable"><i class="fa fa-arrows" tooltip="Drag"></i></div>
+                    <h5 class="text-center" ng-cloak ng-if="widget.titleShow">{{widget.title}}</h5>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed">
+                            <span class="glyphicon glyphicon-chevron-left" tooltip="{{widget.collapsed ? 'Restore' : 'Minimize'}}"></span>
+                        </a>
+                        <a class="dropdown-toggle ds-widget-action-legend" ng-click="toggleLegend(widget)" data-tooltip="Legend">Legend</a>
+                        <a class="exported-widget-{{widget._id}}" ng-href="{{widget.exportedResourceUrl}}" target="_blank"></a>
+                        <a class="dropdown-toggle ds-widget-action-export" ng-click="exportWidget(widget)" tooltip="Export">export</a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit ds-widget-action-edit" ng-click="editWidget(widget)" tooltip="Edit" ng-hide="isViewer"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash ds-widget-action-delete" ng-click="removeWidget(widget)" tooltip="Delete" ng-hide="isViewer || !Dsmodifyable"></a>
+                    </div>
+                    <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-show="!widget.bLoaded" collapsed="widget.collapsed">
+                    <div id="timeline-widget-{{widget._id}}" class="ds-widget-content-{{widget._id}} slideable" ng-show="widget.bLoaded" collapsed="widget.collapsed">
+                        <div class="ds-widget-chart-area"><svg></svg></div>
+                    </div>
+                </div>
+
+                <div ng-if="widget.type == 'Kpi'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-kpi-widget">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded" ng-hide="isViewer || !Dsmodifyable"><i class="fa fa-arrows"></i></div>
+                    <h5 class="text-center" ng-cloak ng-if="widget.titleShow">{{widget.title}}</h5>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed">
+                            <span class="glyphicon glyphicon-chevron-left" tooltip="{{widget.collapsed ? 'Restore' : 'Minimize'}}"></span>
+                        </a>
+                        <a class="exported-widget-{{widget._id}}" ng-href="{{widget.exportedResourceUrl}}" target="_blank"></a>
+                        <a class="dropdown-toggle ds-widget-action-export" ng-click="exportWidget(widget)">export</a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit ds-widget-action-edit" ng-click="editWidget(widget)" ng-hide="isViewer"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash ds-widget-action-delete" ng-click="removeWidget(widget)" ng-hide="isViewer || !Dsmodifyable"></a>
+                    </div>
+                    <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-show="!widget.bLoaded" collapsed="widget.collapsed">
+                    <div id="kpi-widget-{{widget._id}}" class="ds-widget-content-{{widget._id}} slideable" ng-show="widget.bLoaded" collapsed="widget.collapsed">
+                        <div class="metric-kpi-summary-method">{{widget.summaryMethod}}</div>
+                        <div class="metric-kpi-info" ng-repeat="metricData in widget.drawInfo.metrics">
+                            <div ng-if="metricData.value !== null">
+                                <span class="metric-kpi-info-label" ng-class="{'primary-metric': metricData.isPrimaryMetric}">{{metricData.label}}: </span>
+                                <span class="metric-kpi-info-value">
+                                    <span class="metric-kpi-value" ng-class="{'primary-metric': metricData.isPrimaryMetric}" style="color: {{metricData.color}} !important;">{{metricData.value}} </span>
+                                    <div ng-if="widget.summaryMethod !== 'Count'">
+                                        <span class="metric-name primary-metric" ng-if="metricData.isPrimaryMetric">{{widget.metric.name}}</span>
+                                        <span class="metric-name" ng-if="!metricData.isPrimaryMetric">{{widget.compareMetric.name}}</span>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="widget.type == 'Equivalencies'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-equivalencies-widget {{widget.drawInfo.class}}" ng-class="{'ds-equivalencies-widget-container-green': widget.isGreenView}">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded" ng-hide="isViewer || !Dsmodifyable"><i class="fa fa-arrows" tooltip="Drag"></i></div>
+                    <h4>{{widget.title}}</h4>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed">
+                            <span class="glyphicon glyphicon-chevron-left" tooltip="{{widget.collapsed ? 'Restore' : 'Minimize'}}"></span>
+                        </a>
+                        <a class="exported-widget-{{widget._id}}" ng-href="{{widget.exportedResourceUrl}}" target="_blank"></a>
+                        <a class="dropdown-toggle ds-widget-action-export" ng-click="exportWidget(widget)" tooltip="Export">export</a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit ds-widget-action-edit" ng-click="editWidget(widget)" tooltip="Edit"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash ds-widget-action-delete" ng-click="removeWidget(widget)" tooltip="Delete" ng-hide="isViewer || !Dsmodifyable"></a>
+                    </div>
+                    <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-hide="widget.bLoaded">
+                    <div class="ds-equivalencies-widget-content ds-widget-content-{{widget._id}} slideable" ng-show="widget.bLoaded" collapsed="widget.collapsed">
+                        <h4 ng-show="widget.showAllTime"><i class="fa fa-clock-o"></i> DATA IS FOR ALL TIME</h4>
+                        <table>
+                            <tbody ng-repeat="segment in widget.drawInfo.segments" style="color: {{segment.color}} !important;">
+                                <tr class="ds-widget-origin">
+                                    <td>
+                                        <span class="ds-widget-icon-eqv ds-widget-icon-eqv-{{widget.drawInfo.icon}}">
+                                            <span class="ds-widget-icon-eqv-svg ds-widget-icon-eqv-{{widget.drawInfo.icon}}" equivalencies-icon="72" draw-color="segment.color"></span>
+                                        </span>
+                                    </td>
+                                    <td class="ds-equivalencies-widget-value">{{segment.value|number:2}}</td>
+                                    <td class="ds-equivalencies-widget-detail">
+                                        <em class="ds-equivalencies-widget-unit">{{widget.drawInfo.description}}</em>
+                                        <em>{{widget.drawInfo.unit}}</em>
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-origin">
+                                    <td colspan="3" class="ds-equivalencies-widget-attr" ng-show="segment.co2Kilograms.visible">
+                                        CO<sub>2</sub> Avoided:&nbsp;{{segment.co2Kilograms.value|number:3}}&nbsp;pounds
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-origin">
+                                    <td colspan="3" class="ds-equivalencies-widget-attr" ng-show="segment.greenhouseKilograms.visible">
+                                        Greenhouse Emissions:&nbsp;{{segment.greenhouseKilograms.value|number:3}}&nbsp;pounds
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-small">
+                                    <td colspan="3" align="center">
+                                        <span class="ds-widget-icon-eqv ds-widget-icon-eqv-{{widget.drawInfo.icon}}">
+                                            <span class="ds-widget-icon-eqv-svg ds-widget-icon-eqv-{{widget.drawInfo.icon}}" equivalencies-icon="72" draw-color="segment.color"></span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-small">
+                                    <td class="ds-equivalencies-widget-value">{{segment.value|number:2}}</td>
+                                    <td class="ds-equivalencies-widget-detail" colspan="2">
+                                        <em class="ds-equivalencies-widget-unit">{{widget.drawInfo.description}}</em>
+                                        <em>{{widget.drawInfo.unit}}</em>
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-small">
+                                    <td colspan="3" class="ds-equivalencies-widget-attr ds-ee-widget-attr-label" ng-show="segment.co2Kilograms.visible">
+                                        CO<sub>2</sub> Avoided:
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-small">
+                                    <td colspan="3" class="ds-equivalencies-widget-attr" ng-show="segment.co2Kilograms.visible">
+                                        {{segment.co2Kilograms.value|number:3}}&nbsp;pounds
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-small">
+                                    <td colspan="3" class="ds-equivalencies-widget-attr ds-ee-widget-attr-label" ng-show="segment.greenhouseKilograms.visible">
+                                        Greenhouse Emissions:
+                                    </td>
+                                </tr>
+                                <tr class="ds-widget-small">
+                                    <td colspan="3" class="ds-equivalencies-widget-attr" ng-show="segment.greenhouseKilograms.visible">
+                                        {{segment.greenhouseKilograms.value|number:3}}&nbsp;pounds
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div ng-if="widget.type == 'Boilerplate'" ng-mouseleave="closeActionsDropdown()" class="ds-widget ds-boilerplate-widget">
+                    <div class="ds-widget-drag-handler" ng-if="widget.bLoaded"><i class="fa fa-arrows"></i></div>
+                    <h5>{{widget.title}}</h5>
+                    <h4 ng-show="widget.showAllTime"><i class="fa fa-clock-o"></i> DATA IS FOR ALL TIME</h4>
+                    <div class="ds-widget-actions">
+                        <a href='#' class="ds-widget-action-toggle" ng-class="{ collapsed : widget.collapsed }" slide-toggle=".ds-widget-content-{{widget._id}}"  ng-click="toggleWidget(widget)" collapsed="widget.collapsed">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="dropdown-toggle glyphicon glyphicon-edit" ng-click="editWidget(widget)"></a>
+                        <a class="dropdown-toggle glyphicon glyphicon-trash" ng-click="removeWidget(widget)"></a>
+                    </div>
+                    <img id="preloader-widget-{{widget._id}}" class="widget-preloader" ng-src="{{baseCDNUrl}}/bl-data-sense/assets/img/preloader.GIF" ng-hide="widget.bLoaded">
+                    <div class="ds-boilerplate-widget-content ds-widget-content-{{widget._id}} slideable" ng-show="widget.bLoaded" collapsed="widget.collapsed"  ng-switch="widget.boilerplateType">
+                        <div ng-switch-when="Current Power">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="main-value"><span>{{widget.drawInfo.Production.value|number:2}}</span>{{widget.drawInfo.Production.unit}}</div>
+                                <div class="description"><span class="value">Average {{widget.drawInfo.Consumption.value}}</span>{{widget.drawInfo.Consumption.unit}}<span class="increase">1%<i class="caret"></i></span></div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <a class="ds-boilerplate-widget-bottom-content">Energy and Power</a>
+                            </div>
+                        </div>
+                        <div ng-switch-when="Communication Monitoring">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="main-value">{{widget.drawInfo.lastConnectedFromNow}}</div>
+                                <div class="description">Last Contact</div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <a class="ds-boilerplate-widget-bottom-content">PV System Monitoring</a>
+                            </div>
+                        </div>
+                        <div ng-switch-when="Energy Consumed">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="main-value"><span>{{widget.drawInfo.lastMonth.value|number:2}}</span>{{widget.drawInfo.lastMonth.unit}}</div>
+                                <div class="description">Consumed</div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <a class="ds-boilerplate-widget-bottom-content">Total: {{widget.drawInfo.total.value|number:2}} <span>{{widget.drawInfo.total.unit}}</span></a>
+                            </div>
+                        </div>
+                        <div ng-switch-when="Energy Produced">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="main-value"><span>{{widget.drawInfo.lastMonth.value|number:2}}</span>{{widget.drawInfo.lastMonth.unit}}</div>
+                                <div class="description">Produced</div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <a class="ds-boilerplate-widget-bottom-content">Total: {{widget.drawInfo.total.value|number:2}} <span>{{widget.drawInfo.total.unit}}</span></a>
+                            </div>
+                        </div>
+                        <div ng-switch-when="Reimbursement">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="main-value"><span>{{widget.drawInfo.lastMonth|number:2}}</span>USD</div>
+                                <div class="description">Today</div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <div class="ds-boilerplate-widget-bottom-content">Total: {{widget.drawInfo.total|number:2}} <span>USD</span></div>
+                            </div>
+                        </div>
+                        <div ng-switch-when="CO2 Avoided">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="main-value"><span>{{widget.drawInfo.lastMonth.value|number:2}}</span>{{widget.drawInfo.lastMonth.unit}}</div>
+                                <div class="description">Today</div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <div class="ds-boilerplate-widget-bottom-content">Total: {{widget.drawInfo.total.value|number:2}}<span>{{widget.drawInfo.total.unit}}</span></div>
+                            </div>
+                        </div>
+                        <div ng-switch-when="System Information">
+                            <div class="ds-boilerplate-widget-body row">
+                                <div class="col-xs-6">
+                                    <div class="main-value"><span>86.40</span>kWp</div>
+                                    <div class="description">PV System power</div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="main-value">7 Mar 2013</div>
+                                    <div class="description">PV System power</div>
+                                </div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <a class="ds-boilerplate-widget-bottom-content">PV System Monitoring</a>
+                            </div>
+                        </div>
+                        <div ng-switch-when="Weather">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="main-value"><span>24</span><sup>0</sup>F</div>
+                                <div class="description">Heavy Cloud or Overcast</div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <a class="ds-boilerplate-widget-bottom-content">Tomorrow</a>
+                            </div>
+                        </div>
+                        <div ng-switch-when="Location">
+                            <div class="ds-boilerplate-widget-body">
+                                <div class="description">4120 E. Truman Rd.</br>
+                                    64127 Kansas City</br>
+                                    United State</div>
+                            </div>
+                            <div class="ds-boilerplate-widget-bottom">
+                                <a class="ds-boilerplate-widget-bottom-content">Enlarge Map</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dropdown context-menu-wrapper" id="menu-datasense">
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a class="pointer" role="menuitem" tabindex="1" ng-click="onContextMenuItem('minimize', $event)">
+                    {{rightClickedWidget.collapsed ? 'Restore' : 'Minimize'}}
+                </a>
+            </li>
+            <li>
+                <a class="pointer" role="menuitem" tabindex="3" ng-click="onContextMenuItem('edit', $event)">
+                    Edit
+                </a>
+            </li>
+            <li>
+                <a class="pointer" role="menuitem" tabindex="4" ng-click="onContextMenuItem('delete', $event)">
+                    Delete
+                </a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a class="pointer" role="menuitem" tabindex="5" ng-click="onContextMenuItem('export', $event)">
+                    Export
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

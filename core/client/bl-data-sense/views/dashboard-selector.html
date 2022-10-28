@@ -1,0 +1,78 @@
+<div class="dashboard-selector" ng-controller="DashboardSelectorController" ng-show="selectedDashboard!=null" ng-class="{viewonly:isViewer}">
+	<button class="btn btn-default dashboard-label" ng-click="toggleDropdownPanel()" ng-hide="isViewer">
+		<span class="name">
+			{{ selectedDashboard.title }}
+		</span>
+		<span class="down-caret">
+			<i class="fa fa-sort-down" ng-class="isPanelShown ? 'fa-sort-up' : 'fa-sort-down'"></i>
+		</span>
+	</button>
+	<h3 class="dashboard-label" ng-show="isViewer">{{ selectedDashboard.title }}</h3>
+	<tabset class="tab-animation dropdown-panel fading-in fading-out" ng-show="isPanelShown">
+		<tab active="!formShown">
+			<ul class="list-unstyled dashboard-list">
+				<li ng-repeat="dashboard in dashboards | orderBy:'title'" ng-class="{active:dashboard._id==selectedDashboard._id}">
+					<a href='#!/{{dashboard._id}}'><i class="fa fa-long-arrow-right" ng-class="{invisible:dashboard._id!=selectedDashboard._id}"></i>&nbsp; {{dashboard.title}}</a>
+				</li>
+			</ul>
+			<aside class="aside">
+				<p>Create a new dashboard for this collection</p>
+				<button class="btn btn-bl-default" ng-click="toggleForm()"><i class="icon s-add"></i>Create new dashboard</button>
+			</aside>
+		</tab>
+		<tab active="formShown">
+			<div class="bl-modal bl-modal-dashboard-update edit-tab">
+				<form role="form">
+					<div class="modal-header">
+						<h3 class="modal-title">Add a Dashboard</h3>
+					</div>
+					<div class="modal-body">
+						<alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+						<fieldset class="form-group">
+							<label>Dashboard</label>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="dashboard blank" ng-class="{active: !addStarterDashboard}" ng-click="addStarterDashboard=false;">
+										<div class="wsprite"></div>
+										<div class="w-label">Blank Canvas</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="dashboard starter" ng-class="{active: addStarterDashboard}" ng-click="addStarterDashboard=true;">
+										<div class="wsprite"></div>
+										<div class="w-label">Starter Dashboard</div>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<p class="bl-dlg-description">Assign your Dashboard to a Collection. Enter an existing Collection&#39;s name or create a brand new one.</p>
+						<fieldset class="checkbox condensed">
+							<input id="chkbox-add-dbPrivate" type="checkbox" ng-model="dashboard.isPrivate">
+							<label for="chkbox-add-dbPrivate">
+								Private
+							</label>
+						</fieldset>
+						<fieldset class="checkbox condensed" ng-show="isBP">
+							<input id="chkbox-add-dbDefault" type="checkbox" ng-model="dashboard.defau">
+							<label for="chkbox-add-dbDefault">
+								Template
+							</label>
+						</fieldset>
+						<fieldset class="form-group">
+							<label>Dashboard Title</label>
+							<input type="text" class="form-control" ng-model="dashboard.title" placeholder="Example: Water Bill"/>
+						</fieldset>
+					</div>
+					<div class="modal-footer action-box">
+						<div class="bl-panel-command-border-wrapper">
+							<div class="bl-panel-command-wrapper">
+								<a class="btn btn-ok" ng-click="addDashboard()" >Add Dashboard</a>
+								<a class="btn btn-link" ng-click="toggleForm()" >Back</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+        </tab>
+	</tabset>
+</div>

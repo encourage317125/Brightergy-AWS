@@ -1,0 +1,43 @@
+.settings-tab-header {
+    ul.nav-tabs {
+        width: auto;
+        padding-left: 30px;
+        border-bottom: 1px solid $blue-gray;
+        box-shadow: 0 3px 8px -2px $blue-gray;
+        >li {
+            width: auto;
+            &.active > a, &.active > a:hover, &.active > a:focus {
+                border-left: none;
+                border-top: none;
+                border-right: none;
+                border-bottom: 3px solid $link-color;
+                background-color: transparent;
+                position: relative;
+                &:after {
+                    position: absolute;
+                    content: ' ';
+                    display: block;
+                    width: 10px;
+                    height: 6px;
+                    left: 50%;
+                    margin-left: -5px;
+                    bottom: -9px;
+                    background: inline-image("components/settings/assets/img/tab-tail.png") no-repeat;
+                }
+            }
+        }
+        >li>a {
+            padding: 28px 25px;
+            color: $text-color !important;
+            font-family: $font-medium-family;
+            font-weight: 600;
+            border: none;
+            &:focus, &:hover {
+                background-color: $platform-background;
+            }
+        }
+    }
+}
+.settings-tab-content {
+
+}

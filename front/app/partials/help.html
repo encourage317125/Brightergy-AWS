@@ -1,0 +1,98 @@
+<div id="help-panel">
+    <div class="inner-wrapper">
+        <div class="help-header">
+            <h3>Help Center</h3>
+            <a class="close" ng-click="closeHelp()">×</a>
+        </div>
+        <div class="help-search-wrapper">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-help-search">
+                        <div class="search-input-wrapper">
+                            <input type="text" placeholder="How can we help you?" />
+                            <button type="submit" class="btn-submit icon icon-ui-search"></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <ul class="list-inline nav-list pull-right">
+                        <li>
+                            <a href="#"><span class="badge">2</span></a>
+                        </li>
+                        <li>
+                            <a>Open Tickets</a>
+                        </li>
+                        <li>
+                            <a>Resolved</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="help-content">
+            <div class="row">
+                <div class="col-md-8" ng-show="articleView">
+                    <div class="subbox article-box">
+                        <div class="header"><h3>Current Power</h3></div>
+                        <div class="contents contentHelpArticle">
+                            <p>Your system is currently producing 0.8 kilowatts (kW) of power out of a potential at 25 kW.</p>
+                            <p>Your power will rise and fall throughout the day depending on the availability of sunlight, but 8 kW is above your current average of 5 kW for the day.</p>
+                            <img src="/assets/img/help-article-sample.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="subbox knowledge-box" ng-class="{'has-border': articleView}">
+                        <div class="header"><h3>Knowledge Base</h3></div>
+                        <div class="contents">
+                            <ul>
+                                <li ng-repeat="article in knowledgeArticles"><a ng-click="goArticle()">{{article.title}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="subbox contact-box" ng-class="{'has-border': articleView}">
+                        <div class="header"><h3>Contact Support</h3></div>
+                        <div class="description">If you can't find the information you need in our Knowledge Base or Glossary, please contact our support team with your question.</div>
+                        <div class="contents">
+                            <div class="form-row">
+                                <input type="text" placeholder="Subject" />
+                            </div>
+                            <div class="form-row">
+                                <textarea placeholder="Message"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <button>Send Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8" ng-show="homeView">
+                    <div class="subbox glossary-box" ng-class="{'has-border': homeView}">
+                        <div class="header"><h3>Glossary</h3></div>
+                        <div class="contents">
+                            <ul class="list-inline">
+                                <li ng-repeat="tag in staticGlossary"><a ng-click="goArticle()">{{tag}}</a></li>
+                            </ul>
+                            <ul class="list-inline">
+                                <li ng-repeat="tag in filteredGlossary"><a ng-click="goArticle()">{{tag}}</a></li>
+                            </ul>
+                            <a class="more-link">Show More</a>
+                        </div>
+                    </div>
+
+                    <div class="subbox faq-box" ng-class="{'has-border': homeView}">
+                        <div class="header"><h3>Frequently Asked Questions</h3></div>
+                        <div class="contents">
+                            <ul>
+                                <li ng-repeat="article in faqArticles"><a ng-click="goArticle()">{{article.title}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

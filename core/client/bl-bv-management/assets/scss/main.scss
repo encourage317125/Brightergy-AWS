@@ -1,0 +1,38 @@
+//globals
+@import "compass";
+
+//core bootstrap variables, mixins
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+//platform variables, mixins
+@import "variables";
+@import "mixins";
+@import "fonts";
+
+//theme
+@import "partials/variables";
+@import "partials/mixins";
+@import "partials/fonts";
+
+@import "partials/page";
+@import "partials/layout";
+
+@import "partials/components";
+@import "partials/formobjects";
+@import "partials/icons";
+@import "partials/loaders";
+@import "partials/mixins";
+@import "partials/modal";
+@import "partials/panel";
+@import "partials/navigation";
+@import "partials/presentation";
+@import "partials/sharepanel";
+//@import "partials/timeline";
+@import "partials/timelineext";
+@import "partials/widgets";
+/**
+  * For Devs:
+  * You're free to add stylesheets by creating/modifying scss files in partials directory.
+  * Make sure you import newly added scss file here(Check line #9, #10)
+  */

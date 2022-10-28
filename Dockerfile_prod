@@ -1,0 +1,12 @@
+#Dockerfile for ASsurf stack
+FROM docker.brighterlink.io:443/bldev/assurf:latest
+MAINTAINER Samar Acharya <samar@techgaun.com>
+
+ENV SRV_DIR /var/app
+COPY . /var/app
+
+WORKDIR /var/app
+
+EXPOSE 3000
+
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]

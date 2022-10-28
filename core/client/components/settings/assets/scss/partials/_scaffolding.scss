@@ -1,0 +1,41 @@
+#settings-wrapper {
+	color: $text-color;
+	margin: 0 0 0 $width-console;
+	position: relative;
+	font-size: $font-size-base;
+	position: relative;
+	button.close {
+		position: absolute;
+		top: 15px;
+		right: 18px;
+	}
+}
+
+#settings-wrapper .panel-body {
+	background: $platform-background;
+	height: calc(100% - 60px);
+}
+
+.global-settings-container {
+	a, a:hover, a:focus {
+		color: $link-color;
+		text-decoration: none;
+	}
+
+	h1,h2,h3,h4,h5,h6 {
+		color: $gray-dark;
+	}
+
+	hr {
+		border-top-color: $blue-gray;
+	}
+
+	.medium {
+		font-family: $font-medium-family;
+	}
+}
+
+// When console is collapsed
+#wrapper.collapsed #settings-wrapper {
+	margin-left: 60px;
+}

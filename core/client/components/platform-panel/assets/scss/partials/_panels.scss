@@ -1,0 +1,63 @@
+/*
+<div class="panel panel-default">
+  <div class="panel-heading">Panel heading without title</div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+*/
+.panel {
+    border-radius: 3px;
+    margin-bottom: 0;
+
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    .panel-heading {
+        padding: 18px 16px 18px 0;
+        border-left: 3px solid #dfdfdf;
+        border-top: 4px solid #fff;
+        border-bottom: 4px solid #fff;
+        margin-top: 2px;
+        .icon {
+            color: $blue-lighter;
+            float: left;
+            font-size: 17px;
+            margin-left: 19px;
+        }
+        .panel-title {
+            margin-left: 44px;
+        }
+    }
+    .panel-title {
+        color: #4b4b4b;
+        font-weight: 700;
+        font-size: 15px;
+        .back {
+            color: #338bbb;
+            font-weight: 400;
+            font-size: 14px;
+            cursor: pointer;
+            .icon {
+                color: #338bbb;
+            }
+        }
+    }
+    &.panel-default {
+        background-color: transparent;
+        border-color: #dadbdb;
+        > .panel-heading {
+            background: #fff;
+        }
+    }
+}

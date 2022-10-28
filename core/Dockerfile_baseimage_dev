@@ -1,0 +1,25 @@
+#Dockerfile for MEAN stack
+#docker version 1.2.0, build fa7b24f
+FROM docker.brighterlink.io:443/bldev/root:latest
+MAINTAINER Samar Acharya <samar@techgaun.com>
+
+#installation of dev specific components
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+    echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
+    apt-get update
+RUN add-apt-repository -y ppa:nginx/stable
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y nginx make redis-server mongodb-org g++
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN mkdir -p /data/db \
+    && sed -i 's/^\(daemonize .*\)$/# \1/' /etc/redis/redis.conf \
+    && sed -i 's/^\(bind\).*$/\1 0.0.0.0/' /etc/redis/redis.conf
+#delete default file
+RUN rm -f /etc/nginx/sites-enabled/default
+ADD ./.docker/nginx.conf /etc/nginx/nginx.conf
+
+#Configure supervisor for nginx
+ADD ./.docker/supervisord.nginx.conf /etc/supervisord.d/
+ADD ./.docker/supervisord.redisd.conf /etc/supervisord.d/
+ADD ./.docker/supervisord.mongod.conf /etc/supervisord.d/

@@ -1,0 +1,41 @@
+html(lang="en", ng-app="blApp.test" xmlns:ng="http://angularjs.org")
+    head
+        meta(charset='utf8')
+        title BrighterLink Platform
+        != CDN('/assets/img/favicon.ico')
+        //- style sheets
+        link(rel='stylesheet', href='//cloud.webtype.com/css/f3ad5809-8f3d-4d94-a57b-31fdc688f3fa.css')
+        != CDN('/assets/css/general.min.css')
+        != CDN('/components/platform-panel/dist/platform.min.css')
+        != CDN('/lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.css')
+        != CDN('/lib/jquery/jquery.js')
+        != CDN('/lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js')
+        != CDN('/lib/angular-ui-select/select.css')
+        
+    body(ng-controller="TestController", ng-cloak)
+        div#wrapper
+            div.main-container
+                //div#page-sidebar
+                    //side.qab-wrapper
+                    //div.sp-wrapper
+                div#page-content-wrapper
+                    platform-panel(template-url="/components/platform-panel/templates/platform-panel.html", panel-data="panelData")
+    != CDN('/lib/angular/angular.min.js')
+    != CDN('/lib/angular/angular-animate.min.js')
+    != CDN('/lib/angular/angular-route.min.js')
+    != CDN('/lib/angular/angular-sanitize.js')
+    != CDN('/lib/angular-ui-select/select.js')
+    script.
+        window.config = "#{(new Buffer(JSON.stringify(config))).toString('base64')}"
+    script(src='/components/component.js')
+    script(src='/components/services/interceptors.js')
+    script(src='/components/services/notify.js')
+    script(src='/components/services/toggle.js')
+    //script(src='/components/platform-panel/dist/component-platformpanel.min.js')
+    script(src='/components/platform-panel/platform-panel.js')
+    script(src='/components/platform-panel/js/services/util.js')
+    script(src='/components/platform-panel/js/services/account.js')
+    script(src='/components/platform-panel/js/services/user.js')
+
+    script(src='/bl-test/app.js')
+    script(src='/bl-test/js/controllers/test.js')

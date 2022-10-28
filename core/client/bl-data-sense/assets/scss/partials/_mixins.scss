@@ -1,0 +1,9 @@
+//== Icons for widget
+@mixin iconInlineImage($iconPath, $iconWidth, $iconHeight) {
+  display: inline-block;
+  background-image: inline-image($iconPath);
+  background-size: $iconWidth $iconHeight;
+  width: $iconWidth;
+  height: $iconHeight;
+  vertical-align: middle;
+}

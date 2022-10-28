@@ -1,0 +1,69 @@
+as-global-loading {
+    display: block;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: $brand-secondary;
+    text-align: center;
+    z-index: 9999;
+    .progress {
+        height: 5px;
+        margin-bottom: 5px;
+        background-color: #1d2432;
+        border-radius: 0;
+        @include box-shadow(none);
+    }
+    .progress-bar {
+        background-color: $brand-primary;
+    }
+}
+#loading-indicator {
+    width: 95px;
+    height: 95px;
+    background-image: inline-image('brighterlink-icon-white-color.png');
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+#welcome-zone {
+    height: 193px;
+    position: relative;
+    top: 50%;
+    margin-top: -96px;
+}
+#loading-welcome-msg {
+    font-family: $font-helvetica-medium;
+    color: #fff;
+    font-size: 24px;
+    margin: 35px 0 0;
+    small {
+        font-family: $font-helvetica-normal;
+        font-size: 16px;
+        color: $brand-primary;
+        display: block;
+        &:after {
+            content: '  .';
+            @include animation(dots 1s steps(5, end) infinite);
+        }
+    }
+}
+#complain-zone {
+    color: #5c6371;
+    position:absolute;
+    bottom: 20px;
+    width: 100%;
+    p {
+        text-align: center;
+        font-size: 1.5em;
+    }
+    a {
+        font-weight: bold;
+        color: rgba(#fff, .2);
+        @include transition(color .2s);
+        &:hover, &:focus {
+            color: rgba(#fff, 1);
+        }
+    }
+}
+

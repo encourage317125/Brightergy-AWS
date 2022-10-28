@@ -1,0 +1,177 @@
+<div id="companypanel-groups" class="companypanel-groups" ng-controller="CompanyGroupsController">
+<!-- Start of group panel -->
+<div class="panel group-list-panel" ng-show="activePanelIndex == 0">
+    <div class="panel-header">
+        <h4 class="panel-title">Groups</h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section section-well create-source-section">
+                    <p class="description">Here you can manage all data sources and related items <span class="custom-text color-pale-blue">Groups</span></p>
+                    <a class="btn btn-bv-default btn-create-source" ng-click="openCreateGroup();"><span class="icon icon-bv-add"></span><span class="text">Create Group</span></a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section search-section">
+                    <input type="text" id="search-box" class="form-control" placeholder="Search" ng-model="searchTag.name" ng-change="startSearchTags()" ng-blur="endSearchTags()">
+                    <span class="icon bv-find"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section related-groups-section">
+                    <div class="section-body group-list-result" m-custom-scrollbar="">
+                        <ul class="group-list" id="group-list-section">
+                            <li class="group-item type-group group-{{group.id}}" ng-repeat="group in groupList" ng-init="group.toggleDelete = false">
+                                <div ng-show="!group.toggleDelete">
+                                    <i class="tree-branch-head" ng-class="{'group-expanded': groupExpanded[$index]}" ng-click="expandDetail($index, group.id);"></i>
+                                    <div class="group-label animation-show">
+                                        <div class="node-name">
+                                            <span ng-click="expandDetail($index, group.id);">{{group.text}}</span>
+                                            <div class="head-tools" ng-show="groupExpanded[$index]">
+                                                <a class="btn btn-bv-default" ng-click="openEditGroup();">
+                                                    <span class="icon icon-bv-edit"></span>
+                                                    <span class="text">Edit</span>
+                                                </a>
+                                                <a class="btn">
+                                                    <i class="icon-bv-trash" ng-click="toggleDeleteGroup(group, 'list', 'show', $event)"></i>
+                                                </a>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <p ng-show="!groupExpanded[$index]">{{group.information}}</p>
+                                    </div>
+                                </div>
+                                <div class="group-detail" ng-show="groupExpanded[$index] && !group.toggleDelete">
+                                    <span class="title">Related</span>
+                                    <div class="">
+                                        <tags-input ng-model="relatedSources[$index]">
+                                            <auto-complete source="loadTags($query, group.id)" load-on-down-arrow="true"></auto-complete>
+                                        </tags-input>
+                                    </div>
+                                </div>
+                                <delete-dialog ng-show="group.toggleDelete" data-yes="deleteGroup(group.id)" data-no="toggleDeleteGroup(group, 'list', 'hide')" data-message="Really Delete?"></delete-dialog>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of group panel -->
+
+<!-- Start of create group panel -->
+<div class="panel create-group-panel" ng-show="activePanelIndex == 1">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Add Group</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="activePanelIndex = oldPanelIndex"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section group-form-section" m-custom-scrollbar="">
+                    <div class="ajax_loading_panel" ng-show="ajax_loading"></div>
+                    <form name="createGroupForm" class="form-horizontal group-form" ng-submit="createGroup()">
+                        <div class="form-group">
+                            <label for="addGroupName" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="addGroup.name" name="addGroupName" id="addGroupName" class="form-control" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="addGroupInformation" class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="addGroup.information" name="addGroupInformation" id="addGroupInformation" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="separater" style="margin-top: 20px; margin-bottom: 20px;"></div>
+                        <div class="form-group">
+                            <span class="col-sm-3 related">Related</span>
+                            <div class="col-sm-9">
+                                <tags-input ng-model="tags">
+                                    <auto-complete source="loadTags($query)" load-on-down-arrow="true"></auto-complete>
+                                </tags-input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="border-wrapper">
+                                    <div class="btn-group-wrapper" style="width: 230px;">
+                                        <button class="btn btn-companypanel-green btn-add-metric" type="submit">Add Group</button>
+                                        <a class="btn btn-link" ng-click="activePanelIndex = oldPanelIndex">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of create group panel -->
+
+<!-- Start of edit group panel -->
+<div class="panel edit-group-panel" ng-show="activePanelIndex == 2">
+    <div class="panel-header has-border">
+        <h4 class="panel-title">Edit Group</h4>
+        <div class="panel-tools">
+            <a class="btn btn-bv-default btn-back nav-right" ng-click="activePanelIndex = oldPanelIndex"><span class="icon icon-bv-back"></span><span class="text">Back</span></a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="section group-form-section" m-custom-scrollbar="">
+                    <div class="ajax_loading_panel" ng-show="ajax_loading"></div>
+                    <form name="EditGroupForm" class="form-horizontal group-form" ng-submit="EditGroup()">
+                        <div class="form-group">
+                            <label for="editGroupName" class="col-sm-3 control-label">Name</label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="editGroup.name" name="editGroupName" id="editGroupName" class="form-control" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editGroupInformation" class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <input type="text" ng-model="editGroup.information" name="editGroupInformation" id="editGroupInformation" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="separater" style="margin-top: 20px; margin-bottom: 20px;"></div>
+                        <div class="form-group">
+                            <span class="col-sm-3 related">Related</span>
+                            <div class="col-sm-9">
+                                <tags-input ng-model="childrens">
+                                    <auto-complete source="loadTags($query, editGroup.id)" load-on-down-arrow="true"></auto-complete>
+                                </tags-input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="border-wrapper">
+                                    <div class="btn-group-wrapper" style="width: 240px;">
+                                        <button class="btn btn-companypanel-green btn-add-metric" type="submit">Save Changes</button>
+                                        <a class="btn btn-link" ng-click="activePanelIndex = oldPanelIndex">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of edit group panel -->
+
+</div>

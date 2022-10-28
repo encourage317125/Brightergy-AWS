@@ -1,0 +1,198 @@
+doctype html
+html.no-js(lang="")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        title BrighterLink - Analyze Solar Surface
+        meta(name="description", content="")
+        meta(name="viewport", content="width=device-width, initial-scale=1")
+        != CDN('/dist/img/favicon.ico')
+        //- vendor:css
+        != CDN('/dist/css/vendor.min.css')
+        //- endinject
+        //- inject:css
+        != CDN('/dist/css/assurf.min.css')
+        //- endinject
+        link(rel="stylesheet", href="#{platformDomain}/components/platform-panel/dist/platform.min.css")
+        base(href="/")
+    body(ng-app="bl.analyze.solar.surface")
+        //if lt IE 8
+          p.browserupgrade
+            | You are using an
+            strong outdated
+            | browser. Please
+            a(href="http://browsehappy.com/") upgrade your browser
+            | to improve your experience.
+        as-global-loading.animate-hide(percentage="$root.initialDataLoadedPercent")
+            .progress
+                .progress-bar(role="progressbar", aria-valuenow="0", aria-valuemin="0", aria-valuemax="100")
+                    .sr-only 0% Completed
+            #welcome-zone
+                #loading-indicator
+                p#loading-welcome-msg
+                    | Analyze
+                    small Loading
+            //#complain-zone
+              p Are you waiting too long? Please call us <a href='#'>800-0923-000</a>
+        #wrapper(ng-init="$root.isShowPlatformPanel = false")
+            .main-container
+                top-nav(application="'Analyze'")
+                #page-sidebar(ng-controller="SelectionPanelController")
+                    side.qab-wrapper
+                        ul.nav.qab-nav.top
+                            li
+                                a#sp-toggle.qab-link.with-icon(as-toggle-collapse="#wrapper")
+                                    i.icon.icon-ui-corner-left
+                        ul.list-kpi-mini
+                            li
+                                span(as-tooltip, tooltip-content-dom="#infoQABCurrentPower", tooltip-position="right top", tooltip-classes="kpi-tooltip")
+                                    small kW
+                                    b(ng-bind="powerInfo.current", as-animated-number, data-num-decimals="1") 0
+                                #infoQABCurrentPower.info-panel
+                                    h5.title Current Power
+                                    p
+                                        | Your system is currently generating &nbsp;
+                                        span.kpi-info(ng-bind="powerInfo.current|number") 0
+                                        | &nbsp;kilowatts (kW) of power out of a potential of &nbsp;
+                                        span.kpi-info(ng-bind="powerInfo.potential|number") 0
+                                        | &nbsp;kW.
+                                    p
+                                        | Your power will rise and fall throughout the day depending on the availability of sunlight.
+                            li
+                                span(as-tooltip, tooltip-content-dom="#infoQABTodayEnergy", tooltip-position="right top", tooltip-classes="kpi-tooltip")
+                                    small(ng-bind="energyInfo.unit") kWh
+                                    b(ng-bind="energyInfo.today", as-animated-number, compress="true") 0
+                                #infoQABTodayEnergy.info-panel
+                                    h5.title Today's Energy
+                                    p
+                                        | As of <as-current-time format="h:mma"></as-current-time> today, your system has produced &nbsp;
+                                        span.kpi-info(ng-bind="energyInfo.today|number") 0
+                                        | &nbsp;kilowatt-hours (kWh) of energy, which represents a utility savings of about&nbsp;
+                                        span.kpi-info(ng-bind="'$'+energyInfo.utilitySavingToday") 0
+                                        | .
+                            li
+                                span(as-tooltip, tooltip-content-dom="#infoQABTodayWeather", tooltip-position="right top", tooltip-classes="kpi-tooltip")
+                                    small Temp
+                                    b(ng-bind="todayWeather.temperature.now", as-animated-number) 0
+                                    | &#8457;
+                                #infoQABTodayWeather.info-panel
+                                    h5.title
+                                        | {{todayWeather.cityName}}
+                                        br
+                                        as-current-time(format="EEE, MMM d")
+                                    // Todo: lastReportedTime to current Time
+                                    p.no-margin
+                                        | High:&nbsp;
+                                        span.kpi-info {{todayWeather.temperature.max}}°
+                                    p.no-margin
+                                        | Low:&nbsp;
+                                        span.kpi-info {{todayWeather.temperature.min}}°
+                                    p.no-margin
+                                        | Daylight:&nbsp;
+                                        span.kpi-info {{todayWeather.sunTime.sunrise | amDateFormat: 'h:mm a'}} ~ {{todayWeather.sunTime.sunset | amDateFormat: 'h:mm a'}}
+                                    p.no-margin
+                                        | Humidity:&nbsp;
+                                        span.kpi-info {{todayWeather.air.humidity}}%
+                                    p.no-margin
+                                        | Pressure:&nbsp;
+                                        span.kpi-info {{todayWeather.air.pressure}} hPa
+                                    p
+                                        | Wind:&nbsp;
+                                        span.kpi-info {{todayWeather.air.windSpeed}} mph W
+                                    p Last update {{todayWeather.lastReportedTime | amCalendar}}.
+                        ul.nav.qab-nav.bottom
+                            li
+                                a.qab-link.with-icon(href="http://help.brighterlink.io", target="_blank") ?
+                        #sp-toggle-mobile(as-toggle-collapse="#wrapper")
+                    .sp-wrapper
+                        .sp-top
+                            //a.navbar-brand(href="#!/main")
+                            //    i.icon.icon-logo
+                            span.sp-info.pull-left(ng-bind="$root.LAST_UPDATED_TIMETIME | amDateFormat : 'dddd, MMM D, h:mm a'")
+                                | Good Day!
+                            span.sp-info.pull-right {{ today | timezone}}
+                        .sp-top-mobile
+                            ul
+                                li
+                                    a#sp-toggle.qab-link.with-icon(as-toggle-collapse="#wrapper")
+                                        i.icon.icon-ui-corner-left.collapsed
+                            ul.pull-right
+                                li
+                                    a.qab-link(href="http://help.brighterlink.io", target="_blank")
+                                        | ?
+                            as-current-time.sp-info.pull-left.sp-margin(format="MMM, d h:mm a")
+                                | Good Day!
+                            span.sp-info.pull-right.sp-margin {{today | timezone}}
+                        .sp-content
+                            include includes/sp/kpi.jade
+                        .sp-content.no-padding(ng-if="!isWeatherHistoryShown")
+                            include includes/sp/weather.jade
+                        .sp-content(ng-if="!isWeatherHistoryShown")
+                            include includes/sp/sources.jade
+                        .sp-content(ng-if="isWeatherHistoryShown")
+                            include includes/sp/weather-history.jade
+                platform-panel(ng-show="$root.isShowPlatformPanel" selected="$root.panelData.menu" current-user="$root.panelData.user" on-close="$root.closePlatformPanel();")
+                #page-content-wrapper.page-wrapper(ng-hide="$root.isShowPlatformPanel", ng-cloak, ng-include="'app/partials/main-stage.html'")
+        script(type="text/javascript").
+            var renderErrors = !{JSON.stringify(errors)};
+            var renderCurrentUser = !{JSON.stringify(currentUser)};
+            var renderSolarTags = !{JSON.stringify(solarTags)};
+            var apiDomain = '!{apiDomain}';
+            var platformDomain = '!{platformDomain}';
+
+        //- vendor:js
+        != CDN('/dist/js/vendor.min.js')
+        //- endinject
+        script(src="#{platformDomain}/components/platform-panel/dist/component-platformpanel.js")
+        //- inject:js
+        script(src="/app/app.js")
+        script(src="/app/elements/yield-comparison/element.js")
+        script(src="/app/elements/weather-history/element.js")
+        script(src="/app/elements/total-energy-production/element.js")
+        script(src="/app/elements/sunhours-energy/element.js")
+        script(src="/app/elements/solar-energy-production/element.js")
+        script(src="/app/elements/solar-energy-production/drilldown.js")
+        script(src="/app/elements/savings/element.js")
+        script(src="/app/elements/savings/drilldown.js")
+        script(src="/app/elements/realtime-power/element.js")
+        script(src="/app/elements/realtime-power/drilldown.js")
+        script(src="/app/elements/equivalencies/element.js")
+        script(src="/app/elements/equivalencies/drilldown.js")
+        script(src="/app/elements/avoided-carbon/element.js")
+        script(src="/app/elements/actual-predicted-energy/element.js")
+        script(src="/app/services/weather.js")
+        script(src="/app/services/source-selection.js")
+        script(src="/app/services/solar-tag.js")
+        script(src="/app/services/socket-io.js")
+        script(src="/app/services/saving.js")
+        script(src="/app/services/power.js")
+        script(src="/app/services/equivalencies.js")
+        script(src="/app/services/energy.js")
+        script(src="/app/helpers/source-notify.js")
+        script(src="/app/filters/tznames.js")
+        script(src="/app/filters/truncate.js")
+        script(src="/app/filters/timezone.js")
+        script(src="/app/filters/short-number.js")
+        script(src="/app/filters/as-decimal-unit-prefix.js")
+        script(src="/app/filters/as-date.js")
+        script(src="/app/directives/tooltip.js")
+        script(src="/app/directives/toggle-collapse.js")
+        script(src="/app/directives/sp-search-box.js")
+        script(src="/app/directives/sp-list-scroll-bar.js")
+        script(src="/app/directives/nav-popup.js")
+        script(src="/app/directives/more-panel.js")
+        script(src="/app/directives/mobile-nav-dropdown.js")
+        script(src="/app/directives/meter-bar.js")
+        script(src="/app/directives/global-loading.js")
+        script(src="/app/directives/element-show-loading.js")
+        script(src="/app/directives/daterange-selector.js")
+        script(src="/app/directives/daterange-picker.js")
+        script(src="/app/directives/current-time.js")
+        script(src="/app/directives/animated-number.js")
+        script(src="/app/controllers/SelectionPanel.js")
+        script(src="/app/controllers/MainStage.js")
+        script(src="/app/controllers/HelpCenter.js")
+        script(src="/app/controllers/FacilityDetails.js")
+        script(src="/app/require.config.js")
+        script(src="/app/main.js")
+        //- endinject

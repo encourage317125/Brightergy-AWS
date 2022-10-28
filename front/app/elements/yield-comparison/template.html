@@ -1,0 +1,17 @@
+<div class="panel" id="annual-comparison" as-element-show-loading="{{ !isDataLoaded }}">
+	<div class="panel-heading">
+		<as-more-panel position="top left" panel-title="Annual Energy Production Comparison">
+			<div ng-include="'app/partials/more-panels/yield-comparison.html'"></div>
+		</as-more-panel>
+		<h5 class="panel-title">
+			Annual Energy Production Comparison
+		</h5>
+	</div>
+	<div class="panel-body">
+		<div class="widget">
+			<div class="chart-container">
+				<highchart id="annualComboChart" config="yieldChartConfig"></highchart>
+			</div>
+		</div>
+	</div>
+</div>

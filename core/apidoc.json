@@ -1,0 +1,18 @@
+{
+  "name": "BrighterLink API documentation",
+  "version": "1.0.0",
+  "description": "<h2>API documentation for the project</h2><div class='highlight'><p><strong>Note</strong>:  All the API endpoints of the latest API version are accessible as an alias. Thus, the version prefix is optional for accessing latest version of API endpoints.</p><p>As an example, you can use both /v1/accounts and /accounts if v1 is the latest API version.</p></div>",
+  "title": "BrighterLink API",
+  "url" : "",
+  "sampleUrl": "",
+  "header": {
+    "title": "My own header title"
+  },
+  "footer": {
+    "title": "My own footer title"
+  },
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": true
+  }
+}

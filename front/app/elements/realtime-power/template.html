@@ -1,0 +1,42 @@
+<div class="panel realtime-power" id="realtime-power" as-element-show-loading="{{ !isDataLoaded }}">
+	<div class="panel-heading">
+		<as-more-panel position="bottom left" panel-title="Real-Time Max Power">
+			<div ng-include="'app/partials/more-panels/real-time-power.html'"></div>
+		</as-more-panel>
+		<h5 class="panel-title" ng-bind="elementTitle">Max Power</h5>
+		<as-date-range-selector ng-model="dateRange" ranges="today,week,month"></as-date-range-selector>
+	</div>
+	<div class="panel-body">
+		<div class="widget">
+			<div class="chart-container">
+				<div class="nodata-chart" ng-show="noDataRTP == true">No data to display</div>
+				<highchart id="realtime-power-linechart" config="primaryChart" style="width:100%" ng-show="noDataRTP == false" ng-click="openDrilldown()"></highchart>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="kpis">
+				<div class="kpi">
+					<div class="kpi-title" ng-bind="totalKPITitle">Current Day's Max</div>
+					<div class="kpi-value">
+						<as-animated-number ng-bind="lastRTPower.kpiData.totalPowerGeneration" data-num-decimals="1"></as-animated-number>
+						<span class="unit">kW</span>
+						<sup class="animated as-sink" ng-show="lastRTPower.kpiData.totalPowerGenerationTrend == 'down'">↓</sup>
+						<sup class="animated as-float" ng-show="lastRTPower.kpiData.totalPowerGenerationTrend == 'up'">↑</sup>
+					</div>
+				</div>
+				<div class="kpi" ng-repeat="generation in lastRTPower.kpiData.generationBySources | limitTo: 3">
+					<div class="kpi-title">
+						<span style="color: {{ ::generation.color }};">&#9679;</span>
+						{{ ::generation.displayName }}
+					</div>
+					<div class="kpi-value">
+						<as-animated-number ng-bind="generation.kw" data-num-decimals="1"></as-animated-number>
+						<span class="unit">kW</span>
+						<sup class="animated  as-sink" ng-show="generation.trend == 'down'">↓</sup>
+						<sup class="animated  as-float" ng-show="generation.trend == 'up'">↑</sup>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

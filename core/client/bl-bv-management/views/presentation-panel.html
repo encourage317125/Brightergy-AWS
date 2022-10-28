@@ -1,0 +1,87 @@
+<div class="slide-out-div-left">
+    <div class="row">
+        <ul id="navigation">
+            <li class="active"><a href="#widget" data-toggle="tab"><i class="f-widgets"></i><br/>widgets</a></li>
+            <li><a href="#project" data-toggle="tab"><i class="f-presents"></i><br/>presentations</a></li>
+            <li><a href="#editor" data-toggle="tab"><i class="f-users"></i><br/>editors</a></li>
+            <li><a href="#datas" data-toggle="tab"><i class="f-datas"></i><br/>data</a></li>    
+        </ul>
+        <div id="sub-navigation" class="tab-content lpanel" nicescroll="nicescroll">
+            <div class="tab-pane fade in active ng-scope" id="widget" ng-controller="AvailableWidgetController">
+                <div class="title">
+                    <div class="row">
+                        <div class="col-md-10 sub-panel">
+                            <h3>Widgets</h3>
+                            <p> To add a Widget to your Presentation, drag it to your Canvas</p>
+                        </div>
+                        <div class="col-md-2 sub-panel">
+                            <a class="pull-right" style="position: relative;" tooltip="Clone Widget"><i class="f-question"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Widget Box -->
+                <div ng-include="'/bl-bv-management/views/available-widget.html'"></div>
+                <!-- End Widget Box -->
+            </div>
+            <div class="tab-pane fade" id="project" ng-controller="PresentationProjectsController">
+                <div class="title">
+                    <div class="row" ng-show="!showCreatePanel">
+                        <div class="col-md-7 sub-panel">
+                            <h3>Presentations</h3>
+                            <p>Click a Presentation to edit it</p>
+                        </div>
+                        <div class="col-md-5 sub-panel">
+                            <a class="btn btn-bv-default pull-right" ng-click="goCreatePresentation();"><span class="icon icon-bv-add"></span><span class="text">Create New</span></a>
+                        </div>
+                    </div>
+                    <div class="row" ng-show="showCreatePanel">
+                        <div class="col-md-12 sub-panel">
+                            <h3>Create New Presentation</h3>
+                            <p>Start with a template or build your presentation from scratch</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Start Presentation Projects -->
+                <div ng-include="'/bl-bv-management/views/presentation-projects.html'"></div>
+                <!-- End Presentation Projects -->
+            </div>
+
+            <div class="tab-pane fade" id="editor" ng-controller="PresentationEditorsController">
+                <div class="title">
+                    <div class="row">
+                        <div class="col-md-10 sub-panel">
+                            <h3>Editors Management </h3>
+                            <p>Team Members who can modify the current Presentation</p>
+                        </div>
+                        <div class="col-md-2 sub-panel">
+                            <a class="pull-right" style="position: relative;" tooltip="Editors Management"><i class="f-question"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Presentation Users -->
+                <div ng-include="'/bl-bv-management/views/presentation-editors.html'"></div>
+                <!-- End Presentation Users -->
+            </div>
+
+            <div class="tab-pane fade" id="datas" ng-controller="PresentationDataSensorController">
+                <div class="title">
+                    <div class="row">
+                        <div class="col-md-10 sub-panel">
+                            <h3>Presentation Data Sources</h3>
+                            <p>Choose what Sources you want to use</p>
+                        </div>
+                        <div class="col-md-2 sub-panel">
+                            <a class="pull-right" style="position:relative;" tooltip="Presentation Nodes"><i class="f-question"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Presentation Users -->
+                <div ng-include="'/bl-bv-management/views/presentation-datas.html'"></div>
+                <!-- End Presentation Users  -->
+
+            </div>
+        </div>
+    </div>
+</div>

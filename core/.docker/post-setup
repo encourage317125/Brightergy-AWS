@@ -1,0 +1,68 @@
+#!/bin/bash
+
+#some cleanup
+#git clean -fd
+#some updates on configurations
+
+confsetup() {
+  sed -i "/instance/c\"instance\": \"$INSTANCE\"," server/config/conf.json
+  sed -i "/domain/c\"domain\": \"$DOMAIN\"," server/config/conf.json
+  sed -i "/mongodb:\/\//c\"connection\": \"$MONGO_ENDPOINT\"," server/config/conf.json
+  sed -i "/host\":/c\"host\": \"$REDIS_HOST\"" server/config/conf.json
+}
+
+mongoinstall() {
+  if dpkg -l mongodb-org; then
+    exit 0
+  fi
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10 && \
+    echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' > /etc/apt/sources.list.d/mongodb.list && \
+    apt-get update
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mongodb-org
+  apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  mkdir -p /data/db
+}
+
+srvcleanup() {
+  cd $SRV_DIR
+  rm -rf .git*
+  rm -rf .docker*
+  rm -rf Dockerfile
+}
+
+seeddb() {
+  if [ ! -f /var/run/dbseed ]; then
+    /usr/local/bin/node /var/app/server/scripts/seeder/run.js > /tmp/log 2>&1
+    touch /var/run/dbseed
+  fi
+}
+
+sysctl_tuning() {
+  if [ -d "/writable-proc" ]; then
+    echo 32000 > /writable-proc/sys/net/core/somaxconn
+    echo 1024 65000 > /writable-proc/sys/net/ipv4/ip_local_port_range
+    #echo 12582912 > /writable-proc/sys/net/core/rmem_max
+    #echo 31457280 > /writable-proc/sys/net/core/rmem_default
+    #echo 12582912 > /writable-proc/sys/net/core/wmem_max
+    #echo 31457280 > /writable-proc/sys/net/core/wmem_default
+    echo 607152 > /writable-proc/sys/fs/file-max
+    #echo 2 > /writable-proc/sys/net/ipv4/tcp_synack_retries
+    #echo 1 > /writable-proc/sys/net/ipv4/tcp_rfc1337
+    #echo 1 > /writable-proc/sys/net/ipv4/tcp_syncookies
+    #echo 15 > /writable-proc/sys/net/ipv4/tcp_fin_timeout
+    #echo 300 > /writable-proc/sys/net/ipv4/tcp_keepalive_time
+    #echo 5 > /writable-proc/sys/net/ipv4/tcp_keepalive_probes
+    #echo 15 > /writable-proc/sys/net/ipv4/tcp_keepalive_intvl
+    #echo 65535 > /writable-proc/sys/net/core/netdev_max_backlog
+    #echo 15165824 > /writable-proc/sys/net/core/optmem_max
+    #echo 65536 131072 262144 > /writable-proc/sys/net/ipv4/tcp_mem
+    #echo 65536 131072 262144 > /writable-proc/sys/net/ipv4/udp_mem
+    #echo 8192 87380 16777216 > /writable-proc/sys/net/ipv4/tcp_rmem
+    #echo 16384 > /writable-proc/sys/net/ipv4/udp_rmem_min
+    #echo 8192 87380 16777216 > /writable-proc/sys/net/ipv4/tcp_wmem
+    #echo 16384 > /writable-proc/sys/net/ipv4/udp_wmem_min
+    #echo 1440000 > /writable-proc/sys/net/ipv4/tcp_max_tw_buckets
+    #echo 1 > /writable-proc/sys/net/ipv4/tcp_tw_reuse
+    #echo 0 > /writable-proc/sys/net/ipv4/tcp_tw_recycle
+  fi
+}

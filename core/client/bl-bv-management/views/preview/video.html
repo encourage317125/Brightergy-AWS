@@ -1,0 +1,7 @@
+<div ng-style="{'width' : widgetParam.parameters.width + 'px', 'height' : widgetParam.parameters.height + 'px', 'margin': 'auto'}">
+	<div class="template-title" ng-hide="(widgetParam.parameters.headerFont.content == null) || (widgetParam.parameters.headerFont.content == '')" ng-style="{'font-size' : widgetParam.parameters.headerFont.size + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name, 'background-color' : '#' + widgetParam.parameters.primaryColor.color}">{{widgetParam.parameters.headerFont.content}}</div>
+	<videogular vg-theme="videoconf.theme.url" vg-player-ready="onPlayerReady($API, widgetParam._id)">
+		<vg-media vg-src="[{src: widgetParam.parameters.widgetURL}]" ng-if="widgetParam.parameters.videoType === ''" vg-youtube="rel=1;showinfo=1"></vg-media>
+		<vg-media vg-src="[{src: widgetParam.parameters.widgetURL, type: widgetParam.parameters.videoType}]"  ng-if="widgetParam.parameters.videoType !== ''"></vg-media>
+	</videogular>
+</div>

@@ -1,0 +1,16 @@
+<li class="form-group">
+    <div class="fileUploadBtn" ng-show="uploaderInfo.uploadGeneralAssets">
+        <button class="btn btn-bv-default btn-bv-panel-default">Upload General Assets</button>
+        <input id="uploadBtnGeneralAssets" name="assetsFile" type="file" class="upload" onchange="angular.element(this).scope().uploadFiles()" multiple="multiple" />
+    </div>
+    <div class="fileUploadBtn" ng-show="uploaderInfo.uploadAccountAssets">
+        <button class="btn btn-bv-default btn-bv-panel-default">Upload Client Assets</button>
+        <input id="uploadBtnClientAssets" name="assetsFile" type="file" class="upload" onchange="angular.element(this).scope().uploadFiles()" multiple="multiple" />
+    </div>
+    <div class="fileUploadBtn" ng-show="uploaderInfo.uploadPresentationAssets">
+        <button class="btn btn-bv-default btn-bv-panel-default">Upload Presentation Assets</button>
+        <input id="uploadBtnPresentationAssets" name="assetsFile" type="file" class="upload" onchange="angular.element(this).scope().uploadFiles()" multiple="multiple" />
+    </div>
+    <div class="clear"></div>
+    <span id="uploading_assets_panel"></span>
+</li>

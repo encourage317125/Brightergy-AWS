@@ -1,0 +1,6 @@
+#!/bin/bash
+#reads an envvar file and exports each line into envvar
+while read line;
+do
+  export "$line";
+done < ./.docker/envvars

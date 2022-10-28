@@ -1,0 +1,54 @@
+.sharePanel {
+  h2 {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .sharePanel-title {
+    margin-bottom: 20px;
+  }
+  .share-label {
+    color: #adadad;
+    text-align: right;
+    font-size: 13px;
+  }
+  .share-info {
+    input, textarea {
+      background: #f7f7f7;
+      border-radius: 2px;
+      padding: 7px 8px;
+      margin-top: -7px;
+      width: 100%;
+    }
+    textarea {
+      height: 100px;
+    }
+    input[type=radio], input[type=checkbox] {
+      margin-top: 2px;
+      width: auto;
+    }
+    a {
+      display: inline-block;
+      border-radius: 2px;
+      border: 1px solid #E3E2E2;
+      background-color: #ffffff;
+      list-style-type: none;
+      font-size: 12px;
+      font-weight: bold;
+      color: #79797f;
+      padding: 1px 9px;
+      cursor: pointer;
+      color: $blue-lighter;
+      @include FontFamily_BentonSans();
+    }
+  }
+  .share-btns-wrapper {
+    border-top: 1px solid #ccc;
+    margin: 10px 0 0;
+    padding-top: 20px;
+    text-align: center;
+    .list-inline > li {
+      margin-right: 15px;
+    }
+  }
+}

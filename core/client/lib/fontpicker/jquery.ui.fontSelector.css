@@ -1,0 +1,81 @@
+/** { margin: 0; padding: 0; }*/
+
+.fontSelect {
+    position: relative;
+	height: 30px;
+	line-height: 30px;
+	cursor: pointer;
+	margin: 3px;
+	width: 85%;
+	background-color: #fff;
+	border: 1px solid #cecece;
+	text-align: left;
+	padding: 0 10px;
+}
+
+
+.spantext {
+    margin-left: 20px;
+}
+.fontSelector span {
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.fontSelect .arrow-down {
+    position: absolute;
+    right: 10px;
+    top: 13px;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+
+    border-top: 6px solid #AAA;
+}
+
+.fontSelect ul {
+    list-style: none;
+    width: 100%;
+    background: #fff;
+    position: absolute;
+    left: -1px;
+    top: 30px;
+    padding: 0px;
+    text-align: center;
+	margin: 0;
+}
+
+.fontSelect li {
+    height: 24px;
+    line-height: 24px;
+    overflow: hidden;
+    cursor: pointer;
+    /*padding: 0 10px;*/
+
+    font-size: 14px;
+
+    border-left: 1px solid #f0f0f0;
+    border-right: 1px solid #f0f0f0;
+
+    margin-left: 0px;
+}
+
+.fontSelect ul li:first-child {
+    /*-webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;*/
+
+    border-top: none;
+}
+
+.fontSelect ul li:last-child {
+    /*-webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;*/
+
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.fontSelect li:hover {
+    background: #3399ff;
+    color: #fff;
+}

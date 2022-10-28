@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <i class="icon icon-ui-info"></i>
+        <h3 class="panel-title">Profile</h3>
+    </div>
+    <div class="panel-body">
+        <div class="jambo-brief setting-heading">
+            <div class="setting-heading-inner">
+                <div class="setting-header-visual col-xs-2">
+                    <div class="avatar-wrapper">
+                        <span class="avatar" style="{{ currentUser.profilePictureUrl ? ('background-image: url(' + currentUser.profilePictureUrl + ')') : '' }}">
+                            {{ !currentUser.profilePictureUrl ? (currentUser.name | nameInitial) : '' }}
+                        </span>
+                        <span class="avatar-over-text">Update</span>
+                    </div>
+                </div>
+                <div class="setting-header-textual col-xs-6">
+                    <h3 class="medium title">
+                        {{ currentUser.name }}
+                    </h3>
+                    <span class="label label-primary" ng-bind="currentUser.role"></span>
+                    <p class="medium">
+                        <a href="mailto:{{currentUser.email}}" ng-bind="currentUser.email"></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <tabset justified="true" class="settings-tab-header">
+            <tab ng-repeat="t in tabs" heading="{{ t.heading }}" ui-sref="{{ t.route }}" active="t.active">
+            </tab>
+        </tabset>
+        <div class="settings-tab-content" ui-view></div>
+    </div>
+</div>

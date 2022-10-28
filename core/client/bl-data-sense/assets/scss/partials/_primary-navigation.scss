@@ -1,0 +1,302 @@
+.brand {
+  display: block;
+  width: 100%;
+  height: 61px;
+  background: url('../img/logo2.png') 50% 50% $brand-primary no-repeat;
+  &:hover {
+    background-color: $brand-primary;
+  }
+}
+
+.bl-primary-nav-panels {
+
+    background: #f9f9f9;
+
+    a {
+        color: $primary-nav-link;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+
+
+   .panel-group {
+        padding: 0 $x-large-space;
+        margin: $x-large-space 0;
+        .panel-heading+.panel-collapse .panel-body {
+            border-top: 0;
+        }
+   }
+
+   .panel {
+        @include box-shadow(none);
+        border-bottom: 2px solid $border-gray-light;
+   }
+
+   .panel.active {
+        a.panel-title {
+            color: $primary-nav-link-active;
+        }
+        .btn-add {
+            display: block;
+        }
+        .panel-body {
+            display: block;
+        }
+   }
+
+    .panel-heading {
+        @include clearfix();
+        padding: $xx-large-space $large-space;
+        a.panel-title {
+            font-size: $font-size-xxx-large;
+            @include FontFamily_BentonSansCond(Medium);
+        }
+        .btn-add {
+            display: none;
+            float: right;
+        }
+    }
+
+    .panel-body {
+        padding: 0 $large-space $large-space;
+        & > .nav-stacked {
+            & > li {
+                border-bottom: 1px solid $border-gray-light;
+                
+                &:last-child {
+                    border-bottom: 0;
+                }
+
+                & > a {
+                    font-size: $font-size-large;
+                    padding: $medium-space $xx-large-space;
+                    position: relative;
+
+                    &:before {
+                        font-family: $font-family-helvetica;
+                        content: "\25B6";
+                        color: $primary-nav-link;
+                        font-size: 7px;
+                        position: absolute;
+                        top: 16px;
+                        left: 8px;
+                    }
+                }
+                .collapse {
+                    margin: 0 $x-large-space $medium-space;
+                    & > li {
+                        & > a {
+                            color: $primary-nav-link-dark;
+                            font-size: $font-size-h5;
+                            position: relative;
+                        } 
+                        &.active {
+                            & > a {
+                                color: $primary-nav-link-active;
+                                &:before {
+                                    font-family: $font-family-helvetica;
+                                    content: "\2192";
+                                    font-size: 14px;
+                                    position: absolute;
+                                    top: 8px;
+                                    left: -6px;
+                                    color: $primary-nav-link-active;
+                                }
+                            }
+                        }
+                    }
+                }
+                &.active {
+                    > a {
+                        &:before {
+                            content: "\25BC";
+                            color: $primary-nav-link-active;
+                        }
+                    } 
+                    .collapse {
+                        display: block;
+                    }
+                } 
+            }
+        }
+    }
+
+    .nav > li.active > a {
+        color: $primary-nav-link-active;
+    }
+    .nav > li > a {
+        @include FontFamily_BentonSansMedium();
+
+        &:hover, &:focus {
+            background-color: transparent;
+        }
+    }
+    
+    .nav-search {
+        display: block;
+        position: relative;
+        width: 100%;
+    }
+
+    .nav-search input {
+        border-radius: 4px;
+        border: 1px solid $border-gray-light;
+        color: darken($border-gray-light, 20%);
+        display: block;
+        font-size: .9em;
+        margin-bottom: $x-large-space;
+        padding: 8px 33px 8px 12px;
+        position: relative;
+        width: 100%;
+
+        @include placeholder(darken($border-gray-light, 10%));
+
+        &:focus, &:active {
+            outline: 0;
+        }
+    }
+
+    .nav-search .input-group-addon {
+        background-image: url("../img/icon_magnifier.png"); 
+        background-size: 17px 16px;
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: 0;
+        content: ' ';
+        display: block;
+        height: 16px;
+        position: absolute;
+        right: 6px;
+        top: 9px;
+        width: 17px;
+    }
+
+    .widget-list-wrapper {
+        $grid-gutter-width: 8px;
+        $grid-columns: 4;
+        @include container-fixed();
+        .widget-list-row {
+            @include make-row();
+        }
+        .col {
+            position: relative;
+            // Prevent columns from collapsing when empty
+            min-height: 1px;
+            // Inner gutter via padding
+            padding-left:  ($grid-gutter-width / 2);
+            padding-right: ($grid-gutter-width / 2);
+            width: percentage((1 / $grid-columns));
+            float: left;
+        }
+        .widget {
+            border-radius: 5px;
+            border: 1px solid $border-gray-lighter;
+            border-top-border-color: transparent;
+            border-bottom-border-color: transparent;
+            cursor: pointer;
+
+            padding: $x-large-space 0 $medium-space;
+            margin-bottom: $x-large-space;
+
+            text-align: center;
+            @include box-shadow(0 1px 2px #ccc); 
+            .widget-icon {
+                display: inline-block;
+                margin: $mini-space auto $small-space;
+            }
+            .caption {
+                color: $widget-promo-caption;
+                display: block;
+
+                @include FontFamily_BentonSansCond(Medium);
+                font-size: $font-size-base;
+            }
+
+            &.active,
+            &:hover {
+                border: 1px solid $widget-promo-caption-active;
+                .caption {
+                    color: $widget-promo-caption-active;
+                }
+                .icon {
+
+                }
+            } 
+        }
+    }
+
+    .widgets-panel {
+        .panel-body {
+            padding: 0;
+        }
+        .input-group {
+            margin-left: $large-space;
+            margin-right: $large-space;
+        }
+    }
+}
+
+$widget-icon-width:         42px;
+
+//== Widget Icons
+.widget-icon {
+    background-repeat: no-repeat;
+    
+    &.bar {
+        @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-bar.svg", $widget-icon-width, $widget-icon-width);
+    }
+
+    &.timeline {
+        @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-timeline.svg", $widget-icon-width, $widget-icon-width);
+    }
+
+    &.pie {
+        @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-pie.svg", $widget-icon-width, $widget-icon-width);
+    }
+
+    &.table {
+        @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-table.svg", $widget-icon-width, $widget-icon-width);
+    }
+
+    &.image {
+        @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-image.svg", $widget-icon-width, $widget-icon-width);
+    }
+
+    &.equivalencies {
+        @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-equivalencies.svg", $widget-icon-width, $widget-icon-width);
+    }
+}
+
+.widget-list-wrapper {
+    .widget {
+        &:hover, &.active {
+            .widget-icon {
+                &.bar {
+                    @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-bar-active.svg", $widget-icon-width, $widget-icon-width);
+                }
+
+                &.timeline {
+                    @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-timeline-active.svg", $widget-icon-width, $widget-icon-width);
+                }
+
+                &.pie {
+                    @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-pie-active.svg", $widget-icon-width, $widget-icon-width);
+                }
+
+                &.table {
+                    @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-table-active.svg", $widget-icon-width, $widget-icon-width);
+                }
+
+                &.image {
+                    @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-image-active.svg", $widget-icon-width, $widget-icon-width);
+                }
+
+                &.equivalencies {
+                    @include iconInlineImage("bl-data-sense/assets/img/svg-icons/icon-widget-equivalencies-active.svg", $widget-icon-width, $widget-icon-width);
+                } 
+            }
+        }
+    }
+}

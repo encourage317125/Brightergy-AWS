@@ -1,0 +1,28 @@
+<div class="panel element-numeric element-atom" id="savings" as-element-show-loading="{{ !isDataLoaded }}">
+	<div class="panel-heading">
+		<as-more-panel position="bottom left" panel-title="Savings">
+			<div id="wrapperSavingMorePanel" ng-include="'app/partials/more-panels/savings.html'"></div>
+		</as-more-panel>
+		<h5 class="panel-title">
+			Savings
+		</h5>
+		<as-date-range-selector ng-model="dateRange" ranges="week,month,year,total" force-dropdown="true"></as-date-range-selector>
+	</div>
+	<div class="panel-body">
+		<div class="widget">
+			<div class="kpi" as-tooltip tooltip-content-dom="#infoSavings" tooltip-position="right middle" tooltip-classes="kpi-tooltip">
+				<sup class="kpi-title">$</sup>
+				<span class="kpi-value link-info numeric-data" ng-bind="lastSavingData.kpi.totalSavingPerDateRange" direction="right" as-animated-number>0</span>
+			</div>
+			<div class="total">
+				<span class="total-title">Total: </span>
+				<span class="total-value"> $
+					<b ng-bind="lastSavingData.kpi.totalSavings" as-animated-number data-num-decimals="2">0.00</b>
+				</span>
+			</div>
+		</div>
+		<div id="infoSavings" class="info-panel">
+			<p class="bottom">The estimated value of your solar generation is determined by multiplying your total energy produced (in kWh) over a given time period by an estimated utility rate of <span class="kpi">$0.10/kWh</span>. Your actual utility rate will vary.</p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,96 @@
+form.form-setting-panel{
+    font-size: $font-size-large;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .form-group {
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+    .control-wrapper {
+        color: $link-dark;
+        line-height: 34px;
+        word-break: break-all;
+        span {
+            //margin-top: 7px;
+            line-height: 27px;
+        }
+
+        .link-more{
+            margin-left: 10px;
+        }
+    }
+    .control-label {
+        padding-right: 27px;
+        font-weight: 400;
+        text-align: right;
+        line-height: 34px;
+        padding-top: 0;
+        color: $blue-lighter;
+    }
+}
+.input-danger {
+    color: $brand-danger;
+}
+form-inline-editor,
+form-inline-select-editor {
+    display: inline-block;
+    .icon.icon-edit, .icon-blue-loading {
+        color: $link-color;
+        font-size: 15px;
+        position: absolute;
+        margin-top: 8px;
+        margin-left: -24px;
+    }
+    .form-control.ng-invalid {
+        border-color: $validation-error-color;
+        color: $validation-error-color;
+        background-color: #fce0dd;
+    }
+    span.echo {
+        display: block;
+        cursor: pointer;
+        * {
+            display: inline-block;
+            margin: 0;
+        }
+    }
+    p {
+        font-size: $font-size-large !important;
+        font-weight: 400 !important;
+    }
+}
+
+form-inline-select-editor {
+    .ppanel-form-field-input-wrapper {
+        display: block;
+        width: 100%;
+        select {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    form.form-platform-panel {
+        .control-label {
+            width: 30%;
+        }
+
+        .control-wrapper{
+            width: 50%;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+
+    form.form-platform-panel {
+        .control-label {
+            width: 50%;
+        }
+    }
+}

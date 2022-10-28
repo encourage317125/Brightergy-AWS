@@ -1,0 +1,25 @@
+<div class="horizontal-generation-block" ng-style="{'width' : widgetParam.parameters.width + 'px', 'height' : widgetParam.parameters.height + 'px', 'margin': 'auto'}">
+	<div class="reduced-left" ng-style="{'background-color' : '#' + widgetParam.parameters.primaryColor.color}">
+		<div style="margin-top: 10%;">
+			<div class="title" ng-style="{'font-size': widgetParam.generationTitleFontSize + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name}">{{widgetParam.parameters.headerFont.content}}</div>
+		</div> 
+	</div>
+	<div class="reduced-right" ng-style="{'background-color' : '#' + widgetParam.parameters.backgroundColor}">
+		<div style="display: table-cell; vertical-align: middle;">  
+			<div class="current-block" ng-style="{'display': widgetParam.generationCurrentDisplay}">
+				<div class="summary" ng-style="{'font-size': widgetParam.generationSummaryFontSize + 'em', 'color' : '#' + widgetParam.parameters.normal2Font.color, 'font-family' : widgetParam.parameters.normal2Font.name}">Current Generation</div>
+				<div class="value" ng-style="{'font-size': widgetParam.generationValueFontSize + 'em', 'color' : '#' + widgetParam.parameters.normal1Font.color, 'font-family' : widgetParam.parameters.normal1Font.name}">{{widgetParam.generationCurrentGeneration | number}}<span ng-style="{'font-size': widgetParam.generationSignFontSize + 'em'}">kW</span></div>
+			</div>
+			<div class="current-block" ng-style="{'display': widgetParam.generationTotalDisplay, 'margin-top': widgetParam.generationTotalMarginTop + '%'}">
+				<div class="summary" ng-style="{'font-size': widgetParam.generationSummaryFontSize + 'em', 'color' : '#' + widgetParam.parameters.normal2Font.color, 'font-family' : widgetParam.parameters.normal2Font.name}">
+					<div>Total Generation</div>
+					<div class="since-date" style="">since {{widgetParam.generationSinceDate}}</div>
+				</div>
+				<div class="value" ng-style="{'font-size': widgetParam.generationValueFontSize + 'em', 'color' : '#' + widgetParam.parameters.normal1Font.color, 'font-family' : widgetParam.parameters.normal1Font.name}">{{widgetParam.generationkWhGenerated | number}}<span ng-style="{'font-size': widgetParam.generationSignFontSize + 'em'}">kWh</span></div>
+			</div>
+			<div class="current-block" ng-style="{'font-size': widgetParam.generationReimbursementFontSize + 'em', 'color' : '#' + widgetParam.parameters.subHeaderFont.color, 'font-family' : widgetParam.parameters.subHeaderFont.name}" ng-show="widgetParam.parameters.widgetSolarGenerationReimbursement">
+				{{widgetParam.parameters.subHeaderFont.content}} : <span class="reimbursement">${{widgetParam.reimbursementValue | number}}</span>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,35 @@
+doctype html
+html.no-js(lang="")
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    title Coming Soon - BrighterLink
+    meta(name="description", content="")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel="apple-touch-icon", href="dist/img/favicon.ico")
+    link(rel="icon", type="image/x-icon", href="dist/img/favicon.ico")
+    //- vendor:css
+    link(rel="stylesheet", href="/dist/css/vendor.min.css")
+    //- endinject
+    //- inject:css
+    link(rel="stylesheet", href="/dist/css/assurf.min.css")
+    //- endinject
+    base(href="/")
+  body
+    //if lt IE 8
+      p.browserupgrade
+        | You are using an
+        strong outdated
+        | browser. Please
+        a(href="http://browsehappy.com/") upgrade your browser
+        | to improve your experience.
+    as-global-loading.animate-hide
+      //.progress
+      //  .progress-bar(role="progressbar", aria-valuenow="{{$root.initialDataLoadedPercent | number}}", aria-valuemin="0", aria-valuemax="100", ng-style="{'width': $root.initialDataLoadedPercent}")
+      //    .sr-only {{ $root.initialDataLoadedPercent }} Completed
+      #welcome-zone
+        #loading-indicator
+        h1#loading-welcome-msg(style="font-size:4em;font-style:italic;")
+          | Coming Soon
+      //#complain-zone
+        p Are you waiting too long? Please call us <a href='#'>800-0923-000</a>

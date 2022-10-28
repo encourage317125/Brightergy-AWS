@@ -1,0 +1,122 @@
+{
+    "db": {
+        "options": {}
+    },
+    "utilityprovidersgeneralwords": [
+        "company",
+        "inc",
+        "and",
+        "."
+    ],
+    "replacements": {
+        "+": "plus"
+    },
+    "cookie": {
+        "secure": false
+    },
+    "email": {
+        "onerrorsendemail": false
+    },
+    "salesforce": {
+        "contacturl": "/sfdccontacts",
+        "accountsurl": "/sfdcaccounts",
+        "accountupdateurl": "/sfdcaccountupdate",
+        "projectsurl": "/sfdcprojects"
+    },
+    "apps": {
+        "classroom": "/classroom",
+        "brighterview": "/management",
+        "verify": "/verify",
+        "respond": "/respond",
+        "analyze": "/datasense",
+        "utilities": "/utilities",
+        "projects": "/projects",
+        "connect": "/connect",
+        "help & updates": "/helpandupdates"
+    },
+    "availablewidgeticons": {
+        "graph": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HaVRnYThybVhmdWc",
+        "energy equivalencies": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HWWFYNklUVXU4UFk",
+        "how does solar work": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HZlQtemxvd1pQVVU",
+        "iframe": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HdXZQc3dsbDJ5U00",
+        "image": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HM0tmb3RDQ2hBYTA",
+        "textarea": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HUm9rY3ZRdjRFd3c",
+        "weather": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HcmdLWkJUY3RMUkU",
+        "solar generation": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HaHJFMVNTV1BMTHM"
+    },
+    "graphwidgeticons": {
+        "clear-day": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HelEtN0t6OHdXejQ",
+        "clear-night": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HZHZMUU1QdW13Wkk",
+        "cloudy": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HUTBHQm5QZHFJSDQ",
+        "fog": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HU2ZiYXhJT19lSXM",
+        "partly-cloudy-day": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HUDFuWVBQeUxfQTA",
+        "partly-cloudy-night": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HcnE4aFJ1bXY4OTA",
+        "rain": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HSUZwcS1wWDlFVjQ",
+        "sleet": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HWDNmSHAwU2NoSGc",
+        "snow": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HUDgyZk5NWXBaTk0",
+        "wind": "https://docs.google.com/a/brightergy.com/uc?id=0B3-lYVkYUF8HWG5HelJqVTh3Smc"
+    },
+    "aws": {
+        "route53": {
+            "createcname": false
+        },
+        "assets": {
+            "generalassetskeyprefix": "generalAssets",
+            "accountassetskeyprefix": "accountAssets",
+            "presentationassetskeyprefix": "presentationAssets",
+            "dashboardassetskeyprefix": "dashboardAssets",
+            "userassetskeyprefix": "userAssets",
+            "userprofileassetskeyprefix": "userProfileAssets"
+        }
+    },
+    "cdn": {
+        "hostname": "d2i8g5pbc32ox4.cloudfront.net",
+        "domain": "cdn-assurf.brighterlink.io",
+        "bucket": "assurfassets",
+        "env": "development"
+    },
+    "api": {
+        "host": "api.brightergy.com",
+        "version": "v1",
+        "secure": true
+    },
+    "scopeCryptoKey": "BrighterLink",
+    "services": {
+        "weather": {
+            "authorizationtoken": "DFuT8BmhjQuvpQlv98jvhQkv05nbQWmvjuq",
+            "currentweatherurl": "https://weatherservice-staging.brighterlink.io/api/v1/current?",
+            "forecastweatherurl": "https://weatherservice-staging.brighterlink.io/api/v1/forecast?",
+            "dailyweatherurl": "https://weatherservice-staging.brighterlink.io/api/v1/daily?"
+        },
+        "location": {
+            "url": "https://locationservice-staging.brighterlink.io/api/v1/timezone?",
+            "auth": "fjTivbHljSDkbhEkfhtTpzTlhjQ"
+        },
+        "dataprovider": {
+            "authorizationtoken": "8d860d59-6732-4e64-bac7-8f0c402d4d3c",
+            "periodurl": "https://dataprovider-staging.brighterlink.io/api/v1/period?",
+            "lasturl": "https://dataprovider-staging.brighterlink.io/api/v1/last?"
+        }
+    },
+    "demobox": {
+        "user": {
+            "firstname": "Demo",
+            "lastname": "User",
+            "password": "Brightergy1",
+            "loginpath": "/v1/users/login"
+        },
+        "createdemouserapi": {
+            "path": "/v1/demo",
+            "auth": "JwdvRJWBudCVYyRUxz5mRJaSMCDkPC87"
+        }
+    },
+    "recaptcha": {
+        "sitekey": "6LdaDxETAAAAACpt4zDTqb1anu1jPYccLBjJXG0d",
+        "secretkey": "6LdaDxETAAAAAI7VmBbjccUZ7ZPbB6DZiKbwjGpN"
+    },
+    "energycap": {
+        "authapipath": "/api/v1/login",
+        "logouturl": "https://info.brighterlink.io"
+    },
+    "websocketsrestartcrontime": "0 */5 * * * *"
+}

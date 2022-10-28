@@ -1,0 +1,14 @@
+<ul class="form-list label-left list-bordered dotted">
+	<li class="section-form">
+		<h4>Custom Details</h4>
+	</li>
+	<li class="form-group">
+		<label for="imageUrl" class="control-label label-default">Image URL</label>
+		<div class="controls">
+			<input type="text" ng-model="widgetParam.parameters.widgetURL" id="imageURL"/>
+			<!-- <c:BV_ImagePickerManagementPage inputField="imageURL" presentation="{!BV_Presentation__c}"/> -->
+            <image-picker info="imageUrl"></image-picker>
+			<span class="help-block">Recommended resolution of 1920x1080 at 72dpi</span>
+		</div>
+	</li>
+</ul>

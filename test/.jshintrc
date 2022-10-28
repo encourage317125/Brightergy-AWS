@@ -1,0 +1,36 @@
+{
+  "extends"       : "../.jshintrc",
+  "indent"        : 2,
+  "quotmark"      : "single",
+  "strict"        : false,
+  "expr"          : true,
+
+  // Relaxing
+  "esnext"        : false,
+  "globalstrict"  : true,
+  "laxbreak"      : true,
+  "loopfunc"      : true,
+
+  // Environments
+  "browser"       : true,     // Web Browser (window, document, etc)
+  "jquery"        : true,
+  "node"          : false,
+
+  // Custom Globals
+  "globals": {
+    "angular"     : true,
+    "io"          : true,
+    "moment"      : true,
+    "pako"        : true,
+    "countUp"     : true,
+    "describe"    : true,
+    "before"      : true,
+    "beforeEach"  : true,
+    "after"       : true,
+    "afterEach"   : true,
+    "it"          : true,
+    "expect"      : true,
+    "spyOn"       : true,
+    "sinon"       : true
+  }
+}

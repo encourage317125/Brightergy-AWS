@@ -1,0 +1,12 @@
+#!/bin/bash
+# a wrapper script to source env-vars, do other housekeeping and run node process
+# author : samar[at]techgaun[dot]com
+
+#source ./.docker/setenv
+source ./.docker/post-setup
+seeddb
+cd $SRV_DIR && \
+  chown -R nobody . && \
+  chmod +x ./.docker/post-setup ./.docker/runner && \
+  sh ./.docker/post-setup && \
+  /bin/su -p -s /usr/local/bin/node nobody app.js

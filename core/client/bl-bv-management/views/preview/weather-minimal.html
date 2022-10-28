@@ -1,0 +1,32 @@
+<div class="weather-widget" ng-style="{'width' : widgetParam.parameters.width + 'px', 'height' : widgetParam.parameters.height + 'px', 'margin': 'auto'}">
+	<div class="template-title" ng-hide="(widgetParam.parameters.headerFont.content == null) || (widgetParam.parameters.headerFont.content == '')" ng-style="{'font-size' : widgetParam.parameters.headerFont.size + 'em', 'color' : '#' + widgetParam.parameters.headerFont.color, 'font-family' : widgetParam.parameters.headerFont.name, 'background-color' : '#' + widgetParam.parameters.primaryColor.color}">{{widgetParam.parameters.headerFont.content}}</div>
+	<div class="weather-info" ng-style="{'backgroundColor' : '#' + widgetParam.parameters.backgroundColor}">   
+		<div class="weather-content">   
+			<div class="main">
+				<div class="temperature">    
+					<div ng-style="{'font-size': widgetParam.weatherTemperatureFontSize + 'em', 'line-height': '1em', 'color':'#1281b7', 'display': 'inline-block'}" height="60px">{{widgetParam.weatherCurrentlyTemperature}}</div>
+					<div style="display: inline-block;" >
+						<div class="">
+							<span ng-style="{'font-size': widgetParam.weatherSign1FontSize + 'em', 'color':'#1281b7', 'font-weight': 'bold'}">&#176;</span>
+						</div>
+						<span ng-style="{'font-size': widgetParam.weatherSign2FontSize + 'em', 'color':'#b4b5ba', 'font-weight': 'bold', 'line-height': '1.2em'}">F</span>
+					</div>
+				</div>
+				<div class="summary">    
+					<img ng-src="{{imgUrl}}weather/{{widgetParam.weatherCurrentlyIcon}}.png" width="100%" class="img-responsive">
+					<div ng-style="{'font-size': widgetParam.weatherSummary1FontSize + 'em', 'color' : '#' + widgetParam.parameters.normal1Font.color, 'font-family' : widgetParam.parameters.normal1Font.name, 'text-align':'center', 'font-weight': 'bold'}">{{widgetParam.weatherCurrentlySummary}}</div>
+				</div>
+				<div class="wind">
+					<div ng-style="{'font-size': widgetParam.weatherMphFontSize + 'em', 'color':'#1281b7'}">WIND</div>
+					<div>
+						<div ng-style="{'display': 'inline-block', 'font-size': widgetParam.weatherWindSpeedFontSize + 'em', 'line-height': '1em', 'font-weight': 'bold'}">{{widgetParam.weatherCurrentlyWindSpeed | number}}</div>
+						<div style="display: inline-block; width: 20%">
+							<div style="width: 90%;"><img ng-src="{{imgUrl}}{{widgetParam.weatherWindBearing}}.png" style="opacity: 0.3" width="100%" class="img-responsive"></div>
+							<div ng-style="{'font-size': widgetParam.weatherMphFontSize + 'em', 'font-weight': 'bold'}">MPH</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

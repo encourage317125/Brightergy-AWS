@@ -1,0 +1,166 @@
+.main {
+  margin: 0 auto;
+}
+
+ul li, ol li {
+  margin-left: 0;
+}
+.pn {
+  float: left;
+  font-size: 1.5em;
+}
+.presentationContainer {
+  position: absolute;
+  height: 85%;
+  width: 100%;
+  top: 11%;
+  z-index: 100;
+  background-color: $color_pst_white_light;
+  padding: 0.2% 0;
+}
+.presentation {
+  height: 100%;
+}
+
+.presentationBody {
+  width: 100%;
+  height: 100%;
+  background-color: $color_pst_white_light;
+  position: relative;
+  overflow: hidden;
+}
+
+//-------------- NEED REVIEW ----------------
+.presentationFooter {
+  width: 99.5%;
+  height: 3%;
+  background-color: $white;
+  border-top: 1px solid $color_pst_grey_light;
+  font-size: 1.1em;
+  text-align: right;
+  vertical-align: middle;
+  color: $color_pst_grey_dark;
+  position: absolute;
+  bottom: 0;
+  display: table;
+}
+
+.header_pt {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 11%;
+  position: fixed;
+  box-shadow: 0 1px 5px $color_pst_shadow;
+  z-index: 999;
+  .pn {
+    float: left;
+    color: $color_pst_white_light;
+    margin-left: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1em;
+  }
+}
+.header_mar {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.pt_logo {
+  float: left;
+  margin-left: 20px;
+  width: auto;
+  height: 100%;
+  img {
+    display: block;
+    max-width: auto;
+  }
+}
+
+.pt_wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+.pt_infomation {
+  float: right;
+  padding: 0 28px;
+  border-left: 1px solid $color_pst_orange_light;
+  color: $color_pst_orange_hot;
+  height: 100%;
+  line-height: normal;
+  display: table;
+  .pt_info_line {
+    height: 33.3333333333333%;
+    vertical-align: middle;
+  }
+  .pt_description {
+    float: left;
+    font-size: 0.9em;
+    position: relative;
+    height: 75%;
+    display: table;
+  }
+  .pt_info_title {
+    vertical-align: middle;
+    display: table-cell;
+    width: 110px;
+  }
+  .pt_info_value {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .pt_sub_logo {
+    float: right;
+    //height: 75%;
+    margin-left: 15px;
+    margin-top: 20px;
+    img {
+      width: auto;
+      max-width: none;
+      position: relative;
+      //height: 82%;
+    }
+  }
+}
+
+.pt_components {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  .ng-scope {
+    padding: 3px;
+  }
+}
+.loadingData {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+  background: #FFFFFF;
+  z-index: 1001;
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: block;
+  }
+}
+.notyfy_error {
+  h4 {
+    font-size: 16px;
+  }
+  strong {
+    font-size: 16px;
+  }
+}
+@media(max-width: 480px) {
+  .pt_infomation .pt_sub_logo img {
+    //height: 45px;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,42 @@
+<div class="element sun-hours" id="sunhours-energy">
+	<div class="header row">
+		<div class="title col-md-6">
+			<a class="link-more ve" more-dialog="#sunhours_more"><i class="icon icon-ui-info"></i></a>						
+			<a href="javascript:void(0)" class="link-detail">Energy by Sun-Hours</a>
+		</div>
+	</div>
+	<div class="widget">
+		<div class="col-md-2">
+			<div class="total-label">Total in {{currentYear}}</div>
+			<div class="total-value">{{totalHours | number}} Hours</div>
+			<div class="sh-year-label pull-left" ng-click="goPrevYear()">
+				<span class="icon-arrow left"></span> <span>{{prevYear}}</span>
+			</div>
+			<div class="sh-year-label pull-right" ng-click="goNextYear()" ng-hide="currentYear == fullYear">
+				 <span>{{nextYear}}</span><span class="icon-arrow right"></span>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="col-md-10">
+			<div id="calendarChart" class="calendar-chart"></div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+	<div style="width:100%; height:200px">
+	</div>
+	<div class="more" id="sunhours_more">
+		<div class="blue-box">
+			<h5 class-"title">What are "Sun-Hours"?</h5>
+			<div class="row">
+				<div class="col-md-12">
+					<p>Energy is the amount  of power that is  used over  a specific time. Irradiance is the amount  of solar radiation  that is delivered to an area over a certain amount of  time. That means that for any given area, there is a specific amount of radiant power delivered to that area by the sun.</p> 
+					<p>The amount of time that Irradiance is delivered and collected determines how much energy your solar array can harvest. This is known as “Insolation” and is calculated by taking the power multiplied by time and divided by area. </p>
+					<p>Insolation is used to determine an array’s “Sun Hours.” For each geographical location, and depending on the time of year, there is a certain amount of Sun Hours per day that have historically been measured at that location. Sun Hours should not be confused with the amount of hours the sun is out since the sun does not remain in the same location during the day and does not follow the same path depending on the time of year. </p>
+					<p>For example, the month of July in Kansas City has an average of 6.56 Sun Hours per day. Even though the sun is out for longer than 6.56 hours each day, that value is as if the sun were shining at its maximum potential. In contrast, the same location in the month of December has an average of only 1.89 Sun Hours. </p>
+					<p>Other factors when determining energy produced are the solar array system size, the orientation of the solar array and the tilt angle of the solar modules.</p>
+				</div>
+			</div>
+			<div class="arrow-top"></div>
+		</div>
+	</div>
+</div>

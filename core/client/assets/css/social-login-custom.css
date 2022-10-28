@@ -1,0 +1,53 @@
+.plugin .footer #branding {display:none;}
+.plugin #providers .provider {
+	float: left;
+	width: 112px;
+	text-align: left;
+	margin-top: 10px;
+	padding: 2px 2px 4px;
+	outline: 0;
+}
+.plugin #providers .provider .button {
+	float:left;
+	margin:0;
+	width: 32px;
+	height: 32px;
+	background-image: url(/assets/img/social-icons.png);
+	position:absolute;
+}
+.plugin #providers .provider .name {
+	float: left;
+	margin: 10px 0 0 10px;
+	margin-left: 40px;
+	color: #0076a1;
+	font-size: 12px;
+	cursor:pointer;
+}
+.plugin .footer #branding {display:none;}
+
+.plugin #content {overflow:visible;}
+
+.plugin #providers .provider #button_google {background-position: 0px 0px;}
+.plugin #providers .provider #button_twitter {background-position: 0px -42px;}
+.plugin #providers .provider #button_openid {background-position: 0px -84px;}
+.plugin #providers .provider #button_windowslive {background-position: 0px -126px;}
+.plugin #providers .provider #button_facebook {background-position: 0px -168px;}
+.plugin #providers .provider #button_linkedin {background-position: 0px -210px;}
+.plugin #providers .provider #button_yahoo {background-position: 0px -252px;}
+
+.plugin #providers .provider #button_google:hover {background-position: -40px 0px;}
+.plugin #providers .provider #button_twitter:hover {background-position: -40px -42px;}
+.plugin #providers .provider #button_openid:hover {background-position: -40px -84px;}
+.plugin #providers .provider #button_windowslive:hover {background-position: -40px -126px;}
+.plugin #providers .provider #button_facebook:hover {background-position: -40px -168px;}
+.plugin #providers .provider #button_linkedin:hover {background-position: -40px -210px;}
+.plugin #providers .provider #button_yahoo:hover {background-position: -40px -252px;}
+
+@media(max-width:262px){
+	.plugin #providers .providers_group .providers_block .providers_row {
+		clear:none;
+		float:left;
+	}
+	.plugin #providers .provider {width:auto; padding: 2px 3px;}
+	.plugin #providers .provider .name {display: none;}
+}

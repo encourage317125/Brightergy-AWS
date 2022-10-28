@@ -1,0 +1,18 @@
+<div class="modal-wrapper account-delete-modal">
+	<div class="header row">
+		<div class="title col-md-12">We hate to see you go!</div>
+		<button type="button" class="close modal-close" data-dismiss="modal" aria-label="Close" ng-click="closeModal();"><span aria-hidden="true">x</span></button>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<p>This will delete your personal user account and all related information from BrighterLink. We hate to see you go! Please confirm that you wish to delete your personal user account.</p>
+		</div>
+		<div class="col-md-12 text-danger" ng-if="errorMessage">
+			<p>There was an error deleting your user account.</p>
+		</div>
+	</div>
+	<div class="row">
+		<a ng-click="deleteUser()" class="btn danger" ng-disabled="isRemoving" >Confirm and Delete Access</a>
+		<a ng-click="closeModal()" class="btn info">Cancel</a>
+	</div>
+</div>

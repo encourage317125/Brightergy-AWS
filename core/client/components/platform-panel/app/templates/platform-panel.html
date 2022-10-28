@@ -1,0 +1,23 @@
+<div id="platform-panel-wrapper">
+	<account-panel ng-show="selected=='account'">
+        <div class="panel-content col-lg-8">
+            <account-view></account-view>
+        </div>
+        <div class="panel-content col-lg-4">
+            <team-panel></team-panel>
+        </div>
+    </account-panel>
+
+    <user-panel ng-show="selected=='user'">
+        <div class="panel-content col-lg-8">
+            <user-profile></user-profile>
+        </div>
+        <div class="panel-content col-lg-4">
+            <social-login></social-login>
+        </div>
+    </user-panel>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="onClose({});">
+        <span aria-hidden="true">x</span>
+    </button>
+</div>

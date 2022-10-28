@@ -1,0 +1,96 @@
+<div id="user-panel-profile" class="userProfile" ng-show="showUserProfile">
+    <div class="user-profile-banner">
+        <!-- <img ng-click="toggleShow();" style="position:absolute; left:445px; top:17px; cursor:pointer; max-width:26px; max-height:26px;" class="icon-cross" src="/assets/img/icon_cross.png" alt=""/>-->
+        <div class="title">User Preferences
+            <a ng-click="toggleShow(profileForm);" style="margin-left: 250;" class="btn btn-cpanel-close"><span class="icon icon-bv-close"></span></a>
+        </div>
+    </div>
+    <!--<form ng-show="currentUser.role != 'BP'" onchange="angular.element('#user-profile').scope().uploadFiles()" class="source-form">
+    <form onchange="angular.element('#user-profile').scope().uploadFiles()" class="source-form">
+        <input id="profileImageUpload" type="file" name="assetsFile"/>
+        <img id="profileUserImage" ng-mouseenter="setShowToolTip(true);" ng-mouseleave="setShowToolTip(false);" ng-click="uploadUserPhoto();" ng-src="{{currentUser.profilePictureUrl}}"/>
+        <div ng-bind="toolTipText" ng-show="showToolTip;" id="uploader-toolTip"></div>
+    </form>-->
+    <div style="margin:5px">
+        <form class="form-horizontal source-form" name="profileForm" ng-submit="saveUser(profileForm)" novalidate="novalidate">
+            <div class="form-group" ng-class="{'has-error': profileForm.profileName.$invalid && (profileForm.profileName.$dirty || submitted)}">
+                <div class="col-sm-3 control-label profile-image">
+                    <img id="profileUserImage" ng-mouseenter="setShowToolTip(true);" ng-mouseleave="setShowToolTip(false);" ng-click="openUploadPhotoDialog();" ng-src="{{currentUser.profilePictureUrl}}"/>
+                    <div ng-bind="toolTipText" ng-show="showToolTip;" id="uploader-toolTip"></div>
+                </div>
+                <div class="col-sm-9">
+                    <input id="input-profile-name" name="profileName" class="form-control" type="text" placeholder="User name" ng-model="editUser.name" required>
+                    <span class="help-block" ng-show="profileForm.profileName.$error.required && (profileForm.profileName.$dirty || submitted)">Please input your name.</span>
+                    <div class="profile-permission">
+                        <div class="profile-permission-label">Permissions: </div><div ng-bind-html="currentUser.role" class="profile-permission-role" ></div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': profileForm.profilePhone.$invalid && (profileForm.profilePhone.$dirty || submitted)}">
+                <label for="input-profile-phone" class="col-sm-3 control-label">Contact Phone:</label>
+                <div class="col-sm-9">
+                    <input id="input-profile-phone" name="profilePhone" class="form-control" type="text" placeholder="Example: 1-800-275-2273" ng-model="editUser.phone" ng-phone-number>
+                    <span class="help-block" ng-show="profileForm.profilePhone.$error.phonenumber && (profileForm.profilePhone.$dirty || submitted)">Please input a valid phone number (ex: 1-800-275-2273).</span>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{'has-error': profileForm.profileEmail.$invalid && (profileForm.profileEmail.$dirty || submitted)}">
+                <label for="input-profile-email" class="col-sm-3 control-label">Email:</label>
+                <div class="col-sm-9">
+                    <input id="input-profile-email" name="profileEmail" class="form-control" type="text" placeholder="Email address" ng-model="editUser.email" required ng-rfc-email>
+                    <span class="help-block" ng-show="(!profileForm.profileEmail.$error.required && profileForm.profileEmail.$error.rfcEmail) && (profileForm.profileEmail.$dirty || submitted)">Please input a valid email address.</span>
+                    <span class="help-block" ng-show="profileForm.profileEmail.$error.required && (profileForm.profileEmail.$dirty || submitted)">Please input your email address.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="ajax_loading_panel ng-hide" ng-show="ajaxLoading"></div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">New Password:</label>
+                <div class="col-sm-9">
+                    <a ng-click="newPassword()" class="form-control">Send reset password mail</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Social Links:</label>
+                <div class="col-sm-9" ng-show="!is_loggedin_user">
+                    <div id="oa_social_link_container"></div>
+                </div>
+            </div>
+            <div class="button-group">
+                <button type="submit" class="action-btn btn-ok">Update Account</button>
+                <button type="button" ng-click="toggleShow(profileForm)" class="action-btn btn-cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var angularController = angular.element('#user-profile').scope();
+    var oneall_subdomain = 'brightergy';
+
+    /* The library is loaded asynchronously */
+    var oa = document.createElement('script');
+    oa.type = 'text/javascript'; oa.async = true;
+    oa.src = '//' + oneall_subdomain + '.api.oneall.com/socialize/library.js';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(oa, s);
+
+    /* Replace #your_callback_uri# with the url to your own callback script */
+    var your_callback_script = angularController.getCurrentBaseURL() + '/v1/sociallogin';
+
+    /* Dynamically add the user_token of the currently logged in user. */
+    /* If the user has no user_token then leave the field blank. */
+    var user_token = angularController.currentUser.socialToken;
+
+    /* Embeds the buttons into the container oa_social_link_container */
+    var _oneall = _oneall || [];
+    _oneall.push(['social_link', 'set_providers', ['google', 'facebook', 'twitter', 'amazon', 'yahoo', 'windowslive', 'linkedin', 'github', 'openid']]);
+    _oneall.push(['social_link', 'set_grid_sizes', [3, 4]]);
+    _oneall.push(['social_link', 'set_callback_uri', your_callback_script]);
+    _oneall.push(['social_link', 'set_user_token', user_token]);
+    _oneall.push(['social_link', 'do_render_ui', 'oa_social_link_container']);
+
+</script>
+
+<div ng-include="'/components/navigation-bar/views/modal-upload-photo.html'"/>

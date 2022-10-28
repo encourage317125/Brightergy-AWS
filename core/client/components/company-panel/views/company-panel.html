@@ -1,0 +1,68 @@
+<!-- Start of company panel -->
+<div class="panel company-panel-main" ng-controller="CompanyPanelController" tab-slide-out="settingTabSliderCompanyPanel">
+    <div class="panel-header">
+        <h4 class="panel-title">Company Panel</h4>
+        <div class="panel-tools">
+            <a class="btn btn-cpanel-close"><span class="icon icon-bv-close"></span></a>
+        </div>
+        <a class="btn btn-cpanel-handler"><span class="icon icon-bv-lgrip"></span><span class="icon icon-bv-gear"></span></a>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="tab-wrapper">
+            <!--<tabset class="tab-animation">
+                <tab>
+                    <tab-heading>
+                        <i class="bv-side-menu bv-account"></i><span class="name">Account</span>
+                    </tab-heading>
+                    <div ng-include="'/components/company-panel/views/company-panel-accounts.html'"></div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                        <i class="bv-side-menu bv-user"></i><span class="name">Team</span>
+                    </tab-heading>
+                    <div ng-include="'/components/company-panel/views/company-panel-users.html'"></div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                        <i class="bv-side-menu bv-ecms"></i><span class="name">ECMs</span>
+                    </tab-heading>
+                    <div ng-include="'/components/company-panel/views/company-panel-ecms.html'"></div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                        <i class="bv-side-menu bv-assets"></i><span class="name">Assets</span>
+                    </tab-heading>
+                    <div ng-include="'/components/company-panel/views/company-panel-assets.html'"></div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                        <i class="bv-side-menu bv-sources"></i><span class="name">Sources</span>
+                    </tab-heading>
+                    <div ng-include="'/components/company-panel/views/company-panel-sources.html'"></div>
+                </tab>
+                <tab>
+                    <tab-heading>
+                        <i class="bv-side-menu bv-groups"></i><span class="name">Groups</span>
+                    </tab-heading>
+                    <div ng-include="'/components/company-panel/views/company-panel-groups.html'"></div>
+                </tab>
+            </tabset>-->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="active" ng-click="initAccount(); "><a href="#tab-company-account" data-toggle="tab"><i class="bv-side-menu bv-account"></i><span class="name">Account</span></a></li>
+                <li class="" ng-click="initTeam();"><a href="#tab-company-users" data-toggle="tab"><i class="bv-side-menu bv-user"></i><span class="name">Team</span></a></li>
+                <li class="" ng-click="initAsset()"><a href="#tab-company-assets" data-toggle="tab"><i class="bv-side-menu bv-assets"></i><span class="name">Assets</span></a></li>
+                <li class="" ng-click="initSource()"><a href="#tab-company-sources" data-toggle="tab"><i class="bv-side-menu bv-sources"></i><span class="name">Sources</span></a></li>
+                <li class="" ng-click="initGroup()"><a href="#tab-company-groups" data-toggle="tab"><i class="bv-side-menu bv-groups"></i><span class="name">Groups</span></a></li>
+            </ul>
+            <div id="sub-navigation-company-panel" class="tab-content">
+                <div class="tab-pane fade in active" id="tab-company-account"><div ng-include="'/components/company-panel/views/company-panel-accounts.html'"></div></div>
+                <div class="tab-pane fade" id="tab-company-users"><div ng-include="'/components/company-panel/views/company-panel-users.html'"></div></div>
+                <div class="tab-pane fade" id="tab-company-assets"><div ng-include="'/components/company-panel/views/company-panel-assets.html'"></div></div>
+                <div class="tab-pane fade" id="tab-company-sources"><div ng-include="'/components/company-panel/views/company-panel-sources.html'"></div></div>
+                <div class="tab-pane fade" id="tab-company-groups"><div ng-include="'/components/company-panel/views/company-panel-groups.html'"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of company panel -->

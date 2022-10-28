@@ -1,0 +1,274 @@
+
+#navigation {
+  text-align: center;
+  width: 92px;
+  font-size: 12px;
+  color: $color_grey;
+  background: url(/bl-bv-management/assets/img/lpanel-bg.png);
+  height: 100%;
+  float: left;
+  padding: 0;
+  padding-top: 106px;
+  li {
+    float: left;
+    position: relative;
+    width: 89px;
+    &.active {
+      background: $color_bv_blue_light;
+      border-top: 1px solid $color_bv_blue_light_2;
+      border-right: 1px solid $color_bv_blue_light_2;
+      border-bottom: 1px solid $color_bv_blue_light_2;
+      &:after {
+        width: 7px;
+        height: 20px;
+        content: "";
+        left: 88px;
+        top: 30px;
+        position: absolute;
+        background-image: url(/bl-bv-management/assets/img/navi-left.png);
+      }
+      a {
+        text-decoration: none;
+        color: $color_grey_light;
+        cursor: pointer;
+        text-align: center;
+        color: $color_bv_blue_2;
+      }
+      .f-widgets {
+        background-position: 0 -50px;
+      }
+      .f-presents {
+        background-position: -52px -50px;
+      }
+      .f-users {
+        background-position: -103px -50px;
+      }
+    }
+    a {
+      text-decoration: none;
+      color: $color_grey_light;
+      cursor: pointer;
+      display: inline-block;
+      width: 100%;
+      padding-top: 20px;
+      padding-bottom: 15px;
+      line-height: 10px;
+      &:hover {
+        text-decoration: none;
+        color: $color_grey_light;
+        cursor: pointer;
+        text-align: center;
+        color: $color_bv_blue_2;
+        .f-widgets {
+          background-position: 0 -50px;
+        }
+        .f-presents {
+          background-position: -52px -50px;
+        }
+        .f-users {
+          background-position: -103px -50px;
+        }
+      }
+      i {
+        text-decoration: none;
+        width: 32px;
+        height: 32px;
+        margin: 0 auto;
+        display: block;
+        background-image: url(/bl-bv-management/assets/img/lpanel-icons.png);
+      }
+    }
+  }
+}
+.nav-list {
+  margin-top: 5px;
+}
+.l-header {
+  width: 485px;
+}
+.lpanel {
+  font-size: 13px;
+  position: relative;
+  float: left;
+  width: 370px;
+  height: 100%;
+  .title {
+    color: $color_black_light;
+    padding: 30px 20px 50px 32px;
+    height: 104px;
+    font-size: 15px;
+    .sub-panel {
+      padding: 0;
+    }
+    h3 {
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: bold;
+      color: $color_grey_dark;
+      margin: 5px 0 5px;
+      display: inline-block;
+    }
+    p {
+      font-size: 12px;
+    }
+    i.f-question {
+      height: 30px;
+      width: 28px;
+      font-size: 17px;
+      cursor: pointer;
+      border-radius: 3px;
+      padding: 6px;
+    }
+    .btn-bv-default {
+      padding: 10px 14px;
+    }
+  }
+  .form-group {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .accordion-group {
+    border-radius: 0;
+    margin-bottom: 5px;
+    border: 0;
+    background: $color_white;
+    i {
+      &.icon-trash {
+        padding: 5px;
+        color: $color_grey_dark;
+        margin-right: 0;
+        vertical-align: top;
+        margin-top: 2px;
+        &:hover {
+          color: $color_bv_blue_2;
+          background-color: $color_bv_blue_light;
+        }
+      }
+      &.icon-pencil:hover {
+        color: $color_bv_blue_2;
+        background-color: $color_bv_blue_light;
+      }
+    }
+    .accordion-content {
+    }
+    li a:hover {
+      background-color: $color_bv_blue_light;
+      border-radius: 3px;
+    }
+  }
+  .newuser {
+    display: none;
+  }
+  .accordion-content {
+    li a {
+      display: inline-block;
+      width: 196px;
+      padding: 6px 15px;
+      margin-left: 5px;
+    }
+    i.icon-pencil {
+      padding: 5px;
+      color: $color_grey_dark;
+      margin-right: 0;
+      vertical-align: top;
+      margin-top: 2px;
+    }
+  }
+  a:hover {
+    color: $color_bv_blue_2;
+    text-decoration: none;
+  }
+  li a.i-active {
+    z-index: 9999;
+  }
+  .nav-list [class^="icon-"] {
+    margin-right: 9px;
+  }
+  .account-prsentation li {
+    background-color: $color_white;
+    padding: 5px;
+    a {
+      display: inline-block;
+      width: 215px;
+      padding: 6px 15px;
+      &:hover {
+        background-color: $color_bv_blue_light;
+        border-radius: 5px;
+      }
+    }
+    i {
+      vertical-align: top;
+      &:hover {
+        color: $color_bv_blue_2;
+        background-color: $color_bv_blue_light;
+      }
+    }
+    i[class^="icon-"] {
+      margin-right: 0;
+    }
+  }
+}
+#presentation-create-panel .lpanel-body .presentations {
+  max-height: 400px;
+}
+.lpanel-body {
+  margin: 10px;
+  background: $color_white;
+
+  .source-form {
+
+  }
+  .no-exit-list {
+    text-align: center;
+    padding: 20px;
+    font-size: 15px;
+  }
+  > .editor-list {
+    height: calc(100% - 330px);
+  }
+  .presentations {
+    padding: 20px;
+    li {
+      &.source-item {
+        .item-title {
+          font-size: 18px;
+          padding-top: 10px;
+        }
+        p {
+          font-size: 12px;
+          margin-bottom: 5px;
+        }
+      }
+      .presentation-remove p {
+        float: left;
+        min-width: 120px;
+        padding: 0 5px;
+        @include FontFamily_BentonSans();
+        margin-bottom: 0;
+        font-size: 16px;
+        color: #eaeaea;
+      }
+    }
+    .item-link {
+      cursor: pointer;
+    }
+  }
+  .source-form {
+    .border-wrapper {
+      margin-top: 60px;
+    }
+    .btn-group-wrapper {
+      width: 255px;
+    }
+  }
+  .tree-control {
+    height: calc(100% - 410px);
+  }
+}
+
+#sub-navigation .widgetsSelector li a {
+  color: $color_black_light;
+  background: $color_white;
+  text-decoration: none;
+}
+

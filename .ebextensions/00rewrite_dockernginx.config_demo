@@ -1,0 +1,7 @@
+container_commands:
+  copy:
+    command: "cp -f .ebextensions/00flip.sh /opt/elasticbeanstalk/hooks/appdeploy/enact/01flip.sh"
+    ignoreErrors: true
+  make_exe:
+    command: "chmod +x /opt/elasticbeanstalk/hooks/appdeploy/enact/01flip.sh"
+    ignoreErrors: true

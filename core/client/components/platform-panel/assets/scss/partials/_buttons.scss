@@ -1,0 +1,72 @@
+.btn {
+	margin: 10px 5px;
+	&.danger {
+		color: $orange;
+		border: 2px solid $orange;
+	}
+	&.info {
+		color: $link-color;
+		border: 2px solid $link-color;
+	}
+}
+
+.input-group-btn {
+    .btn {
+        margin: 0;
+        background: $link-color;
+        border-color: $link-color;
+    }
+}
+
+.btn-bl-default {
+    font-size: $font-size-base;
+
+    margin: 1px;
+    /*padding: $medium-space $x-large-space;*/
+    padding: 8px 7px;
+
+    color: $link-color;
+    border: 1px solid $link-color;
+    border-radius: 4px;
+    background: #fff;
+
+    &:hover,
+    &:active,
+    &.active {
+        background: #f1f4f6;
+        color: $link-color;
+        border: 1px solid $link-color;
+        outline: 0;
+    }
+
+    &:focus {
+        color: $link-color;
+        border: 1px solid $link-color;
+        background: #fff;
+        outline: 0;
+    }
+
+    > i {
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.btn-blue {
+    font-size: $font-size-base;
+    background: $link-color;
+    color: #fff;
+    padding: 10px 20px;
+    
+    &:hover,
+    &:active,
+    &.active {
+        color: #fff;
+    }
+
+    &:focus {
+        color: #fff;
+        outline: 0;
+    } 
+}

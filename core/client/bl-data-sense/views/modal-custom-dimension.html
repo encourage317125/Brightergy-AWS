@@ -1,0 +1,87 @@
+<script type="text/ng-template" id="modalCustomDimension.html">
+    <div class="bl-modal bl-modal-custom-dimension">
+        <form name="dsCustomDimensionForm" novalidate>
+            <div class="modal-header">
+                <h3 class="modal-title">{{!customGroupDimension.definedGroups.length?"Add Custom Dimensions":"Update Custom Dimensions"}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="left-side">
+                    <fieldset class="form-group" ng-class="{'has-error': dsCustomDimensionForm.groupName.$invalid && added}">
+                        <label>Add Group</label>
+                        <input type="text" class="form-control" name="groupName" ng-model="newGroup.name" placeholder="Write group name" required />
+                        <span class="help-block" ng-show="dsCustomDimensionForm.groupName.$error.required && added">Please enter group name.</span>
+                    </fieldset>
+                    <fieldset class="form-group" style="margin-bottom: 0px;">
+                        <label>Segment</label>
+                        <select id="select-custom-segment" name="customSegment" ng-model="newGroup.segmentId" class="form-control" ng-options="item.id as item.name for item in selectedDashboard.segments" required ng-change="changeSegmentId();"></select>
+                    </fieldset>
+                    <div class="bl-dlg-section tree-section" m-custom-scrollbar="">
+                        <treecontrol class="datasource-tree dashboard-tree" tree-model="newGroup.treedata" options="opt1" order-by="name" on-selection="setExpanded(node)" expanded-nodes="expandedNodes">
+                            <div class="node-name" ng-mouseover="node.onhover = true;" ng-mouseleave="node.onhover = false;">
+                                <span ng-class="{'dimmed': node.visible==false, 'node_disabled': node.disable, 'node_activated': node.active}">{{node.name}}</span>
+                                <div class="pull-right actions" ng-class="node.visible ? 'activated' : 'deactivated'">
+                                    <span class="glyphicon" ng-show="node.onhover && !node.disable" ng-click="activateDataSource($event, node)" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                                    
+                                    <span class="glyphicon" ng-show="!node.onhover && !node.disable" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                                </div>
+                            </div>
+                        </treecontrol>
+                        <div class="clearfix"></div>
+                    </div>
+                    <fieldset class="checkbox">
+                        <input id="chkbox-group-by-segment" type="checkbox" ng-model="customGroupDimension.groupBySegment" ng-class="{'hidden2': isGroupDisabled}">
+                        <label for="chkbox-group-by-segment" ng-class="{'hidden2': isGroupDisabled}">
+                            Require Segment Base Grouping
+                        </label>
+                        <div class="add-group-section">
+                            <span>Add Group</span>&emsp;<button type="button" class="btn btn-ok" ng-click="addNewGroup(dsCustomDimensionForm);">+</button>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="right-side">
+                    <fieldset class="form-group">
+                        <label>Defined Groups</label>
+                        <div class="defined-groups" ng-repeat="group in customGroupDimension.definedGroups">
+                            <div class="defined-group">
+                                <span class="title">{{group.name}}</span>
+                                <ul class="actions list-inline">
+                                    <li>
+                                        <a class="btn expand-group" ng-click="changeCDExpanded($index)">
+                                            <span ng-class="{'glyphicon-plus': !group.isExpanded, 'glyphicon-minus': group.isExpanded}"></span>
+                                        </a>
+                                        <a class="btn remove-group" ng-click="removeDefinedGroup($index)">
+                                            x
+                                        </a>
+                                        <div class="clearfix"></div>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="bl-dlg-section tree-section defined-custom-dimensions" ng-show="group.isExpanded" m-custom-scrollbar="">
+                                <treecontrol class="datasource-tree dashboard-tree defined-custom-dimensions" tree-model="group.treedata" options="opt1" order-by="name" on-selection="setExpanded(node)" expanded-nodes="group.expandedNodes">
+                                    <div class="node-name" ng-mouseover="node.onhover = true;" ng-mouseleave="node.onhover = false;">
+                                        <span ng-class="{'dimmed': !node.visible, 'node_disabled': !node.visible, 'node_activated': node.active}">{{node.name}}</span>
+                                        <div class="pull-right actions" ng-class="node.visible ? 'activated' : 'deactivated'">
+                                            <span class="glyphicon" ng-show="node.visible" ng-class="node.visible ? 'glyphicon-eye-open' : 'glyphicon-eye-open'"></span>
+                                        </div>
+                                    </div>
+                                </treecontrol>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="modal-footer action-box">
+                <div class="bl-panel-command-border-wrapper">
+                    <div class="bl-panel-command-wrapper">
+                        <button type="button" class="btn btn-ok" ng-click="submit()">Apply</button>
+                        <button type="button" class="btn btn-cancel" ng-click="dismiss()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>

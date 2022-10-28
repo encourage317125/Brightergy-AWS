@@ -1,0 +1,29 @@
+.drop-element {
+	@include transition(opacity .15s linear);
+	opacity: 0;
+	display: none;
+	&.drop-after-open {
+		opacity: 1;
+		z-index: 9999;
+	}
+	&.drop-open-transitionend {
+		display: block;
+	}
+	.drop-content {
+		font-size: $font-size-small;
+		p:last-child {
+			margin: 0;
+		}
+	}
+	&.platform-panel .drop-content {
+		width: 200px;
+	}
+}
+$themePrefix: "drop";
+$themeName: "arrows";
+$arrowSize: 6px;
+$backgroundColor: rgba(35, 43, 57, 0.98);
+$color: #fff;
+$useDropShadow: false;
+
+@include tether-theme-arrows($themePrefix, $themeName, $arrowSize, $backgroundColor, $color, $useDropShadow);

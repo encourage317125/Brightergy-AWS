@@ -1,0 +1,14 @@
+<span class="source-upload-group">
+    <div class="file-upload btn-boo">
+        <span id="upload_source_button" class="photo">
+            <img class="glyphicon glyphicon-upload img-responsive" ng-src="{{$root.baseCDNUrl}}/assets/img/icon_upload2.png" alt="" />
+            Upload CSV/JSON File Data
+        </span>
+        <form>
+            <input type="file" class="upload" ng-file-select="onFileSelect($files)" >
+        </form>
+    </div>
+    <div class="upload-status">
+        <span class="source-upload-status">{{sourceUploadStatus}}</span>
+    </div>
+</span>

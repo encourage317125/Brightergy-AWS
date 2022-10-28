@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>::: Events test page :::</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <style>
+        body {
+            margin: 10px 10px 0;
+        }
+        .row {
+            margin-bottom: 10px;
+        }
+        .borders {
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+        #listen-to {
+            height: 420px;
+            overflow-y: scroll; 
+        }
+    </style>
+
+    <script src="https://cdn.socket.io/socket.io-1.3.4.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="/gunzip.min.js.sample"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-default btn-primary" onclick="authorize('BP')">Authorize as BP</button>
+                <button class="btn btn-default btn-primary" onclick="authorize('Admin')">Authorize as Admin</button>
+                <button class="btn btn-default btn-primary" onclick="authorize('TM')">Authorize as TM</button><br>
+            </div>
+        </div>
+
+        <div class="row">
+            <hr />
+            <div class="col-md-4">
+                <h4>Event:</h4>
+                <div class="form-group">
+                    <input type="text" id="event" class="form-control" placeholder="Event">
+                </div>
+                <div class="form-group">
+                    <textarea id="params" class="form-control" placeholder="Params" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-default btn-success" onclick="sendEvent()">Send event</button>
+                </div>
+            </div>
+            <div class="col-md-3 borders">
+                <h4>Listen to:</h4>
+                <div id="listen-to"></div>
+            </div>
+            <div class="col-md-5">
+                <h4>Result:</h4>
+                <textarea id="textarea" class="form-control" rows="20"></textarea>
+                <div class="checkbox">
+                    <label>
+                        <input id="prettify" type="checkbox" checked> Prettify JSON output
+                    </label>
+                </div>
+                <button class="btn btn-default btn-danger" onclick="reconnect(); return false;">Reconnect</button>
+                <button class="btn btn-default btn-warning" onclick="clearTextArea(); return false;">Clear</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <hr />
+            <div class="col-md-3">
+                <h3>Assurf Examples:</h3>
+                <p><a href="#" onclick="exampleWeather()">assurf:weatherhistory</a></p>
+                <p><a href="#" onclick="exampleFacility()">assurf:inputfacilitydrilldown</a></p>
+                <p><a href="#" onclick="exampleActualPredictedEnergy()">assurf:actualPredictedEnergy</a></p>
+                <p><a href="#" onclick="exampleSelectSources()">assurf:selectedsources</a></p>
+                <p><a href="#" onclick="exampleAssurfSolarEnergyGeneration()">assurf:solarenergygeneration</a></p>
+                <p><a href="#" onclick="exampleAssurfRealTimePower()">assurf:realtimepower</a></p>
+                <p><a href="#" onclick="exampleAssurfSolarEnergyGenerationDrilldown()">assurf:solarenergygenerationdrilldown</a></p>
+                <p><a href="#" onclick="exampleAssurfSavings()">assurf:savings</a></p>
+                <p><a href="#" onclick="exampleAssurfEquivalencies()">assurf:equivalencies</a></p>
+                <p><a href="#" onclick="exampleAssurfCarbonAvoided()">assurf:carbonavoided</a></p>
+            </div>
+            <div class="col-md-3">
+                <h3>Emslite Examples:</h3>
+                <p><a href="#" onclick="exampleElectricDemand()">ems:electricdemand</a></p>
+                <p><a href="#" onclick="examplePeakDemand()">ems:peakdemand</a></p>
+                <p><a href="#" onclick="examplePeakDemandDrilldown()">ems:peakdemanddrilldown</a></p>
+                <p><a href="#" onclick="exampleHeatMap()">emslite:heatmap</a></p>
+            </div>
+            <div class="col-md-3">
+                <h3>Present Examples:</h3>
+                <p><a href="#" onclick="exampleGetPresentationData()">getPresentationData</a></p>
+                <p><a href="#" onclick="exampleGetDeviceInfo()">present:getdeviceinfo</a></p>
+                <p><a href="#" onclick="exampleGetDeviceInfoById()">present:getdeviceinfobyid</a></p>
+                <p><a href="#" onclick="exampleGetDeviceConfig()">present:getdeviceinfobyid</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var eventLst = [];
+        var io = io();
+
+        function addText(text) {
+            var area = document.getElementById("textarea");
+            area.value += text + "\n";
+        }
+
+        var addToListenList = function(id, checked) {
+            var elem =
+                '<div class="checkbox">' +
+                '    <label>' +
+                '        <input id="chk_box_$id" type="checkbox" value="" onclick="changeListen(this, \'$id\')"> $id' +
+                '    </label>' +
+                '</div>';
+            elem = elem.replace(/\$id/g, id);
+            $("#listen-to").append(elem);
+
+            if (checked) {
+                id = id.replace(":", "\\:");
+                $("#chk_box_" + id).trigger("click");
+            }
+        };
+
+        var onNewDataFunction = function(id, message) {
+            console.log("recieved new data: " + id);
+
+            if (message instanceof ArrayBuffer) {
+                console.log("id: " + id + ", message: " + message.byteLength);
+
+                // base64 message
+                var base64msg = btoa(String.fromCharCode.apply(null, new Uint8Array(message)));
+                addText(id + " :, compressed: " + base64msg);
+
+                var binData = new Uint8Array(message);
+                var gunzip = new Zlib.Gunzip(binData);
+                var plain = gunzip.decompress();
+
+                // Convert gunzipped byteArray back to ascii string:
+                var strData = String.fromCharCode.apply(null, plain);
+                addText(id + " :" + strData);
+            } else {
+                var outdent = $("#prettify").prop("checked") ? 2 : 0;
+                addText(id + " :" + JSON.stringify(message, null, outdent));
+            }
+        };
+
+        var subscribeForEvent = function(id) {
+            if (eventLst.indexOf(id) === -1) {
+                console.log("subscribed on " + id);
+                io.on(id, function(msg) { onNewDataFunction(id, msg) });
+                eventLst.push(id);
+            }
+        };
+
+        var unsubscribeFromEvent = function(id) {
+            var index = eventLst.indexOf(id);
+            if (index !== -1) {
+                console.log("unsubscribed from " + id);
+                eventLst.splice(index, 1);
+                io.removeListener(id);
+            }
+        };
+
+        function reconnect() {
+            console.log("Reconnecting");
+            io.disconnect();
+            io.connect();
+            eventLst.forEach(function(id) {
+                io.removeListener(id);
+                io.on(id, function(msg) { onNewDataFunction(id, msg); });
+            });
+        }
+
+        event_list = [];
+        [
+            "connected",
+            "disconnect",
+            "test:getdata",
+            "assurf:weather",
+            "assurf:weatherhistory",
+            "assurf:yieldcomparator",
+            "assurf:solarenergygeneration",
+            "assurf:solarenergygenerationdrilldown",
+            "assurf:totalenergygeneration",
+            "assurf:equivalencies",
+            "assurf:realtimepower",
+            "assurf:currentpower",
+            "assurf:savings",
+            "assurf:energy",
+            "assurf:sources",
+            "assurf:facilitydrilldown",
+            "assurf:actualpredictedenergy",
+            "assurf:sunhours",
+            "assurf:sunhoursrealtime",
+            "assurf:carbonavoided",
+            "assurf:power",
+            "assurf:sunnyday",
+            "assurf:energytodaykpidrilldown",
+            "assurf:table",
+            "assurf:viewertzoffset",
+            "ems:kinesisdebug",
+            "ems:thermostat",
+            "ems:sources",
+            "ems:realtimepower",
+            "ems:energy",
+            "ems:energyconsumption",
+            "ems:export",
+            "ems:currentdemand",
+            "ems:viewertzoffset",
+            "ems:electricdemand",
+            "ems:peakdemand",
+            "ems:peakdemanddrilldown",
+            "ems:heatmap"
+        ].forEach(function(id) {
+            addToListenList(id);
+        });
+
+        // It is better to listen them right away
+        $("#chk_box_connected").trigger("click");
+        $("#chk_box_disconnect").trigger("click");
+
+        io.on("emit", function(data) {
+            console.log("emit" + data);
+        });
+
+        function sendEvent() {
+            var event = document.getElementById("event");
+            var params = document.getElementById("params");
+
+            var request = {};
+            try {
+                request = JSON.parse(params.value);
+            } catch (e) {
+                alert("Invalid json string");
+                return;
+            }
+
+            request.socketId = io.id;
+            var outdent = $("#prettify").prop("checked") ? 2 : 0;
+            addText(" -> " + event.value + ", data: " + JSON.stringify(request, null, outdent));
+
+            subscribeForEvent(event.value);
+            io.emit(event.value, request);
+        }
+
+        function clearTextArea() {
+            var area = document.getElementById("textarea");
+            area.value = "";
+        }
+
+        function authorize(role) {
+            var login;
+            if (role === "TM") {
+                login = { "email": "gazzuri@gmail.com", "password": "Brightergy1" };
+            } else if (role === "Admin") {
+                login = { "email": "brightergy_admin1@brightergy.com", "password": "Brightergy1" };
+            } else {
+                login = { "email": "ilya.shekhurin@brightergy.com", "password": "Brightergy1" };
+            }
+            $.ajax({
+                url: "/v1/users/login",
+                dataType: "json",
+                type: "post",
+                data: login,
+                success: function(data) {
+                    addText("Successfully authorized");
+                    console.log("Successfully authorized");
+                },
+                error: function(xhr, status, err) {
+                    addText("Authorization error", err.toString());
+                    console.error("Authorization error", this.props.url, status, err.toString());
+                    if (callback) {
+                        callback(err);
+                    }
+                }
+            });
+        }
+
+        function changeListen(event, id) {
+            if (event.checked) {
+                subscribeForEvent(id);
+            } else {
+                unsubscribeFromEvent(id);
+            }
+        }
+
+        // examples
+        function setEventData(eventName, params) {
+            $("#event").val(eventName);
+            if (params) {
+                $("#params").val(pretifyParams(params));
+            }
+        }
+
+        function pretifyParams(params) {
+            return JSON.stringify(params, null, 2);
+        }
+
+        function exampleWeather() {
+            var params = { "dateRange": {"from": "2015-01-01", "to": "2015-01-10" } };
+            setEventData("assurf:weatherhistory", params);
+        }
+
+        function exampleFacility() {
+            var params = { "inspectedFacility": "549012531e94a8881e6e8e54", "energyYear":2015 };
+            setEventData("assurf:inputfacilitydrilldown", params);
+        }
+
+        function exampleActualPredictedEnergy() {
+            var params = { "dateRange":"year","selectedFacilities": [],"selectedScopes":[] };
+            setEventData("assurf:inputactualpredictedenergy", params);
+        }
+
+        function exampleSelectSources() {
+            var params = { "selectedFacilities": ["549012531e94a8881e6e8e54"] };
+            setEventData("assurf:selectedsources", params);
+        }
+
+        function exampleGetPresentationData() {
+            var params = {
+                presentations: [
+                    "545f8e3a049d8b2700320784",
+                    "545f2abe649db6140038fc6a"
+                ]
+            };
+            setEventData("getPresentationData", params);
+
+            if (!$("#chk_box_presentationData").length) {
+                addToListenList("presentationData", true);
+            }
+        }
+
+        function exampleGetDeviceInfo() {
+            setEventData("present:getdeviceinfo", {});
+
+            var selector = "#chk_box_present\\:deviceinfo";
+            if (!$(selector).length) {
+                addToListenList("present:deviceinfo", true);
+            }
+        }
+
+        function exampleGetDeviceInfoById() {
+            var params = {
+                deviceIds: [
+                    "5421ab10885c2846dcce983e",
+                    "5421ab10885c2846dcce984e"
+                ]
+            };
+            setEventData("present:getdeviceinfobyid", params);
+
+            var selector = "#chk_box_present\\:deviceinfobyid";
+            if (!$(selector).length) {
+                addToListenList("present:deviceinfobyid", true);
+            }
+        }
+
+        function exampleElectricDemand() {
+            var params = { dateRange: "week" }
+            setEventData("ems:getelectricdemand", params);
+
+            var selector = "#chk_box_ems\\:electricdemand";
+            if (!$(selector).length) {
+                addToListenList("ems:electricdemand", true);
+            }
+        }
+
+        function examplePeakDemand() {
+            var params = { dateRange: "week" };
+            setEventData("ems:getpeakdemand", params);
+
+            var selector = "#chk_box_ems\\:peakdemand";
+            if (!$(selector).length) {
+                addToListenList("ems:peakdemand", true);
+            }
+        }
+
+        function examplePeakDemandDrilldown() {
+            var params = { dateRange: "week" };
+            setEventData("ems:getpeakdemanddrilldown", params);
+
+            var selector = "#chk_box_ems\\:peakdemanddrilldown";
+            if (!$(selector).length) {
+                addToListenList("ems:peakdemanddrilldown", true);
+            }
+        }
+
+        function exampleHeatMap() {
+            var params = { dateRange: "month" };
+            setEventData("ems:getheatmap", params);
+
+            var selector = "#chk_box_ems\\:heatmap";
+            if (!$(selector).length) {
+                addToListenList("ems:heatmap", true);
+            }
+        }
+
+        function exampleAssurfRealTimePower() {
+            var params = { "dateRange":"month", "selectedFacilities": ["549012531e94a8881e6e8e54"], "selectedScopes":[], "day": null };
+            setEventData("assurf:getrealtimepower", params);
+        }
+
+        function exampleAssurfSolarEnergyGeneration() {
+            var params = { "dateRange":"month", "year": null, "month": null, "selectedFacilities": ["549012531e94a8881e6e8e54"], "selectedScopes":[] };
+            setEventData("assurf:getsolarenergygeneration", params);
+        }
+
+        function exampleAssurfSolarEnergyGenerationDrilldown() {
+            var params = { "dateRange": "year", "year": null };
+            setEventData("assurf:solarenergygenerationdrilldown", params);
+        }
+
+        function exampleAssurfSavings() {
+            var params = { "dateRange":"month", "year": null, "selectedFacilities": ["549012531e94a8881e6e8e54"], "selectedScopes":[] };
+            setEventData("assurf:getsavings", params);
+        }
+
+        function exampleAssurfEquivalencies() {
+            var params = { "dateRange":"total" };
+            setEventData("assurf:getequivalencies", params);
+        }
+
+        function exampleAssurfCarbonAvoided() {
+            var params = { "dateRange":"total" };
+            setEventData("assurf:getcarbonavoided", params);
+        }
+    </script>
+</body>
+</html>

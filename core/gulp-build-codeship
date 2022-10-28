@@ -1,0 +1,20 @@
+#!/bin/bash
+
+export AWS_ACCESS_KEY_ID=$CIPUBLISH_AWS_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=$CIPUBLISH_AWS_SECRET_ACCESS_KEY
+export S3_BUCKET=cipublish
+mkdir -p logs
+chmod -R 777 logs
+gulp jshint || ret=$?
+#send log reports to aws s3 bucket
+logfile_front="jshint-frontend-output.html"
+logfile_backend="jshint-backend-output.html"
+s3path_front="s3://cipublish/${CI_BRANCH}/${CI_BUILD_NUMBER}-${logfile_front}"
+s3path_backend="s3://cipublish/${CI_BRANCH}/${CI_BUILD_NUMBER}-${logfile_backend}"
+aws s3 cp logs/$logfile_front "$s3path_front"
+aws s3 cp logs/$logfile_backend "$s3path_backend"
+echo "Gulp Build Complete. Access lint reports at http://cipublish.brightergy.com/${CI_BRANCH}/${CI_BUILD_NUMBER}-${logfile_front} for frontend and http://cipublish.brightergy.com/${CI_BRANCH}/${CI_BUILD_NUMBER}-${logfile_backend}"
+#exit if gulp test failed
+if [[ $ret -ne 0 ]]; then
+    exit $ret
+fi

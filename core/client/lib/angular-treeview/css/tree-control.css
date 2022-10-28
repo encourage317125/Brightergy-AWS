@@ -1,0 +1,306 @@
+treecontrol {
+    /* prevent user selection */
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    /* default */
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    font-size:13px;
+    color: #555;
+    text-decoration: none;
+}
+
+treecontrol ul {
+    margin: 0;
+    padding: 0 0 0 21px;
+    list-style: none;
+    border: none;
+    /* overflow: hidden; */
+}
+
+treecontrol > ul {
+    padding-left: 0px;
+}
+
+treecontrol li {
+    position: relative;
+    padding: 0;
+    font-size: 15px
+}
+
+treecontrol li i.tree-branch-head {
+    cursor: pointer;
+}
+
+treecontrol li .tree-label {
+    cursor: pointer;
+    display: inline;
+    color: #2980b9;
+}
+treecontrol li .tree-label .actions {
+    display: block;
+    font-size: 15px;
+    color: #2980b9;
+    /*margin-top: 7px;*/
+}
+treecontrol li .tree-label.facility .actions{
+    margin-top: 7px;
+}
+treecontrol li .tree-label .actions.deactivated{
+    color: #cdcdcd;
+}
+treecontrol treeitem ul {
+
+}
+treecontrol treeitem ul li {
+    background: url("../images/tr-y.png") repeat-y;
+    background-position: 6px 0;
+}
+treecontrol treeitem ul li.scope {
+    background-position: 0 0;
+}
+treecontrol treeitem ul li:last-child {
+    background:none;
+}
+treecontrol.datasource-tree li div.tree-label .custom-puls-icon {
+  background: url(/assets/img/icon_add.png) 16px 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: 9px;
+}
+/* tree icons */
+treecontrol.datasource-tree li i {
+    padding: 0;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    border:none;
+}
+treecontrol.datasource-tree li i.tree-branch-head {
+    background: url("../images/iconsSet2.png") no-repeat;
+    padding: 0;
+    margin-right:0;
+    margin-left:12px;
+    display: inline-block;
+}
+treecontrol.datasource-tree li i.tree-leaf-head {
+    display: inline-block;
+    border: none;
+    position: absolute;
+    background-position: 0 0;
+    width:8px;
+    height:18px;
+    top: -2px;
+    left: 6px;
+}
+treecontrol.datasource-tree li.scope i.tree-leaf-head {
+    width:16px;
+    background: url("../images/tr-x1.png") no-repeat;
+    left: 0;
+    height: 20px;
+    top: -9px;
+}
+treecontrol.datasource-tree li.node i.tree-leaf-head {
+    width:8px;
+    background: url("../images/tr-x2.png") no-repeat;
+    left: 3px;
+    top: -5px;
+}
+
+/* tree action box */
+
+treecontrol.datasource-tree li div.tree-label span {
+    cursor: pointer;
+    padding:0 10px 0 0;
+}
+treecontrol.datasource-tree li div.tree-label.tree-selected {
+    /*color: #e74c3c !important;
+      font-weight: bold;*/
+}
+
+treecontrol.datasource-tree li div.tree-label.facility {
+    color: #8e44ad;
+    font-size: 20px;
+    font-family: 'Benton Sans Medium', Arial, sans-serif;
+}
+
+treecontrol.datasource-tree li div.tree-label:hover .node-name .pull-right.actions{
+    color: #2980b9;
+}
+.open-create-editor treecontrol.datasource-tree li div.tree-label:hover .node-name .pull-right.actions.deactivated{
+    color: #cdcdcd;
+}
+treecontrol.datasource-tree li div.tree-label:hover .dimmed{
+    opacity: 1;
+}
+.open-create-editor treecontrol.datasource-tree li div.tree-label:hover .dimmed{
+    opacity: 0.5;
+}
+/* facility */
+treecontrol.datasource-tree li.facility i.tree-branch-head {
+    background-position: -51px -24px;
+    vertical-align: top;
+}
+treecontrol.datasource-tree li.facility.tree-expanded > i.tree-branch-head {
+    background-position: -73px -24px;
+}
+
+treecontrol.datasource-tree li.facility > i.tree-branch-head{
+    margin-top: 4px;
+}
+
+treecontrol.datasource-tree li div.tree-label.facility .node-name {
+    display: inline-block;
+    width: 374px;
+    margin-bottom: 6px;
+    line-height: 28px;
+    margin-left: 2px;
+}
+
+treecontrol.datasource-tree.user-tree li div.tree-label.facility .node-name {
+    line-height: 1.5em;
+}
+
+treecontrol.datasource-tree.presentation-tree li div.tree-label.facility .node-name {
+    width: 300px;
+}
+
+/* scope */
+treecontrol.datasource-tree li.scope i.tree-branch-head {
+    background-position: -72px -6px;
+    margin-left: 15px;
+}
+
+treecontrol.datasource-tree li div.tree-label.scope .node-name {
+    display: inline-block;
+    width: 352px;
+    font-size: 14px;
+    font-family: 'Benton Sans', Arial, sans-serif;
+    margin-bottom: 4px;
+}
+
+treecontrol.datasource-tree.user-tree li div.tree-label.scope .node-name {
+    line-height: 1.5em;
+}
+
+treecontrol.datasource-tree.presentation-tree li div.tree-label.scope .node-name {
+    width: 278px;
+}
+
+/* node */
+treecontrol.datasource-tree li.node i.tree-branch-head {
+    background-position: -94px -6px;
+    margin-left: 10px;
+}
+
+treecontrol.datasource-tree li div.tree-label.node .node-name {
+    display: inline-block;
+    width: 336px;
+    font-size: 14px;
+    font-family: 'Benton Sans', Arial, sans-serif;
+    margin-bottom: 4px;
+}
+
+treecontrol.datasource-tree.user-tree li div.tree-label.node .node-name {
+    line-height: 1.5em;
+}
+
+treecontrol.datasource-tree.presentation-tree li div.tree-label.node .node-name {
+    width: 262px;
+}
+
+treecontrol treeitem treeitem ul li {
+    background-position: 3px 0;
+}
+
+treecontrol treeitem treeitem treeitem ul {
+    padding-left: 16px;
+}
+
+/* metric */
+treecontrol.datasource-tree li.dmetric i.tree-branch-head {
+    background-position: -116px -6px;
+}
+
+treecontrol.datasource-tree li div.tree-label.dmetric .node-name {
+    display: inline-block;
+    width: 320px;
+    font-size: 14px;
+    font-family: 'Benton Sans', Arial, sans-serif;
+    margin-bottom: 4px;
+}
+
+treecontrol.datasource-tree.user-tree li div.tree-label.dmetric .node-name {
+    line-height: 1.5em;
+}
+
+treecontrol.datasource-tree.presentation-tree li div.tree-label.dmetric .node-name {
+    width: 246px;
+}
+
+/* tree node expend/collaspe */
+treecontrol.datasource-tree li.tree-expanded i {
+}
+treecontrol.datasource-tree li.tree-collapsed i {
+}
+treecontrol.datasource-tree li.tree-leaf i {
+}
+
+treecontrol.tree-light li.tree-expanded i {
+    padding: 1px 10px;
+    background: url("../images/node-opened-2.png") no-repeat;
+}
+
+treecontrol.tree-light li.tree-collapsed i {
+    padding: 1px 10px;
+    background: url("../images/node-closed-2.png") no-repeat;
+}
+
+treecontrol.tree-light li.tree-leaf i {
+    padding: 1px 10px;
+    width: 16px; height: 16px;
+    background: none no-repeat;
+}
+
+treecontrol.tree-light li .tree-selected {
+    font-weight: bold;
+}
+
+
+treecontrol.tree-dark li.tree-expanded i {
+    padding: 1px 10px;
+    background: url("../images/node-opened-light.png") no-repeat;
+}
+
+treecontrol.tree-dark li.tree-collapsed i {
+    padding: 1px 10px;
+    background: url("../images/node-closed-light.png") no-repeat;
+}
+
+treecontrol.tree-dark li.tree-leaf i {
+    padding: 1px 10px;
+    width: 16px; height: 16px;
+    background: none no-repeat;
+}
+
+treecontrol.tree-dark li .tree-selected {
+    font-weight: bold;
+}
+
+treecontrol.tree-dark {
+    color: #ddd;
+}
+
+treecontrol .dimmed {
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+}
+treecontrol .node_activated {
+    color: #e74c3c;
+}
+treecontrol .node_disabled {
+    color: #999;
+}

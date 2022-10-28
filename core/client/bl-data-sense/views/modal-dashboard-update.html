@@ -1,0 +1,80 @@
+<script type="text/ng-template" id="modalDashboardUpdate.html">
+    <div class="bl-modal bl-modal-dashboard-update">
+        <form role="form" >
+            <div class="modal-header">
+                <h3 class="modal-title">{{isEditMode?"Update Dashboard":"Add a Dashboard"}}</h3>
+            </div>
+            <div class="modal-body">
+                <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+                <fieldset class="form-group">
+                    <label>Dashboard</label>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="dashboard blank" ng-class="{active: !starterDashboard}" ng-click="starterDashboard=false;">
+                                <div class="wsprite"></div>
+                                <div class="w-label">Blank Canvas</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="dashboard starter" ng-class="{active: starterDashboard}" ng-click="starterDashboard=true;">
+                                <div class="wsprite"></div>
+                                <div class="w-label">Starter Dashboard</div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="bl-dlg-description">Assign your Dashboard to a Collection. Enter an existing Collection&#39;s name or create a brand new one.</div>
+                <fieldset class="checkbox condensed" ng-show="!isEditMode || selectedDashboard.creator == currentUser._id">
+                    <input id="chkbox-edit-dbPrivate" type="checkbox" ng-model="dashboardWrapper.isPrivate">
+                    <label for="chkbox-edit-dbPrivate">
+                        Private
+                    </label>
+                </fieldset>
+                <fieldset class="checkbox condensed" ng-show="isBP">
+                    <input id="chkbox-edit-dbDefault" type="checkbox" ng-model="dashboardWrapper.default">
+                    <label for="chkbox-edit-dbDefault">
+                        Template
+                    </label>
+                </fieldset>
+                <fieldset class="checkbox condensed" ng-show="isBP">
+                    <input id="chkbox-edit-dbBpLock" type="checkbox" ng-model="dashboardWrapper.bpLock">
+                    <label for="chkbox-edit-dbBpLock">
+                        BP-Lock
+                    </label>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Dashboard Title</label>
+                    <input type="text" class="form-control" ng-model="dashboardWrapper.title" placeholder="Example: Water Bill"/>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Collection</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="dashboardWrapper.chooseCollection" name="choose-collection" value="1">
+                            Select from existing collections
+                        </label>
+                    </div>
+                    <select class="form-control" ng-model="dashboardWrapper.existingCollection" ng-change="dashboardWrapper.chooseCollection=1">
+                        <option ng-repeat="collection in allCollections" value="{{collection}}">{{collection}}</option>
+                    </select>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" ng-model="dashboardWrapper.chooseCollection"  name="choose-collection" value="0">
+                            Create new collection
+                        </label>
+                    </div>
+                    <input type="text" class="form-control" ng-model="dashboardWrapper.collectionName" ng-change="dashboardWrapper.chooseCollection=0" placeholder="Example: My Bills"/>
+                </fieldset>
+            </div>
+            <div class="modal-footer action-box">
+                <div class="bl-panel-command-border-wrapper">
+                    <div class="bl-panel-command-wrapper">
+                        <a class="btn btn-ok" ng-click="apply()" >{{isEditMode?"Update Dashboard":"Add Dashboard"}}</a>
+                        <a class="btn btn-cancel" ng-click="cancel()" >Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</script>

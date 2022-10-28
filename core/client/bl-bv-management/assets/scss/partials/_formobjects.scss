@@ -1,0 +1,223 @@
+select {
+  @include inputCommonStyle();
+}
+textarea {
+  @include inputCommonStyle();
+  height: auto;
+}
+input[type="text"] {
+  @include inputCommonStyle();
+}
+input[type="password"] {
+  @include inputCommonStyle();
+}
+input[type="datetime"] {
+  @include inputCommonStyle();
+}
+input[type="datetime-local"] {
+  @include inputCommonStyle();
+}
+input[type="date"] {
+  @include inputCommonStyle();
+}
+input[type="month"] {
+  @include inputCommonStyle();
+}
+input[type="time"] {
+  @include inputCommonStyle();
+}
+input[type="week"] {
+  @include inputCommonStyle();
+}
+input[type="number"] {
+  @include inputCommonStyle();
+}
+input[type="email"] {
+  @include inputCommonStyle();
+}
+input[type="url"] {
+  @include inputCommonStyle();
+}
+input[type="search"] {
+  @include inputCommonStyle();
+}
+input[type="tel"] {
+  @include inputCommonStyle();
+}
+input[type="color"] {
+  @include inputCommonStyle();
+}
+.uneditable-input {
+  @include inputCommonStyle();
+}
+
+.btn-orange {
+  background-color: #f2672a;
+  font-size: 24px;
+  line-height: 24px;
+  color: $color_white;
+  padding: 10px 0;
+  text-shadow: 0 0 0;
+  display: block;
+  text-align: center;
+  border-radius: 4px;
+  &:hover {
+    text-decoration: none;
+    color: $color_white;
+  }
+  &:active {
+    text-decoration: none;
+    color: $color_white;
+  }
+  &:focus {
+    text-decoration: none;
+    color: $color_white;
+  }
+}
+
+.btn-boo {
+  background: none;
+  background-color: $color_bv_blue_1;
+  width: 55px;
+  padding: 5px;
+  font-size: 14px;
+  color: $color_white;
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  &.cancel {
+    background-color: #dcdee5;
+    color: #606166;
+    &:hover {
+      background-color: #c6c9d7;
+      color: #2f3340;
+    }
+    &:active {
+      background-color: $color_grey_dark;
+      color: $color_white;
+    }
+  }
+  &:hover {
+    background-color: #00628a;
+    color: $color_white;
+    text-decoration: none;
+  }
+  &:active {
+    background-color: $color_grey_dark;
+    color: $color_white;
+    text-decoration: none;
+  }
+}
+.control-label {
+  text-align: left;
+  float: left;
+  padding-top: 5px;
+  font-size: 12px;
+  min-height: 20px;
+}
+
+.controls {
+  margin-left: 180px;
+  &.error input {
+    border-color: $color_error;
+  }
+  label.error {
+    color: $color_error;
+  }
+}
+.form-list {
+  list-style: none;
+  margin-left: 0;
+}
+
+.select2-container {
+  margin-bottom: 0;
+  width: 100%;
+}
+.section-form {
+  min-height: 30px;
+  padding: 9px 0;
+  margin: 0;
+  font-size: 18px;
+  line-height: 30px;
+  color: $color_bv_blue_1;
+  h4 {
+    margin: 10px 0 0;
+    font-size: 19px;
+  }
+}
+
+
+// Color pickers
+
+.color_pickers {
+  width: 36px;
+  height: 36px;
+  margin-bottom: -17px;
+  display: inline-block;
+  div {
+    margin-top: 1px;
+    margin-left: 4px;
+    width: 28px;
+    height: 28px;
+    background: url('/bl-bv-management/assets/img/select.png') center;
+  }
+}
+.colpick {
+  z-index: 99999;
+}
+
+.handle-button {
+  height: 39px;
+  width: 17px;
+  cursor: pointer;
+  margin-top: 5px;
+  z-index: 999;
+  background-image: url(/bl-bv-management/assets/img/active-handle.png);
+  background-color: $color_bv_blue_1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 10px;
+  border-radius: 3px 0 0 3px;
+}
+.handle-button2 {
+  height: 39px;
+  width: 17px;
+  cursor: pointer;
+  margin-top: 5px;
+  z-index: 999;
+  background-image: url(/bl-bv-management/assets/img/active-handle.png);
+  background-color: $color_bv_blue_1;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 10px;
+  border-radius: 3px 0 0 3px;
+}
+.handle-selected {
+  background-image: url(/bl-bv-management/assets/img/active-handle.png);
+  background-color: $color_bv_blue_1;
+}
+.handle-selected2 {
+  background-image: url(/bl-bv-management/assets/img/handle.png);
+  background-color: $color_black;
+}
+
+input#presentationname {
+  background: none;
+  border: none;
+  color: $color_white;
+  text-align: center;
+  @include FontFamily_BentonSans();
+  font-size: 21pt;
+  vertical-align: middle;
+  display: block;
+  padding: 0;
+  margin-top: -5px;
+  width: 1120px;
+  &:focus {
+    border: none;
+    outline: 0;
+  }
+}

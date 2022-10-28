@@ -1,0 +1,16 @@
+<div ng-controller="UserProfileCtrl">
+    <div id="manager-panel" class="manager_panel"> <!-- style="display: none;"-->
+        <a href="#">
+            <div id="toggle-user-panel" class="menu-item" ng-click="activePanel = !activePanel; toggleUserPanel();" ng-class="activePanel ? 'active' : ''">
+                <img class="logo-tiny" alt="" ng-src="{{currentUser.profilePictureUrl}}">
+                <div id="user-options-name" class="username">{{currentUser.name}}</div>
+            </div>
+        </a>
+        <ul id="user-panel-controls">
+            <li ng-click="toggleShow();" id="user-profile"><a href="#" id="toggle-user-profile" style="cursor: pointer;"><img ng-src="{{baseCDNUrl}}/assets/img/icon_settings.png" alt="" class="img-responsive" /> Settings</a></li>
+            <div ng-include="'/components/navigation-bar/views/user-profile.html'"></div>
+            <li ng-click="logout()"><a href="#" ng-init="(editUser.role == 'BP')? (logout_text = 'Exit'): (logout_text = 'Log Out')"><img ng-src="{{baseCDNUrl}}/assets/img/icon_logout.png" alt="" class="img-responsive" /> {{logout_text}}</a></li>
+            <li class="last"><a href="javascript:openPopupFocusEscapePounds(%27https://help.salesforce.com/apex/htdoor?language=en_US&amp;release=188.24.17&amp;instance=CS8%27, %27Help%27, 1024, 768, %27width=1024,height=768,resizable=yes,toolbar=yes,status=yes,scrollbars=yes,menubar=yes,directories=no,location=yes,dependant=no%27, false, false);"><img ng-src="{{baseCDNUrl}}/assets/img/icon_help.png" alt="" class="img-responsive" /> Help</a></li>
+        </ul>
+    </div>
+</div>

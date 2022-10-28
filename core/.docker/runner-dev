@@ -1,0 +1,12 @@
+#!/bin/bash
+# a wrapper script to source env-vars, do other housekeeping and run node process
+# author : samar[at]techgaun[dot]com
+
+#source ${SRV_DIR}/.docker/setenv
+source ${SRV_DIR}/.docker/post-setup
+ln -s -f /tmp/node_modules/* $SRV_DIR/node_modules
+seeddb
+cd $SRV_DIR && \
+  chown -R nobody . && \
+  chmod +x ${SRV_DIR}/.docker/post-setup ${SRV_DIR}/.docker/runner && \
+  nodemon -e js,jade,css,html,json,png,jpg,jpeg,gif,scss,woff,ttf,eot,svg,map app.js

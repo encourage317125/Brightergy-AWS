@@ -1,0 +1,185 @@
+<div ng-init="init('app-overview')" id="app-overview-content" class="content">
+<!-- Start content -->
+<h2 class="title">Analyze: App Overview</h2>
+<p class="description">Analyze allows Team Member(s) to create dashboards.</p>
+
+<h3>Interface</h3>
+Analyze is a Single Page Web Application within the BrighterLink platform. The Analyze interface is composed of the following parts:
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_WholeInterface.png"/>
+
+<ul>
+	<li>Navigation Bar</li>
+	<li>Company Panel</li>
+	<li>Dashboard Panel</li>
+	<li>Control Bar</li>
+	<li>Date Range</li>
+	<li>Widgets</li>
+</ul>
+<h4>Navigation Bar</h4>
+The Navigation Bar is the bar at the top of the interface that allows Team Members to manage their Profile and to select an App. It is visible on all BrighterLink Apps.
+<h4>Company Panel</h4>
+The Company Panel is on the right side of the interface that allows Team Members to manage their Account, other Team Members, Assets (ie. images, client logos), Sources (ie. data loggers, utility bills), and Groups. It is visible on all BrighterLink Apps.
+<h4>Dashboard Panel</h4>
+The Dashboard Panel is on the left side of the interface. It allows Team Members to manage their dashboards. It is only visible in Analyze (similar to the Presentations Panel in Present). 
+<h4>Control Bar</h4>
+The Control Bar is the bar near the top of the interface that allows Team Member to manage the current dashboard. It is only visible in Analyze. 
+<h4>Date Range</h4>
+The Date Range is the control near the top-right of the interface that allows Team Members to specify the date range for all widgets in the current dashboard. 
+<h4>Widgets</h4>
+Widgets are the individual information items that fill a dashboard. They are viewable by Team Members and can be shared with others. Though serving a similar purpose, dashboards widgets are unrelated to Present widgets, which means that you cannot use a dashboard widget in a Present presentation. 
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_SourcesAndGroups.png"/>
+
+<h3>Sources & Groups</h3>
+Sources and Groups are part of the Control Bar and define the limit of data that can appear in the dashboard's widgets. They also define how to segment that data. 
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_CompanyPanel.png"/>
+
+<h4>Sources</h4>
+Sources are derived from the Company Panel. There are four levels of Source hierarchy: 
+<ul>
+	<li>Facility
+		<ul>
+			<li>Scope
+				<ul>
+					<li>Node
+						<ul>
+							<li>Metric</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+<h5><i>Facility</i></h5>
+A Facility is the physical building to which a data source is related, such as where the hardware device called a "data logger" is installed.
+<h5><i>Scope</i></h5>
+A Scope  is the data source related to a Facility that houses data from Nodesand sends that data to BrighterLink. A Scope, such as a SMA WebBox and eGauge 3000, uses various methods to send data to BrighterLink, including API, FTP Push, and HTTP. Any number of Scopescan be related to a single facility.
+<h5><i>Facility</i></h5>Node
+A Noder is a collection of measured data, such as a sensorconnected to an HVAC unit, solar array, elevator, etc. that includes various Metrics such as kW, kWh, water pressure, ambient lighting level, etc. Nodestransmit their measured data to Scopes, meaning that they do not require a direct Internet connection. Multiple Nodes, such as multiple SMA inverters, typically use an on-premise hub (e.g. the SMA WebBox) to collect the data that they measure. 
+<h5><i>Metric</i></h5>
+Metrics are the measurements made by the Node such as kW, kWh, water pressure, ambient lighting level, etc.
+<h5><i>Segment</i></h5>
+A Segment is a grouping of data defined by one or more data sources.
+
+<h3>Widget Editor</h3>
+Team Members can edit widgets via a type-specific editor. Available types include:
+<ul>
+	<li>Timeline - metrics across a time series</li>
+	<li>Bar - metrics comparison with horizontal (columnar) bars</li>
+	<li>Pie - metrics comparison with whole circular chart</li>
+	<li>Table - tabular view of metrics</li>
+	<li>Image </li>
+	<li>Equivalencies - metrics represented in real-world analogues</li>
+</ul>
+Additional types on development path:
+<ul>
+	<li>Treemap - hierarchical nested rectangle (<a href="http://goo.gl/FdopUu" target="_blank">http://goo.gl/FdopUu</a>)</li>
+	<li>Bullet - compact metrics comparison</li>
+	<li>Gauge - single value highlight</li>
+	<li>Radar - spider chart</li>
+	<li>Geo - quantitative metrics on a geographical map</li>
+	<li>Bubble - visualize metrics across two to four dimensions (<a href="http://goo.gl/YbxEcY" target="_blank">http://goo.gl/YbxEcY</a>)</li>
+	<li>Funnel - represents stages in a process</li>
+	<li>KPI - single number for headline</li>
+	<li>Relational - relationship analysis</li>
+	<li>Calendar - metrics over the course of a long span of time (<a href="http://goo.gl/rNgyWg" target="_blank">http://goo.gl/rNgyWg</a>)</li>
+	<li>andlestick - opening and closing metrics in a period overlaid on top of a total variance (<a href="http://goo.gl/Fi9ygh" target="_blank">http://goo.gl/Fi9ygh</a>)</li>
+	<li>Histogram - grouped metrics across segments (<a href="http://goo.gl/06puYn" target="_blank">http://goo.gl/06puYn</a>)</li>
+	<li>Sankey - metric flow from one set of values to another (<a href="http://goo.gl/8cywg0" target="_blank">http://goo.gl/8cywg0</a>)</li>
+	<li>Scatter - single datapoints plotted on a graph (<a href="http://goo.gl/UuTQJn" target="_blank">http://goo.gl/UuTQJn</a>)</li>
+	<li>Trendlines - straight line that most closely approximates the plotted data (<a href="http://goo.gl/oy8HbQ" target="_blank">http://goo.gl/oy8HbQ</a>)</li>
+</ul>
+All data-based widgets (i.e. widgets that use data from sources) utilize two elements to define their structure: 
+<ul>
+	<li>Dashboard Metrics</li>
+	<li>Dashboard Dimensions</li>
+</ul>
+<h4>Dashboard Metrics</h4>
+When creating a dashboard widget, Metrics are values that define what type of data the widget should handle such as kWh, kW, water pressure, ambient lighting, etc. 
+<h4>Dimensions</h4>
+See <a href="http://goo.gl/AM4DY2" target="_blank">Analyze: Dimensions</a>
+<h4>Timeline</h4> 
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_Timeline_Widget.png"/>
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_Timeline_Editor.png"/>
+<h4>Bar</h4>
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_TotalYield.png"/>
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_Bar_Editor.png"/>
+<h4>Pie</h4>
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_Pie_Widget.png"/>
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_Pie_Editor.png"/>
+<h4>Table</h4>
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_Table_Editor.png"/>
+<img ng-src="{{baseCDNUrl}}/bl-help-and-updates/assets/img/BL_Analyze_Table_Widget.png"/>
+
+<h3>Examples</h3>
+<h4>Timeline</h4>
+<ul class="no-list">
+	<li>1. A Team Member clicks “Add Dashboard” and selects "Blank Dashboard" as the type.</li>
+	<li>2. A dashboard with no widgets opens in the interface with a Dashboard Panel on the left, Control Bar near the top (below the Navigation Bar), and Date Range at the top-right.</li>
+	<li>3. The Team Member specifies "July 1-31" as the Date Range in the Dashboard.</li>
+	<li>4. The Team Member specifies "FacilityA" as the Source. FaciltyA has 100 Sensors with various Metrics per Sensor, including the kWh metric.</li>
+	<li>5. The Team Member clicks "Add a Widget" and selects "Timeline" as the type.</li>
+	<li>6. The Team Member specifies "kWh" as the Metric and "kW" as the "Compare with" Metric.</li>
+	<li>7. When the Team Member clicks "Apply,” the widget appears within the dashboard showing a timeline from July 1st to July 31st with kWh and kW as separate lines. The kWh and kW values are totals of the values from all 100 sensors on FaciltyA.</li>
+</ul>
+<h4>Bar with Group Dimension</h4>
+<ul class="no-list">
+	<li>1. A Team Member clicks “Add Dashboard” and selects "Blank Dashboard" as the type.</li>
+	<li>2. A dashboard with no widgets opens in the interface with a Dashboard Panel on the left, Control Bar near the top (below the Navigation Bar), and Date Range at the top-right.</li>
+	<li>3. The Team Member specifies "July 1-31" as the Date Range in the Dashboard.</li>
+	<li>4. The Team Member specifies "FacilityA" as the Source. FaciltyA has 100 Sensors with various Metrics per Sensor, including the kWh metric.</li>
+	<li>5. The Team Member clicks "Add a Widget" and selects "Bar" as the type.</li>
+	<li>6. The Team Member specifies "kWh" as the Metric and Day as the Group Dimension and does not specify a Pivot Dimension.</li>
+	<li>7. When the Team Member clicks "Apply,” the widget appears within the dashboard showing a bar graph from July 1st to July 31st with kWh as bars (one bar for each day). The kWh values are totals of the values from all 100 sensors on FaciltyA.</li>
+</ul>
+<h4>Bar with Group and Pivot Dimension</h4>
+<ul class="no-list">
+	<li>1. A Team Member clicks “Add Dashboard” and selects "Blank Dashboard" as the type.</li>
+	<li>2. A dashboard with no widgets opens in the interface with a Dashboard Panel on the left, Control Bar near the top (below the Navigation Bar), and Date Range at the top-right.</li>
+	<li>3. The Team Member specifies "July 1-31" as the Date Range in the Dashboard.</li>
+	<li>4. The Team Member specifies "FacilityA" as the Source. FaciltyA has 100 Sensors with various Metrics per Sensor, including the kWh metric.</li>
+	<li>5. The Team Member clicks "Add a Widget" and selects "Bar" as the type.</li>
+	<li>6. The Team Member specifies "kWh" as the Metric and Day as the Group Dimension and Hour as the Pivot Dimension.</li>
+	<li>7. When the Team Member clicks "Apply,” the widget appears within the dashboard showing a bar graph from July 1st to July 31st with kWh as bars split into 24 sub-Bars (one sub-bar for each each hour of each day). The kWh values are totals of the values from all 100 sensors on FaciltyA.</li>
+</ul>
+<h4>Dashboard with Two Widgets</h4>
+<ul class="no-list">
+	<li>1. A Team Member clicks “Add Dashboard” and selects "Blank Dashboard" as the type.</li>
+	<li>2. A dashboard with no widgets opens in the interface with a Dashboard Panel on the left, Control Bar near the top (below the Navigation Bar), and Date Range at the top-right.</li>
+	<li>3. The Team Member specifies "July 1-31" as the Date Range in the Dashboard.</li>
+	<li>4. The Team Member specifies "FacilityA" as the Source. FaciltyA has 100 Sensors with various Metrics per Sensor, including the kWh metric.</li>
+	<li>5. The Team Member clicks "Add a Widget" and selects "Bar" as the type.</li>
+	<li>6. The Team Member specifies "kWh" as the Metric and Day as the Group Dimension and Hour as the Pivot Dimension.</li>
+	<li>7. When the Team Member clicks "Apply,” the widget appears within the dashboard showing a bar graph from July 1st to July 31st with kWh as bars split into 24 sub-Bars (one sub-bar for each each hour of each day). The kWh values are totals of the values from all 100 sensors on FaciltyA.</li>
+	<li>8. The Team Member clicks "Add a Widget" and selects "Pie" as the type.</li>
+	<li>9. The Team Member specifies "kWh" as the Metric and Day as the Group Dimension.</li>
+	<li>10. When the Team Member clicks "Apply,” the widget appears within the dashboard showing a Pie chart from July 1st to July 31st with kWh as sectons split into 31 sections (one section for each day in the month). The kWh values are totals of the values from all 100 sensors on FaciltyA.</li>
+</ul>
+<h4>Examples with Dimensions</h4>
+<h5><i>Count of Datapoints</i></h5>
+Widget Type = Bar<br/>
+Metric = kWh<br/>
+Group Dimension = Count of Datapoints<br/>
+Results: ONE bar with total number of datapoints in the segment. If there are two segments, would show two bars.<br/>
+<br />
+Widget Type = Bar<br/>
+Metric = kWh<br/>
+Group Dimension = Date<br/>
+Pivot Dimension  = Count of Datapoints<br/>
+Reults: ONE bar for EACH DATE with total number of datapoints for that date.<br/>
+<h5><i>Interval: time between datapoints</i></h5>
+Widget Type = Bar<br/>
+Basis = There are 14 minutes between datapointA and datapointB, 10 minutes between datapointB and datapointC, and 10 miniutes between datapointC and datapointD.<br/>
+Metric = kWh<br/>
+Group Dimension = Interval<br/>
+Reults: One bar for each interval. So, there would be two bars with the second bar twice as tall as the first (because there are two intervals of 10 minutes and only one of 14).<br/>
+<h5><i>Country: national origin of data source.</i></h5> 
+Widget Type = Bar
+Basis = MetricA (kWh) is in SensorA. SensorA has a latitude of 39 and longitude of 94 (i.e. Kansas City).  MetricB (kWh) is in SensorB. SensorB has no latitude/longitude recorded. SensorB is in DataLoggerA. DataLoggerA has a latitude of 60 and a longitude of 30 (i.e. St. Petersburg, Russia). <br/>
+Metric = kWh<br/>
+Group Dimension = Country<br/>
+Results: Two bars of equal height, one for United States, and one for Russia.<br/>
+<br />
+Note: The same concept for Country applies to State, City, and Zip Code.<br/>
+<!-- End content -->
+</div>

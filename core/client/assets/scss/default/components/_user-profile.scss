@@ -1,0 +1,124 @@
+/*----- navigation-bar/view/user-profile.html ------*/
+.userProfile .source-form {
+  margin-top: 20px;
+  .form-control {
+    @include FontFamily_BentonSansMedium();
+    &.italic {
+      @include FontFamily_BentonSans(italic);
+    }
+  }
+  .button-group {
+    display: inline-flex;
+    position: relative;
+    left: 25%;
+  }
+  #oa_social_link_container {
+    height:200px; 
+    overflow:hidden; 
+    position:relative;
+  }
+  .profile-permission {
+    .profile-permission-label {
+      color: #999;
+      float: left;
+    }
+    .profile-permission-role {
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+  .profile-image {
+    text-align: center;
+  }
+  label.control-label {
+    color: #999;
+  }
+}
+/*----- search/viewes/utility-search.html ------*/
+.predictive-search-bg li > span {
+  cursor: pointer;
+  background-color: transparent;
+  position: relative;
+}
+
+/*=========================================================================
+User Profile Photo Upload Dialog
+==========================================================================*/
+#bl-modal-upload-photo {
+  padding: 5px;
+
+  .modal-body {
+    min-height: 450px;
+  }
+}
+
+.photo-upload-section {
+
+  .photo-upload-left-panel {
+    min-width: 300px;
+    width: 75%;
+    float: left;
+    padding: 0 24px 20px 0;
+    border-right: 1px solid #ebebeb;
+
+    .cropArea {
+      position: relative;
+      border-radius: 5px;
+      background: #E4E4E4;
+      overflow: hidden;
+      width: 100%;
+      height: 350px;
+
+      img-crop {
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: relative;
+        overflow: hidden;
+
+        canvas {
+          display: block;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          outline: 0;
+          -webkit-tap-highlight-color: transparent;
+        }
+      }
+    }
+  }
+  .photo-upload-right-panel {
+    min-width: 210px;
+    width: 25%;
+    float: left;
+    padding: 0 0 20px 10px;
+
+    .button-group {
+      margin-top : 40px;
+    }
+    #croppedImage {
+      border-radius: 5px;
+    }
+  }
+}
+
+.no-photo-section {
+  position: relative;
+  width: 100%;
+  min-height: 425px;
+
+  .button-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+#fileInput {
+  display: none;
+}
+
+.btn-no-margin {
+  margin-left: 0 !important;
+}

@@ -1,0 +1,12 @@
+.sp-weather-group
+  span.title 5-Day Forecast
+  ul.list-weather-info
+    li(ng-repeat="forecast in foreWeather")
+      small {{forecast.date | amDateFormat: 'MMM, D'}}
+      b {{forecast.temperature.max}}&#176; / {{forecast.temperature.min}}&#176
+.sp-weather-group
+  span.title Historical Weather
+  ul.list-weather-info(ng-click="toggleWeatherHistory();", style="cursor: pointer;")
+    li(ng-repeat="historical in historicalWeather")
+      small {{historical.date | amDateFormat: 'MMM, D'}}
+      b {{historical.temperature.max}}&#176; / {{historical.temperature.min}}&#176

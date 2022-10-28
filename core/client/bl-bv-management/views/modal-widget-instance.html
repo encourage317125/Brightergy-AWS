@@ -1,0 +1,524 @@
+<div class="modal fade" id="editfield_dlg"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3>Settings</h3>
+            </div>
+            <div class="modal-body">
+                <div class="slide-formatting-panel" tab-slide-out="settingTabSliderFormattingPanel">
+                    <a class="handle-button" style="left: -17px;">Content</a>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <legend>Advanced Formatting</legend>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="form-list label-left list-bordered dotted">
+                                <li class="form-group" ng-show="widgetParam.parameters.backgroundImageVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.backgroundImageLabel}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.backgroundImage" id="backgroungImage" />
+                                        <!-- <c:BV_ImagePickerManagementPage id="imagePickerWidgetBackgroundImage" inputField="backgroungImage"/>-->
+                                        <image-picker info="widgetBackgroundImage"></image-picker>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.backgroundColorVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.backgroundColorLabel}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.backgroundColor" />
+                                        <div ng-model="widgetParam.parameters.backgroundColor" class="color_pickers" ng-change="changeGraphOptions()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="section-form" ng-show="widgetParam.parameters.headerFont.visible">
+                                    <h4>{{widgetParam.parameters.headerFont.label}}</h4>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.headerFont.visible">
+                                    <label class="control-label label-default">Font Size</label>
+                                    <div class="controls" fontsize-tooltip="widgetParam.parameters.headerFont.size">
+                                        <input type="text" ng-model="widgetParam.parameters.headerFont.size" ng-change="changeFontSize()"/> <span>em</span>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.headerFont.visible">
+                                    <label class="control-label label-default">Font Name</label>
+                                    <div class="controls">
+                                        <div class="fontSelect" id="fontSelect" ng-model="widgetParam.parameters.headerFont.name"></div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.headerFont.visible">
+                                    <label class="control-label label-default">Font Color</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.headerFont.color" />
+                                        <div ng-model="widgetParam.parameters.headerFont.color" class="color_pickers">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.headerFont.visible">
+                                    <label class="control-label label-default">Content</label>
+                                    <div class="controls">
+                                        <textarea rows="3" ng-model="widgetParam.parameters.headerFont.content"></textarea>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.primaryColor.isVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.primaryColor.label}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.primaryColor.color" />
+                                        <div class="color_pickers" ng-model="widgetParam.parameters.primaryColor.color">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="section-form" ng-show="widgetParam.parameters.normal1Font.visible">
+                                    <h4>{{widgetParam.parameters.normal1Font.label}}</h4>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.normal1Font.visible">
+                                    <label class="control-label label-default">Font Size</label>
+                                    <div class="controls" fontsize-tooltip="widgetParam.parameters.normal1Font.size">
+                                        <input type="text" ng-model="widgetParam.parameters.normal1Font.size" ng-change="changeFontSize()"/> <span>em</span>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.normal1Font.visible">
+                                    <label class="control-label label-default">Font Name</label>
+                                    <div class="controls">
+                                        <div class="fontSelect" id="fontSelect" ng-model="widgetParam.parameters.normal1Font.name"></div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.normal1Font.visible">
+                                    <label class="control-label label-default">Font Color</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.normal1Font.color" />
+                                        <div class="color_pickers" ng-model="widgetParam.parameters.normal1Font.color">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="form-list label-left list-bordered dotted">
+                                <li class="section-form" ng-show="widgetParam.parameters.normal2Font.visible">
+                                    <h4>{{widgetParam.parameters.normal2Font.label}}</h4>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.normal2Font.visible">
+                                    <label class="control-label label-default">Font Size</label>
+                                    <div class="controls" fontsize-tooltip="widgetParam.parameters.normal2Font.size">
+                                        <input type="text" ng-model="widgetParam.parameters.normal2Font.size" ng-change="changeFontSize()"/> <span>em</span>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.normal2Font.visible">
+                                    <label class="control-label label-default">Font Name</label>
+                                    <div class="controls">
+                                        <div class="fontSelect" id="fontSelect" ng-model="widgetParam.parameters.normal2Font.name" ng-change="changeFontSize()"></div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.normal2Font.visible">
+                                    <label class="control-label label-default">Font Color</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.normal2Font.color" />
+                                        <div ng-model="widgetParam.parameters.normal2Font.color" class="color_pickers" ng-change="changeFontSize()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="section-form" ng-show="widgetParam.parameters.subHeaderFont.visible">
+                                    <h4>{{widgetParam.parameters.subHeaderFont.label}}</h4>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.subHeaderFont.visible">
+                                    <label class="control-label label-default">Font Size</label>
+                                    <div class="controls" fontsize-tooltip="widgetParam.parameters.subHeaderFont.size">
+                                        <input type="text" ng-model="widgetParam.parameters.subHeaderFont.size" ng-change="changeFontSize()"/> <span>em</span>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.subHeaderFont.visible">
+                                    <label class="control-label label-default">Font Name</label>
+                                    <div class="controls">
+                                        <div class="fontSelect" id="fontSelect" ng-model="widgetParam.parameters.subHeaderFont.name"></div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.subHeaderFont.visible">
+                                    <label class="control-label label-default">Font Color</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.subHeaderFont.color" />
+                                        <div class="color_pickers" ng-model="widgetParam.parameters.subHeaderFont.color">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.subHeaderFont.visible">
+                                    <label class="control-label label-default">Content</label>
+                                    <div class="controls">
+                                        <textarea rows="3" ng-model="widgetParam.parameters.subHeaderFont.content"></textarea>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.secondaryColor.isVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.secondaryColor.label}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.secondaryColor.color" />
+                                        <div ng-model="widgetParam.parameters.secondaryColor.color" class="color_pickers" ng-change="changeGraphOptions()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.tertiaryColor.isVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.tertiaryColor.label}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.tertiaryColor.color"  />
+                                        <div ng-model="widgetParam.parameters.tertiaryColor.color" class="color_pickers" ng-change="changeGraphOptions()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.fourthColor.isVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.fourthColor.label}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.fourthColor.color"  />
+                                        <div ng-model="widgetParam.parameters.fourthColor.color" class="color_pickers" ng-change="changeGraphOptions()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.fifthColor.isVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.fifthColor.label}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.fifthColor.color"  />
+                                        <div ng-model="widgetParam.parameters.fifthColor.color" class="color_pickers" ng-change="changeGraphOptions()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.sixthColor.isVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.sixthColor.label}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.sixthColor.color"  />
+                                        <div ng-model="widgetParam.parameters.sixthColor.color" class="color_pickers" ng-change="changeGraphOptions()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="form-group" ng-show="widgetParam.parameters.seventhColor.isVisible">
+                                    <label class="control-label label-default">{{widgetParam.parameters.seventhColor.label}}</label>
+                                    <div class="controls">
+                                        <input type="text" ng-model="widgetParam.parameters.seventhColor.color"  />
+                                        <div ng-model="widgetParam.parameters.seventhColor.color" class="color_pickers" ng-change="changeGraphOptions()">
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <ul class="navbar-nav nav-tabs">
+                    <li class="active"><a href="#standard" data-toggle="tab" ng-click="openParameterTab();">Widget Parameters</a></li>
+                    <li><a href="#previewTab" data-toggle="tab" ng-click="previewWidget();" id="preview_tab_link">Preview</a></li>
+                </ul>
+                <div class="clearfix"></div>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="standard">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ul class="form-list label-left list-bordered dotted">
+                                    <li class="section-form">
+                                        <h4>Standard Details</h4>
+                                    </li>
+                                    <li class="form-group">
+                                        <label class="control-label label-default">Start Point</label>
+                                        <div class="controls">
+                                            <input type="text" class="point_input" ng-model="widgetParam.parameters.startDateMin"/><span class="help-inline">min</span>
+                                            <input type="text" class="point_input" ng-model="widgetParam.parameters.startDateSec"/><span class="help-inline">sec</span>
+                                        </div>
+                                    </li>
+                                    <li class="form-group">
+                                        <label class="control-label label-default">Duration (Seconds)</label>
+                                        <div class="controls" ng-init="duration_manually = false;">
+                                            <select class="margin-right-10" ng-show="!duration_manually" ng-model="widgetParam.parameters.duration" ng-change="get_totalDuration(5)" style="width: 85%;">
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                            <input class="margin-right-10" ng-show="duration_manually" type="text" ng-model="widgetParam.parameters.duration" style="width: 82%;"/>
+                                            <span ng-click="duration_manually = true" ng-show="!duration_manually" style="cursor:pointer;vertical-align: middle;"> <a>Custom</a></span>
+                                            <span ng-click="duration_manually = false" ng-show="duration_manually"  style="cursor:pointer; vertical-align: middle;"> <a>Select</a></span>
+                                        </div>
+                                    </li>
+                                    <li class="form-group">
+                                        <label class="control-label label-default">Row Count</label>
+                                        <div class="controls" id="row_count">
+                                            <select ng-model="widgetParam.parameters.rowCount">
+                                                <option value="1" ng-show="widgetParam.name == 'TextArea'">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="form-group">
+                                        <label class="control-label label-default">Col Count</label>
+                                        <div class="controls" id="col_count">
+                                            <select ng-model="widgetParam.parameters.colCount">
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="form-group">
+                                        <label class="control-label label-default">Transition In</label>
+                                        <div class="controls">
+                                            <select ng-model="widgetParam.parameters.transitionIn">
+                                                <option value="">-- Choose Transition In --</option>
+                                                <optgroup label="Attention Seekers">
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="flash">flash</option>
+                                                    <option value="pulse">pulse</option>
+                                                    <option value="rubberBand">rubberBand</option>
+                                                    <option value="shake">shake</option>
+                                                    <option value="swing">swing</option>
+                                                    <option value="tada">tada</option>
+                                                    <option value="wobble">wobble</option>
+                                                </optgroup>
+
+                                                <optgroup label="Bouncing Entrances">
+                                                    <option value="bounceIn">bounceIn</option>
+                                                    <option value="bounceInDown">bounceInDown</option>
+                                                    <option value="bounceInLeft">bounceInLeft</option>
+                                                    <option value="bounceInRight">bounceInRight</option>
+                                                    <option value="bounceInUp">bounceInUp</option>
+                                                </optgroup>
+
+                                                <optgroup label="Bouncing Exits">
+                                                    <option value="bounceOut">bounceOut</option>
+                                                    <option value="bounceOutDown">bounceOutDown</option>
+                                                    <option value="bounceOutLeft">bounceOutLeft</option>
+                                                    <option value="bounceOutRight">bounceOutRight</option>
+                                                    <option value="bounceOutUp">bounceOutUp</option>
+                                                </optgroup>
+
+                                                <optgroup label="Fading Entrances">
+                                                    <option value="fadeIn">fadeIn</option>
+                                                    <option value="fadeInDown">fadeInDown</option>
+                                                    <option value="fadeInDownBig">fadeInDownBig</option>
+                                                    <option value="fadeInLeft">fadeInLeft</option>
+                                                    <option value="fadeInLeftBig">fadeInLeftBig</option>
+                                                    <option value="fadeInRight">fadeInRight</option>
+                                                    <option value="fadeInRightBig">fadeInRightBig</option>
+                                                    <option value="fadeInUp">fadeInUp</option>
+                                                    <option value="fadeInUpBig">fadeInUpBig</option>
+                                                </optgroup>
+
+                                                <optgroup label="Fading Exits">
+                                                    <option value="fadeOut">fadeOut</option>
+                                                    <option value="fadeOutDown">fadeOutDown</option>
+                                                    <option value="fadeOutDownBig">fadeOutDownBig</option>
+                                                    <option value="fadeOutLeft">fadeOutLeft</option>
+                                                    <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+                                                    <option value="fadeOutRight">fadeOutRight</option>
+                                                    <option value="fadeOutRightBig">fadeOutRightBig</option>
+                                                    <option value="fadeOutUp">fadeOutUp</option>
+                                                    <option value="fadeOutUpBig">fadeOutUpBig</option>
+                                                </optgroup>
+
+                                                <optgroup label="Flippers">
+                                                    <option value="flip">flip</option>
+                                                    <option value="flipInX">flipInX</option>
+                                                    <option value="flipInY">flipInY</option>
+                                                    <option value="flipOutX">flipOutX</option>
+                                                    <option value="flipOutY">flipOutY</option>
+                                                </optgroup>
+
+                                                <optgroup label="Lightspeed">
+                                                    <option value="lightSpeedIn">lightSpeedIn</option>
+                                                    <option value="lightSpeedOut">lightSpeedOut</option>
+                                                </optgroup>
+
+                                                <optgroup label="Rotating Entrances">
+                                                    <option value="rotateIn">rotateIn</option>
+                                                    <option value="rotateInDownLeft">rotateInDownLeft</option>
+                                                    <option value="rotateInDownRight">rotateInDownRight</option>
+                                                    <option value="rotateInUpLeft">rotateInUpLeft</option>
+                                                    <option value="rotateInUpRight">rotateInUpRight</option>
+                                                </optgroup>
+
+                                                <optgroup label="Rotating Exits">
+                                                    <option value="rotateOut">rotateOut</option>
+                                                    <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+                                                    <option value="rotateOutDownRight">rotateOutDownRight</option>
+                                                    <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+                                                    <option value="rotateOutUpRight">rotateOutUpRight</option>
+                                                </optgroup>
+
+                                                <optgroup label="Sliders">
+                                                    <option value="slideInDown">slideInDown</option>
+                                                    <option value="slideInLeft">slideInLeft</option>
+                                                    <option value="slideInRight">slideInRight</option>
+                                                    <option value="slideOutLeft">slideOutLeft</option>
+                                                    <option value="slideOutRight">slideOutRight</option>
+                                                    <option value="slideOutUp">slideOutUp</option>
+                                                </optgroup>
+
+                                                <optgroup label="Specials">
+                                                    <option value="hinge">hinge</option>
+                                                    <option value="rollIn">rollIn</option>
+                                                    <option value="rollOut">rollOut</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="form-group">
+                                        <label class="control-label label-default">Transition Out</label>
+                                        <div class="controls">
+                                            <select ng-model="widgetParam.parameters.transitionOut">
+                                                <option value="">-- Choose Transition Out --</option>
+                                                <optgroup label="Attention Seekers">
+                                                    <option value="bounce">bounce</option>
+                                                    <option value="flash">flash</option>
+                                                    <option value="pulse">pulse</option>
+                                                    <option value="rubberBand">rubberBand</option>
+                                                    <option value="shake">shake</option>
+                                                    <option value="swing">swing</option>
+                                                    <option value="tada">tada</option>
+                                                    <option value="wobble">wobble</option>
+                                                </optgroup>
+
+                                                <optgroup label="Bouncing Entrances">
+                                                    <option value="bounceIn">bounceIn</option>
+                                                    <option value="bounceInDown">bounceInDown</option>
+                                                    <option value="bounceInLeft">bounceInLeft</option>
+                                                    <option value="bounceInRight">bounceInRight</option>
+                                                    <option value="bounceInUp">bounceInUp</option>
+                                                </optgroup>
+
+                                                <optgroup label="Bouncing Exits">
+                                                    <option value="bounceOut">bounceOut</option>
+                                                    <option value="bounceOutDown">bounceOutDown</option>
+                                                    <option value="bounceOutLeft">bounceOutLeft</option>
+                                                    <option value="bounceOutRight">bounceOutRight</option>
+                                                    <option value="bounceOutUp">bounceOutUp</option>
+                                                </optgroup>
+
+                                                <optgroup label="Fading Entrances">
+                                                    <option value="fadeIn">fadeIn</option>
+                                                    <option value="fadeInDown">fadeInDown</option>
+                                                    <option value="fadeInDownBig">fadeInDownBig</option>
+                                                    <option value="fadeInLeft">fadeInLeft</option>
+                                                    <option value="fadeInLeftBig">fadeInLeftBig</option>
+                                                    <option value="fadeInRight">fadeInRight</option>
+                                                    <option value="fadeInRightBig">fadeInRightBig</option>
+                                                    <option value="fadeInUp">fadeInUp</option>
+                                                    <option value="fadeInUpBig">fadeInUpBig</option>
+                                                </optgroup>
+
+                                                <optgroup label="Fading Exits">
+                                                    <option value="fadeOut">fadeOut</option>
+                                                    <option value="fadeOutDown">fadeOutDown</option>
+                                                    <option value="fadeOutDownBig">fadeOutDownBig</option>
+                                                    <option value="fadeOutLeft">fadeOutLeft</option>
+                                                    <option value="fadeOutLeftBig">fadeOutLeftBig</option>
+                                                    <option value="fadeOutRight">fadeOutRight</option>
+                                                    <option value="fadeOutRightBig">fadeOutRightBig</option>
+                                                    <option value="fadeOutUp">fadeOutUp</option>
+                                                    <option value="fadeOutUpBig">fadeOutUpBig</option>
+                                                </optgroup>
+
+                                                <optgroup label="Flippers">
+                                                    <option value="flip">flip</option>
+                                                    <option value="flipInX">flipInX</option>
+                                                    <option value="flipInY">flipInY</option>
+                                                    <option value="flipOutX">flipOutX</option>
+                                                    <option value="flipOutY">flipOutY</option>
+                                                </optgroup>
+
+                                                <optgroup label="Lightspeed">
+                                                    <option value="lightSpeedIn">lightSpeedIn</option>
+                                                    <option value="lightSpeedOut">lightSpeedOut</option>
+                                                </optgroup>
+
+                                                <optgroup label="Rotating Entrances">
+                                                    <option value="rotateIn">rotateIn</option>
+                                                    <option value="rotateInDownLeft">rotateInDownLeft</option>
+                                                    <option value="rotateInDownRight">rotateInDownRight</option>
+                                                    <option value="rotateInUpLeft">rotateInUpLeft</option>
+                                                    <option value="rotateInUpRight">rotateInUpRight</option>
+                                                </optgroup>
+
+                                                <optgroup label="Rotating Exits">
+                                                    <option value="rotateOut">rotateOut</option>
+                                                    <option value="rotateOutDownLeft">rotateOutDownLeft</option>
+                                                    <option value="rotateOutDownRight">rotateOutDownRight</option>
+                                                    <option value="rotateOutUpLeft">rotateOutUpLeft</option>
+                                                    <option value="rotateOutUpRight">rotateOutUpRight</option>
+                                                </optgroup>
+
+                                                <optgroup label="Sliders">
+                                                    <option value="slideInDown">slideInDown</option>
+                                                    <option value="slideInLeft">slideInLeft</option>
+                                                    <option value="slideInRight">slideInRight</option>
+                                                    <option value="slideOutLeft">slideOutLeft</option>
+                                                    <option value="slideOutRight">slideOutRight</option>
+                                                    <option value="slideOutUp">slideOutUp</option>
+                                                </optgroup>
+
+                                                <optgroup label="Specials">
+                                                    <option value="hinge">hinge</option>
+                                                    <option value="rollIn">rollIn</option>
+                                                    <option value="rollOut">rollOut</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6" ng-include="templateCustom"></div>
+                        </div>
+                    </div>
+                    <!--
+                    <div class="tab-pane fade" id="custom">
+
+                    </div>
+                     -->
+                    <div class="tab-pane fade" id="previewTab">
+                        <div ng-include="templatePreview" id="preview" class="animation-widget"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="sel_gid" value="" />
+                <input type="hidden" id="component_typeid" ng-model="componentTypeid" value="" />
+                <a href="#" class="btn-boo" ng-click="saveEditfieldDlg(false);">Save</a>
+                <a class="btn-boo cancel" data-dismiss="modal" aria-hidden="true">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>

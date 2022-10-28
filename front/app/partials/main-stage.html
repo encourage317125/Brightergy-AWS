@@ -1,0 +1,130 @@
+<!--<div class="kpi-group-mobile">
+    <div class="sp-kpi-group">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="wrapper-kpi">
+                    <as-meter-bar min="0.1" max="2.3" ng-model="currentPower"></as-meter-bar>
+                    <div class="numeric-content">
+                        <span class="kpi-title">Current Power</span>
+                        <b class="kpi-value">
+                            0.8
+                            <sup>kW</sup>
+                        </b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6">
+                <div class="wrapper-kpi">
+                    <as-meter-bar min="12" max="39" ng-model="currentEnergy"></as-meter-bar>
+                    <div class="numeric-content">
+                        <span class="kpi-title">Today"s Energy</span>
+                        <b class="kpi-value">
+                            18
+                            <sup>kWh</sup>
+                        </b>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div id="wrapper-main-stage" class="as-grid-container">
+    <div class="as-col-xl-8 as-col-lg-12 as-col-md-12 as-col-sm-12">
+        <!--div class="as-grid-container"-->
+            <div class="element-wrapper tall">
+                <element-solar-energy-production></element-solar-energy-production>
+            </div>
+        <!--/div-->
+    </div>
+    <div class="as-col-xl-4 as-col-lg-4 as-col-sm-12 normal-case">
+        <!--div class="as-grid-container"-->
+            <div class="as-col-lg-6 as-col-md-3 as-col-sm-4">
+                <div class="element-wrapper element-atom-wrapper">
+                    <element-savings></element-savings>
+                </div>
+            </div>
+            <div class="as-col-lg-6 as-col-md-3 as-col-sm-hidden">
+                <div class="element-wrapper element-atom-wrapper">
+                    <element-total-energy-production></element-total-energy-production>
+                </div>
+            </div>
+            <div class="as-col-lg-12 as-col-md-6 as-col-sm-8">
+                <div class="element-wrapper">
+                    <element-equivalencies></element-equivalencies>
+                </div>
+            </div>
+        <!--/div-->
+    </div>
+    <div class="as-col-xl-4 as-col-lg-12 as-col-sm-12 special-case">
+        <!--div class="as-grid-container"-->
+            <div class="as-col-lg-4 as-col-md-4 as-col-sm-4">
+                <div class="as-col-lg-12 as-col-md-12 as-col-sm-12">
+                    <div class="element-wrapper">
+                        <element-savings></element-savings>
+                    </div>
+                </div>
+                <div class="as-col-lg-12 as-col-md-12 as-col-sm-12">
+                    <div class="element-wrapper">
+                        <element-total-energy-production></element-total-energy-production>
+                    </div>
+                </div>
+            </div>
+            <div class="as-col-lg-8 as-col-md-8 as-col-sm-8">
+                <div class="as-col-lg-12 as-col-md-12 as-col-sm-12">
+                    <div class="element-wrapper">
+                        <element-equivalencies></element-equivalencies>
+                    </div>
+                </div>
+                <div class="as-col-lg-12 as-col-md-12 as-col-sm-12 has-zindex-2">
+                    <div class="element-wrapper">
+                        <element-yield-comparison></element-yield-comparison>
+                    </div>
+                </div>
+            </div>
+        <!--/div-->
+    </div>
+    <div class="as-col-xl-12 as-col-lg-8 as-col-md-12 as-col-sm-12 rtp-container">
+        <div class="element-wrapper tall">
+            <element-realtime-power></element-realtime-power>
+        </div>
+    </div>
+    <!--div class="as-col-xl-6 as-col-lg-12 as-col-md-12 as-col-sm-12 special-case">
+        <div class="element-wrapper tall">
+            <element-realtime-power></element-realtime-power>
+        </div>
+    </div-->
+    <div class="as-col-xl-12 as-col-lg-12 as-col-md-12 as-col-sm-12">
+        <!--div class="as-grid-container"-->
+            <div class="as-col-xl-hidden as-col-lg-hidden as-col-md-hidden as-col-sm-4 as-col-xs-hidden">
+                <div class="element-wrapper element-atom-wrapper">
+                    <element-total-energy-production></element-total-energy-production>
+                </div>
+            </div>
+            <div class="as-col-xl-4 as-col-lg-4 as-col-md-6 as-col-sm-8 has-zindex-2 normal-case">
+                <div class="element-wrapper">
+                    <element-yield-comparison></element-yield-comparison>
+                </div>
+            </div>
+            <div class="as-col-xl-6 as-col-lg-6 as-col-md-6 as-col-sm-8 avp-wrapper">
+                <div class="element-wrapper">
+                    <actual-predicted-energy></actual-predicted-energy>
+                </div>
+            </div>
+            <!--div class="as-col-xl-8 as-col-lg-9 as-col-md-8 as-col-sm-8 special-case">
+                <div class="element-wrapper">
+                    <actual-predicted-energy></actual-predicted-energy>
+                </div>
+            </div-->
+            <div class="as-col-xl-2 as-col-lg-2 as-col-md-4 as-col-sm-4 normal-case">
+                <div class="element-wrapper">
+                    <element-avoided-carbon></element-avoided-carbon>
+                </div>
+            </div>
+            <div class="as-col-xl-4 as-col-lg-3 as-col-md-4 as-col-sm-4 special-case">
+                <div class="element-wrapper">
+                    <element-avoided-carbon></element-avoided-carbon>
+                </div>
+            </div>
+        <!--/div-->
+    </div>
+</div>

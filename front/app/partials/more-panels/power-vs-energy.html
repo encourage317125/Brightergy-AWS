@@ -1,0 +1,69 @@
+<!--
+<p>Simply stated, energy is <i>the capacity to do work</i>. If work is the act of <i>exerting a force over a distance,</i> like pushing a chair across the room or lifting a fork to your mouth, then energy is what makes it possible to push those things around - whether those things be a chair or an electron in a light bulb. When we talk about electric energy, we use a couple of different units to measure that energy: watt hours (Wh), kilowatt hours (kWh), and Megawatt-hours (MWh).</p>
+<p>One watt of electrical power, maintained for one hour, equals one watt-hour of energy. One thousand watts of electrical power, maintained for one hour, is a kilowatt hour. One million watts of electrical power, maintained for one hour, is a Megawatt hour.</p>
+<p>While energy measures the total quantity of work done, it doesn’t say how fast you can get the work done. Power, though, is the <i>rate of generating or consuming energy </i> - or energy per unit of time - and is measured in Watts or Kilowatts. For example, you can move a loaded car across the country with a moped engine - but the car’s larger engine, equipped with more power, would do the same amount of work, only in far less time.</p>
+<p>How much total <i>energy</i> can your system produce? Think kilowatt hours.</p>
+<p>How much <i>power</i> can it deliver - or generate - at any moment? Think kilowatts.</p>
+-->
+<!--<p>
+    If electricity were water, then power is gallons per minute, which goes to zero when you turn off the tap. Energy is total gallons consumed.
+</p>
+<div class="row" style="margin: 0 0 15px;">
+    <div class="col-md-6 no-padding">
+        <div class="wrapper-kpi light right-meter">
+            <as-meter-bar min="powerInfo.minAvg" max="powerInfo.maxAvg" ng-model="powerInfo.current"></as-meter-bar>
+            <div class="numeric-content">
+                <span class="kpi-value"><b ng-bind="powerInfo.current">0</b><sup>kW</sup></span>
+                <span class="kpi-title">Current Power</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6"><p>Power - measured in Watts (W) or Kilowatts (kW) - is like your speedometer. Your speedometer shows your current speed</p></div>
+</div>
+<div class="row" style="margin: 0 0 15px;">
+    <div class="col-md-6 no-padding">
+        <div class="wrapper-kpi light right-meter">
+            <as-meter-bar min="energyInfo.minAvg" max="energyInfo.maxAvg" ng-model="energyInfo.today"></as-meter-bar>
+            <div class="numeric-content">
+                <span class="kpi-value"><b ng-bind="energyInfo.today">0</b><sup>kWh</sup></span>
+                <span class="kpi-title">Today's Energy</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6"><p>Energy - measured in Watt-Hours (Wh) or Kilowatt-Hours (kWh) - is like your odometer. Your odometer shows how far that speed took you over time</p></div>
+</div>
+<p>
+    Your current power is <span class="kpi">{{ powerInfo.current }}kW</span>.
+    It’s <as-current-time format="h:mma"></as-current-time> on a {{ todayWeather.summary | lowercase }} day and your system’s peak production capability is <span class="kpi" ng-bind="powerInfo.potential + 'kW'">0kW</span>.
+    If it weren’t for the clouds, you would be producing more power.
+</p>
+-->
+<p>How much total energy can your system produce? Think kilowatt hours.</p>
+<p>How much power can it deliver - or generate - at any moment? Think kilowatts.</p>
+<div class="row" style="margin: 0 0 15px;">
+    <div class="col-md-6 no-padding">
+        <div class="wrapper-kpi light right-meter">
+            <as-meter-bar min="energyInfo.minAvg" max="energyInfo.maxAvg" ng-model="energyInfo.today"></as-meter-bar>
+            <div class="numeric-content">
+                <span class="kpi-value"><b ng-bind="energyInfo.today">0</b><sup>kWh</sup></span>
+                <span class="kpi-title">Today's Energy</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6"><p>Energy is the capacity to do work. If work is the act of exerting a force over a distance, like pushing a chair across the room.</p></div>
+</div>
+<div class="row" style="margin: 0 0 15px;">
+    <div class="col-md-6 no-padding">
+        <div class="wrapper-kpi light right-meter">
+            <as-meter-bar min="powerInfo.minAvg" max="powerInfo.maxAvg" ng-model="powerInfo.current"></as-meter-bar>
+            <div class="numeric-content">
+                <span class="kpi-value"><b ng-bind="powerInfo.current">0</b><sup>kW</sup></span>
+                <span class="kpi-title">Current Power</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6"><p>Power, though, is the rate of generating or consuming energy - or energy per unit of time - and is measured in Watts or Kilowatts.</p></div>
+</div>
+<p>
+    For example, you can move a loaded car across the country with a moped engine - but the car’s larger engine, equipped with more power, would do the same amount of work, only in far less time.
+</p>

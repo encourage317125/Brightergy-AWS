@@ -1,0 +1,139 @@
+<div class="team-member-view-content">
+    <div class="ppanel-section-jambo-brief ppanel-section-heading">
+        <div class="row member-action">
+            <div class="col-xs-4 jambo-left">
+                <span class="member-photo none" ng-show="!selectedUser.profilePictureUrl">
+                    {{selectedUser.name | nameInitial}}
+                </span>
+                <span class="member-photo" ng-show="selectedUser.profilePictureUrl">
+                    <img ng-src="{{selectedUser.profilePictureUrl}}" alt="{{selectedUser.name | nameInitial}}"/>
+                </span>
+                <span class="label label-primary">
+                    {{selectedUser.role}}
+                </span>
+            </div>
+            <div class="col-xs-8 jambo-body">
+                <h3 class="title">
+                    <ppanel-form-field-live id="inputMemberViewName" field-model="selectedUser.name" field-on-save="updateSelectedUser()" required="">
+                        {{selectedUser.name}}
+                    </ppanel-form-field-live>
+                    <a ng-click="showDeleteTMModal();"><i class="icon icon-trash"></i></a>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <fieldset class="form-wrapper member-info" ng-if="!userModifiable">
+        <form class="form-platform-panel form-horizontal">
+            <fieldset class="form-group">
+                <label for="inputMemberViewAccount" class="col-xs-4 control-label no-left-padding">Account</label>
+                <div class="col-xs-8 control-wrapper">
+                    {{selectedUser.accountName || 'No Account'}}
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <label class="col-xs-4 control-label no-left-padding">Role</label>
+                <div class="col-xs-8 control-wrapper">
+                    {{selectedUser.role || 'No Role'}}
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="inputMemberViewContact" class="col-xs-4 control-label no-left-padding">Contact Phone</label>
+                <div class="col-xs-8 control-wrapper">
+                    {{selectedUser.phone || 'No phone'}}
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="inputMemberViewEmail" class="col-xs-4 control-label no-left-padding">Email</label>
+                <div class="col-xs-8 control-wrapper">
+                    {{selectedUser.email}}
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label class="col-xs-4 control-label no-left-padding">Social accounts</label>
+                <div class="col-xs-8">
+                    <span ng-repeat="account in selectedUser.socialAccounts">
+                        <a class="social-link" href=" {{ account.profileUrl || '#' }}" target="_blank">
+                            <i class="icon icon-{{ account.provider }}"></i>
+                        </a>
+                    </span>
+                    <span ng-if="!selectedUser.socialAccounts.length" style="line-height:34px;">
+                        {{ socialAccountLoading ? 'Loading...' : 'User is not linked social network with his account.' }}
+                    </span>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <div class="col-xs-offset-4 col-xs-8">
+                    <button type="button" class="btn btn-default" ng-click="backToTeamList();">Back to List</button>
+                </div>
+            </fieldset>
+        </form>
+    </fieldset>
+    <fieldset class="form-wrapper member-info" ng-if="userModifiable">
+        <form class="form-platform-panel form-horizontal">
+            <fieldset class="form-group">
+                <label for="inputMemberViewAccount" class="col-xs-4 control-label no-left-padding">Account</label>
+                <div class="col-xs-8 control-wrapper">
+                    <!--<ppanel-form-field-select-live id="inputMemberViewAccount" field-model="selectedUser.accountId" field-list="accountListForSelectBox" field-on-save="updateSelectedUser()" default="Select account ..." required>
+                        {{selectedUser.accountName || 'No Account'}}
+                    </ppanel-form-field-select-live>-->
+                    {{selectedUser.accountName || 'No Account'}}
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label class="col-xs-4 control-label no-left-padding">Role</label>
+                <div class="col-xs-8 control-wrapper">
+                    <!--<ppanel-form-field-select-live id="inputMemberViewRole" field-model="selectedUser.role" field-list="userRoleForSelectBox" field-on-save="updateSelectedUser()">
+                        {{selectedUser.role || 'No Role'}}
+                    </ppanel-form-field-select-live>-->
+                    {{selectedUser.role || 'No Role'}}
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="inputMemberViewContact" class="col-xs-4 control-label no-left-padding">Contact Phone</label>
+                <div class="col-xs-8 control-wrapper">
+                    <ppanel-form-field-live id="inputMemberViewContact" field-model="selectedUser.phone" field-on-save="updateSelectedUser()" type="tel">
+                        {{selectedUser.phone || 'No phone'}}
+                    </ppanel-form-field-live>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="inputMemberViewEmail" class="col-xs-4 control-label no-left-padding">Email</label>
+                <!--<div class="col-xs-8 control-wrapper" ng-if="selectedUser.role =='BP'">
+                    {{selectedUser.email || 'No Email'}}
+                </div>-->
+                <div class="col-xs-8 control-wrapper">
+                    <ppanel-form-field-live id="inputMemberViewEmail" field-model="selectedUser.email" field-on-save="updateSelectedUser()" type="email" required="">
+                        {{selectedUser.email}}
+                    </ppanel-form-field-live>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label class="col-xs-4 control-label no-left-padding">Social accounts</label>
+                <div class="col-xs-8">
+                    <span ng-repeat="account in selectedUser.socialAccounts">
+                        <a class="social-link" href=" {{ account.profileUrl || '#' }}" target="_blank">
+                            <i class="icon icon-{{ account.provider }}"></i>
+                        </a>
+                    </span>
+                    <span ng-if="!selectedUser.socialAccounts.length" style="line-height:34px;">
+                        {{ socialAccountLoading ? 'Loading...' : 'User is not linked social network with his account.' }}
+                    </span>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <div class="col-xs-offset-4 col-xs-8">
+                    <button type="button" class="btn btn-default" ng-click="backToTeamList();">Back to List</button>
+                </div>
+            </fieldset>
+        </form>
+    </fieldset>
+</div>

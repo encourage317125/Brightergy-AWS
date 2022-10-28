@@ -1,0 +1,84 @@
+.sharePanel {
+	position: absolute;
+	right: -510px;
+	top: 45px;
+	width: 590px;
+	background-color: $color_delete_background;
+	border: 1px solid #E3E2E2;
+	z-index: 999;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	border-radius: 3px;
+	padding: 10px 20px 20px;
+	&:before {
+		position: absolute;
+		top: -11px;
+		left: 18px;
+		display: inline-block;
+		border-right: 11px solid transparent;
+		border-bottom: 11px solid #E3E2E2;
+		border-left: 11px solid transparent;
+		border-bottom-color: rgba(0,0,0,.2);
+		content: '';
+	}
+	.icon-close {
+		background-image: url(/assets/img/icon_cross_black.png);
+		background-size: 15px 15px;
+		position: absolute;
+		width: 15px;
+		height: 15px;
+		right: 10px;
+		cursor: pointer;
+		z-index: 1;
+		display: block;
+		opacity: .3;
+		&:hover {
+			opacity: .7;
+		}
+	}
+	.share-panel-text {
+		font-weight: 700;
+		font-size: 14px;
+		margin-bottom: 15px;
+		margin-top: 10px;
+	}
+	.row {
+		margin-left: -10px;
+		margin-right: -10px;
+	}
+	&:before {
+		position: absolute;
+		top: -11px;
+		left: 18px;
+		display: inline-block;
+		border-right: 11px solid transparent;
+		border-bottom: 11px solid #E3E2E2;
+		border-left: 11px solid transparent;
+		border-bottom-color: rgba(0, 0, 0, 0.2);
+		content: '';
+	}
+	&:after {
+		position: absolute;
+		top: -10px;
+		left: 19px;
+		display: inline-block;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid #ffffff;
+		border-left: 10px solid transparent;
+		content: '';
+	}
+	.copied{
+		color:#34b36a;
+		height: 30px;
+		display: inline-block;
+	}
+	textarea{
+		height: 100px;
+		min-height:100px;
+	}
+	.share-info{
+		.copied{
+			color: #34b36a;
+		}
+	}
+}

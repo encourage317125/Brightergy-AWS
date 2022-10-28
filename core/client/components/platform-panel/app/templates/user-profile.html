@@ -1,0 +1,87 @@
+<div id="user-profile-wrapper" class="pp-grid-container ppanel-section">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="icon icon-ui-info"></i>
+            <h3 class="panel-title">User Profile</h3>
+        </div>
+
+        <div class="panel-body no-padding">
+            <div class="ppanel-section-jambo-brief ppanel-section-heading">
+                <div class="row no-margin-left-right">
+                    <div class="col-xs-3 jambo-left">
+                        <a class="avatar-wrapper" ng-click="showProfileAvatarUploadModal();">
+                            <span class="avatar empty" ng-show="!currentUser.profilePictureUrl">
+                                {{currentUser.name | nameInitial}}
+                            </span>
+                            <span class="avatar" ng-show="currentUser.profilePictureUrl">
+                                <img class="profile-img" src="{{currentUser.profilePictureUrl}}" alt="" ng-hide="isAvatarLoading">
+                                <span class="profile-loading" ng-show="isAvatarLoading" ng-if="currentUser.profilePictureUrl">Loading...</span>
+                            </span>
+                            <b class="change-hover">Change</b>
+                        </a>
+                    </div>
+                    <div class="col-xs-8 jambo-body">
+                        <h3 class="title row">
+                            <ppanel-form-field-live id="inputUserName" field-model="currentUser.name" field-on-save="updateCurrentUser()" class="col-xs-12 col-sm-8" validation="required ng-full-name">
+                                {{ currentUser.name }}
+                                <span class="label label-primary">{{currentUser.role}}</span>
+                            </ppanel-form-field-live>
+                        </h3>
+                        <p>
+                            <a class="btn-link" target="_blank" href="mailto:{{currentUser.email}}">{{currentUser.email}}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="form-wrapper">
+                <form class="form-platform-panel form-horizontal">
+                    <fieldset class="form-group no-margin-left-right">
+                        <label class="col-xs-3 control-label">Account</label>
+                        <div class="col-xs-4 control-wrapper" ng-bind="currentAccount.name || 'No Account'">
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label class="col-xs-3 control-label">Role</label>
+                        <div class="col-xs-4 control-wrapper">
+                            {{ currentUser.role || "No Role" }}
+                            <a class="link-more">
+                                <i class="icon icon-ui-info" ppanel-tooltip tooltip-text="infoTextOfRole"></i>
+                            </a>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputUserPhone" class="col-xs-3 control-label">Phone</label>
+                        <div class="col-xs-4 control-wrapper">
+                            <ppanel-form-field-live id="inputUserPhone" field-model="currentUser.phone" field-on-save="updateCurrentUser()" validation="ng-phone-number">
+                                {{ currentUser.phone || "No Phone Number" }}
+                            </ppanel-form-field-live>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="form-group no-margin-left-right">
+                        <label for="inputUserEmail" class="col-xs-3 control-label">Email</label>
+                        <div class="col-xs-4 control-wrapper">
+                            <ppanel-form-field-live id="inputUserEmail" field-model="currentUser.email" field-on-save="updateCurrentUser()" type="email" validation="required">
+                                {{ currentUser.email || 'No Email Address' }}
+                            </ppanel-form-field-live>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="user-info-actions row">
+            <div class="col-sm-12 no-padding">
+                <div class="col-xs-3 col-profile-action-space">&nbsp;</div>
+                <div class="col-xs-3 btn-wrap">
+                    <!--a class="link action" ng-click="showChangePasswdModal = true"><i class="icon icon-password"></i><span>Reset Password</span></a-->
+                    <a class="link action" ng-click="showResetPasswdModal();"><i class="icon icon-password"></i><span>Reset Password</span></a>
+                </div>
+                <div class="col-xs-3 btn-wrap">
+                    <a ng-click="showDeleteAccountModal();" class="link action delete-account"><i class="icon icon-trash"></i><span>Delete Account</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

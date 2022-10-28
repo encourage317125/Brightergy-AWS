@@ -1,0 +1,78 @@
+.bl-modal-segment-update-wrapper .modal-dialog {
+  width: 440px;
+}
+
+// Remove sliding when modal opens
+.bl-modal-segment-update-wrapper.modal.fade .modal-dialog, .bl-modal-segment-update-wrapper.modal.in .modal-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.bl-modal-segment-update {
+  .tree-section {
+	margin-left: -16px;
+	margin-right: -16px;
+	margin-bottom: 40px;
+	height: 250px;
+
+	treecontrol.datasource-tree li div.tree-label {
+	  &.facility .node-name {
+		width: 384px;
+		.pull-right.actions {
+		  margin-top: 7px;
+		}
+	  }
+	  &.scope .node-name {
+		width: 362px;
+	  }
+	  &.node .node-name {
+		width: 346px;
+	  }
+	  &.dmetric .node-name {
+		width: 330px;
+	  }
+	}
+  }
+  .bl-dlg-description {
+	background-color: #f9f9f9;
+	border-top: 1px solid $border-gray-light;
+	border-bottom: 1px solid $border-gray-light;
+	color: #888;
+	font-size: 11px;
+	line-height: 16px;
+	margin: 20px -10px;
+	padding: 16px 20px;
+  }
+}
+.bl-choose-segments-scope {
+	margin-top: 20px;
+	cursor: pointer;
+}
+.bl-choose-segments-icon-scope {
+	background: url("../img/iconsSet2.png") no-repeat -75px -6px;
+	display: block;
+	float: left;
+	margin: 3px 4px 0 0;
+	padding: 0;
+	width: 16px;
+	height: 16px;
+}
+.bl-choose-segments-scope-title {
+	font-size: 20px;
+	color: #e67e22;
+	@include FontFamily_BentonSans();
+}
+.bl-input-search-section {
+  position: relative;
+  padding: 0;
+  margin-top: 20px;
+
+  span.glyphicon {
+	  position: absolute;
+	  color: #b0b0b0;
+	  right: 10px;
+	  top: 7px;
+	  font-size: 18px;
+  }
+}

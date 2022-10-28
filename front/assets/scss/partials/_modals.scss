@@ -1,0 +1,82 @@
+#energy-drilldown-combochart {
+    min-height: 740px; 
+}
+
+
+.drilldown {
+    .modal-dialog {
+        margin: 0 !important;
+        width: 100% !important;
+        height: 100%;
+
+        .modal-content {
+            background-color: white;
+            padding: 2px;
+            @include box-shadow(none);
+            min-height: 100%;
+            border: none;
+            border-radius: 0;
+
+            .drilldown-close {
+                position:absolute;
+                top:25px;
+                right:25px;
+                display: block;
+                width: 12px;
+                height: 12px;
+                background: url(/dist/img/close-modal.png) no-repeat;
+                z-index: $zindex-modal + 2;
+            }
+
+            .element .header .controls .control-nav {
+                margin-right: 40px;
+            }
+
+            .element .header .controls .control-dropdown {
+                margin-right: 40px;
+            }
+
+            #equivalencies-drilldown .element .loading-animation {
+                width: 35px;
+                height: 35px;
+                margin: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+            }
+
+        }
+    }
+    #ppdmap_container {
+        padding: 0;
+        img {
+            width: 100%;
+        }
+    }
+    .ppd-photo {
+        padding: 0;
+    }
+}
+
+.modal-open {
+    /*overflow-x: hidden;*/
+    /*overflow-y: auto;*/
+}
+.modal-open .modal.drilldown {
+    left: 500px;
+    @media (max-width: $screen-as-lg-max) {
+        left: 60px;
+    }
+}
+.modal-open.collapsed .modal.drilldown {
+    left: 60px;
+    @media (max-width: $screen-as-xs-max) {
+        left: 0px;
+    }
+}
+
+@media (min-width: $screen-sm-min) {
+    .modal-content {
+        @include box-shadow(none);
+    }
+}

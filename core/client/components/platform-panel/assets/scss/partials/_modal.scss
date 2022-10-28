@@ -1,0 +1,218 @@
+.user-profile-modal {
+  background: inline-image("components/platform-panel/assets/img/title-left.png") $white no-repeat;
+  background-position: 0 5px;
+  position: absolute;
+  border: solid 1px #d4d4d4;
+  border-radius: 3px;
+  padding: 5px 20px;
+  margin: 0 0 1px 1px;
+  width: 900px;
+  height: 530px;
+  top: calc(100%/2 - 100px);
+  text-align: center;
+  .title {
+	text-align: left;
+  }
+  .upload-btn-wrapper {
+	margin: 170px auto 0px auto;
+	width: 200px;
+	cursor: pointer;
+	&.dragover {
+	  border: 3px solid #8bbce1;
+	}
+  }
+  .upload-button {
+	background: #e9f6ef;
+	color: #2eab8d;
+	border: 1px solid #2eab8d;
+	height: 50px;
+	line-height: 50px;
+  }
+  .photo-upload-section {
+	.photo-upload-left-panel {
+	  min-width: 300px;
+	  width: 75%;
+	  float: left;
+	  padding: 0 24px 20px 0;
+	  border-right: 1px solid #ebebeb;
+	  .cropArea {
+		position: relative;
+		border-radius: 5px;
+		background: #E4E4E4;
+		overflow: hidden;
+		width: 100%;
+		height: 350px;
+	  }
+	  img-crop {
+		width: 100%;
+		height: 100%;
+		display: block;
+		position: relative;
+		overflow: hidden;
+		canvas {
+		  display: block;
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  outline: 0;
+		}
+	  }
+	}
+	.photo-upload-right-panel {
+	  min-width: 210px;
+	  width: 25%;
+	  float: left;
+	  padding: 0 0 20px 10px;
+	  .button-group {
+		margin-top: 40px;
+	  }
+	  .progress {
+		width: 90%;
+		margin: 10px auto;
+		top: 0;
+		left: 0;
+		right: 0;
+	  }
+	  .upload-failed {
+		margin-top: 10px;
+		text-align: center;
+		color: red;
+	  }
+	}
+  }
+  .action-btn {
+	padding: 8px 15px;
+	font-size: 13px;
+	cursor: pointer;
+	float: left;
+	border-radius: 2px;
+	&:disabled {
+	  background: #DDD;
+	  color: #999;
+	  border: 1px solid #999;
+	  &:hover {
+		background: #DDD;
+		color: #999;
+	  }
+	}
+  }
+  .btn-ok {
+	color: #34b36a;
+	border: 1px solid #34b36a;
+	background: #e9f7ef;
+	&:hover {
+	  background: #34b36a;
+	  color: #e9f7ef;
+	}
+  }
+  .btn-cancel {
+	background: #fff;
+	border: 1px solid #3788be;
+	color: #3788be;
+	&:hover {
+	  background: #bce0ed;
+	  color: #3391b4;
+	}
+  }
+}
+
+.account-delete-modal {
+  background: inline-image("components/platform-panel/assets/img/title-left.png") $white no-repeat;
+  background-position: 0 5px;
+  position: absolute;
+  border: solid 1px #d4d4d4;
+  border-radius: 3px;
+  padding: 5px 20px;
+  margin: 0 0 1px 1px;
+  width: 448px;
+  top: calc(100%/2 - 100px);
+}
+
+.tm-delete-modal {
+  background: inline-image("components/platform-panel/assets/img/title-left.png") $white no-repeat;
+  background-position: 0 5px;
+  position: absolute;
+  border: solid 1px #d4d4d4;
+  border-radius: 3px;
+  padding: 5px 20px;
+  margin: 0 0 1px 1px;
+  width: 448px;
+  top: calc(100%/2 - 100px);
+}
+
+.modal-wrapper {
+	border: solid 1px #d4d4d4;
+	border-radius: 3px;
+	padding: 5px 20px;
+	margin: 0 0 1px 1px;
+	
+	.header {
+		padding: 15px 5px !important;
+
+		.title {
+			color: $gray-dark;
+			font-size: $font-size-larger;
+		}
+	}
+
+	.row {
+		padding: 0 20px;
+
+		p {
+			font-size: $font-size-large;
+			margin: 0 0 5px;
+		}
+
+		a {
+			&.btn {
+				float: left;
+			}
+		}
+	}
+	
+	.modal-close {
+		position: absolute;
+		top: 20px;
+		right: 25px;
+		display: block;
+		width: 12px;
+		height: 20px;
+	  	outline: none;
+	}
+}
+
+.modal-style {
+  .modal-dialog {
+	position: absolute;
+	width: 448px;
+	height: 250px;
+	left: 0;
+	right: 0;
+	top: calc(100%/2 - 100px);
+	margin: 0 auto;
+  }
+}
+
+.profile-modal-style {
+  .modal-dialog {
+	position: absolute;
+	width: 900px;
+	height: 530px;
+	left: 0;
+	right: 0;
+	top: calc(100%/2 - 200px);
+	margin: 0 auto;
+  }
+}
+
+.modal-backdrop {
+  bottom: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.modal-open {
+  .modal {
+	background: rgba(0, 0, 0, 0.3);
+  }
+}

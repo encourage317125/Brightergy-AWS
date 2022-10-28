@@ -1,0 +1,68 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    font-size: $font-size-base;
+    font-family: $font-family-base;
+}
+.main-container {
+	overflow-x: hidden;
+}
+#page-content-wrapper {
+    position: relative;
+    margin-left: 500px;
+}
+a, a:hover, a:visited, a:active {
+	text-decoration: none;
+}
+a:hover {
+	cursor: pointer;
+}
+.orange {
+	color: $orange;
+}
+.blue {
+	color: $blue-xlighter;
+}
+.green {
+	color: $green;
+}
+.light-gray {
+	color: #d5d9da;
+}
+.no-padding {
+    padding: 0;
+}
+.no-margin {
+    margin: 0;
+}
+.padding-top-10 {
+	padding-top: 10px;
+}
+.padding-top-20 {
+	padding-top: 20px;
+}
+.padding-top-30 {
+	padding-top: 30px;
+}
+.padding-top-50 {
+	padding-top: 50px;
+}
+.padding-top-70 {
+	padding-top: 70px;
+}
+.padding-top-90 {
+	padding-top: 90px;
+}
+.has-zindex-1 {
+  z-index: 1;
+}
+.has-zindex-2 {
+  z-index: 2;
+}
+.has-info {
+	position: relative;
+	cursor: pointer;
+}
+.kpi {
+	color: $brand-primary;
+}

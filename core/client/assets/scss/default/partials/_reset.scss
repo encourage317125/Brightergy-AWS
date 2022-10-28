@@ -1,0 +1,274 @@
+// Common heading styles
+@mixin heading-block{
+  &.block {
+    padding-bottom: 10px;
+  }
+}
+
+html {
+  background: #fff;
+}
+body {
+  color: #000;
+  font-size: 13px;
+  direction: ltr;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #fff;
+}
+
+// Common Colors
+.color-red {
+  color: #e02222;
+}
+.color-blue {
+  color: #0da3e2;
+}
+.color-grey {
+  color: #555555;
+}
+.color-green {
+  color: #35aa47;
+}
+.color-yellow {
+  color: #ffb848;
+}
+.color-purple {
+  color: #852b99;
+}
+.color-light-red {
+  color: #ff5400;
+}
+.color-light-blue {
+  color: #bfd5fa;
+}
+.color-light-grey {
+  color: #fafafa;
+}
+.color-light-green {
+  color: #78df1d;
+}
+
+h1 {
+  font-weight: 300;
+  
+}
+h2 {
+  font-weight: 300;
+  color: #444;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 26px;
+  text-decoration: none;
+  
+  @include heading-block;
+  a {
+    color: #444;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 26px;
+    text-decoration: none;
+    &:hover {
+      color: #0da3e2;
+      text-decoration: none;
+      transition: all 0.5s ease;
+    }
+  }
+}
+h3 {
+  font-weight: 300;
+  color: #222;
+  @include heading-block;
+}
+h4 {
+  font-weight: 300;
+  @include heading-block;
+}
+h5 {
+  font-weight: 300;
+  @include heading-block;
+}
+h6 {
+  font-weight: 300;
+  @include heading-block;
+}
+.visible-ie8 {
+  display: none;
+}
+.ie8 {
+  .visible-ie8 {
+    display: inherit !important;
+  }
+  .hidden-ie8 {
+    display: none !important;
+  }
+  .row-fluid [class*="span"] {
+    min-height: 20px !important;
+  }
+}
+.visible-ie9 {
+  display: none;
+}
+.ie9 {
+  .visible-ie9 {
+    display: inherit !important;
+  }
+  .hidden-ie9 {
+    display: none !important;
+  }
+}
+.hidden-ie8 {
+  display: inherit;
+}
+.hidden-ie9 {
+  display: inherit;
+}
+a {
+  outline: 0;
+  &.more {
+    font-size: 13px;
+    font-weight: 400 !important;
+    font-family: 'Open Sans' !important;
+    i {
+      font-size: 12px;
+    }
+  }
+  &:focus {
+    outline: 0;
+  }
+  &:hover {
+    outline: 0;
+  }
+  &:active {
+    outline: 0;
+  }
+}
+.fix-offset {
+  margin-left: 0 !important;
+}
+.clearfix {
+  clear: both;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.no-bottom-space {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+.no-top-space {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+.space5 {
+  display: block;
+  height: 5px !important;
+  clear: both;
+}
+.space7 {
+  height: 7px !important;
+  clear: both;
+}
+.space10 {
+  height: 10px !important;
+  clear: both;
+}
+.space12 {
+  height: 12px !important;
+  clear: both;
+}
+.space15 {
+  height: 15px !important;
+  clear: both;
+}
+.space20 {
+  height: 20px !important;
+  clear: both;
+}
+.no-space {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.no-text-shadow {
+  text-shadow: none !important;
+}
+.no-left-padding {
+  padding-left: 0 !important;
+}
+.no-left-margin {
+  margin-left: 0 !important;
+}
+.margin-bottom-10 {
+  margin-bottom: 10px !important;
+}
+.margin-top-10 {
+  margin-top: 10px !important;
+}
+.margin-top-20 {
+  margin-top: 20px !important;
+}
+.margin-top-30 {
+  margin-top: 30px !important;
+}
+.margin-top-40 {
+  margin-top: 40px !important;
+}
+.margin-bottom-15 {
+  margin-bottom: 15px !important;
+}
+.margin-bottom-20 {
+  margin-bottom: 20px !important;
+}
+.margin-bottom-30 {
+  margin-bottom: 30px !important;
+}
+.margin-bottom-40 {
+  margin-bottom: 40px !important;
+}
+.margin-top-20 {
+  margin-top: 20px !important;
+}
+.margin-bottom-25 {
+  margin-bottom: 25px !important;
+}
+.margin-right-10 {
+  margin-right: 10px !important;
+}
+.margin-right-20 {
+  margin-right: 20px !important;
+}
+.margin-left-10 {
+  margin-left: 10px !important;
+}
+.hide {
+  display: none;
+}
+.bold {
+  font-weight: 600 !important;
+}
+.fix-margin {
+  margin-left: 0 !important;
+}
+.border {
+  border: 1px solid #ddd;
+}
+.inline {
+  display: inline;
+}
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #E0DFDF;
+  border-bottom: 1px solid #FEFEFE;
+}
+[class^="icon-"]:hover {
+}
+[class*=" icon-"]:hover {
+}
+ol, ul {
+  list-style-type: none;
+  padding-left: 0;
+}

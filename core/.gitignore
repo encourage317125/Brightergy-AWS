@@ -1,0 +1,45 @@
+#Ignore mongodb folder
+mongodb
+
+#Ignore redis server
+Redis-64.2.8.9
+
+#Ignore web storm files
+.idea/
+
+#ignore db start script
++redis-server.bat
++mongodb.bat
+
+#Ignore logs
+errors.log
+npm-debug.log
+core-*.log
+log
+
+#Ignore modules
+node_modules/*
+
+#Ignore uploads
+uploads/
+
+#Ignore exported files
+client/exported/
+
+.elasticbeanstalk/
+
+.sass-cache/
+
+#Ignore .DS_Store
+.DS_Store
+
+#Ignore docs
+docs
+tmp
+*.log
+
+#Ignore coverage reports directories
+*-coverage/
+
+# Local configs
+config/environment/development.json

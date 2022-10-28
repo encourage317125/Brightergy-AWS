@@ -1,0 +1,86 @@
+form.form-platform-panel {
+    font-size: $font-size-large;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .form-group {
+        margin-top: 6px;
+        margin-bottom: 6px;
+    }
+    .control-wrapper {
+        color: $link-dark;
+        line-height: 34px;
+        word-break: break-all;
+        span {
+            //margin-top: 7px;
+            line-height: 27px;
+        }
+
+        .link-more{
+            margin-left: 10px;
+        }
+    }
+    .control-label {
+        padding-right: 27px;
+        font-weight: 400;
+        text-align: right;
+        line-height: 34px;
+        padding-top: 0;
+    }
+}
+.input-danger {
+    color: $brand-danger;
+}
+
+ppanel-form-field-live,
+ppanel-form-field-select-live {
+    display: inline-block;
+    .icon.icon-edit, .icon-blue-loading {
+        color: $link-color;
+        font-size: 15px;
+        float: left;
+        margin-top: 8px;
+        margin-left: -24px;
+    }
+    span.echo {
+        display: block;
+        cursor: pointer;
+    }
+    p {
+        font-size: $font-size-large !important;
+        font-weight: 400 !important;
+    }
+}
+ppanel-form-field-select-live {
+    .ppanel-form-field-input-wrapper {
+        display: block;
+        width: 100%;
+        select {
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+
+    form.form-platform-panel {
+        .control-label {
+            width: 30%;
+        }
+
+        .control-wrapper{
+            width: 50%;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+
+    form.form-platform-panel {
+        .control-label {
+            width: 50%;
+        }
+    }
+}

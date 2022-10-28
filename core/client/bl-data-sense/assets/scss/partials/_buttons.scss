@@ -1,0 +1,83 @@
+.btn-bv-default {
+
+    font-size: .9em;
+    margin: 1px;
+    padding: $medium-space $x-large-space;
+
+    color: $blue-light;
+    border: 1px solid $border-gray-light;
+    border-radius: 2px;
+
+    background: #fff;
+
+    .icon {
+        display: inline-block;
+        float: left;
+        font-size: 1.3em;
+        margin-right: $medium-space;
+    }
+
+    .text {
+        color: $blue-lighter;
+        display: inline-block;
+        @include FontFamily_BentonSansMedium();
+    }
+
+    &:hover {
+        color: $blue-lighter;
+        background: #bce0ed;
+        border: 1px solid #3788be;
+        .icon {
+            color: $blue-light;
+        }
+    }
+
+    &:focus, 
+    &:active {
+        color: $blue-light;
+        outline: 0;
+        .icon {
+            color: $blue-light;
+        }
+    }
+
+    &.btn-sm {
+        padding: 4px 12px;
+    }
+}
+
+.btn-bl-green {
+    padding: 10px 25px;
+    border: 1px solid #27ae60;
+    background: #e9f7ef;
+    color: #27ae60;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+.btn-remove-segment {
+    background: #F83A51;
+    border: 1px solid #F83A51;
+    border-radius: 10px;
+    color: #fff;
+    display: none;
+    opacity: .7;
+    padding: 1px 2px;
+    position: absolute;
+    right: -7px;
+    top: -8px;
+    z-index: 10;
+    @include transition(opacity .4s ease-in-out);
+    &:hover {
+        color: white;
+        opacity: 1;
+        @include transition(opacity .4s ease-in-out);
+    }
+}
+
+.btn-link {
+    &:hover,
+    &:active {
+        text-decoration: none;
+    }
+}

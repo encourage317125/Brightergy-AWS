@@ -1,0 +1,246 @@
+.help-header {
+    height: 69px;
+    > h3 {
+        font-size: $font-size-larger;
+        color: $black-light;
+        margin:0;
+        line-height: 59px;
+    }
+    > .close {
+        position: absolute;
+        top:25px;
+        right:25px;
+    }
+}
+.help-search-wrapper {
+    border-radius: $border-radius;
+    background: $blue-slight;
+    padding: 25px 30px;
+
+    .search-input-wrapper {
+        border-radius: 20px;
+        height:40px;
+        background: #fff right no-repeat;
+        @include clearfix();
+        input[type="text"] {
+            float: left;
+            padding:5px 0;
+            margin-left: 20px;
+            width: calc(100% - 60px);
+            margin-top: 5px;
+            border: 0;
+            font-size: $font-size-large;
+        }
+        .btn-submit {
+            float: left;
+            border: 0;
+            background: transparent;
+            font-size: 17px;
+            margin: 11px 10px 0 0;
+            color: gray;
+        }
+    }
+
+    .nav-list {
+        line-height: 40px;
+        margin: 0;
+        padding: 0;
+        font-size: $font-size-large;
+        a {
+            color: $white;
+        }
+        @media (min-width: 992px) {
+            margin-top: 0;
+        }
+        .badge {
+            padding: 7px 15px;
+            background: $blue-dark;
+            font-weight: bold;
+            font-size: $font-size-large;
+        }
+        > li {
+            padding: 0 10px;
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+
+    }
+}
+.help-content {
+    .subbox {
+        margin-top: 30px;
+
+        .header {
+            height: 44px;
+
+            > h3 {
+                font-size: $font-size-larger;
+                color: $black-light;
+                margin:0;
+                line-height: 44px;
+            }
+        }
+
+        &.knowledge-box .header {
+            background: url(/dist/img/help-base.png) right center no-repeat;
+        }
+
+        &.contact-box .header {
+            background: url(/dist/img/help-contact.png) right center no-repeat;
+        }
+
+        &.faq-box .header {
+            background: url(/dist/img/help-faq.png) right center no-repeat;
+        }
+
+        &.glossary-box .header {
+            background: url(/dist/img/help-glossary.png) right center no-repeat;
+        }
+
+        .description {
+            margin-top:20px;
+            color: $gray-lighter;
+            text-align: justify;
+            line-height: 1.8;
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-size: $font-size-middle;
+        }
+
+        .contents {
+            margin-top: 20px;
+
+            ul, li {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            li {
+                padding: 5px 0;
+            }
+
+            a {
+                font-size: $font-size-large;
+                color: $blue-slight;
+                cursor:pointer;
+                text-decoration: none;
+            }
+
+            .form-row {
+                input[type="text"],
+                textarea {
+                    padding:10px 20px;
+                    margin-top: 5px;
+                    border: 1px solid $gray-lightest;
+                    font-size: $font-size-large;
+                    border-radius: 20px;
+                    font-size: $font-size-base;
+                    font-weight: 300;
+                    width: 100%;
+                    max-width: 100%;
+                }
+
+                textarea {
+                    min-height: 120px;
+                    margin-top: 10px;
+                }
+
+                button {
+                    background: $blue-slight;
+                    padding: 10px 20px;
+                    border-radius: 20px;
+                    color: $white;
+                    border: 0;
+                    font-weight: 300;
+                    margin-top: 15px;
+                }
+            }
+
+            p {
+                color: $blue-lighter;
+                font-size: $font-size-large;
+                line-height: 1.8;
+                margin-bottom: 20px;
+                max-width: 96%;
+            }
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        &.knowledge-box .contents {
+            min-height: 207px;
+        }
+
+        &.knowledge-box .contents li {
+            display: inline-block;
+            width: 49%;
+            vertical-align: top;
+
+            @media (max-width: 767px) {
+                display:block;
+                width: 100%;
+            }
+        }
+
+        &.faq-box .contents li {
+            padding: 8px 0 8px 25px;
+            background: url(/dist/img/help-faq-circle.png) left 17px no-repeat;
+            line-height: 1.8;
+        }
+
+        &.glossary-box ul {
+            padding: 0;
+            margin: 10px 0;
+            li {
+                a {
+                    padding: 5px 12px;
+                    border: 1px solid #fff;
+                    border-radius: 10px;
+                    &:hover {
+                        border-color: $gray-lightest;
+                    }
+                }
+            }
+
+        }
+        .more-link {
+            margin-top: 20px;
+            color: $brand-primary;
+            font-size: $font-size-base;
+        }
+        &.has-border {
+            @media (min-width: 992px) {
+                border-left: 1px solid $border-element;
+                padding-left: 25px;
+                background: url(/dist/img/help-st-line2.png) left top no-repeat;
+                padding-bottom: 20px;
+            }
+        }
+    }
+}
+#help-panel {
+    position: relative;
+    border: solid 1px $border-element;
+    border-radius: $border-radius;
+    padding: 5px 20px;
+    margin-bottom: 2px;
+    background: url(/dist/img/help-st-line.png) left 10px no-repeat;
+    .inner-wrapper {
+        margin:5px 25px 40px;
+    }
+
+    .help-content {
+        margin-top: 3px;
+    }
+
+    input, button, textarea {
+        outline: none;
+        &:focus {
+            outline: none;
+        }
+    }
+}

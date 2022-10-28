@@ -1,0 +1,220 @@
+.bl-daterange-panel {
+    &.panel {
+        border: 1px solid #ddd;
+        //Instead of the line below you could use @includebox-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+        box-shadow: 0 2px 5px #888;
+        display: none;
+        opacity: 0;
+        position: absolute;
+        min-width: 745px;
+        z-index: 998;
+        .panel-body {
+            padding: 10px 19px;
+        }
+    }
+    .custom-checkbox-label {
+        font-size: 14px;
+        font-weight: 700;
+        @include FontFamily_BentonSans();
+        line-height: 24px;
+        color: #666;
+    }
+}
+.bl-daterange-widget-controls {
+    position: relative;
+    z-index: 1;
+}
+#bl-daterange-widget {
+    float: left;
+    margin-right: 10px;
+    div.stefan-datepicker th {
+        font-size: 12px;
+    }
+}
+.bl-daterange-compare {
+    float: left;
+    margin-left: 470px;
+    padding-left: 9px;
+    border-left: 1px solid $border-gray-light;
+    .input-daterange {
+        float: right;
+    }
+}
+.btn-bl-daterange-widget-prev {
+    border-color: $border-gray-light;
+    color: $blue-lighter;
+    padding: 2px 8px;
+    position: absolute;
+}
+.btn-bl-daterange-widget-next {
+    border-color: $border-gray-light;
+    color: $blue-lighter;
+    left: 430px;
+    padding: 2px 8px;
+    position: absolute;
+}
+.btn-bl-daterange-blue {
+    color: #3879d9;
+    &:hover {
+        color: #3879d9;
+    }
+    &:active {
+        color: #3879d9;
+    }
+}
+.bl-daterange-well {
+    @include FontFamily_BentonSans();
+    font-weight: bold;
+    font-size: 14px;
+    float: left;
+    overflow: hidden;
+    padding: 4px 7px;
+    margin-bottom: 9px;
+    width: 100px;
+    white-space: nowrap;
+}
+.bl-daterange-input {
+    background-color: #f7f7f7;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 3px !important;
+    color: #000;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: bold;
+    @include FontFamily_BentonSansMedium();
+    float: left;
+    overflow: hidden;
+    padding: 4px 6px;
+    margin-bottom: 9px;
+    text-align: left !important;
+    width: 101px !important;
+}
+.bl-daterange-spliter-dash {
+    float: left;
+    padding: 2px 4px;
+    &:after {
+        color: #999;
+        content: "_";
+        font-weight: bolder;
+    }
+}
+.bl-daterange-title {
+    @include FontFamily_BentonSans();
+    float:left;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+    margin-bottom: 7px;
+}
+.bl-daterange-label {
+    color: #666;
+    float: left;
+    margin: 3px 10px 9px 0;
+
+    @include FontFamily_BentonSans();
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 24px;
+    color: #666;
+    display: flex;
+    vertical-align: middle;
+    i {
+        font-weight: normal;
+    }
+}
+.bl-daterange-select-compare-mode, .bl-daterange-select-subday {
+    float: right;
+    popup-position: top-right bottom-right;
+    .form-control {
+        height: 30px;
+        padding: 4px 6px;
+        @include FontFamily_BentonSansMedium();
+        font-size: 14px;
+        line-height: 16px;
+        color: #000;
+    }
+}
+.custom-checkbox {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin-right: 5px;
+    z-index: 1;
+    background: url("../img/checkbox.png") no-repeat;
+    background-size: 20px 20px;
+    &:hover {
+        background: url("../img/checkbox.png") no-repeat;
+        background-size: 20px 20px;
+    }
+    &.selected {
+        background: url("../img/checkbox-selected.png") no-repeat;
+        background-size: 20px 20px;
+    }
+    input[type="checkbox"] {
+        margin: 0;
+        position: absolute;
+        z-index: 2;
+        cursor: pointer;
+        outline: none;
+        opacity: 0;
+        _noFocusLine: expression(this.hideFocus=true);
+        filter: alpha(opacity=0);
+    }
+}
+.custom-checkbox-label {
+    font-size: 14px;
+    display: flex;
+    line-height: 24px;
+    vertical-align: middle;
+    i {
+        font-weight: normal;
+    }
+}
+.bl-daterange-picker {
+    border: 1px solid $border-gray;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 3px;
+    color: #000;
+    cursor: pointer;
+    display: block;
+    min-height: 72px;
+    margin-top: 13px;
+    padding: 12px 12px;
+    text-align: center;
+    text-decoration: none;
+    width: 235px;
+    &:hover {
+        background-color: #f7f7f7;
+        color: #000;
+        text-decoration: none;
+    }
+    &:active {
+        background-color: #f7f7f7;
+        color: #000;
+        text-decoration: none;
+    }
+}
+.bl-daterange-picker-real-time {
+    @include FontFamily_BentonSansCond();
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    color: #428bca;
+    text-align: right;
+}
+
+.bl-daterange-picker-main-range {
+    @include FontFamily_BentonSansCond();
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 2px;
+    text-align: left;
+}
+.bl-daterange-picker-compare-range {
+    @include FontFamily_BentonSansCond();
+    font-size: 12px;
+    line-height: 24px;
+    font-weight: bold;
+    margin-bottom: 0;
+    text-align: left;
+}

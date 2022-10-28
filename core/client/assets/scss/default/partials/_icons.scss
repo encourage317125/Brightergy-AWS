@@ -1,0 +1,225 @@
+i.custom-puls-icon {
+  background: url(/assets/img/icon_add.png) 16px 16px;
+  width: 16px;
+  height: 16px;
+}
+
+span.icon-bv-back{
+  background: url(/assets/img/icon_back.png) 16px 16px;
+}
+
+span.icon-bv-add{
+  background: url(/assets/img/icon_add.png) 16px 16px;
+}
+
+span.icon-bv-edit{
+  background: url(/assets/img/icon_edit.png) 16px 16px;
+}
+
+span.icon-bv-loading {
+  background: url(/assets/img/ajax-loader.gif) 32px 32px;
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+span.icon-bv-delete, i.icon-bv-trash{
+  background: url(/assets/img/icon_delete_active.png) 14px 16px;
+  width: 14px;
+  height: 16px;
+  display: inline-block;
+}
+
+span.icon-bv-edit, i.icon-bv-edit{
+  background: url(/assets/img/icon_edit.png) 16px 16px;
+  width: 14px;
+  height: 16px;
+  display: inline-block;
+}
+
+span.icon-bv-document{
+  background: url(/assets/img/icon_documents.png) 16px 16px;
+}
+
+span.icon-bv-share{
+  background: url(/assets/img/icon_share.png) 16px 15px;
+}
+
+span.icon-bv-close{
+  background: url(/assets/img/icon_cross.png) 26px 26px;
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+}
+
+span.icon-bv-gear{
+  background-image: url(/assets/img/icon_gear.png);
+  /*background-color: #bce0ed;*/
+  width: 60px;
+  background-repeat: no-repeat;
+  height: 59px;
+  background-position: 50% 50%;
+  display: inline-block;
+}
+
+span.icon-bv-lgrip{
+  background: url(/assets/img/grip.png) 2px 32px;
+  display: inline-block;
+  width: 2px;
+  height: 32px;
+  float: left;
+  margin-top: 16px;
+  margin-left: -5px;
+}
+
+span.icon-bv-assets{
+  background: url(/assets/img/icon_more_assets.png) 16px 14px;
+  width: 16px !important;
+  height: 14px !important;
+  display: inline-block;
+}
+
+.disabled span.icon-bv-delete{
+  background: url(/assets/img/icon_delete_disabled.png) 14px 16px;
+}
+
+span.icon-bv-app{
+  background: url(/assets/img/icon_bv_app.png) 30px 28px;
+  width: 30px !important;
+  height: 28px !important;
+  display: inline-block;
+}
+
+span.icon-app {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background-image: url(/assets/img/app-sprite-48px.png);
+}
+
+span.icon-app-disable {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background-image: url(/assets/img/app-sprite-48px.png);
+}
+
+span.icon-bv-advanced {
+  background-image: url(/assets/img/icon-advanced.png);
+}
+
+span.icon-bv-close-blue {
+  background: url(/assets/img/icon-close-blue.png) 26px 26px;
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+}
+
+span.brighter-view{
+  background-position: -47px -47px;
+}
+span.datasense{
+  background-position: -431px -47px;
+}
+span.brighter-savings{
+  background-position: -143px -47px;
+}
+span.verified-savings{
+  background-position: -239px -47px;
+}
+span.load-response {
+   background-position: -335px -47px;
+}
+span.utility-manager {
+ background-position: -527px -47px;
+}
+span.programs-projects {
+  background-position: -623px -47px;
+}
+span.energy-portfolio {
+  background-position: -719px -47px;
+}
+span.help-and-updates {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+  background-image: url(/assets/img/app-help-update.png);
+}
+
+i.social-icon {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-image: url("/assets/img/social-icons.png");
+}
+i.social-icon {
+  &.icon_google {background-position: 0px 0px;}
+  &.icon_twitter {background-position: 0px -42px;}
+  &.icon_openid {background-position: 0px -84px;}
+  &.icon_windowslive {background-position: 0px -126px;}
+  &.icon_facebook {background-position: 0px -168px;}
+  &.icon_linkedin {background-position: 0px -210px;}
+  &.icon_yahoo {background-position: 0px -252px;}
+  &:hover {
+    background-position-x: -40px;
+  }
+}
+
+.bv-facilities{
+  background: url(/assets/img/mark_facilities.png) 12px 11px;
+  width: 12px !important;
+  height: 11px !important;
+  display: inline-block;
+}
+
+.bv-scopes{
+  background: url(/assets/img/mark_data_logger.png) 10px 11px;
+  width: 10px !important;
+  height: 11px !important;
+  display: inline-block;
+}
+
+.bv-nodes{
+  background: url(/assets/img/mark_sensor.png) 12px 12px;
+  width: 12px !important;
+  height: 12px !important;
+  display: inline-block;
+}
+
+.bv-brighter-personal{
+  background: url(/assets/img/brighter_personal.png) 13px 9px;
+  width: 13px !important;
+  height: 9px !important;
+  display: inline-block;
+  margin-left: 6px;
+  margin-bottom: 1px;
+}
+
+@mixin icon-by-background($img-path, $width, $height) {
+  background-image: url($img-path);
+  background-repeat: no-repeat;
+  background-size: $width, $height;
+  display: inline-block;
+}
+
+.lookupIcon {
+  background-image: url(/assets/img/lookup20.gif);
+  background-position: 0 0;
+  width: 20px;
+  height: 20px;
+  background-position: top left;
+  display: inline-block;
+}
+
+.panel {
+  .ui-select-bootstrap {
+    .caret {
+      right: 7px !important;
+      border-top: 5px solid;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
+    }
+  }
+}

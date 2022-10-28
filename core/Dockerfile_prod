@@ -1,0 +1,17 @@
+#Dockerfile for MEAN stack
+
+FROM docker.brighterlink.io:443/bldev/prod:latest
+MAINTAINER Samar Acharya <samar@techgaun.com>
+
+ENV SRV_DIR /var/app
+#install NPM modules
+#ADD package.json /tmp/package.json
+#RUN cd /tmp && npm install
+COPY ./.docker/supervisord.nodejs.prod.conf /etc/supervisord.d/supervisord.nodejs.conf
+
+WORKDIR /var/app
+
+USER nobody
+EXPOSE 3000
+USER root
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]

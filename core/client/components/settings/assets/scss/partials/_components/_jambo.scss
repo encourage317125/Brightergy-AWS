@@ -1,0 +1,52 @@
+.jambo-brief {
+    &.setting-heading {
+        padding: 0 0 7px;
+        background: #fff;
+        .setting-heading-inner {
+            @include clearfix();
+            padding: 12px 0;
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+        .setting-header-visual {
+            padding-right: 27px;
+            text-align: right;
+        }
+        .avatar-wrapper {
+            width: 90px;
+            height: 90px;
+            display: inline-block;
+            border: 4px solid $avatar-gray;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            .avatar {
+                display: block;
+                width: 100%; height: 100%;
+                background-size: 100% 100%;
+            }
+            .avatar-over-text {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                background-color: $link-color;
+                color: #fff;
+                padding: 0 8px;
+                margin-left: -30px;
+                margin-top: -10px;
+                cursor: hand;
+                display: none;
+            }
+            &:hover > .avatar-over-text {
+                display: block;
+            }
+        }
+        .title {
+            margin-bottom: 5px;
+            display: inline-block;
+            + .label {
+                vertical-align: super;
+            }
+        }
+    }
+}

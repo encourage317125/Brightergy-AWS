@@ -1,0 +1,76 @@
+//== Grid system
+//
+//## Define your custom responsive grid.
+
+//** Number of columns in the grid.
+$grid-columns:                  12;
+//** Padding between columns. Gets divided in half for the left and right.
+$grid-gutter-width:             20px;
+
+// Fonts
+$font-family-helvetica:        "Helvetica", Arial, sans-serif;
+
+// == Colors ==
+//
+//
+
+// Brand Colors
+$brand-primary:                 #e16030;
+
+// Common Colors
+$blue:                          #3498d8;
+$blue-light:                    #3391b4;
+$blue-lighter:                  #2980b9;
+$blue-hotlight:                 #bce0ed;
+$blue-darker:                   #3788be;
+$danger:                        #e74c3c;
+
+$gray-darker:                   #333;
+
+$grape:                         #591f59;
+$green:                         #27ae60;
+$dead:                          #939393;
+
+// Border Colors
+$border-gray:					#cecfdc;
+$border-gray-light:             #ebebeb;
+$border-gray-lighter:           #e6e6e6;
+
+// Scaffolding
+$text-color:                    $gray-darker;
+
+$color_delete_background:		#fff;
+$color_delete:					#428bca;
+$color_delete_hover:			#2a6496;
+// == Typography ==
+//
+//
+
+// Font Sizes
+$font-size-base:                14px;
+$font-size-large:               15px;
+$font-size-x-large:             17px;
+$font-size-xx-large:            22px;
+$font-size-xxx-large:           24px;
+$font-size-small:               11px;
+$font-size-h1:                  26px;
+$font-size-h2:                  18px;
+$font-size-h3:                  15px;
+$font-size-h4:                  14px;
+$font-size-h5:                  13px;
+$font-size-h6:                  12px;
+
+//== Spaces for padding/margin
+$mini-space:                    2px;
+$small-space:                   5px;
+$medium-space:                  10px;
+$large-space:                   15px;
+$x-large-space:                 20px;
+$xx-large-space:                25px;
+$xxx-large-space:               30px;
+
+// Font Family
+$font-family-base:              "Benton Sans", Arial, sans-serif;
+
+//Global account panel
+$border-element: 				#d4d4d4;

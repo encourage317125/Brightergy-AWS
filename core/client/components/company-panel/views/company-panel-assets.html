@@ -1,0 +1,152 @@
+<div id="companypanel-assets" class="companypanel-assets" ng-controller="CompanyAssetsController">
+    <!-- Start of assets panel -->
+    <div class="panel assets-panel">
+        <div class="panel-header">
+            <h4 class="panel-title">Assets</h4>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group assets-type" id="assets-type" ng-init="assetType = 'general'">
+                        <button type="button" class="btn-bv-default btn-bv-asset" ng-class="{active: assetType === 'general'}" ng-click="assetType = 'general';listAssets();">General Assets</button>
+                        <button type="button" class="btn-bv-default btn-bv-asset" ng-class="{active: assetType === 'account'}" ng-click="assetType = 'account';listAssets();">Account Assets</button>
+                        <button ng-show="showPresentation" type="button" class="btn-bv-default btn-bv-asset" ng-class="{active: assetType === 'presentation'}" ng-click="assetType = 'presentation';listAssets();">Presentation Assets</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="isAvailableCRUD()">
+                <div class="col-md-12">
+                    <div class="uploader-wrapper">
+                        <div class="upload-component">
+                            <company-panel-uploader info="assetPermission" uploader="uploadAsset(type)"></company-panel-uploader>
+                        </div>
+                        <div class="upload-description">
+                            <p>Feel free to upload your own image directly from your computer. The file should be less than 3MB.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="upload-status">
+                        <span id="upload_status">{{assetUploadStatus}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="(isBP) && (assetType=='account')">
+                <div class="col-md-12 col-sm-12">
+                    <form name="account-select-form" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Account :</label>
+                            <div class="col-sm-9 standard-select">
+                                <!--
+                                <select ui-select2="select2Options" ng-model="assetAccountId" name="add_metric_list" class="form-control" data-placeholder="Choose account from the list" ng-change="onSelectedAccountChange()" required>
+                                    <option value=""></option>
+                                    <option ng-repeat="bvaccount in assetAccounts" value="{{bvaccount._id}}" ng-selected="$index == 0">{{bvaccount.name}}</option>
+                                </select>
+                                -->
+                                <ui-select ng-model="assetAccountId" theme="bootstrap" ng-change="onSelectedAccountChange(assetAccountId)">
+                                    <ui-select-match placeholder="Choose account from the list">{{$select.selected.name}}</ui-select-match>
+                                    <ui-select-choices repeat="bvaccount._id as bvaccount in assetAccounts | filter: $select.search">
+                                      {{bvaccount.name}}
+                                    </ui-select-choices>
+                                </ui-select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-horizontal">
+                        <div class="section search-section">
+                            <input type="text" class="form-control bg-smoke" id="usersSearchBar" ng-model="searchKey" ng-change="arrangeIsotope();" placeholder="Search Assets">
+                            <span class="icon bv-find"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <ul id="assets-thumb" isotope-container="isotope-container" iso-container-subscribe="assets-thumb" iso-list="assetsList">
+                        <li ng-repeat="image in assetsList | filter:{title:searchKey} | limitTo:8" isotope-item="isotope-item" class="col-md-3 isotope-item">
+                            <div class="thumbnail-wrapper">
+                                <div class="thumbnail">
+                                    <div data-rel="{{image.thumbnailURL}}" class="tile-item">
+                                        <img ng-src="{{image.thumbnailURL}}" style="width: 100%;" alt="{{image.title}}" onerror="this.src = baseCDNUrl + '/assets/img/company-logo1.png" class="img-responsive" />
+                                        <div class="overlay">
+                                            <div class="overlay-text animated">
+                                                <a href="{{image.sourceCDNURL}}" class="view-asset" data-lightbox="thumbgroups" data-title="{{image.title}}"><i class="fa fa-search-plus fa-2x"></i></a>
+                                                <a ng-click="deleteAsset(image.id, assetType);" class="trash-asset" ng-show="isAvailableCRUD()"><i class="fa fa-trash-o fa-2x"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="more-btn-wrapper">
+                        <div class="center-btn-wrapper">
+                            <a class="btn btn-bv-default btn-bv-moreassets" ng-click="onOpenMoreAssetModal()"><span class="icon icon-bv-assets"></span><span class="text">More Assets...</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of assets panel -->
+
+    <!-- Start of more assets modal -->
+    <div class="modal fade" id="more-asset-modal" tabindex="-1" role="dialog" aria-labelledby="asset-modal-title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close btn-bv-default" data-dismiss="modal">
+                <span class="icon icon-bv-back"></span><span class="text">Back</span>
+            </button>
+            <h4 class="modal-title" id="asset-modal-title">{{assetModalTitle}}</h4>
+            <hr/>
+            <div class="section search-section">
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchSource" ng-change="arrangeIsotope() " ng-blur="search_blur()">
+                <span class="icon bv-find"></span>
+            </div>
+          </div>
+          <div class="modal-body">
+            <ul id="assets-gallery" isotope-container="isotope-container" class="row" iso-container-subscribe="assets-gallery">
+                <li ng-repeat="image in assetsList | orderBy:'title' | filter:{title:searchSource} " isotope-item="isotope-item" class="col-md-4 isotope-item">
+                  <div class="thumbnail-wrapper">
+                    <div class="thumbnail">
+                        <div data-rel="{{image.thumbnailURL}}" class="tile-item">
+                            <a href="{{image.thumbnailURL}}" data-lightbox="thumbgroups" data-title="{{image.title}}"><img ng-src="{{image.sourceCDNURL}}" style="width: 100%;" alt="{{image.title}}" class="img-responsive"/></a>
+                            <div class="overlay">
+                                <div class="overlay-text">{{image.title}}</div>
+                                <div class="overlay-btns">
+                                    <a href="{{image.sourceCDNURL}}" data-lightbox="thumbgroups" data-title="{{image.title}}" class="view-asset"><i class="fa fa-check-circle-o"></i></a>
+                                    <a ng-click="deleteAsset(image.id, assetType);" ng-show="isAvailableCRUD()" class="trash-asset"><i class="fa fa-trash-o"></i></a>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </li>
+            </ul>
+          </div>
+          <!--<div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>-->
+        </div>
+      </div>
+    </div>
+    <!-- End of more assets modal -->
+</div>

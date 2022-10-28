@@ -1,0 +1,55 @@
+.btn-bv-default {
+    font-size: .9em;
+
+    margin: 1px;
+    padding: $medium-space $x-large-space;
+
+    color: $blue-light;
+    border: 1px solid $border-gray-light;
+    border-radius: 2px;
+    background: #fff;
+
+    &:hover,
+    &:active,
+    &.active {
+        border: 1px solid $blue-darker;
+        background: $blue-hotlight;
+    }
+
+    > .icon {
+        display: block;
+        float: left;
+
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+
+    > .text {
+        display: inline-block;
+
+        color: $blue-lighter;
+    }
+}
+
+.btn-bv-green {
+  padding: $medium-space $xx-large-space;
+  border: 1px solid $green;
+  background: rgba(39,174,96,0.1);
+  color: $green;
+  font-size: .9em;
+  border-radius: 2px;
+}
+
+.btn-boo {
+  background-color: #0081b6;
+  width: 55px;
+  padding: 5px;
+  font-size: 14px;
+  color: #fff;
+  display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: $medium-space;
+}

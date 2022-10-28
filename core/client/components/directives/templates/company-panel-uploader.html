@@ -1,0 +1,27 @@
+<span class="asset-group" style="border: 0;" ng-show="uploaderInfo.uploadGeneralAssets">
+    <div style="float: right;" class="file-upload btn-boo">
+        <span id="uploading2_general" class="photo">
+            <img class="glyphicon glyphicon-upload img-responsive" ng-src="{{$root.baseCDNUrl}}/assets/img/icon_upload.png" alt="" />
+            Upload Image
+        </span>
+        <input id="uploadBtnGeneralAssets" name="assetsFile" type="file" class="upload" onchange="angular.element('#companypanel-assets').scope().uploadGeneralAsset(this)" multiple="multiple" />
+    </div>
+</span>
+<span class="asset-group" ng-show="uploaderInfo.uploadAccountAssets">
+    <div style="float: right;" class="file-upload btn-boo">
+        <span id="uploading2_client" class="photo">
+            <img class="glyphicon glyphicon-upload img-responsive" ng-src="{{$root.baseCDNUrl}}/assets/img/icon_upload.png" alt="" />
+            Upload Image
+        </span>
+        <input id="uploadBtnClientAssets" name="assetsFile" type="file" class="upload" onchange="angular.element('#companypanel-assets').scope().uploadAccountAsset(this)" multiple="multiple" />
+    </div>
+</span>
+<span class="asset-group" ng-show="uploaderInfo.uploadPresentationAssets">
+    <div style="float: right;" class="file-upload btn-boo">
+         <span id="uploading2_presentation" class="photo">
+            <img class="glyphicon glyphicon-upload img-responsive" ng-src="{{$root.baseCDNUrl}}/assets/img/icon_upload.png" alt="" />
+            Upload Image
+         </span>
+        <input id="uploadBtnPresentationAssets" name="assetsFile" type="file" class="upload" onchange="angular.element('#companypanel-assets').scope().uploadPresentationAsset(this)" multiple="multiple" />
+    </div>
+</span>
