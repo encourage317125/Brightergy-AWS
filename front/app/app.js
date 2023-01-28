@@ -40,18 +40,6 @@ angular.module('bl.analyze.solar.surface', [
   $locationProvider
     .html5Mode(false)
     .hashPrefix('!');
-  /*$routeProvider.
-    when('/main', {
-      templateUrl: 'app/partials/main-stage.html',
-      controller: 'MainStageController'
-    }).
-    when('/help', {
-      templateUrl: 'app/partials/help.html',
-      controller: 'HelpCenterController'
-    }).
-    otherwise({
-        redirectTo: '/main'
-    });*/
 }])
 
 .run(['$rootScope', '$window', '$location', 
